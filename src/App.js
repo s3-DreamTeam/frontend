@@ -1,4 +1,5 @@
 import './App.css';
+import * as React from 'react';
 import { ThemeProvider } from "@mui/material/styles";
 import GetMUIAppTheme from './theme/materialTheme';
 import PageLayout from './components/Page/pageLayout';

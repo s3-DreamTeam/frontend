@@ -10,6 +10,9 @@ WORKDIR /usr/src/app
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
+# Install ESLint for linting purposes
+RUN npm install -g eslint
+
 # Install project dependencies
 RUN npm install
 
