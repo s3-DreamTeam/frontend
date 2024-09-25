@@ -11,7 +11,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install ESLint for linting purposes
-RUN npm install -g eslint
+#RUN npm install -g eslint
 
 # Install project dependencies
 RUN npm install

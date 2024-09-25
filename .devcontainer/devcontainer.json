@@ -15,7 +15,8 @@
         "dsznajder.es7-react-js-snippets",
         "ms-azuretools.vscode-docker",
         "pkief.material-icon-theme",
-        "oouo-diogo-perdigao.docthis"
+        "oouo-diogo-perdigao.docthis",
+        "xabikos.JavaScriptSnippets"
     ],
     "runArgs": ["--env-file", ".devcontainer/.env"],
     "forwardPorts": [3000],
