@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { AppBar, Button, IconButton, Paper, Stack, Toolbar, Typography } from '@mui/material';
+import { AppBar, IconButton, Paper, Stack, Toolbar, Typography } from '@mui/material';
 import { MenuOpenRounded, MenuRounded, MoreVertRounded, PersonRounded } from '@mui/icons-material';
 import NavigationDrawer from './navigationDrawer';
-import { useState } from 'react';
+import { open, close } from '../../store/navigationDrawerSlice';
 import Main from './mainContainer';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 /**
@@ -17,9 +18,15 @@ import Main from './mainContainer';
 const PageLayout = ({ title }) => {
 
     // Handles app state changes to open or close the drawer when the variable changes
-    const [wantedDrawerState, setDrawerState] = useState(false);
+    const drawerState = useSelector((state) => state.drawerState.value);
+    const dispatch = useDispatch();
     const handleMenuClicked = () => {
-        setDrawerState(!wantedDrawerState);
+        console.log(drawerState);
+        if (drawerState) {
+            dispatch(close());
+        } else {
+            dispatch(open());
+        }
     };
 
     return (
@@ -47,7 +54,7 @@ const PageLayout = ({ title }) => {
                             sx={{ mr: '1rem' }}
                             onClick={handleMenuClicked}
                         >
-                            {wantedDrawerState ?
+                            {drawerState ?
                                 <MenuOpenRounded fontSize='large' /> :
                                 <MenuRounded fontSize='large' />
                             }
@@ -93,50 +100,10 @@ const PageLayout = ({ title }) => {
                     </Stack>
                 </Toolbar>
             </AppBar>
-            <NavigationDrawer open={wantedDrawerState} onClose={() => setDrawerState(false)} />
-            <Main open={wantedDrawerState}>
+            <NavigationDrawer open={drawerState} onClose={() => dispatch(close)} />
+            <Main open={drawerState}>
                 <Toolbar />
                 <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Button variant='contained'>WEEEEEEEEEEEEEEEEEEEEEEEEEEEEEe</Button>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
             </Main>
         </Paper>
     );

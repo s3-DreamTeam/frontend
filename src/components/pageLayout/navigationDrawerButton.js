@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import { PathIsCurrentPath } from "../../utils/routerRouteManager";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const NavigationDrawerButton = ({ title, icon, correspondingAppRoute }) => {
 
