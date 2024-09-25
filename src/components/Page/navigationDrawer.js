@@ -22,7 +22,7 @@ const NavigationDrawer = ({ open, onClose }) => {
             <NavigationDrawerButton title='stock editor' selected={false} icon={<ConstructionRounded />} />
             <StyledDivider aria-hidden='true' thiccness={2} flexItem sx={{ borderRadius: 100 }} />
 
-            <AmogusSussyBalls title='changelogs' selected={false} icon={<TextSnippetRounded />} />
+            <NavigationDrawerButton title='changelogs' selected={false} icon={<TextSnippetRounded />} />
         </Stack>
     );
 

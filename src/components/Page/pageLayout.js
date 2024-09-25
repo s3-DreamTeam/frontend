@@ -18,8 +18,8 @@ import Main from './mainContainer';
  */
 const PageLayout = ({ title }) => {
 
+    // Handles app state changes to open or close the drawer when the variable changes
     const [wantedDrawerState, setDrawerState] = useState(false);
-
     const handleMenuClicked = () => {
         setDrawerState(!wantedDrawerState);
     };
