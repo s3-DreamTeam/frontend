@@ -1,1 +1,16 @@
-npm start
+#npm start
+echo ""
+echo ""
+echo ""
+echo ""
+echo ""
+echo ""
+echo ""
+echo ""
+echo "--------------------------------------------------"
+echo "--------------------------------------------------"
+echo "--------------------------------------------------"
+echo "--------------------------------------------------"
+echo "Everything installed are ready for dev"
+echo "--------------------------------------------------"
+echo "Use VSCode run and debug configs to start the app"
