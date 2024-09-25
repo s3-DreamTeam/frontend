@@ -41,7 +41,7 @@ const NavigationDrawer = ({open, onClose}) => {
 
     return (
         <Drawer
-            variant='persistent'
+                variant='persistent'
             open={open}
             onClose={onClose}
             sx={{
