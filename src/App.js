@@ -12,7 +12,7 @@ function App() {
   return (
     <ThemeProvider theme={appTheme}>
       <CssBaseline />
-        <PageLayout title={"Created Machines"}></PageLayout>
+      <PageLayout title={"Created Machines"}></PageLayout>
     </ThemeProvider>
   );
 }

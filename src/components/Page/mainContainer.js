@@ -27,16 +27,16 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
         }),
         marginLeft: 0,
         variants: [
-          {
-            props: ({ open }) => open,
-            style: {
-                transition: theme.transitions.create('margin', {
-                    easing: theme.transitions.easing.easeOut,
-                    duration: theme.transitions.duration.enteringScreen,
-                }),
-                marginLeft: 240,
+            {
+                props: ({ open }) => open,
+                style: {
+                    transition: theme.transitions.create('margin', {
+                        easing: theme.transitions.easing.easeOut,
+                        duration: theme.transitions.duration.enteringScreen,
+                    }),
+                    marginLeft: 240,
+                },
             },
-          },
         ],
     }),
 );

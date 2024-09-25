@@ -25,38 +25,38 @@ const PageLayout = ({ title }) => {
     };
 
     return (
-        <Paper elevation={0} sx={{height:"100vh"}} square>
-            <AppBar 
+        <Paper elevation={0} sx={{ height: "100vh" }} square>
+            <AppBar
                 position='fixed'
                 color='transparent'
                 elevation={0}
-                sx={{ 
+                sx={{
                     zIndex: (theme) => theme.zIndex.drawer + 1,
                     backdropFilter: 'blur(30px)',
                 }}
             >
                 <Toolbar>
-                    <Stack 
+                    <Stack
                         direction='row'
                         alignItems='center'
-                        sx={{flexGrow: 1}}
+                        sx={{ flexGrow: 1 }}
                     >
-                        <IconButton 
-                            size='medium' 
+                        <IconButton
+                            size='medium'
                             edge='start'
                             color='inherit'
                             aria-label='menu'
-                            sx={{mr: '1rem'}}
+                            sx={{ mr: '1rem' }}
                             onClick={handleMenuClicked}
                         >
-                            {wantedDrawerState ? 
+                            {wantedDrawerState ?
                                 <MenuOpenRounded fontSize='large' /> :
                                 <MenuRounded fontSize='large' />
                             }
                         </IconButton>
-                        <Typography 
-                            variant='h5' 
-                            component='div' 
+                        <Typography
+                            variant='h5'
+                            component='div'
                             fontWeight={600}
                             color='inherit'
                         >
@@ -66,26 +66,26 @@ const PageLayout = ({ title }) => {
                     <Stack
                         direction='row'
                         alignItems='center'
-                        sx={{flexGrow: 1}}
+                        sx={{ flexGrow: 1 }}
                     >
                     </Stack>
                     <Stack
                         direction='row'
                         alignItems='center'
                         justifyContent='flex-end'
-                        sx={{flexGrow: 1}}
+                        sx={{ flexGrow: 1 }}
                     >
-                        <IconButton 
-                            size='medium' 
+                        <IconButton
+                            size='medium'
                             edge='end'
                             color='inherit'
                             aria-label='profile menu'
-                            sx={{mr: '0rem'}}
+                            sx={{ mr: '0rem' }}
                         >
                             <PersonRounded fontSize='large' />
                         </IconButton>
-                        <IconButton 
-                            size='medium' 
+                        <IconButton
+                            size='medium'
                             edge='end'
                             color='inherit'
                             aria-label='more menu'
@@ -140,8 +140,8 @@ const PageLayout = ({ title }) => {
                 <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
                 <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
             </Main>
-      </Paper>
+        </Paper>
     );
-  };
-  
-  export default PageLayout;
+};
+
+export default PageLayout;
