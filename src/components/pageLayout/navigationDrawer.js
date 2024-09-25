@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { Button, Card, Drawer, Stack, Toolbar } from '@mui/material';
+import { Card, Drawer, Stack, Toolbar } from '@mui/material';
 import { AodRounded, ConstructionRounded, InsightsRounded, TextSnippetRounded, WarehouseRounded } from '@mui/icons-material';
 import StyledDivider from '../divider/styledDivider';
 import NavigationDrawerButton from './navigationDrawerButton';
+import { AppRoutes } from '../../utils/routerRouteManager';
 
 const NavigationDrawer = ({ open, onClose }) => {
     const DrawerContents = (
@@ -11,18 +12,18 @@ const NavigationDrawer = ({ open, onClose }) => {
             alignItems='flex-start'
             spacing={1}
         >
-            <NavigationDrawerButton title='Analytics' selected={false} icon={<InsightsRounded />} />
+            <NavigationDrawerButton title='Analytics' correspondingAppRoute={AppRoutes.Analytics} icon={<InsightsRounded />} />
             <StyledDivider aria-hidden='true' thiccness={2} flexItem sx={{ borderRadius: 100 }} />
 
-            <NavigationDrawerButton title='machine manager' selected={false} icon={<AodRounded />} />
-            <NavigationDrawerButton title='Stock manager' selected={false} icon={<WarehouseRounded />} />
+            <NavigationDrawerButton title='machine manager' correspondingAppRoute={AppRoutes.MachineManager} icon={<AodRounded />} />
+            <NavigationDrawerButton title='Stock manager' correspondingAppRoute={AppRoutes.StockManager} icon={<WarehouseRounded />} />
             <StyledDivider aria-hidden='true' thiccness={2} flexItem sx={{ borderRadius: 100 }} />
 
-            <NavigationDrawerButton title='machine editor' selected={true} icon={<ConstructionRounded />} />
-            <NavigationDrawerButton title='stock editor' selected={false} icon={<ConstructionRounded />} />
+            <NavigationDrawerButton title='machine editor' correspondingAppRoute={AppRoutes.MachineEditor} icon={<ConstructionRounded />} />
+            <NavigationDrawerButton title='stock editor' correspondingAppRoute={AppRoutes.StockEditor} icon={<ConstructionRounded />} />
             <StyledDivider aria-hidden='true' thiccness={2} flexItem sx={{ borderRadius: 100 }} />
 
-            <NavigationDrawerButton title='changelogs' selected={false} icon={<TextSnippetRounded />} />
+            <NavigationDrawerButton title='changelogs' correspondingAppRoute={AppRoutes.Changelogs} icon={<TextSnippetRounded />} />
         </Stack>
     );
 

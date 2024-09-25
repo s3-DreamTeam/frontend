@@ -6,8 +6,6 @@ import { useState } from 'react';
 import Main from './mainContainer';
 
 
-
-
 /**
  * # PageLayout
  * Pagelayout is a whole ass page. You give it a title and it'll show it in the
