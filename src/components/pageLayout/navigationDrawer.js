@@ -53,7 +53,7 @@ const NavigationDrawer = ({ open, onClose }) => {
             <Toolbar />
             <Card
                 elevation={20}
-                sx={{ height: '100%', borderRadius: '0 1.5rem 1.5rem 0', padding: '2rem' }}
+                sx={{ height: '100%', borderRadius: '0 1.5rem 1.5rem 0', padding: '1.5rem' }}
             >
                 {DrawerContents}
             </Card>
