@@ -34,7 +34,7 @@ const MachineManager = () => {
         loading: {
             message: 'Creating new user...',
             canClickAway: false,
-            hasCloseButton: true,
+            hasCloseButton: false,
             canRetry: false,
             autoHideDuration: null
         },
