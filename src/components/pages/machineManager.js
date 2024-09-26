@@ -13,6 +13,8 @@ const MachineManager = () => {
     const [retryState, setRetry] = useState(false);
     const [newUserState, setNewUserState] = useState(false);
 
+    console.log(machines);
+
     function retry() {
         setLoading(true);
         setError(null);
