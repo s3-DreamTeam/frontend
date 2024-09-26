@@ -29,7 +29,7 @@ const MachineManager = () => {
             setMachines([]);
             try {
                 await sleep(1000);
-                const response = await axios.get('http://localhost:8888/api/getallusagers'); // Replace with your API endpoint
+                const response = await axios.get('http://localhost:8888/api/getallusagers');
                 setMachines(response.data);
             } catch (err) {
                 setError(err.message);
