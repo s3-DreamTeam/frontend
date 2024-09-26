@@ -1,10 +1,11 @@
-import { Container, Stack, CircularProgress, Box, Typography } from "@mui/material";
+import { Container, Stack, CircularProgress, Box, Typography, Button, IconButton } from "@mui/material";
 import ComponentCard from "../componentCard";
 import EmptyPage from "../emptyPage";
 import PageLayout from "../pageLayout/pageLayout";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ErrorPage from "../errorPage";
+import { RefreshRounded } from "@mui/icons-material";
 
 
 
@@ -12,6 +13,14 @@ const MachineManager = () => {
     const [machines, setMachines] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [retryState, setRetry] = useState(false);
+
+    function retry() {
+        setLoading(true);
+        setError(null);
+        setMachines([]);
+        setRetry(!retryState);
+    }
 
     useEffect(() => {
         const fetchMachines = async () => {
@@ -26,7 +35,7 @@ const MachineManager = () => {
         };
 
         fetchMachines();
-    }, []);
+    }, [retryState]);
 
     return (
         <PageLayout
@@ -51,6 +60,14 @@ const MachineManager = () => {
                         ? (<ErrorPage
                             header="Error"
                             subtitle={error}
+                            actionButton={
+                                <IconButton
+                                    size="small"
+                                    onClick={retry}
+                                >
+                                    <RefreshRounded fontSize="large" />
+                                </IconButton>
+                            }
                         />)
                         : (<Stack
                             spacing={'1rem'}

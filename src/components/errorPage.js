@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 
 /**
  * # errorPage
@@ -34,7 +34,14 @@ const ErrorPage = ({ header, subtitle, actionButton }) => {
             >
                 {subtitle}
             </Typography>
-            {actionButton}
+            <div
+                style={{
+                    display: 'flex',
+                    justifyContent: 'center'
+                }}
+            >
+                {actionButton}
+            </div>
         </Box >
     );
 };
