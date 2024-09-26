@@ -11,7 +11,7 @@ const MachineManager = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [retryState, setRetry] = useState(false);
-    const [newUserState, setNewUserState] = useState(false);
+    const [newUserState, setNewUserState] = useState(null);
 
     console.log(machines);
 
@@ -53,6 +53,7 @@ const MachineManager = () => {
     }, [retryState]);
 
     useEffect(() => {
+        if (newUserState === null) return;
         const fetchMachines = async () => {
             try {
                 await sleep(1000);
