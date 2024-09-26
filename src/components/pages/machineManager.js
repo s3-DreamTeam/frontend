@@ -11,12 +11,19 @@ const MachineManager = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [retryState, setRetry] = useState(false);
+    const [newUserState, setNewUserState] = useState(false);
 
     function retry() {
         setLoading(true);
         setError(null);
         setMachines([]);
         setRetry(!retryState);
+    }
+
+    function add() {
+        setLoading(true);
+        setError(null);
+        setNewUserState(!newUserState);
     }
 
     function sleep(ms) {
@@ -41,10 +48,26 @@ const MachineManager = () => {
         fetchMachines();
     }, [retryState]);
 
+    useEffect(() => {
+        const fetchMachines = async () => {
+            try {
+                await sleep(1000);
+                await axios.put('http://localhost:8888/api/insertUsager');
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchMachines();
+    }, [newUserState]);
+
     return (
         <PageLayout
             title="Machine Manager"
             onRefresh={retry}
+            onAdd={add}
             childrens={
                 loading
                     ? (
