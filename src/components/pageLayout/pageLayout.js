@@ -45,7 +45,7 @@ const PageLayout = ({ title, childrens, hideActionBar, onRefresh }) => {
     }
 
     return (
-        <Paper elevation={0} sx={{ height: "100vh" }} square>
+        <Paper elevation={0} sx={{ height: "100vh", overflow: 'hidden' }} square>
             <AppBar
                 position='fixed'
                 color='transparent'
