@@ -108,11 +108,10 @@ const MachineManager = () => {
                             useFlexGap
                             sx={{ flexWrap: 'wrap', padding: '0rem 2rem 2rem 2rem' }}
                         >
-                            {machines.map(machine => (
+                            {machines.map((nom, index) => (
                                 <ComponentCard
-                                    key={machine.id}
-                                    title={machine.name}
-                                    state={machine.state}
+                                    key={index}
+                                    title={nom}
                                 />
                             ))}
                         </Stack>
