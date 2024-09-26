@@ -24,6 +24,7 @@ const MachineManager = () => {
 
     useEffect(() => {
         const fetchMachines = async () => {
+            setMachines([]);
             try {
                 const response = await axios.get('http://localhost:8888/api/getallusagers'); // Replace with your API endpoint
                 setMachines(response.data);
@@ -32,6 +33,21 @@ const MachineManager = () => {
             } finally {
                 setLoading(false);
             }
+            /*
+            setMachines([
+                { "id": '1', 'state': 'normal', 'name': 'first' },
+                { "id": '2', 'state': 'normal', 'name': 'second' },
+                { "id": '3', 'state': 'success', 'name': 'third' },
+                { "id": '4', 'state': 'normal', 'name': 'your mom' },
+                { "id": '5', 'state': 'normal', 'name': 'is sus' },
+                { "id": '6', 'state': 'normal', 'name': 'bruh' },
+                { "id": '7', 'state': 'warning', 'name': 'eeeeeee' },
+                { "id": '8', 'state': 'error', 'name': 'yippie' },
+                { "id": '9', 'state': 'normal', 'name': 'amogus' },
+                { "id": '10', 'state': 'normal', 'name': 'sussy' }
+            ]);
+            setError(false);
+            */
         };
 
         fetchMachines();
@@ -70,14 +86,17 @@ const MachineManager = () => {
                             }
                         />)
                         : (<Stack
-                            spacing={'1rem'}
+                            spacing={'2rem'}
                             direction={'row'}
-                            sx={{ flexWrap: 'wrap' }}
+                            justifyContent={'space-evenly'}
+                            useFlexGap
+                            sx={{ flexWrap: 'wrap', padding: '0rem 2rem 2rem 2rem' }}
                         >
                             {machines.map(machine => (
                                 <ComponentCard
                                     key={machine.id} // Assuming each machine has a unique ID
                                     title={machine.name} // Adjust based on the structure of your machine data
+                                    state={machine.state}
                                 />
                             ))}
                         </Stack>
