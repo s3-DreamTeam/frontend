@@ -5,74 +5,58 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import ErrorPage from "../errorPage";
 import { RefreshRounded } from "@mui/icons-material";
+import { FetchAllUsers, PostNewUser } from "../../api/requests";
+import { useSelector } from "react-redux";
 
 const MachineManager = () => {
-    const [machines, setMachines] = useState([]);
+
+    const allFetchedUsers = useSelector((state) => state.allFetchedUsers.value);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [retryState, setRetry] = useState(false);
-    const [newUserState, setNewUserState] = useState(null);
 
-    console.log(machines);
-
-    function retry() {
+    function onRequestStart() {
         setLoading(true);
         setError(null);
-        setMachines([]);
-        setRetry(!retryState);
     }
 
-    function add() {
-        setLoading(true);
-        setError(null);
-        setNewUserState(!newUserState);
+    function onRequestEnd() {
+        setLoading(false);
     }
 
-    function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
+    function onRequestError(err) {
+        setError(err.message);
     }
 
+    function retryUserFetch() {
+        FetchAllUsers({
+            onError: onRequestError,
+            onEnd: onRequestEnd,
+            onStart: onRequestStart,
+        });
+    }
+
+    function addNewUser() {
+        PostNewUser({
+            email: 'itWorked!',
+            name: 'itWorked!',
+            lastName: 'itWorked!',
+
+            onError: onRequestError,
+            onEnd: onRequestEnd,
+            onStart: onRequestStart,
+        });
+    }
+
+    // Calls the fetch function only on load.
     useEffect(() => {
-        const fetchMachines = async () => {
-            setMachines([]);
-            try {
-                await sleep(1000);
-                const response = await axios.get('http://localhost:8888/api/getallusagers');
-                setMachines(response.data);
-                console.log(response.data);
-                console.log(response);
-            } catch (err) {
-                setError(err.message);
-            } finally {
-                setLoading(false);
-            }
-            console.log(machines);
-        };
-
-        fetchMachines();
-    }, [retryState]);
-
-    useEffect(() => {
-        if (newUserState === null) return;
-        const fetchMachines = async () => {
-            try {
-                await sleep(1000);
-                await axios.put('http://localhost:8888/api/insertUsager');
-            } catch (err) {
-                setError(err.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchMachines();
-    }, [newUserState]);
+        retryUserFetch();
+    }, []);
 
     return (
         <PageLayout
             title="Machine Manager"
-            onRefresh={retry}
-            onAdd={add}
+            onRefresh={retryUserFetch}
+            onAdd={addNewUser}
             childrens={
                 loading
                     ? (
@@ -96,7 +80,7 @@ const MachineManager = () => {
                             actionButton={
                                 <IconButton
                                     size="small"
-                                    onClick={retry}
+                                    onClick={retryUserFetch}
                                 >
                                     <RefreshRounded fontSize="large" />
                                 </IconButton>
@@ -109,7 +93,7 @@ const MachineManager = () => {
                             useFlexGap
                             sx={{ flexWrap: 'wrap', padding: '0rem 2rem 2rem 2rem' }}
                         >
-                            {machines.map((nom, index) => (
+                            {allFetchedUsers.map((nom, index) => (
                                 <ComponentCard
                                     key={index}
                                     title={nom}
