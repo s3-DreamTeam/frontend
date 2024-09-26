@@ -6,7 +6,6 @@ import axios from "axios";
 import ErrorPage from "../errorPage";
 import { RefreshRounded } from "@mui/icons-material";
 
-
 const MachineManager = () => {
     const [machines, setMachines] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -36,21 +35,6 @@ const MachineManager = () => {
             } finally {
                 setLoading(false);
             }
-            /*
-            setMachines([
-                { "id": '1', 'state': 'normal', 'name': 'first' },
-                { "id": '2', 'state': 'normal', 'name': 'second' },
-                { "id": '3', 'state': 'success', 'name': 'third' },
-                { "id": '4', 'state': 'normal', 'name': 'your mom' },
-                { "id": '5', 'state': 'normal', 'name': 'is sus' },
-                { "id": '6', 'state': 'normal', 'name': 'bruh' },
-                { "id": '7', 'state': 'warning', 'name': 'eeeeeee' },
-                { "id": '8', 'state': 'error', 'name': 'yippie' },
-                { "id": '9', 'state': 'normal', 'name': 'amogus' },
-                { "id": '10', 'state': 'normal', 'name': 'sussy' }
-            ]);
-            setError(false);
-            */
         };
 
         fetchMachines();
@@ -98,8 +82,8 @@ const MachineManager = () => {
                         >
                             {machines.map(machine => (
                                 <ComponentCard
-                                    key={machine.id} // Assuming each machine has a unique ID
-                                    title={machine.name} // Adjust based on the structure of your machine data
+                                    key={machine.id}
+                                    title={machine.name}
                                     state={machine.state}
                                 />
                             ))}
