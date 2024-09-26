@@ -1,8 +1,57 @@
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.loading-snackbar {
+  position: relative;
+  overflow: clip;
+  overflow-clip-margin: 0.1rem;
+  opacity: 0;
+}
+
+.loading-snackbar::after{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -5%;
+  right: 0;
+  bottom: 0;
+  width: 110%;
+  height: 100%;
+  background: linear-gradient(#00000000, #90caf9, #00000000);
+  z-index: -1;
+  transform-origin: center center;
+  opacity: 1;
+  animation: loadingSnackBar 4s cubic-bezier(0.42, -0.78, 0.66, 1.64) infinite;
+}
+
+@keyframes loadingSnackBar {
+  0% {
+    opacity: 0;
+    transform: rotate(0);
   }
-  to {
-    transform: rotate(360deg);
+  25% {
+    opacity: 100;
+  }
+  75% {
+    opacity: 100;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes errorShake {
+  0% {
+    transform: translateX(0%);
+  }
+  25% {
+    transform: translateX(-2.5%);
+  }
+  50% {
+    transform: translateX(2.5%);
+  }
+  75% {
+    transform: translateX(-2.5%);
+  }
+  100% {
+    transform: translateX(0%);
   }
 }

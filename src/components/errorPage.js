@@ -1,4 +1,4 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 /**
  * # errorPage
@@ -16,7 +16,8 @@ const ErrorPage = ({ header, subtitle, actionButton }) => {
             justifyItems="center"
             alignContent="center"
             sx={{
-                height: '100%'
+                height: '100%',
+                animation: 'errorShake 0.5s ease-in 1'
             }}
         >
             <Typography

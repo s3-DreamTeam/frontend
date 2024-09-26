@@ -2,6 +2,10 @@ import api from './config';
 import Endpoints from './endpoints';
 import { setAllFetchedUsers } from '../store/allFetchedUsersSlice';
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 /**
  * # FetchAllUsers
  * Function that calls the backend, to fetch all the users.
@@ -30,6 +34,7 @@ export const FetchAllUsers = async ({
     console.log("FetchAllUsers");
     onStart();
     try {
+        await sleep(500);
         const response = await api.get(Endpoints.FetchAllUsers);
         onSuccess(response.data);
         setAllFetchedUsers(response.data);
@@ -80,6 +85,7 @@ export const PostNewUser = async ({
     console.log("PostNewUser");
     onStart();
     try {
+        await sleep(500);
         await api.post(Endpoints.PostNewUser, {
             email: email,
             nom: lastName,

@@ -2,29 +2,55 @@ import { Stack, CircularProgress, IconButton } from "@mui/material";
 import ComponentCard from "../componentCard";
 import PageLayout from "../pageLayout/pageLayout";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import ErrorPage from "../errorPage";
 import { RefreshRounded } from "@mui/icons-material";
 import { FetchAllUsers, PostNewUser } from "../../api/requests";
 import { useSelector } from "react-redux";
+import ProcessStatusSnackBar from "../processStatusSnackbar";
 
 const MachineManager = () => {
 
     const allFetchedUsers = useSelector((state) => state.allFetchedUsers.value);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [machinesLoading, setMachinesLoading] = useState(true);
+    const [machinesError, setMachinesError] = useState(null);
+    const [addLoading, setAddLoading] = useState(false);
+    const [addError, setAddError] = useState(null);
+
+    const AddUserProcessSnackbarProps = {
+        success: {
+            message: "Created a new user!",
+            canClickAway: true,
+            hasCloseButton: true,
+            canRetry: false,
+            autoHideDuration: 2000
+        },
+        error: {
+            message: addError,
+            canClickAway: false,
+            hasCloseButton: true,
+            canRetry: true,
+            autoHideDuration: null
+        },
+        loading: {
+            message: 'Creating new user...',
+            canClickAway: false,
+            hasCloseButton: true,
+            canRetry: false,
+            autoHideDuration: null
+        },
+    };
 
     function onRequestStart() {
-        setLoading(true);
-        setError(null);
+        setMachinesLoading(true);
+        setMachinesError(null);
     }
 
     function onRequestEnd() {
-        setLoading(false);
+        setMachinesLoading(false);
     }
 
     function onRequestError(err) {
-        setError(err.message);
+        setMachinesError(err.message);
     }
 
     function retryUserFetch() {
@@ -41,9 +67,16 @@ const MachineManager = () => {
             name: 'itWorked!',
             lastName: 'itWorked!',
 
-            onError: onRequestError,
-            onEnd: onRequestEnd,
-            onStart: onRequestStart,
+            onError: (err) => {
+                setAddError(err.message);
+            },
+            onEnd: () => {
+                setAddLoading(false);
+            },
+            onStart: () => {
+                setAddLoading(true);
+                setAddError(null);
+            },
         });
     }
 
@@ -53,57 +86,64 @@ const MachineManager = () => {
     }, []);
 
     return (
-        <PageLayout
-            title="Machine Manager"
-            onRefresh={retryUserFetch}
-            onAdd={addNewUser}
-            childrens={
-                loading
-                    ? (
-                        <Stack
-                            direction='column'
-                            justifyContent='center'
-                            alignItems='center'
-                            sx={{
-                                height: '100%'
-                            }}
-                        >
-                            <CircularProgress
-                                size={80}
-                            />
-                        </Stack >
-                    )
-                    : (error
-                        ? (<ErrorPage
-                            header="Error"
-                            subtitle={error}
-                            actionButton={
-                                <IconButton
-                                    size="small"
-                                    onClick={retryUserFetch}
-                                >
-                                    <RefreshRounded fontSize="large" />
-                                </IconButton>
-                            }
-                        />)
-                        : (<Stack
-                            spacing={'2rem'}
-                            direction={'row'}
-                            justifyContent={'space-evenly'}
-                            useFlexGap
-                            sx={{ flexWrap: 'wrap', padding: '0rem 2rem 2rem 2rem' }}
-                        >
-                            {allFetchedUsers.map((nom, index) => (
-                                <ComponentCard
-                                    key={index}
-                                    title={nom}
+        <>
+            <PageLayout
+                title="Machine Manager"
+                onRefresh={retryUserFetch}
+                onAdd={addNewUser}
+                childrens={
+                    machinesLoading
+                        ? (
+                            <Stack
+                                direction='column'
+                                justifyContent='center'
+                                alignItems='center'
+                                sx={{
+                                    height: '100%'
+                                }}
+                            >
+                                <CircularProgress
+                                    size={80}
                                 />
-                            ))}
-                        </Stack>
-                        ))
-            }
-        >
-        </PageLayout>
+                            </Stack >
+                        )
+                        : (machinesError
+                            ? (<ErrorPage
+                                header="Fetch Error"
+                                subtitle={machinesError}
+                                actionButton={
+                                    <IconButton
+                                        size="small"
+                                        onClick={retryUserFetch}
+                                    >
+                                        <RefreshRounded fontSize="large" />
+                                    </IconButton>
+                                }
+                            />)
+                            : (<Stack
+                                spacing={'2rem'}
+                                direction={'row'}
+                                justifyContent={'space-evenly'}
+                                useFlexGap
+                                sx={{ flexWrap: 'wrap', padding: '0rem 2rem 2rem 2rem' }}
+                            >
+                                {allFetchedUsers.map((nom, index) => (
+                                    <ComponentCard
+                                        key={index}
+                                        title={nom}
+                                    />
+                                ))}
+                            </Stack>
+                            ))
+                }
+            >
+            </PageLayout>
+            <ProcessStatusSnackBar
+                status={addLoading ? 'loading' : (addError != null ? 'error' : 'hidden')}
+                attributes={AddUserProcessSnackbarProps}
+                onRetry={addNewUser}
+            />
+        </>
     );
 };
 
