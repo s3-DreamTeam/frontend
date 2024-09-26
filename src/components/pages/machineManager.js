@@ -37,6 +37,7 @@ const MachineManager = () => {
                 await sleep(1000);
                 const response = await axios.get('http://localhost:8888/api/getallusagers');
                 setMachines(response.data);
+                console.log(response);
             } catch (err) {
                 setError(err.message);
             } finally {
