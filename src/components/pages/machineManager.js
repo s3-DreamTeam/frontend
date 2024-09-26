@@ -35,6 +35,7 @@ const MachineManager = () => {
             } finally {
                 setLoading(false);
             }
+            console.log(machines);
         };
 
         fetchMachines();
