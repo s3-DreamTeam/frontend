@@ -1,13 +1,10 @@
-import { Container, Stack, CircularProgress, Box, Typography, Button, IconButton } from "@mui/material";
+import { Stack, CircularProgress, IconButton } from "@mui/material";
 import ComponentCard from "../componentCard";
-import EmptyPage from "../emptyPage";
 import PageLayout from "../pageLayout/pageLayout";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ErrorPage from "../errorPage";
 import { RefreshRounded } from "@mui/icons-material";
-import { wait } from "@testing-library/user-event/dist/utils";
-
 
 
 const MachineManager = () => {
