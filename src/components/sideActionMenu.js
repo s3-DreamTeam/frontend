@@ -12,7 +12,7 @@ import { animationFinishedHidden, animationFinishedShown } from "../store/sideAc
  * contents of the page they are on.
  * The menu should always be on the right, middle, of their screens.
  */
-const SideActionMenu = ({ disableAllButNew }) => {
+const SideActionMenu = ({ disableAllButNew, onRefresh }) => {
     const dispatch = useDispatch();
     const sideActionsMenuState = useSelector((state) => state.sideActionsMenuState.value);
     const sideActionsMenuAnimationState = useSelector((state) => state.sideActionsMenuState.animationState);
@@ -76,7 +76,11 @@ const SideActionMenu = ({ disableAllButNew }) => {
                     <IconButton size="small" disabled={disableAllButNew}>
                         <ListRounded fontSize="large" />
                     </IconButton>
-                    <IconButton size="small" disabled={disableAllButNew}>
+                    <IconButton
+                        size="small"
+                        disabled={disableAllButNew}
+                        onClick={onRefresh}
+                    >
                         <SyncRounded fontSize="large" />
                     </IconButton>
                     <div style={{ margin: '0.25rem' }} />

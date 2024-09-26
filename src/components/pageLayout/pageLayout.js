@@ -21,7 +21,7 @@ import { hideSideActionsMenu, showSideActionsMenu } from '../../store/sideAction
  * @param {boolean} hideActionBar : For main menus that don't need it.
  * @returns 
  */
-const PageLayout = ({ title, childrens, hideActionBar }) => {
+const PageLayout = ({ title, childrens, hideActionBar, onRefresh }) => {
 
     const dispatch = useDispatch();
 
@@ -133,7 +133,9 @@ const PageLayout = ({ title, childrens, hideActionBar }) => {
                         {childrens}
                     </div>
                     {/*It's position is fixed, thus doesn't matter if it's in the stack or not. Kept there in case.*/}
-                    <SideActionMenu />
+                    <SideActionMenu
+                        onRefresh={onRefresh}
+                    />
                 </Stack>
             </Main>
         </Paper>

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import ErrorPage from "../errorPage";
 import { RefreshRounded } from "@mui/icons-material";
+import { wait } from "@testing-library/user-event/dist/utils";
 
 
 
@@ -22,10 +23,15 @@ const MachineManager = () => {
         setRetry(!retryState);
     }
 
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
     useEffect(() => {
         const fetchMachines = async () => {
             setMachines([]);
             try {
+                await sleep(1000);
                 const response = await axios.get('http://localhost:8888/api/getallusagers'); // Replace with your API endpoint
                 setMachines(response.data);
             } catch (err) {
@@ -56,6 +62,7 @@ const MachineManager = () => {
     return (
         <PageLayout
             title="Machine Manager"
+            onRefresh={retry}
             childrens={
                 loading
                     ? (
