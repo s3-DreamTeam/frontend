@@ -2,9 +2,11 @@ import * as React from 'react';
 import { AppBar, IconButton, Paper, Stack, Toolbar, Typography } from '@mui/material';
 import { MenuOpenRounded, MenuRounded, MoreVertRounded, PersonRounded } from '@mui/icons-material';
 import NavigationDrawer from './navigationDrawer';
-import { open, close } from '../../store/navigationDrawerSlice';
+import { openNavigationDrawer, closeNavigationDrawer } from '../../store/navigationDrawerSlice';
 import Main from './mainContainer';
 import { useDispatch, useSelector } from 'react-redux';
+import SideActionMenu from '../sideActionMenu';
+import { hideSideActionsMenu, showSideActionsMenu } from '../../store/sideActionsMenuSlice';
 
 
 /**
@@ -12,22 +14,35 @@ import { useDispatch, useSelector } from 'react-redux';
  * Pagelayout is a whole ass page. You give it a title and it'll show it in the
  * top bar on the left next to the menu button.
  * You then fill the page with your contents as you wish.
- * @param {*} param0 
+ * 
+ * ---
+ * @param {*} title : The name of the page, so it can be shown in the app bar
+ * @param {*} childrens : The components to show inside the page
+ * @param {boolean} hideActionBar : For main menus that don't need it.
  * @returns 
  */
-const PageLayout = ({ title }) => {
+const PageLayout = ({ title, childrens, hideActionBar }) => {
 
-    // Handles app state changes to open or close the drawer when the variable changes
-    const drawerState = useSelector((state) => state.drawerState.value);
     const dispatch = useDispatch();
+
+    // Need to use the animation state of the drawer instead of its real state to trigger the main menu animations
+    // Otherwise, the main menu animations are instantaneous. This is the sole fix I found.
+    const sideMenuAnimationState = useSelector((state) => state.sideActionsMenuState.animationState);
+    const drawerState = useSelector((state) => state.drawerState.value);
+
     const handleMenuClicked = () => {
-        console.log(drawerState);
         if (drawerState) {
-            dispatch(close());
+            dispatch(closeNavigationDrawer());
         } else {
-            dispatch(open());
+            dispatch(openNavigationDrawer());
         }
     };
+
+    if (hideActionBar) {
+        dispatch(hideSideActionsMenu());
+    } else {
+        dispatch(showSideActionsMenu());
+    }
 
     return (
         <Paper elevation={0} sx={{ height: "100vh" }} square>
@@ -100,10 +115,26 @@ const PageLayout = ({ title }) => {
                     </Stack>
                 </Toolbar>
             </AppBar>
-            <NavigationDrawer open={drawerState} onClose={() => dispatch(close)} />
-            <Main open={drawerState}>
+            <NavigationDrawer open={drawerState} onClose={() => dispatch(closeNavigationDrawer())} />
+            <Main
+                navigationDrawerState={drawerState}
+                sideActionMenuState={sideMenuAnimationState}
+                sx={{ height: '100%' }}
+            >
                 <Toolbar />
-                <Typography>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Typography>
+                <Stack
+                    direction='row'
+                    sx={{
+                        height: '100%'
+                    }}
+                >
+                    {/*Contains the main components being displayed. Flexgrow allows it to take all the space it can.*/}
+                    <div style={{ flexGrow: 1 }}>
+                        {childrens}
+                    </div>
+                    {/*It's position is fixed, thus doesn't matter if it's in the stack or not. Kept there in case.*/}
+                    <SideActionMenu />
+                </Stack>
             </Main>
         </Paper>
     );

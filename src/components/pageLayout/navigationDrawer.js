@@ -5,6 +5,17 @@ import StyledDivider from '../divider/styledDivider';
 import NavigationDrawerButton from './navigationDrawerButton';
 import { AppRoutes } from '../../utils/routerRouteManager';
 
+/**
+ * # Navigation Drawer
+ * Is the little menu that pops up or hides on the left of your screen.
+ * Allows you to navigate to all the different main menus of the app.
+ * @warning
+ * Width is hardcoded to 275 to avoid dynamic adjustments when selecting links.
+ * ---
+ * @param open : boolean indicating if the drawer should be seen
+ * @param onClose : function to execute when the drawer decides to close itself
+ * @returns 
+ */
 const NavigationDrawer = ({ open, onClose }) => {
     const DrawerContents = (
         <Stack
@@ -35,10 +46,9 @@ const NavigationDrawer = ({ open, onClose }) => {
             sx={{
                 flexShrink: 0,
                 "& .MuiDrawer-paper": { borderWidth: 0, backgroundColor: '#00000000' },
-                width: 240,
                 boxSizing: 'border-box'
             }}
-            PaperProps={{ style: { overflow: 'visible' } }}
+            PaperProps={{ style: { overflow: 'visible', width: 275 } }}
         >
             <Toolbar />
             <Card

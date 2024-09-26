@@ -6,15 +6,15 @@ export const drawerStateSlice = createSlice({
         value: false
     },
     reducers: {
-        open: (state) => {
+        openNavigationDrawer: (state) => {
             state.value = true;
         },
-        close: (state) => {
+        closeNavigationDrawer: (state) => {
             state.value = false;
         }
     }
 });
 
-export const { open, close } = drawerStateSlice.actions;
+export const { openNavigationDrawer, closeNavigationDrawer } = drawerStateSlice.actions;
 
-export const drawerStateReducers = drawerStateSlice.reducer;;
+export const drawerStateReducers = drawerStateSlice.reducer;

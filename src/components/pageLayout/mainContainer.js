@@ -17,28 +17,21 @@ import { styled } from "@mui/material";
  * top bar's full height to avoid rendering stuff below
  * the top bar.
  */
-const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
-    ({ theme }) => ({
-        flexGrow: 1,
-        padding: theme.spacing(3),
-        transition: theme.transitions.create('margin', {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-        marginLeft: 0,
-        variants: [
-            {
-                props: ({ open }) => open,
-                style: {
-                    transition: theme.transitions.create('margin', {
-                        easing: theme.transitions.easing.easeOut,
-                        duration: theme.transitions.duration.enteringScreen,
-                    }),
-                    marginLeft: 240,
-                },
-            },
-        ],
-    }),
+const Main = styled('main', {
+    shouldForwardProp: (prop) => prop !== 'navigationDrawerState' && prop !== 'sideActionMenuState',
+})(
+    ({ theme, navigationDrawerState, sideActionMenuState }) => {
+        return {
+            flexGrow: 1,
+            padding: theme.spacing(0),
+            transition: theme.transitions.create(['margin-left', 'margin-right'], {
+                easing: theme.transitions.easing.easeOut,
+                duration: theme.transitions.duration.standard,
+            }),
+            // Unfortunately, left and right margins are hardcoded to drawer's supposed widths.
+            marginLeft: navigationDrawerState ? '275px' : '0rem',
+            marginRight: sideActionMenuState ? '0rem' : '5rem',
+        };
+    }
 );
-
 export default Main;
