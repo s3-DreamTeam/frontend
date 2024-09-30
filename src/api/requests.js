@@ -85,7 +85,7 @@ export const PostNewUser = async ({
     console.log("PostNewUser");
     onStart();
     try {
-        await sleep(500);
+        await sleep(5000);
         await api.post(Endpoints.PostNewUser, {
             email: email,
             nom: lastName,

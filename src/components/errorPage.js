@@ -19,7 +19,7 @@ const ErrorPage = ({ header, subtitle, actionButton, retryTooltip }) => {
             alignContent="center"
             sx={{
                 height: '100%',
-                animation: 'errorShake 0.5s ease-in 1'
+                animation: 'errorShake 0.25s ease-in 1'
             }}
         >
             <Typography

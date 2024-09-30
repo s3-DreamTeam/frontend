@@ -17,8 +17,8 @@
   background: linear-gradient(#00000000, #90caf9, #00000000);
   z-index: -1;
   transform-origin: center center;
-  opacity: 1;
-  animation: loadingSnackBar 4s cubic-bezier(0.42, -0.78, 0.66, 1.64) infinite;
+  opacity: 0;
+  animation: loadingSnackBar 2s cubic-bezier(0.42, -0.78, 0.66, 1.64) 0.25s infinite;
 }
 
 @keyframes loadingSnackBar {
@@ -43,15 +43,24 @@
     transform: translateX(0%);
   }
   25% {
-    transform: translateX(-2.5%);
+    transform: translateX(-0.5rem);
   }
   50% {
-    transform: translateX(2.5%);
+    transform: translateX(0.5rem);
   }
   75% {
-    transform: translateX(-2.5%);
+    transform: translateX(-0.5rem);
   }
   100% {
     transform: translateX(0%);
+  }
+}
+
+@keyframes loadingSpinning {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(-360deg);
   }
 }

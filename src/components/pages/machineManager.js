@@ -1,5 +1,4 @@
-import { Stack, CircularProgress, IconButton } from "@mui/material";
-import ComponentCard from "../componentCard";
+import { IconButton } from "@mui/material";
 import PageLayout from "../pageLayout/pageLayout";
 import { useEffect, useState } from "react";
 import ErrorPage from "../errorPage";
@@ -7,6 +6,8 @@ import { RefreshRounded } from "@mui/icons-material";
 import { FetchAllUsers, PostNewUser } from "../../api/requests";
 import { useSelector } from "react-redux";
 import ProcessStatusSnackBar from "../processStatusSnackbar";
+import WholePageLoading from "../wholePageLoading";
+import MachinesManagerGridLayout from "../machinesManagerGridLayout";
 
 const MachineManager = () => {
 
@@ -92,22 +93,10 @@ const MachineManager = () => {
                 disableAllActionsButNew={allFetchedUsers.length === 0}
                 onRefresh={retryUserFetch}
                 onAdd={addNewUser}
+                isRefreshing={machinesLoading}
                 childrens={
                     machinesLoading
-                        ? (
-                            <Stack
-                                direction='column'
-                                justifyContent='center'
-                                alignItems='center'
-                                sx={{
-                                    height: '100%'
-                                }}
-                            >
-                                <CircularProgress
-                                    size={80}
-                                />
-                            </Stack >
-                        )
+                        ? (<WholePageLoading />)
                         : (machinesError
                             ? (<ErrorPage
                                 header="Fetch Error"
@@ -122,21 +111,7 @@ const MachineManager = () => {
                                     </IconButton>
                                 }
                             />)
-                            : (<Stack
-                                spacing={'2rem'}
-                                direction={'row'}
-                                justifyContent={'space-evenly'}
-                                useFlexGap
-                                sx={{ flexWrap: 'wrap', padding: '0rem 2rem 2rem 2rem' }}
-                            >
-                                {allFetchedUsers.map((nom, index) => (
-                                    <ComponentCard
-                                        key={index}
-                                        title={nom}
-                                    />
-                                ))}
-                            </Stack>
-                            ))
+                            : (<MachinesManagerGridLayout machines={allFetchedUsers} />))
                 }
             >
             </PageLayout>

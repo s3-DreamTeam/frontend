@@ -26,6 +26,7 @@ const PageLayout = ({
     childrens,
     disableAllActionsButNew,
     hideActionBar,
+    isRefreshing,
     onRefresh,
     onAdd
 }) => {
@@ -144,6 +145,7 @@ const PageLayout = ({
                         disableAllButNew={disableAllActionsButNew}
                         onRefresh={onRefresh}
                         onAdd={onAdd}
+                        isRefreshing={isRefreshing}
                     />
                 </Stack>
             </Main>

@@ -60,7 +60,7 @@ const ProcessStatusSnackBar = ({
             anchorOrigin={{ horizontal: "right", vertical: 'bottom' }}
             autoHideDuration={propsToUse.autoHideDuration}
             sx={{
-                animation: status === 'error' ? 'errorShake 0.5s ease-out 1' : null
+                animation: status === 'error' ? 'errorShake 0.25s ease-out 1' : null
             }}
         >
             <Alert
