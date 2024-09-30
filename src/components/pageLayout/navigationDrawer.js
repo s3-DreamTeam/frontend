@@ -24,15 +24,15 @@ const NavigationDrawer = ({ open, onClose }) => {
             spacing={1}
         >
             <NavigationDrawerButton title='Analytics' correspondingAppRoute={AppRoutes.Analytics} icon={<InsightsRounded />} />
-            <StyledDivider aria-hidden='true' thiccness={2} flexItem sx={{ borderRadius: 100 }} />
+            <StyledDivider aria-hidden='true' thiccness={2} flexItem />
 
             <NavigationDrawerButton title='machine manager' correspondingAppRoute={AppRoutes.MachineManager} icon={<AodRounded />} />
             <NavigationDrawerButton title='Stock manager' correspondingAppRoute={AppRoutes.StockManager} icon={<WarehouseRounded />} />
-            <StyledDivider aria-hidden='true' thiccness={2} flexItem sx={{ borderRadius: 100 }} />
+            <StyledDivider aria-hidden='true' thiccness={2} flexItem />
 
             <NavigationDrawerButton title='machine editor' correspondingAppRoute={AppRoutes.MachineEditor} icon={<ConstructionRounded />} />
             <NavigationDrawerButton title='stock editor' correspondingAppRoute={AppRoutes.StockEditor} icon={<ConstructionRounded />} />
-            <StyledDivider aria-hidden='true' thiccness={2} flexItem sx={{ borderRadius: 100 }} />
+            <StyledDivider aria-hidden='true' thiccness={2} flexItem />
 
             <NavigationDrawerButton title='changelogs' correspondingAppRoute={AppRoutes.Changelogs} icon={<TextSnippetRounded />} />
         </Stack>

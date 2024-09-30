@@ -1,5 +1,5 @@
 import { Stack } from "@mui/material";
-import ComponentCardFoundation from "./ComponentCards/componentCardFoundation";
+import ComponentCardFoundation from "../../ComponentCards/componentCardFoundation";
 
 /**
  * # MachinesGridLayout
@@ -9,7 +9,7 @@ import ComponentCardFoundation from "./ComponentCards/componentCardFoundation";
  * ---
  * @param {*} mappedMachines - Map of all the loaded machines of the user 
  */
-const MachinesManagerGridLayout = ({ mappedMachines }) => {
+const MachinesManagerMainLayout = ({ mappedMachines }) => {
     return (
         <Stack
             spacing={'2rem'}
@@ -27,4 +27,4 @@ const MachinesManagerGridLayout = ({ mappedMachines }) => {
         </Stack>
     );
 };
-export default MachinesManagerGridLayout;
+export default MachinesManagerMainLayout;

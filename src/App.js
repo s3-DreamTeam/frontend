@@ -5,7 +5,7 @@ import GetMUIAppTheme from './theme/materialTheme';
 import { CssBaseline } from '@mui/material';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Analytics from './components/pages/analytics';
-import MachineManager from './components/pages/machineManager';
+import MachineManager from './components/pages/Machine Manager/machineManager';
 import StockManager from './components/pages/stockManager';
 import MachineEditor from './components/pages/machineEditor';
 import StockEditor from './components/pages/stockEditor';

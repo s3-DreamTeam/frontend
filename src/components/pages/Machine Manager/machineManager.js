@@ -1,13 +1,14 @@
 import { IconButton } from "@mui/material";
-import PageLayout from "../pageLayout/pageLayout";
+import PageLayout from "../../pageLayout/pageLayout";
 import { useEffect, useState } from "react";
-import ErrorPage from "../errorPage";
+import ErrorPage from "../../errorPage";
 import { RefreshRounded } from "@mui/icons-material";
-import { FetchAllUsers, PostNewUser } from "../../api/requests";
+import { FetchAllUsers, PostNewUser } from "../../../api/requests";
 import { useSelector } from "react-redux";
-import ProcessStatusSnackBar from "../processStatusSnackbar";
-import WholePageLoading from "../wholePageLoading";
-import MachinesManagerGridLayout from "../machinesManagerGridLayout";
+import ProcessStatusSnackBar from "../../processStatusSnackbar";
+import WholePageLoading from "../../wholePageLoading";
+import MachinesManagerMainLayout from "./machineManagerMainLayout";
+import MachineManagerFetchError from "./machineManagerFetchError";
 
 const MachineManager = () => {
 
@@ -98,20 +99,8 @@ const MachineManager = () => {
                     machinesLoading
                         ? (<WholePageLoading />)
                         : (machinesError
-                            ? (<ErrorPage
-                                header="Fetch Error"
-                                subtitle={machinesError}
-                                retryTooltip="Attempt to get your machines again?"
-                                actionButton={
-                                    <IconButton
-                                        size="small"
-                                        onClick={retryUserFetch}
-                                    >
-                                        <RefreshRounded fontSize="large" />
-                                    </IconButton>
-                                }
-                            />)
-                            : (<MachinesManagerGridLayout machines={allFetchedUsers} />))
+                            ? (<MachineManagerFetchError errorName={machinesError} onRetryClick={retryUserFetch} />)
+                            : (<MachinesManagerMainLayout machines={allFetchedUsers} />))
                 }
             >
             </PageLayout>
