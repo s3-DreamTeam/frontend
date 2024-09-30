@@ -1,6 +1,6 @@
 import { Button, Typography } from "@mui/material";
 
-const ComponentCard = ({ title, image, decorators, state, footerText }) => {
+const ComponentCardFoundation = ({ title, image, decorators, state, footerText }) => {
 
     let color = 'inherit';
 
@@ -39,4 +39,4 @@ const ComponentCard = ({ title, image, decorators, state, footerText }) => {
     );
 };
 
-export default ComponentCard;
+export default ComponentCardFoundation;

@@ -8,7 +8,7 @@ import { Divider, styled } from '@mui/material';
 const StyledDivider = styled(Divider)(({ thiccness, orientation }) => ({
     ...(thiccness !== undefined &&
         (orientation === 'vertical'
-            ? { borderRightWidth: thiccness }
-            : { borderBottomWidth: thiccness }))
+            ? { borderRightWidth: thiccness, borderRadius: 100 }
+            : { borderBottomWidth: thiccness, borderRadius: 100 }))
 }));
 export default StyledDivider;

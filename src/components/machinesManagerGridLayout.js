@@ -1,5 +1,5 @@
 import { Stack } from "@mui/material";
-import ComponentCard from "./componentCard";
+import ComponentCardFoundation from "./ComponentCards/componentCardFoundation";
 
 /**
  * # MachinesGridLayout
@@ -19,7 +19,7 @@ const MachinesManagerGridLayout = ({ mappedMachines }) => {
             sx={{ flexWrap: 'wrap', padding: '0rem 2rem 2rem 2rem' }}
         >
             {mappedMachines.map((nom, index) => (
-                <ComponentCard
+                <ComponentCardFoundation
                     key={index}
                     title={nom}
                 />
