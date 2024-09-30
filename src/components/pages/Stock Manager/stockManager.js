@@ -1,5 +1,5 @@
-import EmptyPage from "../emptyPage";
-import PageLayout from "../pageLayout/pageLayout";
+import EmptyPage from "../../emptyPage";
+import PageLayout from "../../pageLayout/pageLayout";
 
 const StockManager = () => {
     return (

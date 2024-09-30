@@ -1,9 +1,14 @@
-import { AddCircleRounded, FilterAltRounded, ListRounded, SwapVertRounded, SyncRounded } from "@mui/icons-material";
+import { FilterAltRounded, SwapVertRounded } from "@mui/icons-material";
 import { Card, IconButton, Stack } from "@mui/material";
-import StyledDivider from "./divider/styledDivider";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { animationFinishedHidden, animationFinishedShown } from "../store/sideActionsMenuSlice";
+import { animationFinishedHidden, animationFinishedShown } from "../../../store/sideActionsMenuSlice";
+import SAMDivider from "./samDivider";
+import SAMList from "./samList";
+import SAMRefresh from "./samRefresh";
+import SAMAdd from "./samAdd";
+import SAMSortBy from "./samSortBy";
+import SAMFilter from "./samFilter";
 
 /**
  * # SideActionMenu
@@ -19,8 +24,6 @@ const SideActionMenu = ({ disableAllButNew, onRefresh, onAdd, isRefreshing }) =>
     const [animateClass, setAnimateClass] = useState(sideActionsMenuAnimationState ? '' : 'shown');
 
     useEffect(() => {
-        // Trigger animation when sideActionsMenuState changes
-
         if (sideActionsMenuState) {
             if (!sideActionsMenuAnimationState) {
                 setAnimateClass('shown');
@@ -54,8 +57,8 @@ const SideActionMenu = ({ disableAllButNew, onRefresh, onAdd, isRefreshing }) =>
                 position: 'fixed',
                 top: '35%',
                 right: '0%',
-                transition: 'transform 0.2s ease', // Add transition
-                transform: animateClass === 'shown' ? 'translateX(0)' : 'translateX(100%)' // Animation effect
+                transition: 'transform 0.2s ease',
+                transform: animateClass === 'shown' ? 'translateX(0)' : 'translateX(100%)'
             }}
         >
             <Card
@@ -67,46 +70,12 @@ const SideActionMenu = ({ disableAllButNew, onRefresh, onAdd, isRefreshing }) =>
                 }}
             >
                 <Stack spacing={1}>
-                    <IconButton
-                        size="small"
-                        disabled={disableAllButNew}
-                    >
-                        <SwapVertRounded fontSize="large" />
-                    </IconButton>
-                    <IconButton
-                        size="small"
-                        disabled={disableAllButNew}
-                    >
-                        <FilterAltRounded fontSize="large" />
-                    </IconButton>
-                    <IconButton
-                        size="small"
-                        disabled={disableAllButNew}
-                    >
-                        <ListRounded fontSize="large" />
-                    </IconButton>
-                    <IconButton
-                        size="small"
-                        disabled={disableAllButNew}
-                        onClick={onRefresh}
-                        sx={{
-                            animation: isRefreshing ? 'loadingSpinning 2s ease-in-out infinite' : null
-                        }}
-                    >
-                        <SyncRounded fontSize="large" />
-                    </IconButton>
-
-                    <div style={{ margin: '0.25rem' }} />
-                    <StyledDivider thiccness={4} />
-                    <div style={{ margin: '0.25rem' }} />
-
-                    <IconButton
-                        size="small"
-                        color="secondary"
-                        onClick={onAdd}
-                    >
-                        <AddCircleRounded fontSize="large" />
-                    </IconButton>
+                    <SAMSortBy disabled={disableAllButNew} />
+                    <SAMFilter disabled={disableAllButNew} />
+                    <SAMList disabled={disableAllButNew} />
+                    <SAMRefresh disabled={disableAllButNew} onClick={onRefresh} isRefreshing={isRefreshing} />
+                    <SAMDivider />
+                    <SAMAdd onClick={onAdd} />
                 </Stack>
             </Card>
         </div>

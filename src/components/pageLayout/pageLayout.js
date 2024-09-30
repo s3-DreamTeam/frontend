@@ -5,7 +5,7 @@ import NavigationDrawer from './navigationDrawer';
 import { openNavigationDrawer, closeNavigationDrawer } from '../../store/navigationDrawerSlice';
 import Main from './mainContainer';
 import { useDispatch, useSelector } from 'react-redux';
-import SideActionMenu from '../sideActionMenu';
+import SideActionMenu from './SideActionMenu/sideActionMenu';
 import { hideSideActionsMenu, showSideActionsMenu } from '../../store/sideActionsMenuSlice';
 
 

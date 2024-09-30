@@ -1,5 +1,5 @@
-import PageLayout from "../pageLayout/pageLayout";
-import EmptyPage from "../emptyPage";
+import PageLayout from "../../pageLayout/pageLayout";
+import EmptyPage from "../../emptyPage";
 
 const MachineEditor = () => {
     return (
@@ -11,4 +11,12 @@ const MachineEditor = () => {
         }></PageLayout>
     );
 };
+
+/*
+    <EmptyPage
+        header="You don't have any templates"
+        subtitle='templates are necessary to keep an inventory of your machines'
+    />
+*/
+
 export default MachineEditor;
