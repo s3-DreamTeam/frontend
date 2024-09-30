@@ -1,4 +1,4 @@
-import { AddCircleRounded, AddRounded, FilterAltRounded, ListRounded, Menu, SwapVertRounded, SyncRounded } from "@mui/icons-material";
+import { AddCircleRounded, FilterAltRounded, ListRounded, SwapVertRounded, SyncRounded } from "@mui/icons-material";
 import { Card, IconButton, Stack } from "@mui/material";
 import StyledDivider from "./divider/styledDivider";
 import { useDispatch, useSelector } from "react-redux";
@@ -43,7 +43,7 @@ const SideActionMenu = ({ disableAllButNew, onRefresh, onAdd }) => {
         }, 1); // Adjust the duration to match your animation length
 
         return () => clearTimeout(timeout); // Clean up timeout on unmount
-    }, [sideActionsMenuState]);
+    }, [sideActionsMenuState, dispatch]);
 
     return (
         <div

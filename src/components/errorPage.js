@@ -1,4 +1,5 @@
 import { Box, Typography } from "@mui/material";
+import StyledTooltip from "./styledTooltip";
 
 /**
  * # errorPage
@@ -8,8 +9,9 @@ import { Box, Typography } from "@mui/material";
  * @param {*} header : Big title of the error
  * @param {*} subtitle : Text informing them what they should do
  * @param {*} actionButton : Component to display below the texts. Keep empty for nothing. 
- */
-const ErrorPage = ({ header, subtitle, actionButton }) => {
+ * @param {*} retryTooltip : The tooltip to display above the retry button of the error page.
+*/
+const ErrorPage = ({ header, subtitle, actionButton, retryTooltip }) => {
     return (
         <Box
             display="flexbox"
@@ -41,7 +43,11 @@ const ErrorPage = ({ header, subtitle, actionButton }) => {
                     justifyContent: 'center'
                 }}
             >
-                {actionButton}
+                <StyledTooltip
+                    title={retryTooltip}
+                >
+                    {actionButton}
+                </StyledTooltip>
             </div>
         </Box >
     );

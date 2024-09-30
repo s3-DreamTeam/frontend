@@ -89,6 +89,7 @@ const MachineManager = () => {
         <>
             <PageLayout
                 title="Machine Manager"
+                disableAllActionsButNew={allFetchedUsers.length === 0}
                 onRefresh={retryUserFetch}
                 onAdd={addNewUser}
                 childrens={
@@ -111,6 +112,7 @@ const MachineManager = () => {
                             ? (<ErrorPage
                                 header="Fetch Error"
                                 subtitle={machinesError}
+                                retryTooltip="Attempt to get your machines again?"
                                 actionButton={
                                     <IconButton
                                         size="small"

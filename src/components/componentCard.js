@@ -1,10 +1,13 @@
-import { Button, Card, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 
 const ComponentCard = ({ title, image, decorators, state, footerText }) => {
 
     let color = 'inherit';
 
     switch (state) {
+        default:
+            color = 'inherit';
+            break;
         case ('warning'):
             color = 'warning';
             break;
