@@ -4,9 +4,9 @@ import './App.css';
 import { Button } from '@mui/material';
 
 const Config = {
-  url: 'http://localhost:8088/auth',
-  realm: 'web-clients',
-  clientId: 'react-client',
+  url: 'http://localhost:8180/',
+  realm: 'usager',
+  clientId: 'frontend',
   onLoad: 'login-required'
 };
 
