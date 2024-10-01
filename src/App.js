@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Keycloak from 'keycloak-js';
 import { useSelector } from 'react-redux';
 import { setAuthError, setUserToken } from './store/authenticatedSlice';
 import './App.css';
@@ -16,7 +15,6 @@ import Changelogs from './components/pages/Changelogs/changelogs';
 import { AppRoutes } from './utils/routerRouteManager';
 import NotLoggedInPage from './components/pages/Not logged in/notLoggedInPage';
 import { keycloakInstance } from './api/keycloak';
-
 
 const App = () => {
   const token = useSelector((state) => state.authenticated.token);
