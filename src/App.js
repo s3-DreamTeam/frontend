@@ -44,8 +44,8 @@ const App = () => {
 
   const appTheme = GetMUIAppTheme();
 
-  if (keycloakInstance) {
-    if (auth) {
+  if (true) {
+    if (true) {
       return (
         <ThemeProvider theme={appTheme}>
           <CssBaseline />
