@@ -18,7 +18,7 @@ class KeycloakLogin extends Component {
   }
 
   componentDidMount() {
-    const keycloak = Keycloak(Config);
+    const keycloak = new Keycloak(Config);
     keycloak.init({ onLoad: "login-required", promiseType: 'native' }).then(authenticated => {
       this.setState({ keycloak: keycloak, authenticated: authenticated });
     });
