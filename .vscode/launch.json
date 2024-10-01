@@ -11,6 +11,12 @@
             "type": "node-terminal"
         },
         {
+            "command": "npm run start:prod",
+            "name": "Start as prod",
+            "request": "launch",
+            "type": "node-terminal"
+        },
+        {
             "command": "npm run test:dev",
             "name": "Run Tests",
             "request": "launch",
