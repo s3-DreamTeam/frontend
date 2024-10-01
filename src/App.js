@@ -13,7 +13,7 @@ const App = () => {
     });
 
     keycloakInstance.init({
-      onLoad: 'login-required',
+      onLoad: 'check-sso',
       checkLoginIframe: false,
       responseMode: 'query',
     })
