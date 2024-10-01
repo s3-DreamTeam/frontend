@@ -7,7 +7,7 @@ const App = () => {
 
   useEffect(() => {
     const keycloakInstance = new Keycloak({
-      url: 'http://localhost:8180/',
+      url: 'http://localhost:8180/auth',
       realm: 'usager',
       clientId: 'frontend',
     });
@@ -18,9 +18,21 @@ const App = () => {
       responseMode: 'query',
     })
       .then(auth => {
-        console.log('Authenticated:', auth);
         setKeycloak(keycloakInstance);
         setAuthenticated(auth);
+
+        // Token refresh
+        const refreshInterval = setInterval(() => {
+          keycloakInstance.updateToken(70).then((refreshed) => {
+            if (refreshed) {
+              console.log('Token refreshed');
+            }
+          }).catch(err => {
+            console.error('Failed to refresh token', err);
+          });
+        }, 60000); // Refresh token every minute
+
+        return () => clearInterval(refreshInterval); // Cleanup on unmount
       })
       .catch(err => {
         console.error("Failed to initialize Keycloak", err);
@@ -32,6 +44,9 @@ const App = () => {
   };
 
   if (keycloak) {
+    console.log('Authenticated:', authenticated);
+    console.log('Keycloak:', keycloak);
+
     if (authenticated) {
       return (
         <div>
@@ -57,6 +72,7 @@ const App = () => {
 };
 
 export default App;
+
 
 
 /*
