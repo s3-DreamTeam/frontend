@@ -42,10 +42,6 @@ const App = () => {
     setUserToken(keycloakInstance.authenticated);
   }, [keycloakInstance, token]);
 
-  const logout = () => {
-    keycloakInstance.logout();
-  };
-
   const appTheme = GetMUIAppTheme();
 
   if (keycloakInstance) {
