@@ -9,6 +9,21 @@ const App = () => {
 
   useEffect(() => {
     console.log("3");
+
+    if (token) return;
+
+    keycloakInstance.init({ onLoad: 'login-required' }).then(auth => {
+      console.log("4");
+      setAuthError(keycloakInstance);
+      console.log("5");
+      console.log("Im I supposed to be authed? " + auth);
+      setUserToken(auth);
+      console.log("5");
+    }).catch(error => {
+      console.log("6");
+      console.error("Failed to initialize Keycloak", error);
+    });
+
     console.log(keycloakInstance.authenticated);
     setUserToken(keycloakInstance.authenticated);
   }, [keycloakInstance]);
@@ -30,7 +45,6 @@ const App = () => {
         </div>
       );
     } else {
-      keycloakInstance.login();
       console.log("10");
       return (
         <div>
@@ -48,18 +62,6 @@ const keycloakInstance = new Keycloak({
   realm: 'usager',
   clientId: 'frontend',
   onLoad: 'login-required'
-});
-
-keycloakInstance.init({ onLoad: 'login-required' }).then(auth => {
-  console.log("4");
-  setAuthError(keycloakInstance);
-  console.log("5");
-  console.log("Im I supposed to be authed? " + auth);
-  setUserToken(auth);
-  console.log("5");
-}).catch(error => {
-  console.log("6");
-  console.error("Failed to initialize Keycloak", error);
 });
 
 export default App;
