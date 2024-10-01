@@ -7,30 +7,38 @@ const App = () => {
   const keycloak = useSelector((state) => state.authenticated.token);
   const authenticated = useSelector((state) => state.authenticated.error);
 
-  console.log(keycloak);
+  console.log("1");
 
   useEffect(() => {
+    console.log("2");
     const keycloakInstance = new Keycloak({
       url: 'http://localhost:8180/',
       realm: 'usager',
       clientId: 'frontend',
       onLoad: 'login-required'
     });
-
+    console.log("3");
     keycloakInstance.init({ onLoad: 'login-required' }).then(auth => {
+      console.log("4");
       setAuthError(keycloakInstance);
+      console.log("5");
       setUserToken(auth);
+      console.log("5");
     }).catch(error => {
+      console.log("6");
       console.error("Failed to initialize Keycloak", error);
     });
   }, []);
 
   const logout = () => {
+    console.log("7");
     keycloak.logout();
   };
 
   if (keycloak) {
+    console.log("8");
     if (authenticated) {
+      console.log("9");
       return (
         <div>
           <h1>Welcome!</h1>
@@ -39,6 +47,7 @@ const App = () => {
         </div>
       );
     } else {
+      console.log("10");
       return (
         <div>
           <h1>Not Authenticated</h1>
@@ -46,7 +55,7 @@ const App = () => {
       );
     }
   }
-
+  console.log("11");
   return <div>Loading...</div>;
 };
 
