@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Keycloak from 'keycloak-js';
+import { useSelector } from 'react-redux';
+import { setAuthError, setUserToken } from './store/authenticatedSlice';
 
 const App = () => {
-  const [keycloak, setKeycloak] = useState(null);
-  const [authenticated, setAuthenticated] = useState(false);
+  const keycloak = useSelector((state) => state.authenticated.token);
+  const authenticated = useSelector((state) => state.authenticated.error);
 
   console.log(keycloak);
 
@@ -16,8 +18,8 @@ const App = () => {
     });
 
     keycloakInstance.init({ onLoad: 'login-required' }).then(auth => {
-      setKeycloak(keycloakInstance);
-      setAuthenticated(auth);
+      setAuthError(keycloakInstance);
+      setUserToken(auth);
     }).catch(error => {
       console.error("Failed to initialize Keycloak", error);
     });
