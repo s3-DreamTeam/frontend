@@ -30,6 +30,7 @@ const App = () => {
         </div>
       );
     } else {
+      keycloakInstance.login();
       console.log("10");
       return (
         <div>
