@@ -3,6 +3,13 @@ import Keycloak from 'keycloak-js';
 import { useSelector } from 'react-redux';
 import { setAuthError, setUserToken } from './store/authenticatedSlice';
 
+const keycloakInstance = new Keycloak({
+  url: 'http://localhost:8180/',
+  realm: 'usager',
+  clientId: 'frontend',
+  onLoad: 'login-required'
+});
+
 const App = () => {
   const keycloak = useSelector((state) => state.authenticated.token);
   const authenticated = useSelector((state) => state.authenticated.error);
@@ -11,12 +18,6 @@ const App = () => {
 
   useEffect(() => {
     if (keycloak) return;
-    const keycloakInstance = new Keycloak({
-      url: 'http://localhost:8180/',
-      realm: 'usager',
-      clientId: 'frontend',
-      onLoad: 'login-required'
-    });
     console.log("3");
     keycloakInstance.init({ onLoad: 'login-required' }).then(auth => {
       console.log("4");
