@@ -30,7 +30,7 @@ const App = () => {
 
     console.log(keycloakInstance.authenticated);
     setUserToken(keycloakInstance.authenticated);
-  }, [keycloakInstance]);
+  }, [keycloakInstance, token]);
 
   const logout = () => {
     console.log("7");
