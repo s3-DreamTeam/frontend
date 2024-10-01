@@ -15,6 +15,7 @@ import StockEditor from './components/pages/Stock Editor/stockEditor';
 import Changelogs from './components/pages/Changelogs/changelogs';
 import { AppRoutes } from './utils/routerRouteManager';
 import NotLoggedInPage from './components/pages/Not logged in/notLoggedInPage';
+import { keycloakInstance } from './api/keycloak';
 
 
 const App = () => {
@@ -100,13 +101,6 @@ const App = () => {
   }
   return <div>Loading...</div>;
 };
-
-const keycloakInstance = new Keycloak({
-  url: 'http://localhost:8180/',
-  realm: 'usager',
-  clientId: 'frontend',
-  onLoad: 'login-required'
-});
 
 export default App;
 
