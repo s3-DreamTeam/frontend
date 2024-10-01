@@ -21,6 +21,8 @@ const App = () => {
   const token = useSelector((state) => state.authenticated.token);
   const [auth, setAuth] = useState(false);
 
+  console.log("YO CHARLE, HI THERE");
+
   useEffect(() => {
 
     if (token) return;
