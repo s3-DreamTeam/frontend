@@ -1,60 +1,51 @@
-import { useEffect, useState } from 'react';
-import Keycloak from 'keycloak-js';
+import React, { Component } from 'react';
+import Keycloak from "keycloak-js";
+import './App.css';
+import { Button } from '@mui/material';
 
-let UserAuthenticated = false;
-const keycloak = new Keycloak({
-  url: 'http://localhost:8180/',
-  realm: 'usager',
-  clientId: 'frontend',
-});
-
-keycloak.init({ onLoad: 'login-required' }).then((authenticated) => {
-  if (authenticated) {
-    console.log('User is authenticated');
-    UserAuthenticated = true;
-  } else {
-    console.log('User is not authenticated');
-    UserAuthenticated = false;
-  }
-});
-
-const App = () => {
-
-  const logout = () => {
-    keycloak.logout();
-  };
-
-  //if (keycloak) {
-  console.log('Authenticated:', UserAuthenticated);
-  console.log('Keycloak:', keycloak);
-
-  if (UserAuthenticated) {
-    return (
-      <div>
-        <h1>Welcome to the React Keycloak Test!</h1>
-        <p>User: {keycloak.tokenParsed?.preferred_username}</p>
-        <button onClick={logout}>Logout</button>
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <h1>Unable to authenticate!</h1>
-      </div>
-    );
-  }
-  //}
-  /*
-  return (
-    <div>
-      <h1>Loading...</h1>
-    </div>
-  );
-  */
+const Config = {
+  url: 'http://localhost:8088/auth',
+  realm: 'web-clients',
+  clientId: 'react-client',
+  onLoad: 'login-required'
 };
 
-export default App;
+class KeycloakLogin extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = { keycloak: null, authenticated: false };
+  }
+
+  componentDidMount() {
+    const keycloak = Keycloak(Config);
+    keycloak.init({ onLoad: "login-required", promiseType: 'native' }).then(authenticated => {
+      this.setState({ keycloak: keycloak, authenticated: authenticated });
+    });
+  }
+
+  render() {
+    if (this.state.keycloak && this.state.authenticated) {
+      return <Button>Woah</Button>;
+    } else {
+      return <div>Ready to initialize</div>;
+    }
+  }
+
+}
+
+function App() {
+  return (
+    <div className="App">
+      <section className="App-header">
+        <KeycloakLogin />
+      </section>
+    </div>
+  );
+
+}
+
+export default App;
 
 /*
 import './App.css';
