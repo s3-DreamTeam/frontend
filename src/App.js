@@ -104,9 +104,7 @@ const App = () => {
     } else {
       console.log("10");
       return (
-        <div>
-          <h1>Not Authenticated</h1>
-        </div>
+        <NotLoggedInPage />
       );
     }
   }
