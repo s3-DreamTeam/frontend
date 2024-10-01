@@ -1,3 +1,66 @@
+import React, { useEffect, useState } from 'react';
+import Keycloak from 'keycloak-js';
+
+const initOptions = {
+  realm: "usager",
+  "auth-server-url": "http://localhost:8180/",
+  "ssl-required": "external",
+  clientId: "frontend",
+  "public-client": true,
+  "confidential-port": 0,
+};
+
+const App = () => {
+  const [keycloak, setKeycloak] = useState(null);
+  const [authenticated, setAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const keycloakInstance = Keycloak(initOptions);
+
+    keycloakInstance.init({ onLoad: 'login-required' })
+      .then(auth => {
+        setKeycloak(keycloakInstance);
+        setAuthenticated(auth);
+      })
+      .catch(err => {
+        console.error("Failed to initialize Keycloak", err);
+      });
+  }, []);
+
+  const logout = () => {
+    keycloak.logout();
+  };
+
+  if (keycloak) {
+    if (authenticated) {
+      return (
+        <div>
+          <h1>Welcome to the React Keycloak Test!</h1>
+          <p>User: {keycloak.tokenParsed?.preferred_username}</p>
+          <button onClick={logout}>Logout</button>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <h1>Unable to authenticate!</h1>
+        </div>
+      );
+    }
+  }
+
+  return (
+    <div>
+      <h1>Loading...</h1>
+    </div>
+  );
+};
+
+export default App;
+
+
+
+/*
 import './App.css';
 import * as React from 'react';
 import { ThemeProvider } from "@mui/material/styles";
@@ -63,3 +126,4 @@ function App() {
 }
 
 export default App;
+*/

@@ -1,7 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
 import ColorCard from "../../ComponentCards/foundation/styledCard";
 import { LockRounded } from "@mui/icons-material";
-import { useKeycloak } from "../../../api/keycloakConfig";
 
 const NotLoggedInPage = () => {
 
