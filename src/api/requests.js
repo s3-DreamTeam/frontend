@@ -34,7 +34,7 @@ export const FetchAllUsers = async ({
     console.log("FetchAllUsers");
     onStart();
     try {
-        await sleep(500);
+        await sleep(5000);
         const response = await api.get(Endpoints.FetchAllUsers);
         onSuccess(response.data);
         setAllFetchedUsers(response.data);

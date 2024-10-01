@@ -17,9 +17,6 @@ const KeycloakLoadingPage = () => {
             subtitle="Auth services are currently loading, this may take a few seconds. You'll automatically be redirected to the appropriate page."
             header={
                 <CircularProgress
-                    sx={{
-                        strokeLinecap: 'round'
-                    }}
                     size={50}
                 />
             }

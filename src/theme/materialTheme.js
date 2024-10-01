@@ -12,9 +12,9 @@ import { blue } from '@mui/material/colors';
  * @return {*} 
  */
 export default function GetMUIAppTheme() {
-    const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
-    return createTheme({
+  return createTheme({
     palette: {
       mode: prefersDarkMode ? 'dark' : 'light',
     },
@@ -25,6 +25,14 @@ export default function GetMUIAppTheme() {
       },
     },
     components: {
+      MuiCircularProgress: {
+        styleOverrides: {
+          circle: {
+            strokeLinecap: 'round',
+            // You can add more styles if needed
+          },
+        },
+      },
       MuiButton: {
         variants: [
           {

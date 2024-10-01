@@ -37,7 +37,7 @@ const Snacky = () => {
 
     return (
         <>
-            {keycloakInstance.authenticated
+            {keycloakInstance.authenticated || process.env.REACT_APP_SHOW_PAGES_EVEN_WITH_NO_AUTH === 'yes'
                 ? <Router>
                     <Routes>
                         <Route

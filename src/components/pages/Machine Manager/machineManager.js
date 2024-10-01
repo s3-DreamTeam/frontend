@@ -85,7 +85,7 @@ const MachineManager = () => {
     // Calls the fetch function only on load.
     useEffect(() => {
         retryUserFetch();
-    });
+    }, []);
 
     return (
         <>
