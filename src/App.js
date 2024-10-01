@@ -10,10 +10,7 @@ const keycloakInstance = new Keycloak({
   onLoad: 'login-required'
 });
 
-let yippie = false;
-
 keycloakInstance.init({ onLoad: 'login-required' }).then(auth => {
-  yippie = true;
   console.log("4");
   setAuthError(keycloakInstance);
   console.log("5");
@@ -31,6 +28,8 @@ const App = () => {
   useEffect(() => {
     console.log("3");
     console.log(keycloakInstance.authenticated);
+
+    keycloakInstance.login();
   }, [keycloakInstance]);
 
   const logout = () => {
