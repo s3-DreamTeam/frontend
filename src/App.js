@@ -15,15 +15,12 @@ import Changelogs from './components/pages/Changelogs/changelogs';
 import { AppRoutes } from './utils/routerRouteManager';
 import NotLoggedInPage from './components/pages/Not logged in/notLoggedInPage';
 import { keycloakInstance } from './api/keycloak';
-import WholePageLoading from './components/wholePageLoading';
 import KeycloakLoadingPage from './components/pages/Keycloak Loading/keycloakLoadingPage';
 
 const App = () => {
   const token = useSelector((state) => state.authenticated.token);
   const [auth, setAuth] = useState(false);
   const [keycloakDoingStuff, setKeycloakDoingStuff] = useState(false);
-
-  console.log("YO CHARLE, HI THERE");
 
   useEffect(() => {
 

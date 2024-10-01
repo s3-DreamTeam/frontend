@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Snacky",
+  "name": "Snacky Beta",
   "icons": [],
   "start_url": ".",
   "display": "standalone",

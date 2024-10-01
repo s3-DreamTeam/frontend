@@ -1,7 +1,7 @@
 import Keycloak from "keycloak-js";
 
 export const keycloakInstance = new Keycloak({
-  url: 'http://localhost:8180/',
+  url: process.env.REACT_APP_KEYCLOAK_URL,
   realm: 'usager',
   clientId: 'frontend',
   onLoad: 'login-required'
