@@ -3,25 +3,6 @@ import Keycloak from 'keycloak-js';
 import { useSelector } from 'react-redux';
 import { setAuthError, setUserToken } from './store/authenticatedSlice';
 
-const keycloakInstance = new Keycloak({
-  url: 'http://localhost:8180/',
-  realm: 'usager',
-  clientId: 'frontend',
-  onLoad: 'login-required'
-});
-
-keycloakInstance.init({ onLoad: 'login-required' }).then(auth => {
-  console.log("4");
-  setAuthError(keycloakInstance);
-  console.log("5");
-  console.log("Im I supposed to be authed? " + auth);
-  setUserToken(auth);
-  console.log("5");
-}).catch(error => {
-  console.log("6");
-  console.error("Failed to initialize Keycloak", error);
-});
-
 const App = () => {
   const token = useSelector((state) => state.authenticated.token);
   console.log("1");
@@ -60,6 +41,25 @@ const App = () => {
   console.log("11");
   return <div>Loading...</div>;
 };
+
+const keycloakInstance = new Keycloak({
+  url: 'http://localhost:8180/',
+  realm: 'usager',
+  clientId: 'frontend',
+  onLoad: 'login-required'
+});
+
+keycloakInstance.init({ onLoad: 'login-required' }).then(auth => {
+  console.log("4");
+  setAuthError(keycloakInstance);
+  console.log("5");
+  console.log("Im I supposed to be authed? " + auth);
+  setUserToken(auth);
+  console.log("5");
+}).catch(error => {
+  console.log("6");
+  console.error("Failed to initialize Keycloak", error);
+});
 
 export default App;
 
