@@ -12,17 +12,21 @@ const App = () => {
 
     if (token) return;
 
-    keycloakInstance.init({ onLoad: 'login-required' }).then(auth => {
-      console.log("4");
-      setAuthError(keycloakInstance);
-      console.log("5");
-      console.log("Im I supposed to be authed? " + auth);
-      setUserToken(auth);
-      console.log("5");
-    }).catch(error => {
-      console.log("6");
-      console.error("Failed to initialize Keycloak", error);
-    });
+    try {
+      keycloakInstance.init({ onLoad: 'login-required' }).then(auth => {
+        console.log("4");
+        setAuthError(keycloakInstance);
+        console.log("5");
+        console.log("Im I supposed to be authed? " + auth);
+        setUserToken(auth);
+        console.log("5");
+      }).catch(error => {
+        console.log("6");
+        console.error("Failed to initialize Keycloak", error);
+      });
+    } catch {
+      console.log("bruh");
+    }
 
     console.log(keycloakInstance.authenticated);
     setUserToken(keycloakInstance.authenticated);
