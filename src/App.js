@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Keycloak from 'keycloak-js';
 import { useSelector } from 'react-redux';
 import { setAuthError, setUserToken } from './store/authenticatedSlice';
@@ -23,27 +23,28 @@ keycloakInstance.init({ onLoad: 'login-required' }).then(auth => {
 });
 
 const App = () => {
-  const keycloak = useSelector((state) => state.authenticated.token);
+  const token = useSelector((state) => state.authenticated.token);
   console.log("1");
 
   useEffect(() => {
     console.log("3");
     console.log(keycloakInstance.authenticated);
+    setUserToken(keycloakInstance.authenticated);
   }, [keycloakInstance]);
 
   const logout = () => {
     console.log("7");
-    keycloak.logout();
+    //keycloak.logout();
   };
 
   if (keycloakInstance) {
     console.log("8");
-    if (keycloakInstance.authenticated) {
+    if (token) {
       console.log("9");
       return (
         <div>
           <h1>Welcome!</h1>
-          <p>Username: {keycloak.tokenParsed?.preferred_username}</p>
+          <p>Username: {keycloakInstance.tokenParsed?.preferred_username}</p>
           <button onClick={logout}>Logout</button>
         </div>
       );
