@@ -15,10 +15,13 @@ import Changelogs from './components/pages/Changelogs/changelogs';
 import { AppRoutes } from './utils/routerRouteManager';
 import NotLoggedInPage from './components/pages/Not logged in/notLoggedInPage';
 import { keycloakInstance } from './api/keycloak';
+import WholePageLoading from './components/wholePageLoading';
+import KeycloakLoadingPage from './components/pages/Keycloak Loading/keycloakLoadingPage';
 
 const App = () => {
   const token = useSelector((state) => state.authenticated.token);
   const [auth, setAuth] = useState(false);
+  const [keycloakDoingStuff, setKeycloakDoingStuff] = useState(false);
 
   console.log("YO CHARLE, HI THERE");
 
@@ -32,8 +35,10 @@ const App = () => {
         setAuthError(keycloakInstance);
         console.log("Im I supposed to be authed? " + auth);
         setUserToken(auth);
+        setKeycloakDoingStuff(true);
       }).catch(error => {
-        console.error("Failed to initialize Keycloak", error);
+        console.error("Failed to initialize Keycloak... but that doesn't mean shit", error);
+        setKeycloakDoingStuff(true);
       });
     } catch {
       console.log("error :(");
@@ -45,7 +50,7 @@ const App = () => {
 
   const appTheme = GetMUIAppTheme();
 
-  if (true) {
+  if (keycloakDoingStuff) {
     if (true) {
       return (
         <ThemeProvider theme={appTheme}>
@@ -97,7 +102,12 @@ const App = () => {
       );
     }
   }
-  return <div>Loading...</div>;
+  return (
+    <ThemeProvider theme={appTheme}>
+      <CssBaseline />
+      <KeycloakLoadingPage />
+    </ThemeProvider>
+  );
 };
 
 export default App;
