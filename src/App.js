@@ -10,7 +10,7 @@ const App = () => {
   console.log("1");
 
   useEffect(() => {
-    console.log("2");
+    if (keycloak) return;
     const keycloakInstance = new Keycloak({
       url: 'http://localhost:8180/',
       realm: 'usager',
