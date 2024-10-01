@@ -1,88 +1,38 @@
-import React, { useEffect, useState } from 'react';
-import Keycloak from 'keycloak-js';
+import React from 'react';
+import { KeycloakProvider, useKeycloak } from '@react-keycloak/web';
 
 const App = () => {
-  const [keycloak, setKeycloak] = useState(null);
-  const [authenticated, setAuthenticated] = useState(false);
+  const { keycloak, initialized } = useKeycloak();
 
-  useEffect(() => {
-    const keycloakInstance = new Keycloak({
-      url: 'http://localhost:8180/',
-      realm: 'usager',
-      clientId: 'frontend',
-    });
+  if (!initialized) {
+    return <div>Loading...</div>;
+  }
 
-    keycloakInstance.init({
-      onLoad: 'check-sso',
-      checkLoginIframe: false,
-      responseMode: 'query',
-    })
-      .then(auth => {
-        if (auth) {
-          console.log("User is authenticated");
-          setKeycloak(keycloakInstance);
-          setAuthenticated(true);
-        } else {
-          console.log("User is not authenticated, redirecting to login");
-          keycloakInstance.login();
-        }
-      })
-      .catch(err => {
-        console.error("Failed to initialize Keycloak", err);
-      });
-
-    // Token refresh logic
-    const refreshInterval = setInterval(() => {
-      if (keycloakInstance) {
-        keycloakInstance.updateToken(70)
-          .then(refreshed => {
-            if (refreshed) {
-              console.log('Token refreshed');
-            }
-          })
-          .catch(err => {
-            console.error('Failed to refresh token', err);
-          });
-      }
-    }, 60000);
-
-    return () => clearInterval(refreshInterval); // Cleanup on unmount
-  }, []);
-
-  const logout = () => {
-    keycloak.logout();
-  };
-
-  if (keycloak) {
-    console.log('Authenticated:', authenticated);
-    console.log('Keycloak:', keycloak);
-
-    if (authenticated) {
-      return (
-        <div>
-          <h1>Welcome to the React Keycloak Test!</h1>
-          <p>User: {keycloak.tokenParsed?.preferred_username}</p>
-          <button onClick={logout}>Logout</button>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <h1>Unable to authenticate!</h1>
-        </div>
-      );
-    }
+  if (!keycloak.authenticated) {
+    return <div>Not authenticated</div>;
   }
 
   return (
     <div>
-      <h1>Loading...</h1>
+      <p>Welcome, {keycloak.tokenParsed.name}</p>
+      <button onClick={() => keycloak.logout()}>Logout</button>
     </div>
   );
 };
 
-export default App;
+const keycloakConfig = {
+  url: 'http://localhost:8180/',
+  realm: 'usager',
+  clientId: 'frontend',
+};
 
+const WrappedApp = () => (
+  <KeycloakProvider keycloakConfig={keycloakConfig}>
+    <App />
+  </KeycloakProvider>
+);
+
+export default WrappedApp;
 
 
 /*
