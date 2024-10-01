@@ -34,7 +34,7 @@ export const FetchAllUsers = async ({
     console.log("FetchAllUsers");
     onStart();
     try {
-        await sleep(5000);
+        await sleep(0);
         const response = await api.get(Endpoints.FetchAllUsers);
         onSuccess(response.data);
         setAllFetchedUsers(response.data);
@@ -85,7 +85,7 @@ export const PostNewUser = async ({
     console.log("PostNewUser");
     onStart();
     try {
-        await sleep(5000);
+        await sleep(0);
         await api.post(Endpoints.PostNewUser, {
             email: email,
             nom: lastName,
