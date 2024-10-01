@@ -16,6 +16,7 @@ const App = () => {
       .then(auth => {
         setKeycloak(keycloakInstance);
         setAuthenticated(auth);
+        console.log('AUTH AUTH AUTH');
       })
       .catch(err => {
         console.error("Failed to initialize Keycloak", err);
