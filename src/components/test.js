@@ -10,6 +10,7 @@ const TEST = () => {
     const handleImageChange = (e) => {
         console.log("handleImageChange: " + e.target.files);
         const data = new FileReader();
+
         data.addEventListener('load', () => {
             setImage(data.result);
         });

@@ -9,7 +9,7 @@ const SmallComponentCardMedia = ({ title, image }) => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                height: '80%', // Image area takes 80%
+                height: '12.5rem', // Image area takes 80%
             }}
         >
             {image ? (

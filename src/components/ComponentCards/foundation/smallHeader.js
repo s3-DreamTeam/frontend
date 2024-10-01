@@ -5,7 +5,7 @@ const SmallComponentCardHeader = ({ title }) => {
     return (
         <CardHeader
             sx={{
-                height: '10%',
+                height: '2.5rem',
                 flexShrink: 0
             }}
             title={

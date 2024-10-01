@@ -1,5 +1,5 @@
 import { Stack } from "@mui/material";
-import ComponentCardFoundation from "../../ComponentCards/componentCardFoundation";
+import ComponentCardFoundation from "../../ComponentCards/foundation/componentCardFoundation";
 
 /**
  * # MachinesGridLayout

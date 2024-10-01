@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import ComponentCardFoundation from "./componentCardFoundation";
+import ComponentCardFoundation from "./foundation/componentCardFoundation";
 import MachineTemplate from "../../utils/machineTemplateObject";
 
 /**
@@ -22,6 +22,12 @@ const MachineTemplateComponentCard = ({ machine = null }) => {
         <ComponentCardFoundation
             title={machine.model}
             state={"normal"}
+            decorators={
+                [
+                    { "label": 'hi', 'state': 'secondary' },
+                    { "label": 'second', 'state': 'primary' }
+                ]
+            }
             image={machine.image}
             footerComponents={
                 <Typography>

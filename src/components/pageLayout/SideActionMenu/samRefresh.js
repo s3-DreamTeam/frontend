@@ -9,7 +9,7 @@ const SAMRefresh = ({ isRefreshing, onClick, disabled }) => {
             disabled={disabled}
             onClick={onClick}
             sx={{
-                animation: isRefreshing ? 'loadingSpinning 2s ease-in-out infinite' : null
+                animation: isRefreshing ? 'loadingSpinning 0.5s ease-in-out infinite' : null
             }}
         >
             <SyncRounded fontSize="large" />
