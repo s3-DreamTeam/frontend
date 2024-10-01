@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Keycloak from 'keycloak-js';
 
+let UserAuthenticated = false;
 const keycloak = new Keycloak({
   url: 'http://localhost:8180/',
   realm: 'usager',
@@ -10,24 +11,24 @@ const keycloak = new Keycloak({
 keycloak.init({ onLoad: 'login-required' }).then((authenticated) => {
   if (authenticated) {
     console.log('User is authenticated');
+    UserAuthenticated = true;
   } else {
     console.log('User is not authenticated');
+    UserAuthenticated = false;
   }
 });
 
 const App = () => {
-  const [keycloak, setKeycloak] = useState(null);
-  const [authenticated, setAuthenticated] = useState(false);
 
   const logout = () => {
     keycloak.logout();
   };
 
   if (keycloak) {
-    console.log('Authenticated:', authenticated);
+    console.log('Authenticated:', UserAuthenticated);
     console.log('Keycloak:', keycloak);
 
-    if (authenticated) {
+    if (UserAuthenticated) {
       return (
         <div>
           <h1>Welcome to the React Keycloak Test!</h1>
