@@ -1,49 +1,50 @@
-import React, { Component } from 'react';
-import Keycloak from "keycloak-js";
-import './App.css';
-import { Button } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import Keycloak from 'keycloak-js';
 
-const Config = {
-  url: 'http://localhost:8180/',
-  realm: 'usager',
-  clientId: 'frontend',
-  onLoad: 'login-required'
-};
+const App = () => {
+  const [keycloak, setKeycloak] = useState(null);
+  const [authenticated, setAuthenticated] = useState(false);
 
-class KeycloakLogin extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = { keycloak: null, authenticated: false };
-  }
-
-  componentDidMount() {
-    const keycloak = new Keycloak(Config);
-    keycloak.init({ onLoad: "login-required", promiseType: 'native' }).then(authenticated => {
-      this.setState({ keycloak: keycloak, authenticated: authenticated });
+  useEffect(() => {
+    const keycloakInstance = Keycloak({
+      url: 'http://localhost:8180/',
+      realm: 'usager',
+      clientId: 'frontend',
+      onLoad: 'login-required'
     });
-  }
 
-  render() {
-    if (this.state.keycloak && this.state.authenticated) {
-      return <Button>Woah</Button>;
+    keycloakInstance.init({ onLoad: 'login-required' }).then(auth => {
+      setKeycloak(keycloakInstance);
+      setAuthenticated(auth);
+    }).catch(error => {
+      console.error("Failed to initialize Keycloak", error);
+    });
+  }, []);
+
+  const logout = () => {
+    keycloak.logout();
+  };
+
+  if (keycloak) {
+    if (authenticated) {
+      return (
+        <div>
+          <h1>Welcome!</h1>
+          <p>Username: {keycloak.tokenParsed?.preferred_username}</p>
+          <button onClick={logout}>Logout</button>
+        </div>
+      );
     } else {
-      return <div>Ready to initialize</div>;
+      return (
+        <div>
+          <h1>Not Authenticated</h1>
+        </div>
+      );
     }
   }
 
-}
-
-function App() {
-  return (
-    <div className="App">
-      <section className="App-header">
-        <KeycloakLogin />
-      </section>
-    </div>
-  );
-
-}
+  return <div>Loading...</div>;
+};
 
 export default App;
 
