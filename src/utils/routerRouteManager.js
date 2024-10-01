@@ -10,6 +10,7 @@ import { useLocation } from "react-router-dom";
 export const AppRoutes = {
     Home: "/",
     Analytics: "/",
+    NotLoggedIn: "/AuthentificationError",
     MachineManager: "/MachineManager",
     StockManager: "/StockManager",
     MachineEditor: "/MachineEditor",

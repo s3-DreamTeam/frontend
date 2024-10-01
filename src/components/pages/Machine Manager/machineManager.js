@@ -7,8 +7,11 @@ import ProcessStatusSnackBar from "../../processStatusSnackbar";
 import WholePageLoading from "../../wholePageLoading";
 import MachinesManagerMainLayout from "./machineManagerMainLayout";
 import MachineManagerFetchError from "./machineManagerFetchError";
+import HandleUserLoggedInStatus from "../../../utils/verifyLoggedIn";
 
 const MachineManager = () => {
+
+    HandleUserLoggedInStatus();
 
     const allFetchedUsers = useSelector((state) => state.allFetchedUsers.value);
     const [machinesLoading, setMachinesLoading] = useState(true);

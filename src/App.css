@@ -64,3 +64,15 @@
     transform: rotate(-360deg);
   }
 }
+
+@keyframes errorLock {
+  0% {
+    opacity: 100%;
+  }
+  50% {
+    opacity: 50%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}

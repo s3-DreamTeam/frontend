@@ -1,7 +1,11 @@
+import HandleUserLoggedInStatus from "../../../utils/verifyLoggedIn";
 import EmptyPage from "../../emptyPage";
 import PageLayout from "../../pageLayout/pageLayout";
 
 const Analytics = () => {
+
+    HandleUserLoggedInStatus();
+
     return (
         <PageLayout
             title="Analytics"

@@ -1,7 +1,11 @@
+import HandleUserLoggedInStatus from "../../../utils/verifyLoggedIn";
 import EmptyPage from "../../emptyPage";
 import PageLayout from "../../pageLayout/pageLayout";
 
 const StockManager = () => {
+
+    HandleUserLoggedInStatus();
+
     return (
         <PageLayout
             title="Stock Manager"
