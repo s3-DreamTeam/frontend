@@ -1,8 +1,10 @@
 import { Box, Button, Typography } from "@mui/material";
 import ColorCard from "../../ComponentCards/foundation/styledCard";
 import { LockRounded } from "@mui/icons-material";
+import { useKeycloak } from "../../../api/keycloakConfig";
 
 const NotLoggedInPage = () => {
+
     return (
         <div
             style={{
@@ -16,7 +18,9 @@ const NotLoggedInPage = () => {
                 sx={{
                     height: '100%',
                     borderRadius: '1.5rem',
-                    padding: '2rem'
+                    padding: '2rem',
+                    display: 'flex-row',
+                    alignContent: 'center'
                 }}
                 colorVariant='error'
             >
