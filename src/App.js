@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Keycloak from 'keycloak-js';
 import { useSelector } from 'react-redux';
 import { setAuthError, setUserToken } from './store/authenticatedSlice';
 
 const App = () => {
   const token = useSelector((state) => state.authenticated.token);
+  const [auth, setAuth] = useState(false);
   console.log("1");
 
   useEffect(() => {
@@ -15,6 +16,7 @@ const App = () => {
     try {
       keycloakInstance.init({ onLoad: 'login-required' }).then(auth => {
         console.log("4");
+        setAuth(true);
         setAuthError(keycloakInstance);
         console.log("5");
         console.log("Im I supposed to be authed? " + auth);
@@ -39,7 +41,7 @@ const App = () => {
 
   if (keycloakInstance) {
     console.log("8");
-    if (token) {
+    if (auth) {
       console.log("9");
       return (
         <div>
