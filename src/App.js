@@ -25,7 +25,7 @@ const App = () => {
       .catch(err => {
         console.error("Initialization failed:", err);
       });
-  }, []);
+  }, [keycloak]);
 
   const logout = () => {
     keycloak.logout();
