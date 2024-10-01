@@ -10,10 +10,11 @@ const keycloakInstance = new Keycloak({
   onLoad: 'login-required'
 });
 
+let yippie = false;
+
 keycloakInstance.init({ onLoad: 'login-required' }).then(auth => {
+  yippie = true;
   console.log("4");
-  const keycloak = useSelector((state) => state.authenticated.token);
-  const authenticated = useSelector((state) => state.authenticated.error);
   setAuthError(keycloakInstance);
   console.log("5");
   setUserToken(auth);
@@ -40,9 +41,9 @@ const App = () => {
     keycloak.logout();
   };
 
-  if (keycloak) {
+  if (yippie) {
     console.log("8");
-    if (authenticated) {
+    if (yippie) {
       console.log("9");
       return (
         <div>
