@@ -29,9 +29,8 @@ const App = () => {
   console.log("1");
 
   useEffect(() => {
-    if (keycloak) return;
     console.log("3");
-
+    console.log(keycloakInstance.authenticated);
   }, [keycloakInstance]);
 
   const logout = () => {
