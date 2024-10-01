@@ -31,7 +31,7 @@ const App = () => {
     if (keycloak) return;
     console.log("3");
 
-  }, []);
+  }, [keycloak, authenticated]);
 
   const logout = () => {
     console.log("7");
