@@ -12,11 +12,15 @@ const App = () => {
       clientId: 'frontend',
     });
 
-    keycloakInstance.init({ onLoad: 'login-required' })
+    keycloakInstance.init({
+      onLoad: 'login-required',
+      checkLoginIframe: false,
+      responseMode: 'query',
+    })
       .then(auth => {
+        console.log('Authenticated:', auth);
         setKeycloak(keycloakInstance);
         setAuthenticated(auth);
-        console.log('AUTH AUTH AUTH');
       })
       .catch(err => {
         console.error("Failed to initialize Keycloak", err);
@@ -53,7 +57,6 @@ const App = () => {
 };
 
 export default App;
-
 
 
 /*
