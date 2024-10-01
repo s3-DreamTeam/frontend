@@ -104,7 +104,10 @@ const App = () => {
     } else {
       console.log("10");
       return (
-        <NotLoggedInPage />
+        <ThemeProvider theme={appTheme}>
+          <CssBaseline />
+          <NotLoggedInPage />
+        </ThemeProvider>
       );
     }
   }
