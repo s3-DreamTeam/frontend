@@ -5,6 +5,8 @@ const App = () => {
   const [keycloak, setKeycloak] = useState(null);
   const [authenticated, setAuthenticated] = useState(false);
 
+  console.log(keycloak);
+
   useEffect(() => {
     const keycloakInstance = new Keycloak({
       url: 'http://localhost:8180/',
