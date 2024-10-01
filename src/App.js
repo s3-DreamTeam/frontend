@@ -6,7 +6,7 @@ const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
 
   useEffect(() => {
-    const keycloakInstance = Keycloak({
+    const keycloakInstance = new Keycloak({
       url: 'http://localhost:8180/',
       realm: 'usager',
       clientId: 'frontend',
