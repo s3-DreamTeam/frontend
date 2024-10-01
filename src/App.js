@@ -41,9 +41,9 @@ const App = () => {
     keycloak.logout();
   };
 
-  if (yippie) {
+  if (keycloakInstance) {
     console.log("8");
-    if (yippie) {
+    if (keycloakInstance.authenticated) {
       console.log("9");
       return (
         <div>
