@@ -1,8 +1,3 @@
-import { useNavigate } from "react-router-dom";
-import { useKeycloak } from "../api/keycloak";
-import { AppRoutes } from "./routerRouteManager";
-
-
 const HandleUserLoggedInStatus = () => {
     /*
     const { keycloak, authenticated } = useKeycloak();

@@ -7,6 +7,25 @@ export const keycloakInstance = new Keycloak({
   onLoad: 'login-required'
 });
 
-export function InitKeycloakInstance() {
+let initialized = false;
+export function InitKeycloakInstance({
+  onSuccess = null,
+  onFatalError = null,
+  onInitError = null,
+  onFinally = null,
+}) {
+  if (initialized) return;
+  initialized = true;
 
+  try {
+    keycloakInstance.init({ onLoad: 'login-required' }).then(auth => {
+      onSuccess(auth);
+    }).catch(error => {
+      onInitError(error);
+    }).finally(() => {
+      onFinally();
+    });
+  } catch (error) {
+    onFatalError(error);
+  }
 }
