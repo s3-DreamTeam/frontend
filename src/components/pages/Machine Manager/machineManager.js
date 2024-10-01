@@ -1,4 +1,3 @@
-import { IconButton } from "@mui/material";
 import PageLayout from "../../pageLayout/pageLayout";
 import { useEffect, useState } from "react";
 import { FetchAllUsers, PostNewUser } from "../../../api/requests";
@@ -86,7 +85,7 @@ const MachineManager = () => {
     // Calls the fetch function only on load.
     useEffect(() => {
         retryUserFetch();
-    }, []);
+    });
 
     return (
         <>

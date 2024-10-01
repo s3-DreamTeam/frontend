@@ -1,5 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
-import ColorCard from "../../ComponentCards/foundation/styledCard";
+import { Button } from "@mui/material";
 import { LockRounded } from "@mui/icons-material";
 import FullPageCard from "../../fullPageCard";
 

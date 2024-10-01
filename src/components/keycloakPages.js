@@ -7,6 +7,8 @@ const KeycloakPages = () => {
     const isInit = useSelector((state) => state.keycloak.isInit);
     const error = useSelector((state) => state.keycloak.error);
 
+    console.log(error);
+
     return (
         <>
             {error

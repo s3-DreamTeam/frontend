@@ -1,6 +1,4 @@
-import { Box, Button, CircularProgress, Typography } from "@mui/material";
-import ColorCard from "../../ComponentCards/foundation/styledCard";
-import { CheckBoxRounded, LockRounded } from "@mui/icons-material";
+import { CircularProgress } from "@mui/material";
 import FullPageCard from "../../fullPageCard";
 
 /**
