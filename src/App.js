@@ -7,7 +7,7 @@ const App = () => {
 
   useEffect(() => {
     const keycloakInstance = new Keycloak({
-      url: 'http://localhost:8180/auth',
+      url: 'http://localhost:8180/',
       realm: 'usager',
       clientId: 'frontend',
     });
