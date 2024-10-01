@@ -25,6 +25,13 @@ export default function GetMUIAppTheme() {
       },
     },
     components: {
+      MuiChip: {
+        styleOverrides: {
+          root: {
+            opacity: 1, // Set opacity to 100%
+          },
+        },
+      },
       MuiCircularProgress: {
         styleOverrides: {
           circle: {
