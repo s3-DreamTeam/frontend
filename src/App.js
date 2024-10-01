@@ -12,6 +12,8 @@ const keycloakInstance = new Keycloak({
 
 keycloakInstance.init({ onLoad: 'login-required' }).then(auth => {
   console.log("4");
+  const keycloak = useSelector((state) => state.authenticated.token);
+  const authenticated = useSelector((state) => state.authenticated.error);
   setAuthError(keycloakInstance);
   console.log("5");
   setUserToken(auth);
