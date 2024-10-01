@@ -14,7 +14,7 @@ const KeycloakContext = createContext();
 
 let keycloakInstance; // Singleton Keycloak instance
 
-export const KeycloakProvider = ({ children }) => {
+const KeycloakProvider = ({ children }) => {
     const [keycloak, setKeycloak] = useState(null);
     const [authenticated, setAuthenticated] = useState(false);
     const [error, setError] = useState(null);

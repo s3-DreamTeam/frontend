@@ -1,38 +1,57 @@
-import React from 'react';
-import { KeycloakProvider, useKeycloak } from '@react-keycloak/web';
+import { useEffect, useState } from 'react';
+import Keycloak from 'keycloak-js';
+
+const keycloak = new Keycloak({
+  url: 'http://localhost:8180/',
+  realm: 'usager',
+  clientId: 'frontend',
+});
+
+keycloak.init({ onLoad: 'login-required' }).then((authenticated) => {
+  if (authenticated) {
+    console.log('User is authenticated');
+  } else {
+    console.log('User is not authenticated');
+  }
+});
 
 const App = () => {
-  const { keycloak, initialized } = useKeycloak();
+  const [keycloak, setKeycloak] = useState(null);
+  const [authenticated, setAuthenticated] = useState(false);
 
-  if (!initialized) {
-    return <div>Loading...</div>;
-  }
+  const logout = () => {
+    keycloak.logout();
+  };
 
-  if (!keycloak.authenticated) {
-    return <div>Not authenticated</div>;
+  if (keycloak) {
+    console.log('Authenticated:', authenticated);
+    console.log('Keycloak:', keycloak);
+
+    if (authenticated) {
+      return (
+        <div>
+          <h1>Welcome to the React Keycloak Test!</h1>
+          <p>User: {keycloak.tokenParsed?.preferred_username}</p>
+          <button onClick={logout}>Logout</button>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <h1>Unable to authenticate!</h1>
+        </div>
+      );
+    }
   }
 
   return (
     <div>
-      <p>Welcome, {keycloak.tokenParsed.name}</p>
-      <button onClick={() => keycloak.logout()}>Logout</button>
+      <h1>Loading...</h1>
     </div>
   );
 };
 
-const keycloakConfig = {
-  url: 'http://localhost:8180/',
-  realm: 'usager',
-  clientId: 'frontend',
-};
-
-const WrappedApp = () => (
-  <KeycloakProvider keycloakConfig={keycloakConfig}>
-    <App />
-  </KeycloakProvider>
-);
-
-export default WrappedApp;
+export default App;
 
 
 /*
