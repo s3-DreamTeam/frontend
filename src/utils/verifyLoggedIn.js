@@ -4,6 +4,7 @@ import { AppRoutes } from "./routerRouteManager";
 
 
 const HandleUserLoggedInStatus = () => {
+    /*
     const { keycloak, authenticated } = useKeycloak();
     const navigate = useNavigate();
 
@@ -11,6 +12,8 @@ const HandleUserLoggedInStatus = () => {
         console.log('navigating?');
         navigate(AppRoutes.NotLoggedIn);
     }
+        */
+    return true;
 };
 
 export default HandleUserLoggedInStatus;

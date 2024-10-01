@@ -1,6 +1,7 @@
 import Keycloak from "keycloak-js";
 import { createContext, useContext, useEffect, useState, useMemo } from "react";
 
+/*
 const initOptions = {
     realm: "usager",
     "auth-server-url": "http://localhost:8180/",
