@@ -15,34 +15,27 @@ import StockEditor from './components/pages/Stock Editor/stockEditor';
 import Changelogs from './components/pages/Changelogs/changelogs';
 import { AppRoutes } from './utils/routerRouteManager';
 import NotLoggedInPage from './components/pages/Not logged in/notLoggedInPage';
-import { KeycloakProvider } from './api/keycloakConfig';
 
 
 const App = () => {
   const token = useSelector((state) => state.authenticated.token);
   const [auth, setAuth] = useState(false);
-  console.log("1");
 
   useEffect(() => {
-    console.log("3");
 
     if (token) return;
 
     try {
       keycloakInstance.init({ onLoad: 'login-required' }).then(auth => {
-        console.log("4");
         setAuth(true);
         setAuthError(keycloakInstance);
-        console.log("5");
         console.log("Im I supposed to be authed? " + auth);
         setUserToken(auth);
-        console.log("5");
       }).catch(error => {
-        console.log("6");
         console.error("Failed to initialize Keycloak", error);
       });
     } catch {
-      console.log("bruh");
+      console.log("error :(");
     }
 
     console.log(keycloakInstance.authenticated);
@@ -50,16 +43,13 @@ const App = () => {
   }, [keycloakInstance, token]);
 
   const logout = () => {
-    console.log("7");
     keycloakInstance.logout();
   };
 
   const appTheme = GetMUIAppTheme();
 
   if (keycloakInstance) {
-    console.log("8");
     if (auth) {
-      console.log("9");
       return (
         <ThemeProvider theme={appTheme}>
           <CssBaseline />
@@ -102,7 +92,6 @@ const App = () => {
         </ThemeProvider>
       );
     } else {
-      console.log("10");
       return (
         <ThemeProvider theme={appTheme}>
           <CssBaseline />
@@ -111,7 +100,6 @@ const App = () => {
       );
     }
   }
-  console.log("11");
   return <div>Loading...</div>;
 };
 
