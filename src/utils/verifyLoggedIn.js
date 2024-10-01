@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useKeycloak } from "../api/keycloakConfig";
+import { useKeycloak } from "../api/keycloak";
 import { AppRoutes } from "./routerRouteManager";
 
 

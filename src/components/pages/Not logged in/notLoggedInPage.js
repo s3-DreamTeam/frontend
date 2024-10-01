@@ -21,7 +21,7 @@ const NotLoggedInPage = () => {
                     display: 'flex-row',
                     alignContent: 'center'
                 }}
-                colorVariant='error'
+                colorvariant='error'
             >
                 <div
                     style={{

@@ -12,9 +12,9 @@ const { Card } = require("@mui/material");
  * ---
  * @type {*} 
  */
-const ColorCard = styled(Card)(({ theme, colorVariant }) => ({
-    backgroundColor: theme.palette[colorVariant]?.main || undefined,
-    color: theme.palette[colorVariant]?.contrastText || undefined,
+const ColorCard = styled(Card)(({ theme, colorvariant }) => ({
+    backgroundColor: theme.palette[colorvariant]?.main || undefined,
+    color: theme.palette[colorvariant]?.contrastText || undefined,
     boxShadow: theme.shadows[5],
 }));
 

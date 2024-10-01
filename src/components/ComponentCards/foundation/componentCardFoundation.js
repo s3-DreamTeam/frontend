@@ -46,7 +46,7 @@ const ComponentCardFoundation = ({ title, image, decorators, state, footerCompon
                 globalColor={color}
             />
             <ColorCard
-                colorVariant={color}
+                colorvariant={color}
                 sx={{
                     minHeight: '20rem',
                     minWidth: '20rem',
