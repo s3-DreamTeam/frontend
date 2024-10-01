@@ -30,7 +30,7 @@ const NotLoggedInPage = () => {
                 >
                     <LockRounded
                         style={{
-                            fontSize: 240,
+                            fontSize: 120,
                         }}
                         sx={{
                             animation: 'errorLock 5s ease-out infinite, errorShake 0.25s ease-out 2'
