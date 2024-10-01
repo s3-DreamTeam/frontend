@@ -24,32 +24,33 @@ const App = () => {
     keycloak.logout();
   };
 
-  if (keycloak) {
-    console.log('Authenticated:', UserAuthenticated);
-    console.log('Keycloak:', keycloak);
+  //if (keycloak) {
+  console.log('Authenticated:', UserAuthenticated);
+  console.log('Keycloak:', keycloak);
 
-    if (UserAuthenticated) {
-      return (
-        <div>
-          <h1>Welcome to the React Keycloak Test!</h1>
-          <p>User: {keycloak.tokenParsed?.preferred_username}</p>
-          <button onClick={logout}>Logout</button>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <h1>Unable to authenticate!</h1>
-        </div>
-      );
-    }
+  if (UserAuthenticated) {
+    return (
+      <div>
+        <h1>Welcome to the React Keycloak Test!</h1>
+        <p>User: {keycloak.tokenParsed?.preferred_username}</p>
+        <button onClick={logout}>Logout</button>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <h1>Unable to authenticate!</h1>
+      </div>
+    );
   }
-
+  //}
+  /*
   return (
     <div>
       <h1>Loading...</h1>
     </div>
   );
+  */
 };
 
 export default App;
