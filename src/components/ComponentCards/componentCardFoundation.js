@@ -1,6 +1,10 @@
-import { Button, Typography } from "@mui/material";
+import { CardActionArea, CardActions } from "@mui/material";
+import SmallComponentCardHeader from "./smallHeader";
+import SmallComponentCardMedia from "./smallMedia";
+import ColorCard from "./styledCard";
 
-const ComponentCardFoundation = ({ title, image, decorators, state, footerText }) => {
+
+const ComponentCardFoundation = ({ title, image, decorators, state, footerComponents }) => {
 
     let color = 'inherit';
 
@@ -20,22 +24,35 @@ const ComponentCardFoundation = ({ title, image, decorators, state, footerText }
     }
 
     return (
-        <Button
-            variant="contained"
-            color={color}
-            elevation={5}
+        <ColorCard
+            colorVariant={color}
             sx={{
-                width: '10rem',
-                height: '10rem',
+                minHeight: '20rem',
+                minWidth: '20rem',
+                maxWidth: '20rem',
+                maxHeight: '20rem',
                 borderRadius: '1.5rem',
-                padding: '1rem'
+                display: 'flex',
+                flexDirection: 'column',
             }}
         >
-            <Typography
-                variant="h6"
-            >{title}
-            </Typography>
-        </Button>
+            <CardActionArea
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: '100%',
+                    padding: '1.5rem'
+                }}
+            >
+                <SmallComponentCardHeader title={title} />
+                <SmallComponentCardMedia title={title} image={image} />
+                <CardActions
+                    sx={{ height: '10%', flexShrink: 0 }} // Footer takes 10% of the height
+                >
+                    {footerComponents}
+                </CardActions>
+            </CardActionArea>
+        </ColorCard>
     );
 };
 

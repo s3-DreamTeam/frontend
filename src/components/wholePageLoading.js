@@ -7,7 +7,7 @@ import { CircularProgress, Stack } from "@mui/material";
  * ---
  * @param {*} param0 
  */
-const WholePageLoading = ({ }) => {
+const WholePageLoading = () => {
     return (
         <Stack
             direction='column'

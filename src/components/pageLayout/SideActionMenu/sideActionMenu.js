@@ -1,5 +1,4 @@
-import { FilterAltRounded, SwapVertRounded } from "@mui/icons-material";
-import { Card, IconButton, Stack } from "@mui/material";
+import { Card, Stack } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { animationFinishedHidden, animationFinishedShown } from "../../../store/sideActionsMenuSlice";
@@ -46,7 +45,7 @@ const SideActionMenu = ({ disableAllButNew, onRefresh, onAdd, isRefreshing }) =>
         }, 1); // Adjust the duration to match your animation length
 
         return () => clearTimeout(timeout); // Clean up timeout on unmount
-    }, [sideActionsMenuState, dispatch]);
+    }, [sideActionsMenuState, sideActionsMenuAnimationState, dispatch]);
 
     return (
         <div

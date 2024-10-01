@@ -1,6 +1,6 @@
 import StyledDivider from "../../divider/styledDivider";
 
-const SAMDivider = ({ }) => {
+const SAMDivider = () => {
     return (
         <>
             <div style={{ margin: '0.25rem' }} />

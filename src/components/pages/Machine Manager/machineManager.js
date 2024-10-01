@@ -1,8 +1,6 @@
 import { IconButton } from "@mui/material";
 import PageLayout from "../../pageLayout/pageLayout";
 import { useEffect, useState } from "react";
-import ErrorPage from "../../errorPage";
-import { RefreshRounded } from "@mui/icons-material";
 import { FetchAllUsers, PostNewUser } from "../../../api/requests";
 import { useSelector } from "react-redux";
 import ProcessStatusSnackBar from "../../processStatusSnackbar";

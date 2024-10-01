@@ -53,7 +53,7 @@ const PageLayout = ({
     }
 
     return (
-        <Paper elevation={0} sx={{ height: "100vh", overflow: 'hidden' }} square>
+        <Paper elevation={0} sx={{ height: "100vh", overflow: 'auto' }} square>
             <AppBar
                 position='fixed'
                 color='transparent'
@@ -127,9 +127,11 @@ const PageLayout = ({
             <Main
                 navigationDrawerState={drawerState}
                 sideActionMenuState={sideMenuAnimationState}
-                sx={{ height: '100%' }}
+                sx={{
+                    height: '100%',
+                    paddingTop: '4rem'
+                }}
             >
-                <Toolbar />
                 <Stack
                     direction='row'
                     sx={{
