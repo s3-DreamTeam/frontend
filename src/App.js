@@ -26,15 +26,13 @@ keycloakInstance.init({ onLoad: 'login-required' }).then(auth => {
 
 const App = () => {
   const keycloak = useSelector((state) => state.authenticated.token);
-  const authenticated = useSelector((state) => state.authenticated.error);
-
   console.log("1");
 
   useEffect(() => {
     if (keycloak) return;
     console.log("3");
 
-  }, [keycloak, authenticated]);
+  }, [keycloakInstance]);
 
   const logout = () => {
     console.log("7");
