@@ -36,7 +36,7 @@ const App = () => {
 
   const logout = () => {
     console.log("7");
-    //keycloak.logout();
+    keycloakInstance.logout();
   };
 
   if (keycloakInstance) {
