@@ -13,29 +13,17 @@ const App = () => {
     });
 
     keycloakInstance.init({
-      onLoad: 'check-sso',
+      onLoad: 'login-required',
       checkLoginIframe: false,
       responseMode: 'query',
     })
       .then(auth => {
+        console.log("Initialization success:", auth);
         setKeycloak(keycloakInstance);
         setAuthenticated(auth);
-
-        // Token refresh
-        const refreshInterval = setInterval(() => {
-          keycloakInstance.updateToken(70).then((refreshed) => {
-            if (refreshed) {
-              console.log('Token refreshed');
-            }
-          }).catch(err => {
-            console.error('Failed to refresh token', err);
-          });
-        }, 60000); // Refresh token every minute
-
-        return () => clearInterval(refreshInterval); // Cleanup on unmount
       })
       .catch(err => {
-        console.error("Failed to initialize Keycloak", err);
+        console.error("Initialization failed:", err);
       });
   }, []);
 
