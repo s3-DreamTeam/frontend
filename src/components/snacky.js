@@ -24,9 +24,6 @@ const Snacky = () => {
 
         try {
             keycloakInstance().init({ onLoad: 'login-required' }).then(auth => {
-                console.log("Im I supposed to be authed? " + auth);
-                console.log(keycloakInstance());
-                console.log("Whats the instance saying? " + keycloakInstance().authenticated);
             }).catch(error => {
                 dispatch(setKeycloakError(error.error));
             }).finally(() => {
@@ -38,8 +35,6 @@ const Snacky = () => {
             dispatch(setKeycloakError(e.message));
         }
     }, [updateAfterLogging]);
-
-    console.log("EXT: Whats the instance saying? " + keycloakInstance().authenticated);
 
     return (
         <>
