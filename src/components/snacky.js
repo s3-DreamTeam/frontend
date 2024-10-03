@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { keycloakInstance } from "../api/keycloak";
 import { keycloakHasInit, setKeycloakError } from "../store/keycloakSlice";
@@ -15,6 +15,7 @@ import KeycloakPages from "./keycloakPages";
 
 let startedInit = false;
 const Snacky = () => {
+    const [updateAfterLogging, setUpdate] = useState(false);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -30,12 +31,13 @@ const Snacky = () => {
                 dispatch(setKeycloakError(error.error));
             }).finally(() => {
                 dispatch(keycloakHasInit());
+                setUpdate(true);
             });
         } catch (e) {
             console.log("error");
             dispatch(setKeycloakError(e.message));
         }
-    });
+    }, [updateAfterLogging]);
 
     console.log("EXT: Whats the instance saying? " + keycloakInstance().authenticated);
 
