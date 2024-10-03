@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { AppBar, IconButton, Paper, Stack, Toolbar, Typography } from '@mui/material';
-import { MenuOpenRounded, MenuRounded, MoreVertRounded, PersonRounded } from '@mui/icons-material';
+import { ArrowBackRounded, MenuOpenRounded, MenuRounded, MoreVertRounded, PersonRounded } from '@mui/icons-material';
 import NavigationDrawer from './navigationDrawer';
 import { openNavigationDrawer, closeNavigationDrawer } from '../../store/navigationDrawerSlice';
 import Main from './mainContainer';
@@ -18,18 +18,36 @@ import { hideSideActionsMenu, showSideActionsMenu } from '../../store/sideAction
  * ---
  * @param {*} title : The name of the page, so it can be shown in the app bar
  * @param {*} childrens : The components to show inside the page
- * @param {boolean} hideActionBar : For main menus that don't need it.
+ * @param {*} hideActionBar : For main menus that don't need it.
+ * @param {*} disableAllActionsButNew : disables all sideActions except the Add button.
+ * @param {*} hideNavigationDrawer : Removes the menu button and slides away the navigation drawer.
+ * @param {*} hasGoBackArrow : Shows a go back arrow next to the menu button
+ * @param {*} isRefreshing : If set to true, the refresh icon will spin in the side actions menu.
+ * 
+ * @param {*} onGoBack : Callback executed when the go back arrow is clicked
+ * @param {*} onAdd : Callback when the add button is clicked
+ * @param {*} onFilter : Callback when the filter button is clicked
+ * @param {*} onList : Callback when the list button is clicked
+ * @param {*} onRefresh : Callback when the refresh button is clicked
  * @returns 
  */
 const PageLayout = ({
     title,
     childrens,
-    disableAllActionsButNew,
+
     hideActionBar,
+    disableAllActionsButNew,
+
     hideNavigationDrawer,
+
+    hasGoBackArrow,
+    onGoBack,
+
     isRefreshing,
     onRefresh,
-    onAdd
+    onAdd,
+    onFilter,
+    onList,
 }) => {
 
     const dispatch = useDispatch();
@@ -89,6 +107,19 @@ const PageLayout = ({
                                     <MenuRounded fontSize='large' />
                                 }
                             </IconButton>
+                        }
+                        {hasGoBackArrow
+                            ? <IconButton
+                                size='medium'
+                                edge='start'
+                                color='inherit'
+                                aria-label='menu'
+                                sx={{ mr: '1rem' }}
+                                onClick={onGoBack}
+                            >
+                                <ArrowBackRounded fontSize='large' />
+                            </IconButton>
+                            : null
                         }
                         <Typography
                             variant='h5'
