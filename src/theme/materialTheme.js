@@ -28,7 +28,7 @@ export default function GetMUIAppTheme() {
       MuiChip: {
         styleOverrides: {
           root: {
-            opacity: 1, // Set opacity to 100%
+            opacity: 1,
           },
         },
       },
@@ -36,7 +36,6 @@ export default function GetMUIAppTheme() {
         styleOverrides: {
           circle: {
             strokeLinecap: 'round',
-            // You can add more styles if needed
           },
         },
       },
