@@ -1,6 +1,6 @@
 import { CheckboxFieldBuilder, DropdownFieldBuilder, NumberFieldBuilder, TextBoxFieldBuilder } from "./formsObjects";
 
-const machineTemplateObject = {
+export const machineTemplateObject = {
     imageBase64: "",
     headSection: [
         TextBoxFieldBuilder(
@@ -70,7 +70,7 @@ const machineTemplateObject = {
     }
 };
 
-const productTemplateObject = {
+export const productTemplateObject = {
     imageBase64: "",
     headSection: [
         TextBoxFieldBuilder(
