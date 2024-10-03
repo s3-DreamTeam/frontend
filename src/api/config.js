@@ -6,5 +6,6 @@ import axios from "axios";
  * Don't put '/' at the end.
  */
 export default axios.create({
-    baseURL: process.env.REACT_APP_SERVER_URL
+    baseURL: process.env.REACT_APP_SERVER_URL,
+    timeout: process.env.REACT_APP_SERVER_TIMEOUT
 });
