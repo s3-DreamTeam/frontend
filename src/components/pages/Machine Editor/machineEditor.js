@@ -1,3 +1,4 @@
+import { useState } from "react";
 import HandleUserLoggedInStatus from "../../../utils/verifyLoggedIn";
 import PageLayout from "../../pageLayout/pageLayout";
 import MachineEditorMainLayout from "./machineEditorMainLayout";
@@ -5,11 +6,31 @@ import MachineEditorMainLayout from "./machineEditorMainLayout";
 const MachineEditor = () => {
 
     HandleUserLoggedInStatus();
+    const [insideTemplateForm, setInsideTemplateForm] = useState(false);
+
+    function HandleOnAdd() {
+        setInsideTemplateForm(true);
+    }
 
     return (
-        <PageLayout title="Machine Editor" childrens={
-            <MachineEditorMainLayout></MachineEditorMainLayout>
-        }></PageLayout>
+        <>
+            {insideTemplateForm
+                ? (<PageLayout
+                    title="Machine Creator"
+                    hideActionBar={true}
+                    childrens={
+                        <MachineEditorMainLayout></MachineEditorMainLayout>
+                    }
+                />)
+                : (<PageLayout
+                    title="Machine Editor"
+                    onAdd={HandleOnAdd}
+                    childrens={
+                        <MachineEditorMainLayout></MachineEditorMainLayout>
+                    }
+                />)
+            }
+        </>
     );
 };
 

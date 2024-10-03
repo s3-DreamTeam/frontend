@@ -26,6 +26,7 @@ const PageLayout = ({
     childrens,
     disableAllActionsButNew,
     hideActionBar,
+    hideNavigationDrawer,
     isRefreshing,
     onRefresh,
     onAdd
@@ -52,6 +53,10 @@ const PageLayout = ({
         dispatch(showSideActionsMenu());
     }
 
+    if (hideNavigationDrawer) {
+        dispatch(closeNavigationDrawer());
+    }
+
     return (
         <Paper elevation={0} sx={{ height: "100vh", overflow: 'auto' }} square>
             <AppBar
@@ -69,19 +74,22 @@ const PageLayout = ({
                         alignItems='center'
                         sx={{ flexGrow: 1 }}
                     >
-                        <IconButton
-                            size='medium'
-                            edge='start'
-                            color='inherit'
-                            aria-label='menu'
-                            sx={{ mr: '1rem' }}
-                            onClick={handleMenuClicked}
-                        >
-                            {drawerState ?
-                                <MenuOpenRounded fontSize='large' /> :
-                                <MenuRounded fontSize='large' />
-                            }
-                        </IconButton>
+                        {hideNavigationDrawer
+                            ? null
+                            : <IconButton
+                                size='medium'
+                                edge='start'
+                                color='inherit'
+                                aria-label='menu'
+                                sx={{ mr: '1rem' }}
+                                onClick={handleMenuClicked}
+                            >
+                                {drawerState ?
+                                    <MenuOpenRounded fontSize='large' /> :
+                                    <MenuRounded fontSize='large' />
+                                }
+                            </IconButton>
+                        }
                         <Typography
                             variant='h5'
                             component='div'
