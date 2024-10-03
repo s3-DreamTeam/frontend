@@ -23,7 +23,7 @@ const Snacky = () => {
         startedInit = true;
 
         try {
-            keycloakInstance().init({ onLoad: 'login-required' }).then(auth => {
+            keycloakInstance().init({ onLoad: 'check-sso' }).then(auth => {
             }).catch(error => {
                 dispatch(setKeycloakError(error.error));
             }).finally(() => {
