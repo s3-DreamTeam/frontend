@@ -1,4 +1,4 @@
-import backendApi, { BackendHeader } from './backend';
+import { BackendHeader, backendApi } from './backend';
 import Endpoints from './endpoints';
 import { setAllFetchedUsers } from '../store/allFetchedUsersSlice';
 
