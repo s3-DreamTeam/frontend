@@ -1,4 +1,4 @@
-import api from './config';
+import backendApi, { BackendHeader } from './backend';
 import Endpoints from './endpoints';
 import { setAllFetchedUsers } from '../store/allFetchedUsersSlice';
 
@@ -31,11 +31,12 @@ export const FetchAllUsers = async ({
     onEnd = null,
     onStart = null
 }) => {
-    console.log("FetchAllUsers");
+    console.log("REQ: FetchAllUsers");
     onStart();
     try {
         await sleep(0);
-        const response = await api.get(Endpoints.FetchAllUsers);
+        const header = BackendHeader();
+        const response = await backendApi.get(Endpoints.FetchAllUsers, header);
         onSuccess(response.data);
         setAllFetchedUsers(response.data);
     } catch (err) {
@@ -82,18 +83,21 @@ export const PostNewUser = async ({
     onEnd = null,
     onStart = null
 }) => {
-    console.log("PostNewUser");
+    console.log("REQ: PostNewUser");
     onStart();
     try {
+        const header = BackendHeader();
         await sleep(0);
-        await api.post(Endpoints.PostNewUser, {
+        await backendApi.post(Endpoints.PostNewUser, {
             email: email,
             nom: lastName,
             prenom: name,
             profilPic: profilePic,
             solde: balance,
             statusId: status
-        });
+        },
+            header
+        );
         onSuccess();
     } catch (err) {
         onError(err);
