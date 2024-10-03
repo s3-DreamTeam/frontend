@@ -1,12 +1,14 @@
 import * as React from 'react';
-import { AppBar, IconButton, Paper, Stack, Toolbar, Typography } from '@mui/material';
-import { ArrowBackRounded, MenuOpenRounded, MenuRounded, MoreVertRounded, PersonRounded } from '@mui/icons-material';
+import { AppBar, Paper, Stack, Toolbar } from '@mui/material';
 import NavigationDrawer from './navigationDrawer';
 import { openNavigationDrawer, closeNavigationDrawer } from '../../store/navigationDrawerSlice';
 import Main from './mainContainer';
 import { useDispatch, useSelector } from 'react-redux';
 import SideActionMenu from './SideActionMenu/sideActionMenu';
 import { hideSideActionsMenu, showSideActionsMenu } from '../../store/sideActionsMenuSlice';
+import LeftBarArea from './AppBar/leftBarArea';
+import RightBarArea from './AppBar/rightBarArea';
+import MiddlebarArea from './AppBar/middleBarArea';
 
 
 /**
@@ -87,79 +89,16 @@ const PageLayout = ({
                 }}
             >
                 <Toolbar>
-                    <Stack
-                        direction='row'
-                        alignItems='center'
-                        sx={{ flexGrow: 1 }}
-                    >
-                        {hideNavigationDrawer
-                            ? null
-                            : <IconButton
-                                size='medium'
-                                edge='start'
-                                color='inherit'
-                                aria-label='menu'
-                                sx={{ mr: '1rem' }}
-                                onClick={handleMenuClicked}
-                            >
-                                {drawerState ?
-                                    <MenuOpenRounded fontSize='large' /> :
-                                    <MenuRounded fontSize='large' />
-                                }
-                            </IconButton>
-                        }
-                        {hasGoBackArrow
-                            ? <IconButton
-                                size='medium'
-                                edge='start'
-                                color='inherit'
-                                aria-label='menu'
-                                sx={{ mr: '1rem' }}
-                                onClick={onGoBack}
-                            >
-                                <ArrowBackRounded fontSize='large' />
-                            </IconButton>
-                            : null
-                        }
-                        <Typography
-                            variant='h5'
-                            component='div'
-                            fontWeight={600}
-                            color='inherit'
-                        >
-                            {title}
-                        </Typography>
-                    </Stack>
-                    <Stack
-                        direction='row'
-                        alignItems='center'
-                        sx={{ flexGrow: 1 }}
-                    >
-                    </Stack>
-                    <Stack
-                        direction='row'
-                        alignItems='center'
-                        justifyContent='flex-end'
-                        sx={{ flexGrow: 1 }}
-                    >
-                        <IconButton
-                            size='medium'
-                            edge='end'
-                            color='inherit'
-                            aria-label='profile menu'
-                            sx={{ mr: '0rem' }}
-                        >
-                            <PersonRounded fontSize='large' />
-                        </IconButton>
-                        <IconButton
-                            size='medium'
-                            edge='end'
-                            color='inherit'
-                            aria-label='more menu'
-                        >
-                            <MoreVertRounded fontSize='large' />
-                        </IconButton>
-                    </Stack>
+                    <LeftBarArea
+                        appTitle={title}
+                        onGoBackClick={onGoBack}
+                        onMenuClick={handleMenuClicked}
+                        drawerOpened={drawerState}
+                        showGoBackButton={hasGoBackArrow}
+                        hideMenuButton={hideNavigationDrawer}
+                    />
+                    <MiddlebarArea />
+                    <RightBarArea />
                 </Toolbar>
             </AppBar>
             <NavigationDrawer open={drawerState} onClose={() => dispatch(closeNavigationDrawer())} />
