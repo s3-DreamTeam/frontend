@@ -22,7 +22,7 @@ const Snacky = () => {
         startedInit = true;
 
         try {
-            keycloakInstance.init({ onLoad: 'login-required' }).then(auth => {
+            keycloakInstance().init({ onLoad: 'login-required' }).then(auth => {
                 console.log("Im I supposed to be authed? " + auth);
                 console.log(keycloakInstance);
             }).catch(error => {
@@ -38,7 +38,7 @@ const Snacky = () => {
 
     return (
         <>
-            {keycloakInstance.authenticated || process.env.REACT_APP_SHOW_PAGES_EVEN_WITH_NO_AUTH === 'yes'
+            {keycloakInstance().authenticated || process.env.REACT_APP_SHOW_PAGES_EVEN_WITH_NO_AUTH === 'yes'
                 ? <Router>
                     <Routes>
                         <Route

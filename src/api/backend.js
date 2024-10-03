@@ -33,7 +33,7 @@ export function BackendHeader() {
     }
 
     try {
-        const jwtBearerToken = keycloakInstance.token;
+        const jwtBearerToken = keycloakInstance().token;
 
         axiosConfig = {
             headers: {

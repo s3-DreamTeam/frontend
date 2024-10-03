@@ -5,7 +5,7 @@ import Keycloak from "keycloak-js";
  * The instance of the Keycloak used to auth the user and fetch their JWT tokens.
  * Must be initialized **once** with `InitKeycloakInstance()`.
  */
-export const keycloakInstance = new Keycloak({
+let actualKeycloakInstance = new Keycloak({
   url: process.env.REACT_APP_KEYCLOAK_URL,
   realm: 'usager',
   clientId: 'frontend',
@@ -13,6 +13,10 @@ export const keycloakInstance = new Keycloak({
 });
 
 let initialized = false;
+
+export function keycloakInstance() {
+  return actualKeycloakInstance;
+}
 
 /**
  * # InitKeycloakInstance
@@ -40,7 +44,7 @@ export function InitKeycloakInstance({
   initialized = true;
 
   try {
-    keycloakInstance.init({ onLoad: 'login-required' }).then(auth => {
+    actualKeycloakInstance.init({ onLoad: 'login-required' }).then(auth => {
       onSuccess(auth);
     }).catch(error => {
       onInitError(error);
