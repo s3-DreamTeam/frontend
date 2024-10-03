@@ -1,4 +1,4 @@
-const { Typography } = require("@mui/material");
+const { Typography, Box } = require("@mui/material");
 
 /**
  * # FormInput
@@ -10,12 +10,19 @@ const { Typography } = require("@mui/material");
  */
 export const FormInput = ({ title, children }) => {
     return (
-        <div>
+        <Box
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+            width="100%"
+            marginBottom="1rem"
+        >
             <Typography
+                variant="h5"
             >
                 {title}
             </Typography>
             {children}
-        </div>
+        </Box>
     );
 };

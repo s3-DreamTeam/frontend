@@ -1,10 +1,16 @@
-import { Typography } from "@mui/material";
 import { FormBackground } from "./foundations/background";
+import { FormTextField } from "./fields/textField";
+import { FormCheckbox } from "./fields/checkboxField";
+import { FormNumberField } from "./fields/NumberField";
+import { NumberFieldBuilder } from "../../utils/templateUtils/formsObjects";
 
 const Form = ({ initialObjectTemplate }) => {
     return (
         <FormBackground>
-            <Typography variant="h1">Bruh</Typography>
+            <FormTextField />
+            <FormTextField />
+            <FormCheckbox />
+            <FormNumberField NumberFieldObject={NumberFieldBuilder("bruh", true, "hi", "ml", 0, 0)} />
         </FormBackground>
     );
 };

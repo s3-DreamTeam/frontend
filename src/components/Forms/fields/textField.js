@@ -1,8 +1,22 @@
-const { FormInput } = require("../foundations/input");
+import { TextField } from "@mui/material";
+import { FormInput } from "../foundations/input";
 
-const FormTextField = () => {
+export const FormTextField = () => {
     return (
         <FormInput
-        />
+            title="bruh"
+        >
+            <TextField
+                variant="filled"
+                size="small"
+                hiddenLabel
+                InputProps={{
+                    disableUnderline: false,
+                    style: {
+                        borderRadius: '1.5rem',
+                    }
+                }}
+            />
+        </ FormInput>
     );
 };

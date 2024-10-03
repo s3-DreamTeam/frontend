@@ -1,6 +1,7 @@
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { createTheme } from "@mui/material/styles";
 import { blue } from '@mui/material/colors';
+import { outlinedInputClasses } from '@mui/material';
 
 /**
  * # GetMUIAppTheme
@@ -25,6 +26,57 @@ export default function GetMUIAppTheme() {
       },
     },
     components: {
+      MuiOutlinedInput: {
+        styleOverrides: {
+          notchedOutline: {
+            borderColor: 'var(--TextField-brandBorderColor)',
+          },
+          root: {
+            [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
+              borderColor: 'var(--TextField-brandBorderHoverColor)',
+            },
+            [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
+              borderColor: 'var(--TextField-brandBorderFocusedColor)',
+            },
+          },
+        },
+      },
+      MuiFilledInput: {
+        styleOverrides: {
+          root: {
+            '&::before, &::after': {
+              outline: '0px solid',
+              border: '0px solid',
+              strokeLinecap: 'round'
+            },
+            '&:hover:not(.Mui-disabled, .Mui-error):before': {
+              outline: '0px solid',
+              border: '0px solid',
+              strokeLinecap: 'round',
+            },
+            '&.Mui-focused:after': {
+              borderBottom: '1px solid',
+              margin: '0 0.75rem 0 0.75rem',
+              strokeLinecap: 'round'
+            },
+          },
+        },
+      },
+      MuiInput: {
+        styleOverrides: {
+          root: {
+            '&::before': {
+              borderBottom: '0px solid var(--TextField-brandBorderColor)',
+            },
+            '&:hover:not(.Mui-disabled, .Mui-error):before': {
+              borderBottom: '0px solid var(--TextField-brandBorderHoverColor)',
+            },
+            '&.Mui-focused:after': {
+              borderBottom: '0px solid var(--TextField-brandBorderFocusedColor)',
+            },
+          },
+        },
+      },
       MuiChip: {
         styleOverrides: {
           root: {
