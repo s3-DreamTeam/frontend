@@ -26,10 +26,10 @@ function sleep(ms) {
  * Callback executed right before the request.
  */
 export const FetchAllUsers = async ({
-    onSuccess = null,
-    onError = null,
-    onEnd = null,
-    onStart = null
+    onSuccess = () => { },
+    onError = () => { },
+    onEnd = () => { },
+    onStart = () => { }
 }) => {
     console.log("REQ: FetchAllUsers");
     onStart();
@@ -40,7 +40,8 @@ export const FetchAllUsers = async ({
 
         const response = await fetch('https://quarkus.snacky.zacse.org/api/getallusers', { 'mode': 'no-cors' });
         onSuccess(response.data);
-        setAllFetchedUsers(response.data);
+        console.log(response);
+        //setAllFetchedUsers(response.data);
     } catch (err) {
         onError(err);
     } finally {
