@@ -39,9 +39,6 @@ export const FormSection = ({ FormSection }) => {
                 </Typography>
             </AccordionSummary>
             <AccordionDetails
-                sx={{
-                    display: 'flex-row'
-                }}
             >
                 <FormTextField fieldObject={TextBoxFieldBuilder("text field", true, "placeholder")} />
                 <FormTextField fieldObject={TextBoxFieldBuilder("another", false, null)} />
