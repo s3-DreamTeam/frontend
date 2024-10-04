@@ -6,8 +6,8 @@
  * @type {*} 
  */
 const Endpoints = {
-    GetAllUsers: '/getallusagers',
-    AddNewUser: '/insertUsager'
+    GetAllUsers: 'getallusagers',
+    AddNewUser: 'insertUsager'
 };
 
 export default Endpoints; 
