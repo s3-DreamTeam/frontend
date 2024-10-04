@@ -81,10 +81,10 @@ export const PostNewUser = async ({
     balance = 0,
     status = 0,
 
-    onSuccess = null,
-    onError = null,
-    onEnd = null,
-    onStart = null
+    onSuccess = () => { },
+    onError = () => { },
+    onEnd = () => { },
+    onStart = () => { }
 }) => {
     console.log("REQ: PostNewUser");
     onStart();
@@ -99,7 +99,7 @@ export const PostNewUser = async ({
             solde: balance,
             statusId: status
         },
-            header
+            //header
         );
         onSuccess();
     } catch (err) {
