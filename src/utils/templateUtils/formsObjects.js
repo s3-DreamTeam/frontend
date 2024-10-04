@@ -1,3 +1,10 @@
+export const FieldTypes = {
+    Textbox: "Textbox",
+    Checkbox: "Checkbox",
+    Dropdown: "Dropdown",
+    NumberField: "NumberField"
+};
+
 /**
  * # TextBoxFieldBuilder
  * Returns a complete object, used to define a field in a template form.
@@ -16,12 +23,11 @@ export function TextBoxFieldBuilder(
     placeHolder
 ) {
     return {
-        [name]: {
-            type: "TextBox",
-            required: required,
-            placeHolder: placeHolder,
-            value: null
-        }
+        name: name,
+        type: FieldTypes.Textbox,
+        required: required,
+        placeHolder: placeHolder,
+        value: null
     };
 }
 
@@ -49,14 +55,13 @@ export function DropdownFieldBuilder(
     subCategories
 ) {
     return {
-        [name]: {
-            type: "Dropdown",
-            required: required,
-            defaultValue: defaultValue,
-            choices: choices,
-            value: null,
-            subCategories
-        }
+        name: name,
+        type: FieldTypes.Dropdown,
+        required: required,
+        defaultValue: defaultValue,
+        choices: choices,
+        value: null,
+        subCategories
     };
 }
 
@@ -79,11 +84,10 @@ export function CheckboxFieldBuilder(
     required,
 ) {
     return {
-        [name]: {
-            type: "Checkbox",
-            required: required,
-            value: null
-        }
+        name: name,
+        type: FieldTypes.Checkbox,
+        required: required,
+        value: null
     };
 }
 
@@ -115,14 +119,13 @@ export function NumberFieldBuilder(
     min,
 ) {
     return {
-        [name]: {
-            type: "NumberField",
-            required: required,
-            placeHolder: placeHolder,
-            symbol: symbol,
-            max: max,
-            min: min,
-            value: null
-        }
+        name: name,
+        type: FieldTypes.NumberField,
+        required: required,
+        placeHolder: placeHolder,
+        symbol: symbol,
+        max: max,
+        min: min,
+        value: null
     };
 }

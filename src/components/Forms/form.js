@@ -2,12 +2,12 @@ import { FormBackground } from "./foundations/background";
 import { FormSection } from "./foundations/formSection";
 
 const Form = ({ initialObjectTemplate }) => {
+
+    console.log("Big object: ", initialObjectTemplate);
+
     return (
         <FormBackground>
-            <FormSection />
-            <FormSection />
-            <FormSection />
-            <FormSection />
+            <FormSection section={initialObjectTemplate.headSection} />
         </FormBackground>
     );
 };

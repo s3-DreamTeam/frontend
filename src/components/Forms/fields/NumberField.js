@@ -11,13 +11,12 @@ import { FormInput } from "../foundations/input";
 */
 
 export const FormNumberField = ({ fieldObject }) => {
-    const FieldObject = Object.values(fieldObject)[0];
-    const title = Object.keys(fieldObject)[0];
-    const required = FieldObject.required;
-    const placeHolder = FieldObject.placeHolder;
-    const min = FieldObject.min;
-    const max = FieldObject.max;
-    const symbol = FieldObject.symbol;
+    const title = fieldObject.name;
+    const required = fieldObject.required;
+    const placeHolder = fieldObject.placeHolder;
+    const min = fieldObject.min;
+    const max = fieldObject.max;
+    const symbol = fieldObject.symbol;
 
     return (
         <FormInput

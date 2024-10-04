@@ -7,6 +7,7 @@ const MachineEditorForm = ({ }) => {
 
     return (
         <Form
+            initialObjectTemplate={visualFormData}
         />
     );
 };

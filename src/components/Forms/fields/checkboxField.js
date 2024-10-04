@@ -2,9 +2,8 @@ import { Checkbox } from "@mui/material";
 import { FormInput } from "../foundations/input";
 import { CheckBoxRounded } from "@mui/icons-material";
 export const FormCheckbox = ({ fieldObject }) => {
-    const FieldObject = Object.values(fieldObject)[0];
-    const title = Object.keys(fieldObject)[0];
-    const required = FieldObject.required;
+    const title = fieldObject.name;
+    const required = fieldObject.required;
 
     return (
         <FormInput

@@ -1,12 +1,11 @@
 import { MenuItem, TextField } from "@mui/material";
 import { FormInput } from "../foundations/input";
-export const DropdownField = ({ fieldObject }) => {
-    const FieldObject = Object.values(fieldObject)[0];
-    const title = Object.keys(fieldObject)[0];
-    const required = FieldObject.required;
-    const defaultValue = FieldObject.defaultValue;
-    const choices = FieldObject.choices;
-    const subCategories = FieldObject.subCategories;
+export const FormDropdownField = ({ fieldObject }) => {
+    const title = fieldObject.name;
+    const required = fieldObject.required;
+    const defaultValue = fieldObject.defaultValue;
+    const choices = fieldObject.choices;
+    const subCategories = fieldObject.subCategories;
 
     return (
         <FormInput
