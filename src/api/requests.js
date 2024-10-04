@@ -37,11 +37,9 @@ export const FetchAllUsers = async ({
     try {
         await sleep(0);
         const header = BackendHeader();
-        //const response = await backendApi.get(Endpoints.FetchAllUsers);
+        const response = await backendApi.get(Endpoints.GetAllUsers);
 
         //const response = await fetch('https://quarkus.snacky.zacse.org/api/getallusers', { 'mode': 'no-cors' });
-
-        const response = await axios.get('https://quarkus.snacky.zacse.org/api/getallusers');
         console.log(response);
         //onSuccess(response.data);
         //setAllFetchedUsers(response.data);
