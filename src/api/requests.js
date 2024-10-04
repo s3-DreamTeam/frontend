@@ -36,9 +36,9 @@ export const FetchAllUsers = async ({
     try {
         await sleep(0);
         const header = BackendHeader();
-        //const response = await backendApi.get(Endpoints.FetchAllUsers, header);
+        const response = await backendApi.get(Endpoints.FetchAllUsers);
 
-        const response = await fetch('https://quarkus.snacky.zacse.org/api/getallusers', { 'mode': 'no-cors' });
+        //const response = await fetch('https://quarkus.snacky.zacse.org/api/getallusers', { 'mode': 'no-cors' });
         onSuccess(response.data);
         console.log(response);
         //setAllFetchedUsers(response.data);
@@ -99,7 +99,7 @@ export const PostNewUser = async ({
             solde: balance,
             statusId: status
         },
-            //header
+            header
         );
         onSuccess();
     } catch (err) {
