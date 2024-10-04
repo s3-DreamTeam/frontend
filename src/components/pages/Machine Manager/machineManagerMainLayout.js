@@ -1,5 +1,6 @@
 import { Stack } from "@mui/material";
 import ComponentCardFoundation from "../../ComponentCards/foundation/componentCardFoundation";
+import EmptyPage from "../../emptyPage";
 
 /**
  * # MachinesGridLayout
@@ -10,21 +11,34 @@ import ComponentCardFoundation from "../../ComponentCards/foundation/componentCa
  * @param {*} mappedMachines - Map of all the loaded machines of the user 
  */
 const MachinesManagerMainLayout = ({ mappedMachines }) => {
+
+    let hasMachines = false;
+    if (mappedMachines !== undefined) {
+        hasMachines = true;
+    }
+
     return (
-        <Stack
-            spacing={'2rem'}
-            direction={'row'}
-            justifyContent={'space-evenly'}
-            useFlexGap
-            sx={{ flexWrap: 'wrap', padding: '0rem 2rem 2rem 2rem' }}
-        >
-            {mappedMachines.map((nom, index) => (
-                <ComponentCardFoundation
-                    key={index}
-                    title={nom}
-                />
-            ))}
-        </Stack>
+        <>
+            {hasMachines
+                ? <Stack
+                    spacing={'2rem'}
+                    direction={'row'}
+                    justifyContent={'space-evenly'}
+                    useFlexGap
+                    sx={{ flexWrap: 'wrap', padding: '0rem 2rem 2rem 2rem' }}
+                >
+                    {mappedMachines.map((nom, index) => (
+                        <ComponentCardFoundation
+                            key={index}
+                            title={nom}
+                        />
+                    ))}
+                </Stack>
+                : <EmptyPage
+                    header="You have no machines"
+                    subtitle='Ensure you created templates before adding new machines to your inventory.'
+                />}
+        </>
     );
 };
 export default MachinesManagerMainLayout;
