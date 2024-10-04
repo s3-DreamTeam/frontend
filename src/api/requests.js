@@ -39,7 +39,7 @@ export const FetchAllUsers = async ({
         const header = BackendHeader();
         const response = await backendApi.get(Endpoints.GetAllUsers, {
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/xml',
                 'Accept': 'application/json'  // Expecting JSON response
             }
         });
