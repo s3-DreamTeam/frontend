@@ -37,7 +37,11 @@ export const FetchAllUsers = async ({
     try {
         await sleep(0);
         const header = BackendHeader();
-        const response = await backendApi.get(Endpoints.GetAllUsers);
+        const response = await backendApi.get(Endpoints.GetAllUsers, {
+            headers: {
+                'Accept': 'application/json'  // Specify that you expect a JSON response
+            }
+        });
 
         //const response = await fetch('https://quarkus.snacky.zacse.org/api/getallusers', { 'mode': 'no-cors' });
         console.log(response);
