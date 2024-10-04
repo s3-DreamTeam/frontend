@@ -36,7 +36,7 @@ export const FetchAllUsers = async ({
     try {
         await sleep(0);
         const header = BackendHeader();
-        const response = await backendApi.get(Endpoints.FetchAllUsers, header);
+        const response = await backendApi.get(Endpoints.FetchAllUsers);
         onSuccess(response.data);
         setAllFetchedUsers(response.data);
     } catch (err) {
