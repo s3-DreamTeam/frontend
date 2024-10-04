@@ -10,14 +10,14 @@ import { FormInput } from "../foundations/input";
     min,
 */
 
-export const FormNumberField = ({ NumberFieldObject }) => {
-
-    const title = NumberFieldObject.name;
-    const required = NumberFieldObject.required;
-    const placeHolder = NumberFieldObject.placeHolder;
-    const min = NumberFieldObject.min;
-    const max = NumberFieldObject.max;
-    const symbol = NumberFieldObject.symbol;
+export const FormNumberField = ({ fieldObject }) => {
+    const FieldObject = Object.values(fieldObject)[0];
+    const title = Object.keys(fieldObject)[0];
+    const required = FieldObject.required;
+    const placeHolder = FieldObject.placeHolder;
+    const min = FieldObject.min;
+    const max = FieldObject.max;
+    const symbol = FieldObject.symbol;
 
     return (
         <FormInput
@@ -27,10 +27,11 @@ export const FormNumberField = ({ NumberFieldObject }) => {
                 variant="filled"
                 size="small"
                 hiddenLabel
+                placeholder={placeHolder}
                 slotProps={{
                 }}
                 InputProps={{
-                    startAdornment: (<InputAdornment position="start">{symbol}</InputAdornment>),
+                    endAdornment: (<InputAdornment position="start">{symbol}</InputAdornment>),
                     style: {
                         borderRadius: '1.5rem',
                     },

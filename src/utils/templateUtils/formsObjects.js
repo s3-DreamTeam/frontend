@@ -36,7 +36,7 @@ export function TextBoxFieldBuilder(
  * @export
  * @param {*} name Title of the field
  * @param {*} required Won't send the form if the field is empty
- * @param {*} placeHolder Default value in the dropdown if no choice is selected
+ * @param {*} defaultValue Default value in the dropdown if no choice is selected
  * @param {*} choices array of strings that will populate the drop down menus for the user
  * @param {*} subCategories For each choices, you can create subfields that will appear if that choice is selected. Names *must* be written the same as in the choices array.
  * @return {*} 
@@ -44,7 +44,7 @@ export function TextBoxFieldBuilder(
 export function DropdownFieldBuilder(
     name,
     required,
-    placeHolder,
+    defaultValue,
     choices,
     subCategories
 ) {
@@ -52,7 +52,7 @@ export function DropdownFieldBuilder(
         [name]: {
             type: "Dropdown",
             required: required,
-            placeHolder: placeHolder,
+            defaultValue: defaultValue,
             choices: choices,
             value: null,
             subCategories
