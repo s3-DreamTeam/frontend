@@ -3,8 +3,12 @@ import { ExpandMoreRounded } from "@mui/icons-material";
 import { FieldRenderer } from "../fields/fieldRenderer";
 
 export const FormSection = ({ section }) => {
-
     console.log("Form section", section);
+
+    if (section === undefined) return;
+
+    const name = section.name;
+    const components = section.components;
 
     return (
         <Accordion
@@ -30,14 +34,14 @@ export const FormSection = ({ section }) => {
                     variant="h4"
                     fontWeight={600}
                 >
-                    Some title
+                    {name}
                 </Typography>
             </AccordionSummary>
             <AccordionDetails
             >
-                {section.map((formLine) => {
-                    <FieldRenderer formObject={formLine} />;
-                })}
+                {components.map(object => (
+                    <FieldRenderer formObject={object} />
+                ))}
             </AccordionDetails>
         </Accordion>
     );
