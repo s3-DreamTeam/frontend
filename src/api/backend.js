@@ -37,7 +37,7 @@ export function BackendHeader() {
 
         axiosConfig = {
             headers: {
-                Authorization: `Bearer ${jwtBearerToken}`
+                'Authorization': `Bearer ${jwtBearerToken}`
             }
         };
     } catch (e) {
