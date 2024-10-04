@@ -1,6 +1,7 @@
 import { BackendHeader, backendApi } from './backend';
 import Endpoints from './endpoints';
 import { setAllFetchedUsers } from '../store/allFetchedUsersSlice';
+import axios from 'axios';
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -36,7 +37,7 @@ export const FetchAllUsers = async ({
     try {
         await sleep(0);
         const header = BackendHeader();
-        const response = await backendApi.get(Endpoints.FetchAllUsers);
+        const response = await axios.get('https://quarkus.snacky.zacse.org/api/getallusers');
 
         //const response = await fetch('https://quarkus.snacky.zacse.org/api/getallusers', { 'mode': 'no-cors' });
         onSuccess(response.data);
