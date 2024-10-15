@@ -31,7 +31,6 @@ export const backendApi = axios.create(
  */
 export function BackendHeader() {
     let axiosConfig = {};
-    console.log("You should be building");
 
     if (process.env.REACT_APP_SHOW_PAGES_EVEN_WITH_NO_AUTH === 'yes') {
         return {};
