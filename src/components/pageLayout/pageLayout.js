@@ -21,7 +21,6 @@ import MiddlebarArea from './AppBar/middleBarArea';
  * @param {*} title : The name of the page, so it can be shown in the app bar
  * @param {*} childrens : The components to show inside the page
  * @param {*} hideActionBar : For main menus that don't need it.
- * @param {*} disableAllActionsButNew : disables all sideActions except the Add button.
  * @param {*} hideNavigationDrawer : Removes the menu button and slides away the navigation drawer.
  * @param {*} hasGoBackArrow : Shows a go back arrow next to the menu button
  * @param {*} isRefreshing : If set to true, the refresh icon will spin in the side actions menu.
@@ -38,9 +37,19 @@ const PageLayout = ({
     childrens,
 
     hideActionBar,
-    disableAllActionsButNew,
-
     hideNavigationDrawer,
+
+    disableSort,
+    disableFilter,
+    disableList,
+    disableRefresh,
+    disableNew,
+
+    sortTooltip,
+    filterTooltip,
+    listTooltip,
+    retryTooltip,
+    newTooltip,
 
     hasGoBackArrow,
     onGoBack,
@@ -53,6 +62,15 @@ const PageLayout = ({
 }) => {
 
     const dispatch = useDispatch();
+
+    // If the sidebar is hidden, all buttons shall be disabled
+    if (hideActionBar) {
+        disableFilter = true;
+        disableRefresh = true;
+        disableNew = true;
+        disableSort = true;
+        disableList = true;
+    }
 
     // Need to use the animation state of the drawer instead of its real state to trigger the main menu animations
     // Otherwise, the main menu animations are instantaneous. This is the sole fix I found.
@@ -122,7 +140,17 @@ const PageLayout = ({
                     </div>
                     {/*It's position is fixed, thus doesn't matter if it's in the stack or not. Kept there in case.*/}
                     <SideActionMenu
-                        disableAllButNew={disableAllActionsButNew}
+                        disableSort={disableSort}
+                        disableFilter={disableFilter}
+                        disableList={disableList}
+                        disableRefresh={disableRefresh}
+                        disableNew={disableNew}
+
+                        sortTooltip={sortTooltip}
+                        filterTooltip={filterTooltip}
+                        listTooltip={listTooltip}
+                        retryTooltip={retryTooltip}
+                        newTooltip={newTooltip}
                         onRefresh={onRefresh}
                         onAdd={onAdd}
                         isRefreshing={isRefreshing}
