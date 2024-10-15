@@ -12,7 +12,7 @@ export const backendApi = axios.create(
         timeout: process.env.REACT_APP_SERVER_TIMEOUT,
         headers: {
             'Content-Type': 'application/json',
-            'Accept': 'application/json',  // Expecting JSON response
+            'Accept': 'application/json',
         }
     }
 );
