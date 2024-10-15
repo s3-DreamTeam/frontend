@@ -91,7 +91,10 @@ const MachineManager = () => {
         <>
             <PageLayout
                 title="Machine Manager"
-                disableAllActionsButNew={allFetchedUsers.length === 0}
+                disableRefresh={machinesLoading}
+                disableSort={allFetchedUsers.length === 0}
+                disableList={allFetchedUsers.length === 0}
+                disableFilter={allFetchedUsers.length === 0}
                 onRefresh={retryUserFetch}
                 onAdd={addNewUser}
                 isRefreshing={machinesLoading}

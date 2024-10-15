@@ -12,10 +12,7 @@ import EmptyPage from "../../emptyPage";
  */
 const MachinesManagerMainLayout = ({ mappedMachines }) => {
 
-    let hasMachines = false;
-    if (mappedMachines !== undefined) {
-        hasMachines = true;
-    }
+    const hasMachines = (mappedMachines !== undefined);
 
     return (
         <>
