@@ -16,7 +16,23 @@ import SAMFilter from "./samFilter";
  * contents of the page they are on.
  * The menu should always be on the right, middle, of their screens.
  */
-const SideActionMenu = ({ disableAllButNew, onRefresh, onAdd, isRefreshing }) => {
+const SideActionMenu = ({
+    onRefresh,
+    onAdd,
+    isRefreshing,
+
+    disableSort,
+    disableFilter,
+    disableList,
+    disableRefresh,
+    disableNew,
+
+    sortTooltip,
+    filterTooltip,
+    listTooltip,
+    retryTooltip,
+    newTooltip,
+}) => {
     const dispatch = useDispatch();
     const sideActionsMenuState = useSelector((state) => state.sideActionsMenuState.value);
     const sideActionsMenuAnimationState = useSelector((state) => state.sideActionsMenuState.animationState);
@@ -69,12 +85,12 @@ const SideActionMenu = ({ disableAllButNew, onRefresh, onAdd, isRefreshing }) =>
                 }}
             >
                 <Stack spacing={1}>
-                    <SAMSortBy disabled={disableAllButNew} />
-                    <SAMFilter disabled={disableAllButNew} />
-                    <SAMList disabled={disableAllButNew} />
-                    <SAMRefresh disabled={disableAllButNew} onClick={onRefresh} isRefreshing={isRefreshing} />
+                    <SAMSortBy disabled={disableSort} />
+                    <SAMFilter disabled={disableFilter} />
+                    <SAMList disabled={disableList} />
+                    <SAMRefresh disabled={disableRefresh} onClick={onRefresh} isRefreshing={isRefreshing} />
                     <SAMDivider />
-                    <SAMAdd onClick={onAdd} />
+                    <SAMAdd disabled={disableNew} onClick={onAdd} />
                 </Stack>
             </Card>
         </div>
