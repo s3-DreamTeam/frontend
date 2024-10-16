@@ -27,6 +27,7 @@ export function TextBoxFieldBuilder(
         type: FieldTypes.Textbox,
         required: required,
         placeHolder: placeHolder,
+        error: null,
         value: null
     };
 }
@@ -60,6 +61,7 @@ export function DropdownFieldBuilder(
         required: required,
         defaultValue: defaultValue,
         choices: choices,
+        error: null,
         value: null,
         subCategories
     };
@@ -87,6 +89,7 @@ export function CheckboxFieldBuilder(
         name: name,
         type: FieldTypes.Checkbox,
         required: required,
+        error: null,
         value: null
     };
 }
@@ -126,6 +129,7 @@ export function NumberFieldBuilder(
         symbol: symbol,
         max: max,
         min: min,
+        error: null,
         value: null
     };
 }

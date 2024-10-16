@@ -1,14 +1,29 @@
 import { Accordion, AccordionDetails, AccordionSummary, Typography } from "@mui/material";
 import { ExpandMoreRounded } from "@mui/icons-material";
 import { FieldRenderer } from "../fields/fieldRenderer";
+import { useState } from "react";
+import { updateFormParentFromChild } from "../../../utils/templateUtils/updateFormParentFromChild";
+import { GetSectionErrors } from "../../../utils/templateUtils/getSectionErrors";
 
-export const FormSection = ({ section }) => {
+export const FormSection = ({ section, onSomethingChanged }) => {
     console.log("Form section", section);
+    const [formSection, setFormSection] = useState(section);
+    const [sectionHasErrors, setSectionHasErrors] = useState(false);
 
     if (section === undefined) return;
 
     const name = section.name;
     const components = section.components;
+
+    function onFieldChanged(field) {
+        console.log("I'm a section, and a field changed");
+        console.warn(field.error);
+        const updatedSection = updateFormParentFromChild(formSection, field);
+        setFormSection(updatedSection);
+
+        setSectionHasErrors(GetSectionErrors(updatedSection));
+        onSomethingChanged(formSection);
+    }
 
     return (
         <Accordion
@@ -24,6 +39,7 @@ export const FormSection = ({ section }) => {
                 expandIcon={
                     <ExpandMoreRounded
                         fontSize="large"
+                        color={sectionHasErrors ? "error" : "inherit"}
                         style={{
                             fontSize: 50
                         }}
@@ -33,6 +49,7 @@ export const FormSection = ({ section }) => {
                 <Typography
                     variant="h4"
                     fontWeight={600}
+                    color={sectionHasErrors ? "error" : "inherit"}
                 >
                     {name}
                 </Typography>
@@ -40,7 +57,7 @@ export const FormSection = ({ section }) => {
             <AccordionDetails
             >
                 {components.map(object => (
-                    <FieldRenderer formObject={object} />
+                    <FieldRenderer formObject={object} onSomethingChanged={onFieldChanged} />
                 ))}
             </AccordionDetails>
         </Accordion>

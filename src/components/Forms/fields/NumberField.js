@@ -10,13 +10,20 @@ import { FormInput } from "../foundations/input";
     min,
 */
 
-export const FormNumberField = ({ fieldObject }) => {
+export const FormNumberField = ({ fieldObject, onSomethingChanged }) => {
     const title = fieldObject.name;
     const required = fieldObject.required;
     const placeHolder = fieldObject.placeHolder;
     const min = fieldObject.min;
     const max = fieldObject.max;
     const symbol = fieldObject.symbol;
+
+    function numberChanged(event) {
+        console.log("I'm some number, my value changed!");
+        const newValue = event.target.value;
+        fieldObject.value = newValue;
+        onSomethingChanged(fieldObject);
+    }
 
     return (
         <FormInput
@@ -27,6 +34,7 @@ export const FormNumberField = ({ fieldObject }) => {
                 size="small"
                 hiddenLabel
                 placeholder={placeHolder}
+                onChange={numberChanged}
                 slotProps={{
                 }}
                 InputProps={{

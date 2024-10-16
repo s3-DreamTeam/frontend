@@ -8,17 +8,18 @@ const { Typography, Box } = require("@mui/material");
  * @param {*} title - Main title of the form's line
  * @param {*} children - the actual field to use for the line.
  */
-export const FormInput = ({ title, children }) => {
+export const FormInput = ({ title, isError, children }) => {
     return (
         <Box
             display="flex"
             justifyContent="space-between"
-            alignItems="center"
+            alignItems="top"
             width="100%"
             marginBottom="1rem"
         >
             <Typography
                 variant="h5"
+                color={isError ? 'error' : null}
             >
                 {title}
             </Typography>
