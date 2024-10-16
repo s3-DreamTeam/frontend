@@ -16,3 +16,5 @@
 - `.env.prod` is the environnement variables (like ports and URLs) used by the SERVER.
 - ONLY CHANGE shit in `.env.dev`
 - Everytime you do, hot reload WON't WORK.
+
+there you go charle
