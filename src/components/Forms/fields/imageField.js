@@ -6,7 +6,7 @@ import ComponentCardFoundation from "../../ComponentCards/foundation/componentCa
 export const FormImageField = ({ fieldObject, onSomethingChanged }) => {
     const [formField, setFormField] = useState(fieldObject);
     const title = fieldObject.name;
-    const required = fieldObject.required;
+    //const required = fieldObject.required;
     function imageChanged(event) {
         console.warn("TO DO");
         //onSomethingChanged(updatedField);
