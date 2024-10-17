@@ -1,6 +1,7 @@
 import { FieldTypes } from "../../../utils/templateUtils/formsObjects";
 import { FormCheckbox } from "./checkboxField";
 import { FormDropdownField } from "./dropdownField";
+import { FormImageField } from "./imageField";
 import { FormNumberField } from "./NumberField";
 import { FormTextField } from "./textField";
 
@@ -31,6 +32,13 @@ export const FieldRenderer = ({ formObject, onSomethingChanged }) => {
         case (FieldTypes.NumberField):
             return (
                 <FormNumberField
+                    fieldObject={formObject}
+                    onSomethingChanged={onSomethingChanged}
+                />
+            );
+        case (FieldTypes.Image):
+            return (
+                <FormImageField
                     fieldObject={formObject}
                     onSomethingChanged={onSomethingChanged}
                 />

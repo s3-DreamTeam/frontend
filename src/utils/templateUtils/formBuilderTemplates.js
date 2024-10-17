@@ -1,4 +1,4 @@
-import { CheckboxFieldBuilder, DropdownFieldBuilder, NumberFieldBuilder, TextBoxFieldBuilder } from "./formsObjects";
+import { CheckboxFieldBuilder, DropdownFieldBuilder, ImageFieldBuilder, NumberFieldBuilder, TextBoxFieldBuilder } from "./formsObjects";
 
 export const machineTemplateObject = {
     imageBase64: "",
@@ -73,6 +73,15 @@ export const machineTemplateObject = {
                     "Cash",
                     false
                 ),
+            ]
+        },
+        {
+            name: "Image",
+            components: [
+                ImageFieldBuilder(
+                    "Machine's image",
+                    false
+                )
             ]
         }
     ]

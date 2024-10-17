@@ -2,7 +2,8 @@ export const FieldTypes = {
     Textbox: "Textbox",
     Checkbox: "Checkbox",
     Dropdown: "Dropdown",
-    NumberField: "NumberField"
+    NumberField: "NumberField",
+    Image: "Image"
 };
 
 /**
@@ -27,6 +28,30 @@ export function TextBoxFieldBuilder(
         type: FieldTypes.Textbox,
         required: required,
         placeHolder: placeHolder,
+        error: null,
+        value: null
+    };
+}
+
+/**
+ * # ImageFieldBuilder
+ * Returns a complete object, used to define a field in a template form.
+ * Used to create an image input for the user to select an image from their
+ * computer to use as the image for their thingies.
+ * 
+ * ---
+ * @param {*} name 
+ * @param {*} required 
+ * @returns 
+ */
+export function ImageFieldBuilder(
+    name,
+    required,
+) {
+    return {
+        name: name,
+        type: FieldTypes.Image,
+        required: required,
         error: null,
         value: null
     };

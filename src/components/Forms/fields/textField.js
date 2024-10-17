@@ -1,7 +1,6 @@
-import { darken, lighten, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import { FormInput } from "../foundations/input";
 import { useEffect, useState } from "react";
-import { useTheme } from "@emotion/react";
 import { textFieldValueTester } from "../../../utils/templateUtils/valueTesters/textFieldValueTester";
 
 export const FormTextField = ({ fieldObject, onSomethingChanged }) => {
