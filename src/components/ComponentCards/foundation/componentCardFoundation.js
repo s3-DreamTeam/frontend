@@ -6,7 +6,14 @@ import SmallDecoratorsArea from "./smallDecoratorArea";
 import { GetHighestDecoratorType } from "../../../utils/decoratorPriorityFinder";
 
 
-const ComponentCardFoundation = ({ title, image, decorators, state, footerComponents }) => {
+const ComponentCardFoundation = ({
+    title,
+    image,
+    decorators,
+    state,
+    footerComponents,
+    onClick
+}) => {
 
     if (decorators === undefined) decorators = [];
     const hasDecorators = decorators.length > 0;
@@ -58,6 +65,7 @@ const ComponentCardFoundation = ({ title, image, decorators, state, footerCompon
                 }}
             >
                 <CardActionArea
+                    onClick={onClick}
                     sx={{
                         display: 'flex',
                         flexDirection: 'column',

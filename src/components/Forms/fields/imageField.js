@@ -1,20 +1,26 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FormInput } from "../foundations/input";
 import ComponentCardFoundation from "../../ComponentCards/foundation/componentCardFoundation";
+import { ImageFromExplorerEvent } from "../../../utils/imageSelectionHandler";
+import { ImageSelectorCard } from "../../ImageSelectionComponent/imageSelectionCard";
 
 
 export const FormImageField = ({ fieldObject, onSomethingChanged }) => {
     const [formField, setFormField] = useState(fieldObject);
+
     const title = fieldObject.name;
-    //const required = fieldObject.required;
-    function imageChanged(event) {
-        console.warn("TO DO");
-        //onSomethingChanged(updatedField);
+
+    function imageSourceChanged(newImage) {
+
+        const updatedField = {
+            ...formField,
+            value: newImage
+        };
+
+        setFormField(updatedField);
+        onSomethingChanged(updatedField);
     }
 
-    function imageCardClicked() {
-        //open("");
-    }
 
     useEffect(() => {
     }, [formField]);
@@ -24,9 +30,12 @@ export const FormImageField = ({ fieldObject, onSomethingChanged }) => {
             title={title}
             isError={formField.error}
         >
-            <ComponentCardFoundation
-                title="No image"
-                image={null}
+            <ImageSelectorCard
+                onFileNameChanged={() => { }}
+                onImageChanged={imageSourceChanged}
+                onResetSelection={() => {
+                    imageSourceChanged(null);
+                }}
             />
         </ FormInput>
     );
