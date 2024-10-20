@@ -1,4 +1,4 @@
-import { FieldTypes } from "../../../utils/templateUtils/formsObjects";
+import { FieldTypes } from "../../../utils/formUtils/formsObjects";
 import { FormCheckbox } from "./checkboxField";
 import { FormDropdownField } from "./dropdownField";
 import { FormImageField } from "./imageField";

@@ -1,7 +1,7 @@
 import { TextField } from "@mui/material";
 import { FormInput } from "../foundations/input";
 import { useEffect, useState } from "react";
-import { textFieldValueTester } from "../../../utils/templateUtils/valueTesters/textFieldValueTester";
+import { textFieldValueTester } from "../../../utils/formUtils/valueTesters/textFieldValueTester";
 
 export const FormTextField = ({ fieldObject, onSomethingChanged }) => {
     const [formField, setFormField] = useState(fieldObject);

@@ -2,8 +2,8 @@ import { Accordion, AccordionDetails, AccordionSummary, Typography } from "@mui/
 import { ExpandMoreRounded } from "@mui/icons-material";
 import { FieldRenderer } from "../fields/fieldRenderer";
 import { useState } from "react";
-import { updateFormParentFromChild } from "../../../utils/templateUtils/updateFormParentFromChild";
-import { GetSectionErrors } from "../../../utils/templateUtils/getSectionErrors";
+import { updateFormParentFromChild } from "../../../utils/formUtils/updateFormParentFromChild";
+import { GetSectionErrors } from "../../../utils/formUtils/getSectionErrors";
 
 export const FormSection = ({ section, onSomethingChanged }) => {
     console.log("Form section", section);

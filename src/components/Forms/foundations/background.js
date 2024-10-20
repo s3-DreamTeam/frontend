@@ -6,7 +6,10 @@ export const FormBackground = ({ children }) => {
             style={{
                 display: 'flex',
                 flexGrow: 1,
-                padding: '5%'
+                paddingX: '5%',
+                paddingBottom: '10rem',
+                paddingTop: '1rem',
+                justifyContent: 'center',
             }}
         >
             <ColorCard
@@ -16,7 +19,8 @@ export const FormBackground = ({ children }) => {
                     display: 'flex',
                     flexDirection: 'column', // Use column for vertical layout
                     width: '100%',
-                    alignItems: 'center', // Center children
+                    maxWidth: '50rem',
+                    alignItems: 'center',
                 }}
             >
                 {children}

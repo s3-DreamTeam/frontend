@@ -1,7 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { FormInput } from "../foundations/input";
-import ComponentCardFoundation from "../../ComponentCards/foundation/componentCardFoundation";
-import { ImageFromExplorerEvent } from "../../../utils/imageSelectionHandler";
 import { ImageSelectorCard } from "../../ImageSelectionComponent/imageSelectionCard";
 
 
@@ -21,7 +19,6 @@ export const FormImageField = ({ fieldObject, onSomethingChanged }) => {
         onSomethingChanged(updatedField);
     }
 
-
     useEffect(() => {
     }, [formField]);
 
@@ -29,6 +26,7 @@ export const FormImageField = ({ fieldObject, onSomethingChanged }) => {
         <FormInput
             title={title}
             isError={formField.error}
+            align="top"
         >
             <ImageSelectorCard
                 onFileNameChanged={() => { }}
