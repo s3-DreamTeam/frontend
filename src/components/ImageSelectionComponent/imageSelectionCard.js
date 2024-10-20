@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ImageFromExplorerEvent } from "../../utils/imageSelectionHandler";
 import { ImageSelectionEmpty } from "./imageSelectionEmpty";
 import { ImageSelectionWithImage } from "./imageSelectionWithImage";
@@ -7,10 +7,12 @@ import { ImageSelectionLoading } from "./imageSelectionLoading";
 export const ImageSelectorCard = ({
     onImageChanged,
     onFileNameChanged,
-    onResetSelection
+    onResetSelection,
+    isError,
+    image = null,
 }) => {
 
-    const [selectedImage, setSelectedImage] = useState(null);
+    //const [selectedImage, setSelectedImage] = useState(image);
     const [imageLoading, setImageLoading] = useState(false);
     const [imageName, setImageName] = useState('No image');
     const fileInputRef = useRef(null);
@@ -21,13 +23,11 @@ export const ImageSelectorCard = ({
     };
 
     function clearClicked() {
-        setSelectedImage(null);
         setImageName(null);
         onResetSelection();
     }
 
     function imageLoaded(image) {
-        setSelectedImage(image);
         setImageLoading(false);
         onImageChanged(image);
     }
@@ -41,6 +41,10 @@ export const ImageSelectorCard = ({
         fileInputRef.current.click();
     };
 
+    // Otherwise the image does not show itself as reset when the value does.
+    useEffect(() => {
+    }, [image]);
+
     return (
         <>
             <input
@@ -52,14 +56,15 @@ export const ImageSelectorCard = ({
             />
             {imageLoading
                 ? <ImageSelectionLoading />
-                : (selectedImage
+                : (image
                     ? <ImageSelectionWithImage
                         onClick={handleSelectImageClicked}
                         onClearClicked={clearClicked}
-                        image={selectedImage}
+                        image={image}
                         imageName={imageName}
                     />
                     : <ImageSelectionEmpty
+                        isError={isError}
                         onClick={handleSelectImageClicked}
                     />
                 )

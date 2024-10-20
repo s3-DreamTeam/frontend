@@ -1,20 +1,30 @@
 import { Checkbox } from "@mui/material";
 import { FormInput } from "../foundations/input";
 import { CheckBoxRounded } from "@mui/icons-material";
+import { useEffect, useState } from "react";
 export const FormCheckbox = ({
     fieldObject,
     onSomethingChanged = () => { }
 }) => {
+    const [isError, setIsError] = useState(fieldObject.error !== null);
+    const [errorString, setErrorString] = useState(fieldObject.error);
+    const [initialValue, setInitialValue] = useState(fieldObject.value);
+
     const title = fieldObject.name;
-    const required = fieldObject.required;
 
     function checkBoxChanged(event) {
-        console.log("I'm a checkbox, and I changed!");
         let newState = event.target.checked;
+        setInitialValue(newState);
         fieldObject.value = newState;
         console.log(fieldObject);
         onSomethingChanged(fieldObject);
     }
+
+    useEffect(() => {
+        setIsError(fieldObject.error !== null);
+        setErrorString(fieldObject.error);
+        setInitialValue(fieldObject.initialValue);
+    }, [fieldObject]);
 
     return (
         <FormInput
@@ -24,6 +34,8 @@ export const FormCheckbox = ({
                 size="large"
                 checkedIcon={<CheckBoxRounded />}
                 onChange={checkBoxChanged}
+                error={isError}
+                checked={initialValue}
             />
         </ FormInput>
     );

@@ -1,14 +1,21 @@
 import { Accordion, AccordionDetails, AccordionSummary, Typography } from "@mui/material";
 import { ExpandMoreRounded } from "@mui/icons-material";
 import { FieldRenderer } from "../fields/fieldRenderer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { updateFormParentFromChild } from "../../../utils/formUtils/updateFormParentFromChild";
 import { GetSectionErrors } from "../../../utils/formUtils/getSectionErrors";
 
 export const FormSection = ({ section, onSomethingChanged }) => {
-    console.log("Form section", section);
     const [formSection, setFormSection] = useState(section);
     const [sectionHasErrors, setSectionHasErrors] = useState(false);
+
+    // Prevents the form from keeping its old state when going out then back inside of it.
+    useEffect(() => {
+        console.warn("section changed:");
+        console.log(section);
+        setFormSection(section);
+        setSectionHasErrors(GetSectionErrors(section));
+    }, [section]);
 
     if (section === undefined) return;
 
@@ -16,8 +23,6 @@ export const FormSection = ({ section, onSomethingChanged }) => {
     const components = section.components;
 
     function onFieldChanged(field) {
-        console.log("I'm a section, and a field changed");
-        console.warn(field.error);
         const updatedSection = updateFormParentFromChild(formSection, field);
         setFormSection(updatedSection);
 

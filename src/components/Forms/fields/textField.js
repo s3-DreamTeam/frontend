@@ -4,31 +4,36 @@ import { useEffect, useState } from "react";
 import { textFieldValueTester } from "../../../utils/formUtils/valueTesters/textFieldValueTester";
 
 export const FormTextField = ({ fieldObject, onSomethingChanged }) => {
-    const [formField, setFormField] = useState(fieldObject);
+    const [isError, setIsError] = useState(fieldObject.error !== null);
+    const [errorString, setErrorString] = useState(fieldObject.error);
+    const [value, setValue] = useState(fieldObject.value);
     const title = fieldObject.name;
     const required = fieldObject.required;
     const placeHolder = fieldObject.placeHolder;
+
     function textChanged(event) {
         const newValue = event.target.value;
-        console.log("I'm some text, my value changed: [" + newValue + "]");
-
         const updatedField = {
-            ...formField,
+            ...fieldObject,
             value: newValue,
-            error: textFieldValueTester(newValue, formField),
+            error: textFieldValueTester(newValue, fieldObject),
         };
-
-        setFormField(updatedField);
+        setValue(newValue);
+        setIsError(updatedField.error !== null);
+        setErrorString(updatedField.error);
         onSomethingChanged(updatedField);
     }
 
     useEffect(() => {
-    }, [formField]);
+        setIsError(fieldObject.error !== null);
+        setErrorString(fieldObject.error);
+        setValue(fieldObject.value);
+    }, [fieldObject]);
 
     return (
         <FormInput
             title={title}
-            isError={formField.error}
+            isError={isError}
         >
             <TextField
                 variant="filled"
@@ -36,9 +41,10 @@ export const FormTextField = ({ fieldObject, onSomethingChanged }) => {
                 hiddenLabel
                 required={required}
                 placeholder={placeHolder}
-                helperText={formField.error ? formField.error : null}
+                value={value || ''}
+                helperText={isError ? errorString : null}
                 onChange={textChanged}
-                error={formField.error !== null}
+                error={isError}
                 InputProps={{
                     disableUnderline: false,
                     style: {

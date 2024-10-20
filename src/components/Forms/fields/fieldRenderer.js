@@ -7,7 +7,7 @@ import { FormTextField } from "./textField";
 
 export const FieldRenderer = ({ formObject, onSomethingChanged }) => {
     const type = formObject.type;
-    console.log("Type: ", type);
+    //console.log("Type: ", type);
 
     switch (type) {
         case (FieldTypes.Textbox):

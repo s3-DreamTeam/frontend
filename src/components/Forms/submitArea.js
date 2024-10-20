@@ -5,6 +5,7 @@ import { EndDivider } from "./foundations/endDivider";
 export const SubmitArea = ({
     onCancel = () => { },
     onSubmit = () => { },
+    onReset = () => { },
     hasErrors
 }) => {
     return (
@@ -28,6 +29,18 @@ export const SubmitArea = ({
                     }}
                 >
                     Cancel
+                </Button>
+                <Button
+                    size="large"
+                    variant="text"
+                    color="inherit"
+                    onClick={onReset}
+                    sx={{
+                        borderRadius: '1.5rem',
+                        width: '25%'
+                    }}
+                >
+                    Reset
                 </Button>
                 <Button
                     size="large"

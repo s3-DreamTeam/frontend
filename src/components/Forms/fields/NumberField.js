@@ -19,7 +19,6 @@ export const FormNumberField = ({ fieldObject, onSomethingChanged }) => {
     const symbol = fieldObject.symbol;
 
     function numberChanged(event) {
-        console.log("I'm some number, my value changed!");
         const newValue = event.target.value;
         fieldObject.value = newValue;
         onSomethingChanged(fieldObject);

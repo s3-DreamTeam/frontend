@@ -4,9 +4,11 @@ import { AddPhotoAlternateRounded } from "@mui/icons-material";
 
 export const ImageSelectionEmpty = ({
     onClick,
+    isError
 }) => {
     return (
         <ColorCard
+            colorvariant={isError ? "error" : null}
             sx={{
                 maxWidth: '15rem',
                 maxHeight: '12.5rem',

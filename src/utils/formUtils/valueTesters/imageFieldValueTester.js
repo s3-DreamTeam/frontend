@@ -1,6 +1,6 @@
 import { FormFieldError } from "../formFieldErrors";
 
-export function textFieldValueTester(newValue, fieldObject) {
+export function ImageFieldValueTester(newValue, fieldObject) {
     const required = fieldObject.required;
 
     if ((newValue === "" || newValue === null) && required) {

@@ -1,86 +1,89 @@
 import { CheckboxFieldBuilder, DropdownFieldBuilder, ImageFieldBuilder, NumberFieldBuilder, TextBoxFieldBuilder } from "./formsObjects";
 
-export const machineTemplateObject = {
-    name: "Machine template form",
-    sections: [
-        {
-            name: "General information",
-            components: [
-                ImageFieldBuilder(
-                    "Machine's image",
-                    false
-                ),
-                TextBoxFieldBuilder(
-                    "Manufacturer",
-                    true,
-                    ""
-                ),
-                TextBoxFieldBuilder(
-                    "Model",
-                    true,
-                    ""
-                ),
-                DropdownFieldBuilder(
-                    "Climate",
-                    true,
-                    "",
-                    ["cooled", "warmed", "wide range", "none"],
-                    null
-                ),
-                CheckboxFieldBuilder(
-                    "Has seerial numbers",
-                    false
-                ),
-                CheckboxFieldBuilder(
-                    "Color varies",
-                    false
-                ),
-                CheckboxFieldBuilder(
-                    "See through window",
-                    false
-                )
-            ]
-        },
-        {
-            name: "Connectivity",
-            components: [
-                CheckboxFieldBuilder(
-                    "Has internet connection",
-                    false,
-                ),
-                CheckboxFieldBuilder(
-                    "Has Bluetooth",
-                    false
-                ),
-                CheckboxFieldBuilder(
-                    "Has physical connection",
-                    false
-                )
-            ]
-        },
-        {
-            name: "Payments",
-            components: [
-                CheckboxFieldBuilder(
-                    "Online store",
-                    false
-                ),
-                CheckboxFieldBuilder(
-                    "Debit cards",
-                    false
-                ),
-                CheckboxFieldBuilder(
-                    "Credit cards",
-                    false
-                ),
-                CheckboxFieldBuilder(
-                    "Cash",
-                    false
-                ),
-            ]
-        }
-    ]
-};
+export function getMachineTemplateObject() {
+    return ({
+        name: "Machine template form",
+        sections: [
+            {
+                name: "General information",
+                components: [
+                    ImageFieldBuilder(
+                        "Machine's image",
+                        true
+                    ),
+                    TextBoxFieldBuilder(
+                        "Manufacturer",
+                        true,
+                        ""
+                    ),
+                    TextBoxFieldBuilder(
+                        "Model",
+                        true,
+                        ""
+                    ),
+                    DropdownFieldBuilder(
+                        "Climate",
+                        true,
+                        "",
+                        ["cooled", "warmed", "wide range", "none"],
+                        null
+                    ),
+                    CheckboxFieldBuilder(
+                        "Has seerial numbers",
+                        false
+                    ),
+                    CheckboxFieldBuilder(
+                        "Color varies",
+                        false
+                    ),
+                    CheckboxFieldBuilder(
+                        "See through window",
+                        false
+                    )
+                ]
+            },
+            {
+                name: "Connectivity",
+                components: [
+                    CheckboxFieldBuilder(
+                        "Has internet connection",
+                        false,
+                    ),
+                    CheckboxFieldBuilder(
+                        "Has Bluetooth",
+                        false
+                    ),
+                    CheckboxFieldBuilder(
+                        "Has physical connection",
+                        false
+                    )
+                ]
+            },
+            {
+                name: "Payments",
+                components: [
+                    CheckboxFieldBuilder(
+                        "Online store",
+                        false
+                    ),
+                    CheckboxFieldBuilder(
+                        "Debit cards",
+                        false
+                    ),
+                    CheckboxFieldBuilder(
+                        "Credit cards",
+                        false
+                    ),
+                    CheckboxFieldBuilder(
+                        "Cash",
+                        false
+                    ),
+                ]
+            }
+        ]
+    }
+    );
+}
 
 export const productTemplateObject = {
     name: "Product template form",
