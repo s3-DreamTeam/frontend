@@ -11,8 +11,6 @@ export const FormSection = ({ section, onSomethingChanged }) => {
 
     // Prevents the form from keeping its old state when going out then back inside of it.
     useEffect(() => {
-        console.warn("section changed:");
-        console.log(section);
         setFormSection(section);
         setSectionHasErrors(GetSectionErrors(section));
     }, [section]);
@@ -30,6 +28,8 @@ export const FormSection = ({ section, onSomethingChanged }) => {
         onSomethingChanged(formSection);
     }
 
+    const thereIsErrors = GetSectionErrors(section);
+
     return (
         <Accordion
             defaultExpanded
@@ -44,7 +44,7 @@ export const FormSection = ({ section, onSomethingChanged }) => {
                 expandIcon={
                     <ExpandMoreRounded
                         fontSize="large"
-                        color={sectionHasErrors ? "error" : "inherit"}
+                        color={thereIsErrors ? "error" : "inherit"}
                         style={{
                             fontSize: 50
                         }}
@@ -54,7 +54,7 @@ export const FormSection = ({ section, onSomethingChanged }) => {
                 <Typography
                     variant="h4"
                     fontWeight={600}
-                    color={sectionHasErrors ? "error" : "inherit"}
+                    color={thereIsErrors ? "error" : "inherit"}
                 >
                     {name}
                 </Typography>

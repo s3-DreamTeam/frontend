@@ -1,3 +1,9 @@
+import { CheckboxFieldValueTester } from "./valueTesters/checkboxFieldValueTester";
+import { DropdownFieldValueTester } from "./valueTesters/dropdownFieldValueTester";
+import { ImageFieldValueTester } from "./valueTesters/imageFieldValueTester";
+import { NumberFieldValueTester } from "./valueTesters/numberFieldValueTester";
+import { textFieldValueTester } from "./valueTesters/textFieldValueTester";
+
 export const FieldTypes = {
     Textbox: "Textbox",
     Checkbox: "Checkbox",
@@ -29,7 +35,8 @@ export function TextBoxFieldBuilder(
         required: required,
         placeHolder: placeHolder,
         error: null,
-        value: null
+        value: null,
+        verify: textFieldValueTester
     };
 }
 
@@ -53,7 +60,8 @@ export function ImageFieldBuilder(
         type: FieldTypes.Image,
         required: required,
         error: null,
-        value: null
+        value: null,
+        verify: ImageFieldValueTester
     };
 }
 
@@ -88,7 +96,8 @@ export function DropdownFieldBuilder(
         choices: choices,
         error: null,
         value: null,
-        subCategories
+        verify: DropdownFieldValueTester,
+        subCategories,
     };
 }
 
@@ -115,7 +124,8 @@ export function CheckboxFieldBuilder(
         type: FieldTypes.Checkbox,
         required: required,
         error: null,
-        value: null
+        value: null,
+        verify: CheckboxFieldValueTester
     };
 }
 
@@ -155,6 +165,7 @@ export function NumberFieldBuilder(
         max: max,
         min: min,
         error: null,
-        value: null
+        value: null,
+        verify: NumberFieldValueTester
     };
 }

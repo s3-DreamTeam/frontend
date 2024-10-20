@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { getMachineTemplateObject } from "../../../utils/formUtils/formBuilderTemplates";
 import Form from "../../Forms/form";
+import { VerifyForm } from "../../../utils/formUtils/verifying/verifyForm";
 
 const MachineEditorForm = ({ }) => {
     const [visualFormData, setVisualFormData] = useState(getMachineTemplateObject());
@@ -10,8 +11,13 @@ const MachineEditorForm = ({ }) => {
     }
 
     function formWasReset() {
-        console.log("RESET THE FORM");
-        setVisualFormData(getMachineTemplateObject());
+        const newForm = getMachineTemplateObject();
+        setVisualFormData(newForm);
+    }
+
+    function wantToSubmitForm() {
+        const newForm = VerifyForm(Object.create(visualFormData));
+        setVisualFormData(newForm);
     }
 
     return (
@@ -19,6 +25,7 @@ const MachineEditorForm = ({ }) => {
             initialObjectTemplate={visualFormData}
             onFormChanged={formWasUpdated}
             onReset={formWasReset}
+            onSubmit={wantToSubmitForm}
         />
     );
 };

@@ -16,14 +16,13 @@ export const FormCheckbox = ({
         let newState = event.target.checked;
         setInitialValue(newState);
         fieldObject.value = newState;
-        console.log(fieldObject);
         onSomethingChanged(fieldObject);
     }
 
     useEffect(() => {
         setIsError(fieldObject.error !== null);
         setErrorString(fieldObject.error);
-        setInitialValue(fieldObject.initialValue);
+        setInitialValue(fieldObject.value);
     }, [fieldObject]);
 
     return (

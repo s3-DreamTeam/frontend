@@ -29,12 +29,13 @@ export const FormDropdownField = ({ fieldObject, onSomethingChanged }) => {
     useEffect(() => {
         setIsError(fieldObject.error !== null);
         setErrorString(fieldObject.error);
-        setValue(fieldObject.initialValue);
+        setValue(fieldObject.value);
     }, [fieldObject]);
 
     return (
         <FormInput
             title={title}
+            isError={isError}
         >
             <TextField
                 variant="filled"
