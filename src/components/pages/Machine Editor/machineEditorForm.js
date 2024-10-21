@@ -3,7 +3,7 @@ import { getMachineTemplateObject } from "../../../utils/formUtils/formBuilderTe
 import Form from "../../Forms/form";
 import { FormToPacket } from "../../../utils/formUtils/formToPacket";
 import ProcessStatusSnackBar from "../../processStatusSnackbar";
-import { PostNewMachineTemplate } from "../../../api/requests/newMachineTemplate";
+import { NewMachineTemplate } from "../../../api/requests/interface/newMachineTemplate";
 
 const MachineEditorForm = ({
     onCancel = () => { }
@@ -53,7 +53,7 @@ const MachineEditorForm = ({
     };
 
     function SendForm(packet) {
-        PostNewMachineTemplate({
+        NewMachineTemplate({
             machineTemplateObject: packet,
 
             onError: (err) => {
@@ -77,6 +77,7 @@ const MachineEditorForm = ({
                 onReset={formWasReset}
                 onSubmit={wantToSubmitForm}
                 onCancel={onCancel}
+                disabled={sendFormLoading}
             />
             <ProcessStatusSnackBar
                 status={sendFormLoading ? 'loading' : (sendFormError != null ? 'error' : 'hidden')}

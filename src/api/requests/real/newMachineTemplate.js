@@ -1,9 +1,5 @@
-import { backendApi, BackendHeader } from "../backend";
-import Endpoints from "../endpoints";
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
+import { backendApi, BackendHeader } from "../../backend";
+import Endpoints from "../../endpoints";
 
 /**
  * # PostNewUser

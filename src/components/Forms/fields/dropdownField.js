@@ -2,7 +2,7 @@ import { MenuItem, TextField } from "@mui/material";
 import { FormInput } from "../foundations/input";
 import { DropdownFieldValueTester } from "../../../utils/formUtils/valueTesters/dropdownFieldValueTester";
 import { useEffect, useState } from "react";
-export const FormDropdownField = ({ fieldObject, onSomethingChanged }) => {
+export const FormDropdownField = ({ fieldObject, onSomethingChanged, disabled }) => {
     const [isError, setIsError] = useState(fieldObject.error !== null);
     const [errorString, setErrorString] = useState(fieldObject.error);
     const [value, setValue] = useState(fieldObject.value);
@@ -36,6 +36,7 @@ export const FormDropdownField = ({ fieldObject, onSomethingChanged }) => {
         <FormInput
             title={title}
             isError={isError}
+            disabled={disabled}
         >
             <TextField
                 variant="filled"
@@ -47,6 +48,7 @@ export const FormDropdownField = ({ fieldObject, onSomethingChanged }) => {
                 onChange={valueChanged}
                 error={isError}
                 helperText={errorString}
+                disabled={disabled}
                 slotProps={{
                 }}
                 InputProps={{

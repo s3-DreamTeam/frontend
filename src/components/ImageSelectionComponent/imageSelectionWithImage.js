@@ -8,6 +8,7 @@ export const ImageSelectionWithImage = ({
     imageName,
     onClick,
     onClearClicked,
+    disabled
 }) => {
 
     return (
@@ -27,6 +28,7 @@ export const ImageSelectionWithImage = ({
             >
                 <CardActionArea
                     onClick={onClick}
+                    disabled={disabled}
                     sx={{
                         display: 'flex',
                         flexDirection: 'column',
@@ -58,6 +60,7 @@ export const ImageSelectionWithImage = ({
                     color="error"
                     variant="contained"
                     onClick={onClearClicked}
+                    disabled={disabled}
                     sx={{
                         borderRadius: '1.5rem',
                         marginTop: '-1rem'

@@ -4,7 +4,8 @@ import { CheckBoxRounded } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 export const FormCheckbox = ({
     fieldObject,
-    onSomethingChanged = () => { }
+    onSomethingChanged = () => { },
+    disabled
 }) => {
     const [isError, setIsError] = useState(fieldObject.error !== null);
     const [errorString, setErrorString] = useState(fieldObject.error);
@@ -28,6 +29,7 @@ export const FormCheckbox = ({
     return (
         <FormInput
             title={title}
+            disabled={disabled}
         >
             <Checkbox
                 size="large"
@@ -35,6 +37,7 @@ export const FormCheckbox = ({
                 onChange={checkBoxChanged}
                 error={isError}
                 checked={initialValue}
+                disabled={disabled}
             />
         </ FormInput>
     );

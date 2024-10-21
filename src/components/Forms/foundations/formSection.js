@@ -5,7 +5,11 @@ import { useEffect, useState } from "react";
 import { updateFormParentFromChild } from "../../../utils/formUtils/updateFormParentFromChild";
 import { GetSectionErrors } from "../../../utils/formUtils/getSectionErrors";
 
-export const FormSection = ({ section, onSomethingChanged }) => {
+export const FormSection = ({
+    section,
+    onSomethingChanged,
+    disabled
+}) => {
     const [formSection, setFormSection] = useState(section);
     const [sectionHasErrors, setSectionHasErrors] = useState(false);
 
@@ -62,7 +66,11 @@ export const FormSection = ({ section, onSomethingChanged }) => {
             <AccordionDetails
             >
                 {components.map(object => (
-                    <FieldRenderer formObject={object} onSomethingChanged={onFieldChanged} />
+                    <FieldRenderer
+                        formObject={object}
+                        onSomethingChanged={onFieldChanged}
+                        disabled={disabled}
+                    />
                 ))}
             </AccordionDetails>
         </Accordion>

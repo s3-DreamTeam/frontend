@@ -4,7 +4,8 @@ import { AddPhotoAlternateRounded } from "@mui/icons-material";
 
 export const ImageSelectionEmpty = ({
     onClick,
-    isError
+    isError,
+    disabled
 }) => {
     return (
         <ColorCard
@@ -21,6 +22,7 @@ export const ImageSelectionEmpty = ({
         >
             <CardActionArea
                 onClick={onClick}
+                disabled={disabled}
                 sx={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -29,6 +31,7 @@ export const ImageSelectionEmpty = ({
                 }}
             >
                 <AddPhotoAlternateRounded
+                    color={disabled ? "textDisabled" : null}
                     style={{
                         fontSize: 50
                     }}

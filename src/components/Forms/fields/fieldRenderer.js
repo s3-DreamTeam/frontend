@@ -5,7 +5,7 @@ import { FormImageField } from "./imageField";
 import { FormNumberField } from "./NumberField";
 import { FormTextField } from "./textField";
 
-export const FieldRenderer = ({ formObject, onSomethingChanged }) => {
+export const FieldRenderer = ({ formObject, onSomethingChanged, disabled }) => {
     const type = formObject.type;
     //console.log("Type: ", type);
 
@@ -15,18 +15,21 @@ export const FieldRenderer = ({ formObject, onSomethingChanged }) => {
                 <FormTextField
                     fieldObject={formObject}
                     onSomethingChanged={onSomethingChanged}
+                    disabled={disabled}
                 />);
         case (FieldTypes.Checkbox):
             return (
                 <FormCheckbox
                     fieldObject={formObject}
                     onSomethingChanged={onSomethingChanged}
+                    disabled={disabled}
                 />);
         case (FieldTypes.Dropdown):
             return (
                 <FormDropdownField
                     fieldObject={formObject}
                     onSomethingChanged={onSomethingChanged}
+                    disabled={disabled}
                 />
             );
         case (FieldTypes.NumberField):
@@ -34,6 +37,7 @@ export const FieldRenderer = ({ formObject, onSomethingChanged }) => {
                 <FormNumberField
                     fieldObject={formObject}
                     onSomethingChanged={onSomethingChanged}
+                    disabled={disabled}
                 />
             );
         case (FieldTypes.Image):
@@ -41,6 +45,7 @@ export const FieldRenderer = ({ formObject, onSomethingChanged }) => {
                 <FormImageField
                     fieldObject={formObject}
                     onSomethingChanged={onSomethingChanged}
+                    disabled={disabled}
                 />
             );
         default:

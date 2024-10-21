@@ -6,7 +6,8 @@ export const SubmitArea = ({
     onCancel = () => { },
     onSubmit = () => { },
     onReset = () => { },
-    hasErrors
+    hasErrors,
+    disabled
 }) => {
     return (
         <>
@@ -22,6 +23,7 @@ export const SubmitArea = ({
                     size="large"
                     variant="text"
                     color="inherit"
+                    disabled={disabled}
                     onClick={onCancel}
                     sx={{
                         borderRadius: '1.5rem',
@@ -34,6 +36,7 @@ export const SubmitArea = ({
                     size="large"
                     variant="text"
                     color="inherit"
+                    disabled={disabled}
                     onClick={onReset}
                     sx={{
                         borderRadius: '1.5rem',
@@ -46,6 +49,7 @@ export const SubmitArea = ({
                     size="large"
                     variant="contained"
                     color={hasErrors ? "error" : "primary"}
+                    disabled={disabled}
                     onClick={onSubmit}
                     sx={{
                         borderRadius: '1.5rem',

@@ -10,6 +10,7 @@ export const ImageSelectorCard = ({
     onResetSelection,
     isError,
     image = null,
+    disabled
 }) => {
 
     //const [selectedImage, setSelectedImage] = useState(image);
@@ -53,6 +54,7 @@ export const ImageSelectorCard = ({
                 onChange={handleImageChange}
                 style={{ display: 'none' }}
                 ref={fileInputRef}
+                disabled={disabled}
             />
             {imageLoading
                 ? <ImageSelectionLoading />
@@ -62,10 +64,12 @@ export const ImageSelectorCard = ({
                         onClearClicked={clearClicked}
                         image={image}
                         imageName={imageName}
+                        disabled={disabled}
                     />
                     : <ImageSelectionEmpty
                         isError={isError}
                         onClick={handleSelectImageClicked}
+                        disabled={disabled}
                     />
                 )
             }

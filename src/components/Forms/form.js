@@ -9,6 +9,7 @@ import ErrorDialog from "../Dialogs/ErrorDialog";
 
 const Form = ({
     initialObjectTemplate,
+    disabled,
     onFormChanged = () => { },
     onSubmit = () => { },
     onCancel = () => { },
@@ -52,12 +53,14 @@ const Form = ({
                     <FormSection
                         section={section}
                         onSomethingChanged={formSectionChanged}
+                        disabled={disabled}
                     />
                 ))}
                 <SubmitArea
                     onCancel={onCancel}
                     onReset={onReset}
                     onSubmit={verifyFormBeforeSubmit}
+                    disabled={disabled}
                 />
             </FormBackground>
             <ErrorDialog

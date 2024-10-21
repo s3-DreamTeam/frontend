@@ -13,8 +13,11 @@ export const FormInput = ({
     isError,
     children,
     align = "center",
-    subText = null
+    subText = null,
+    disabled
 }) => {
+    const textColor = disabled ? "textDisabled" : null;
+
     return (
         <Box
             display="flex"
@@ -26,14 +29,14 @@ export const FormInput = ({
             <div>
                 <Typography
                     variant="h5"
-                    color={isError ? 'error' : null}
+                    color={isError ? 'error' : textColor}
                 >
                     {title}
                 </Typography>
                 {subText
                     ? (<Typography
                         variant="body1"
-                        color={isError ? 'error' : null}
+                        color={isError ? 'error' : textColor}
                     >
                         {subText}
                     </Typography>)

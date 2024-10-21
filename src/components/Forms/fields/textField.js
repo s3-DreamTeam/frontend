@@ -3,7 +3,7 @@ import { FormInput } from "../foundations/input";
 import { useEffect, useState } from "react";
 import { textFieldValueTester } from "../../../utils/formUtils/valueTesters/textFieldValueTester";
 
-export const FormTextField = ({ fieldObject, onSomethingChanged }) => {
+export const FormTextField = ({ fieldObject, onSomethingChanged, disabled }) => {
     const [isError, setIsError] = useState(fieldObject.error !== null);
     const [errorString, setErrorString] = useState(fieldObject.error);
     const [value, setValue] = useState(fieldObject.value);
@@ -34,6 +34,7 @@ export const FormTextField = ({ fieldObject, onSomethingChanged }) => {
         <FormInput
             title={title}
             isError={isError}
+            disabled={disabled}
         >
             <TextField
                 variant="filled"
@@ -45,6 +46,7 @@ export const FormTextField = ({ fieldObject, onSomethingChanged }) => {
                 helperText={isError ? errorString : null}
                 onChange={textChanged}
                 error={isError}
+                disabled={disabled}
                 InputProps={{
                     disableUnderline: false,
                     style: {

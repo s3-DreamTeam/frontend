@@ -10,7 +10,7 @@ import { FormInput } from "../foundations/input";
     min,
 */
 
-export const FormNumberField = ({ fieldObject, onSomethingChanged }) => {
+export const FormNumberField = ({ fieldObject, onSomethingChanged, disabled }) => {
     const title = fieldObject.name;
     const required = fieldObject.required;
     const placeHolder = fieldObject.placeHolder;
@@ -27,6 +27,7 @@ export const FormNumberField = ({ fieldObject, onSomethingChanged }) => {
     return (
         <FormInput
             title={title}
+            disabled={disabled}
         >
             <TextField
                 variant="filled"
@@ -34,6 +35,7 @@ export const FormNumberField = ({ fieldObject, onSomethingChanged }) => {
                 hiddenLabel
                 placeholder={placeHolder}
                 onChange={numberChanged}
+                disabled={disabled}
                 slotProps={{
                 }}
                 InputProps={{

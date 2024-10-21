@@ -4,7 +4,7 @@ import { ImageSelectorCard } from "../../ImageSelectionComponent/imageSelectionC
 import { ImageFieldValueTester } from "../../../utils/formUtils/valueTesters/imageFieldValueTester";
 
 
-export const FormImageField = ({ fieldObject, onSomethingChanged }) => {
+export const FormImageField = ({ fieldObject, onSomethingChanged, disabled }) => {
     const [isError, setIsError] = useState(fieldObject.error !== null);
     const [errorString, setErrorString] = useState(fieldObject.error);
     const [image, setImage] = useState(fieldObject.value);
@@ -37,6 +37,7 @@ export const FormImageField = ({ fieldObject, onSomethingChanged }) => {
             isError={isError}
             subText={errorString}
             align="top"
+            disabled={disabled}
         >
             <ImageSelectorCard
                 onFileNameChanged={() => { }}
@@ -46,6 +47,7 @@ export const FormImageField = ({ fieldObject, onSomethingChanged }) => {
                 }}
                 isError={isError}
                 image={image}
+                disabled={disabled}
             />
         </ FormInput>
     );
