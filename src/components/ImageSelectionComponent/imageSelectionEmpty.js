@@ -31,7 +31,7 @@ export const ImageSelectionEmpty = ({
                 }}
             >
                 <AddPhotoAlternateRounded
-                    color={disabled ? "textDisabled" : null}
+                    color={disabled ? "textDisabled" : ''}
                     style={{
                         fontSize: 50
                     }}

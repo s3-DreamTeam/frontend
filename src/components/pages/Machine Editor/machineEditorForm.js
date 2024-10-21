@@ -4,6 +4,7 @@ import Form from "../../Forms/form";
 import { FormToPacket } from "../../../utils/formUtils/formToPacket";
 import ProcessStatusSnackBar from "../../processStatusSnackbar";
 import { NewMachineTemplate } from "../../../api/requests/interface/newMachineTemplate";
+import SuccessDialog from "../../Dialogs/SuccessDialog";
 
 const MachineEditorForm = ({
     onCancel = () => { }
@@ -11,6 +12,7 @@ const MachineEditorForm = ({
     const [visualFormData, setVisualFormData] = useState(getMachineTemplateObject());
     const [sendFormLoading, setSendFormLoading] = useState(false);
     const [sendFormError, setSendFormError] = useState(null);
+    const [showDialog, setShowDialog] = useState(false);
 
     function formWasUpdated(newForm) {
         setVisualFormData(newForm);
@@ -66,6 +68,11 @@ const MachineEditorForm = ({
                 setSendFormLoading(true);
                 setSendFormError(null);
             },
+            onSuccess: () => {
+                setSendFormLoading(true);
+                setSendFormError(null);
+                setShowDialog(true);
+            }
         });
     }
 
@@ -82,6 +89,15 @@ const MachineEditorForm = ({
             <ProcessStatusSnackBar
                 status={sendFormLoading ? 'loading' : (sendFormError != null ? 'error' : 'hidden')}
                 attributes={SendFormProcessSnackbarProps}
+            />
+            <SuccessDialog
+                title="Template Created"
+                message="Your new template has successfully been added to your list!"
+                open={showDialog}
+                onClose={() => {
+                    setShowDialog(false);
+                    onCancel();
+                }}
             />
         </>
     );

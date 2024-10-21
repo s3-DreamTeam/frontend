@@ -7,8 +7,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { DialogTransition } from './Transition/dialogTransition';
 import { CustomDialog } from './Foundation/customDialog';
 
-
-export default function ErrorDialog({
+export default function SuccessDialog({
     onClose,
     title = null,
     message = null,
@@ -25,8 +24,8 @@ export default function ErrorDialog({
                 aria-describedby="alert-dialog-slide-description"
             >
                 <DialogTitle
-                    color='error'
                     fontWeight={600}
+                    color='success'
                 >
                     {title}
                 </DialogTitle>
@@ -42,7 +41,7 @@ export default function ErrorDialog({
                     <Button
                         size="large"
                         variant="contained"
-                        color="error"
+                        color="success"
                         onClick={onClose}
                         sx={{
                             borderRadius: '1.5rem',
