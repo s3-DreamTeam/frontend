@@ -1,6 +1,6 @@
 import { CloseRounded, RefreshRounded } from "@mui/icons-material";
-import { Alert, IconButton, Snackbar } from "@mui/material";
-import { useState } from "react";
+import { Alert, Button, IconButton, LinearProgress, Snackbar } from "@mui/material";
+import { useEffect, useState } from "react";
 
 
 const ProcessStatusSnackBar = ({
@@ -12,6 +12,7 @@ const ProcessStatusSnackBar = ({
 }) => {
     const [oldStatus, setStatus] = useState('hidden');
     const [isShown, setShownState] = useState(false);
+    const [progress, setProgress] = useState(100);
 
     let propsToUse = {};
     let severity = '';
@@ -52,6 +53,30 @@ const ProcessStatusSnackBar = ({
         setShownState(false);
     }
 
+    useEffect(() => {
+        if (isShown) {
+            setProgress(100); // Reset progress when shown
+            const duration = (propsToUse.autoHideDuration) || 1;
+            const increment = 100 / (duration / 10);
+
+            const timer = setInterval(() => {
+                setProgress((prev) => {
+                    if (prev <= 0) {
+                        clearInterval(timer); // Stop when complete
+                        return 0;
+                    }
+                    return prev - increment; // Update progress
+                });
+            }, 10); // Update every 10ms
+
+            // Clean up on unmount or when the snackbar closes
+            return () => {
+                clearInterval(timer);
+            };
+        }
+    }, [isShown, propsToUse.autoHideDuration]);
+
+
     return (
         <Snackbar
             open={isShown}
@@ -65,6 +90,9 @@ const ProcessStatusSnackBar = ({
         >
             <Alert
                 className={status === 'loading' ? "loading-snackbar" : null}
+                sx={{
+                    position: 'relative'
+                }}
                 onClose={handleClose}
                 severity={severity}
                 variant={variant}
@@ -95,6 +123,33 @@ const ProcessStatusSnackBar = ({
                     </div>
                 }
             >
+                {propsToUse.autoHideDuration === null
+                    ? null
+                    :
+                    <div>
+                        <div
+                            style={{
+                                position: 'absolute',
+                                bottom: 0,
+                                right: 0,
+                                left: 0,
+                                transformOrigin: 'center center',
+                                content: '',
+                            }}
+                        >
+                            <LinearProgress
+                                variant="determinate"
+                                color={severity}
+                                value={progress}
+                                sx={{
+                                    "& .MuiLinearProgress-bar": {
+                                        transition: "none"
+                                    }
+                                }}
+                            />
+                        </div>
+                    </div>
+                }
                 {propsToUse.message}
             </Alert>
         </Snackbar>

@@ -7,7 +7,8 @@
  */
 const Endpoints = {
     GetAllUsers: 'getallusagers',
-    AddNewUser: 'insertUsager'
+    AddNewUser: 'insertUsager',
+    CreateNewMachineTemplate: 'newMachineTemplate'
 };
 
 export default Endpoints; 

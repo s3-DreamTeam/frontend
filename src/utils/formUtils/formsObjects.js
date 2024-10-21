@@ -124,7 +124,7 @@ export function CheckboxFieldBuilder(
         type: FieldTypes.Checkbox,
         required: required,
         error: null,
-        value: null,
+        value: false,
         verify: CheckboxFieldValueTester
     };
 }

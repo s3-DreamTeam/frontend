@@ -31,6 +31,8 @@ const Form = ({
 
         if (errorsInForm(verifiedForm)) {
             setShowDialog(true);
+        } else {
+            onSubmit();
         }
     }
 

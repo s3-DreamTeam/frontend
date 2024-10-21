@@ -21,6 +21,7 @@ export const FormBackground = ({ children }) => {
                     width: '100%',
                     maxWidth: '50rem',
                     alignItems: 'center',
+                    animation: 'slideInForm 0.5s cubic-bezier(.56,1.39,.28,.94) 1'
                 }}
             >
                 {children}

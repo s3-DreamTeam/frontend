@@ -91,6 +91,30 @@ export default function GetMUIAppTheme() {
           },
         },
       },
+      MuiLinearProgress: {
+        styleOverrides: {
+          bar: {
+            strokeLinecap: 'round',
+            borderRadius: '1.5rem'
+          },
+          bar1Determinate: {
+            strokeLinecap: 'round',
+            borderRadius: '1.5rem'
+          },
+          bar1Indeterminate: {
+            strokeLinecap: 'round',
+            borderRadius: '1.5rem'
+          },
+          bar2Buffer: {
+            strokeLinecap: 'round',
+            borderRadius: '1.5rem'
+          },
+          bar2Indeterminate: {
+            strokeLinecap: 'round',
+            borderRadius: '1.5rem'
+          },
+        },
+      },
       MuiButton: {
         variants: [
           {

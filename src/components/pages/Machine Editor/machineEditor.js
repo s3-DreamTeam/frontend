@@ -27,7 +27,9 @@ const MachineEditor = () => {
                     hasGoBackArrow={true}
                     onGoBack={HandleCancelForm}
                     childrens={
-                        <MachineEditorForm />
+                        <MachineEditorForm
+                            onCancel={HandleCancelForm}
+                        />
                     }
                 />)
                 : (<PageLayout
