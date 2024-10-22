@@ -4,6 +4,7 @@ import { sideActionsMenuReducers } from "./sideActionsMenuSlice";
 import { allFetchedUsersReducers } from "./allFetchedUsersSlice";
 import { keycloakReducers } from "./keycloakSlice";
 import { simulatedEndpointReducers } from "./simulatedEndpointSlice";
+import { machineTemplateReducers } from "./machineTemplateSlice";
 
 const store = configureStore({
     reducer: {
@@ -11,7 +12,8 @@ const store = configureStore({
         sideActionsMenuState: sideActionsMenuReducers,
         allFetchedUsers: allFetchedUsersReducers,
         keycloak: keycloakReducers,
-        simulatedEndpointSlice: simulatedEndpointReducers
+        simulatedEndpointSlice: simulatedEndpointReducers,
+        machineTemplateSlice: machineTemplateReducers
     },
 });
 

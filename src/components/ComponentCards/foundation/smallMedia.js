@@ -1,7 +1,11 @@
 import { NoPhotographyRounded } from "@mui/icons-material";
-import { CardMedia } from "@mui/material";
+import { CardMedia, CircularProgress } from "@mui/material";
 
-const SmallComponentCardMedia = ({ title, image }) => {
+const SmallComponentCardMedia = ({
+    title,
+    image,
+    isLoading
+}) => {
     return (
         <CardMedia
             component="div"
@@ -12,20 +16,28 @@ const SmallComponentCardMedia = ({ title, image }) => {
                 height: '12.5rem', // Image area takes 80%
             }}
         >
-            {image ? (
-                <img
-                    src={image}
-                    alt={title}
-                    style={{
-                        maxHeight: '15rem',
-                        maxWidth: '15rem',
-                        objectFit: 'cover',
-                        borderRadius: '1.5rem'
-                    }}
-                />
-            ) : (
-                <NoPhotographyRounded fontSize="large" />
-            )}
+            {isLoading
+                ? (<CircularProgress
+                    size={80}
+                    color="inherit"
+                />)
+                : (
+                    image
+                        ? (
+                            <img
+                                src={image}
+                                alt={title}
+                                style={{
+                                    maxHeight: '12.5rem',
+                                    maxWidth: '15rem',
+                                    objectFit: 'cover',
+                                    borderRadius: '1.5rem'
+                                }}
+                            />)
+                        : (
+                            <NoPhotographyRounded fontSize="large" />
+                        ))
+            }
         </CardMedia>
     );
 };

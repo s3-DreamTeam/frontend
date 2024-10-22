@@ -2,31 +2,22 @@ import { backendApi, BackendHeader } from "../../backend";
 import Endpoints from "../../endpoints";
 
 /**
- * # PostNewMachineTemplate
+ * # FetchAllMachineTemplateIDs
  * See interface version for details
  */
-export const PostNewMachineTemplate = async ({
-
-    machineTemplateObject,
-
+export const FetchAllMachineTemplateIDs = async ({
     onSuccess = () => { },
     onError = () => { },
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: PostNewMachineTemplate");
+    console.log("REQ: FetchAllMachineTemplateIDs");
     onStart();
     try {
-        //await sleep(5000);
         const header = BackendHeader();
-        await backendApi.post(
-            Endpoints.CreateNewMachineTemplate,
-            {
-                machineTemplateObject
-            },
-            header
-        );
-        onSuccess();
+        const response = await backendApi.get(Endpoints.GetAllMachineTemplateID);
+        console.log(response);
+        onSuccess(response.data);
     } catch (err) {
         onError(err);
     } finally {

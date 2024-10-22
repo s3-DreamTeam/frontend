@@ -1,12 +1,10 @@
-import { PostNewMachineTemplate } from "../real/newMachineTemplate";
-import { SimulatedNewMachineTemplate } from "../simulated/newMachineTemplate";
+import { PostGetSurfaceMachineTemplate } from "../real/getSurfaceMachineTemplate";
+import { SimulatedGetSurfaceMachineTemplate } from "../simulated/getSurfaceMachineTemplate";
 
 /**
- * # NewMachineTemplate
- * Function that calls the backend, to create a new machine template in it.
- * 
- * ---
- * @param {*} machineTemplateObject Object created by the machine template form's submition.
+ * # GetSurfaceMachineTemplate
+ * Function that calls the backend, to ask to get the bare minimum information
+ * about a specific machine template. That means... their manufacturer and their names.
  * 
  * ---
  * @param {*} onSuccess
@@ -18,26 +16,24 @@ import { SimulatedNewMachineTemplate } from "../simulated/newMachineTemplate";
  * @param {*} onStart
  * Callback executed right before the request.
  */
-export const NewMachineTemplate = async ({
-
-    machineTemplateObject,
-
+export const GetSurfaceMachineTemplate = async ({
+    ID,
     onSuccess = () => { },
     onError = () => { },
     onEnd = () => { },
     onStart = () => { }
 }) => {
     if (process.env.REACT_APP_SIMULATE_ENDPOINTS === 'yes') {
-        SimulatedNewMachineTemplate({
-            machineTemplateObject: machineTemplateObject,
+        SimulatedGetSurfaceMachineTemplate({
+            ID: ID,
             onSuccess: onSuccess,
             onError: onError,
             onEnd: onEnd,
             onStart: onStart
         });
     } else {
-        PostNewMachineTemplate({
-            machineTemplateObject: machineTemplateObject,
+        PostGetSurfaceMachineTemplate({
+            ID: ID,
             onSuccess: onSuccess,
             onError: onError,
             onEnd: onEnd,

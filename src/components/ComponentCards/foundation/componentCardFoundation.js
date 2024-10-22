@@ -1,4 +1,4 @@
-import { CardActionArea, CardActions } from "@mui/material";
+import { CardActionArea, CardActions, CircularProgress } from "@mui/material";
 import SmallComponentCardHeader from "./smallHeader";
 import SmallComponentCardMedia from "./smallMedia";
 import ColorCard from "./styledCard";
@@ -12,7 +12,10 @@ const ComponentCardFoundation = ({
     decorators,
     state,
     footerComponents,
-    onClick
+    onClick,
+    isLoading,
+    imageIsLoading,
+    error
 }) => {
 
     if (decorators === undefined) decorators = [];
@@ -41,11 +44,17 @@ const ComponentCardFoundation = ({
         color = decoratorPriorityColor;
     }
 
+    if (error) {
+        color = 'error';
+        title = error;
+    }
+
     return (
         <div
             style={{
                 margin: '0',
                 padding: '0',
+                animation: (error ? 'errorShake 0.25s ease-in 1' : null)
             }}
         >
             <SmallDecoratorsArea
@@ -64,23 +73,43 @@ const ComponentCardFoundation = ({
                     flexDirection: 'column',
                 }}
             >
-                <CardActionArea
-                    onClick={onClick}
-                    sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        height: '100%',
-                        padding: '1.5rem'
-                    }}
-                >
-                    <SmallComponentCardHeader title={title} />
-                    <SmallComponentCardMedia title={title} image={image} />
-                    <CardActions
-                        sx={{ height: '2.5rem', flexShrink: 0 }} // Footer takes 10% of the height
+                {isLoading
+                    ? (<div
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            height: '20rem'
+                        }}
                     >
-                        {footerComponents}
-                    </CardActions>
-                </CardActionArea>
+                        <CircularProgress
+                            size={100}
+                            color="inherit"
+                        />
+                    </div>)
+                    : (
+                        <CardActionArea
+                            onClick={onClick}
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                height: '100%',
+                                padding: '1.5rem'
+                            }}
+                        >
+                            <SmallComponentCardHeader title={title} />
+                            <SmallComponentCardMedia
+                                title={title}
+                                image={image}
+                                isLoading={imageIsLoading}
+                            />
+                            <CardActions
+                                sx={{ height: '2.5rem', flexShrink: 0 }} // Footer takes 10% of the height
+                            >
+                                {footerComponents}
+                            </CardActions>
+                        </CardActionArea>
+                    )}
             </ColorCard>
         </div>
     );

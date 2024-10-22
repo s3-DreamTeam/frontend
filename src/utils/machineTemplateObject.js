@@ -10,27 +10,32 @@
  */
 class MachineTemplate {
     // Generic Information
-    manufacturer = "UNDEFINED";
-    model = "UNDEFINED";
-    image = null;
-    category = null;
-    colorVaries = false;
-    seeThroughWindow = false;
-    hasSerialNumber = false;
+    Manufacturer = "UNDEFINED";
+    Model = "UNDEFINED";
+    Image = null;
+    Category = null;
+    ColorVaries = false;
+    SeeThroughWindow = false;
+    HasSerialNumber = false;
 
     // Connectivity
-    hasInternetConnection = false;
-    hasBluetoothConnection = false;
-    hasPhysicalConnection = false;
+    HasInternetConnection = false;
+    HasBluetoothConnection = false;
+    HasPhysicalConnection = false;
 
     // Payments
-    hasOnlineStore = false;
-    acceptsDebit = false;
-    acceptsCredit = false;
-    acceptsCash = false;
+    HasOnlineStore = false;
+    AcceptsDebit = false;
+    AcceptsCredit = false;
+    AcceptsCash = false;
 
     // Inventory potential
-    slots = [];
+    Slots = [];
+
+
+    isLoading = false;
+    imageIsLoading = false;
+    errors = null;
 }
 
 export default MachineTemplate;

@@ -5,28 +5,23 @@ import Endpoints from "../../endpoints";
  * # PostNewMachineTemplate
  * See interface version for details
  */
-export const PostNewMachineTemplate = async ({
-
-    machineTemplateObject,
-
+export const PostGetSurfaceMachineTemplate = async ({
+    ID,
     onSuccess = () => { },
     onError = () => { },
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: PostNewMachineTemplate");
+    console.log("REQ: PostGetSurfaceMachineTemplate");
     onStart();
     try {
-        //await sleep(5000);
         const header = BackendHeader();
-        await backendApi.post(
-            Endpoints.CreateNewMachineTemplate,
-            {
-                machineTemplateObject
-            },
+        const response = await backendApi.post(
+            Endpoints.GetSurfaceMachineTemplate,
+            ID,
             header
         );
-        onSuccess();
+        onSuccess(response);
     } catch (err) {
         onError(err);
     } finally {

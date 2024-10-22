@@ -1,6 +1,9 @@
 import { Stack } from "@mui/material";
 import MachineTemplateComponentCard from "../../ComponentCards/machineTemplateCard";
-import MachineTemplate from '../../../utils/machineTemplateObject';
+import { LoadUsersMachineTemplates } from "../../../utils/ComplexStoreManagers/MachineTemplate/load";
+import { useSelector } from "react-redux";
+import EmptyPage from "../../emptyPage";
+import { useEffect } from "react";
 
 /**
  * # MachineEditorMainLayout
@@ -11,40 +14,37 @@ import MachineTemplate from '../../../utils/machineTemplateObject';
  * @param {*} mappedMachines - Map of all the loaded machines templates of the user 
  */
 const MachineEditorMainLayout = ({ mappedTemplates }) => {
+    const templates = useSelector((state) => state.machineTemplateSlice.machineTemplates);
+    const hasTemplates = Object.keys(templates).length > 0;
 
-    let machineA = new MachineTemplate();
-    machineA.image = 'https://dummyimage.com/500x400/ff6699/000';
-    machineA.model = 'AWS 19';
-    machineA.manufacturer = 'Coca-cola';
-
-    let machineB = new MachineTemplate();
-    machineB.image = 'https://dummyimage.com/300x250/663366/fff';
-    machineB.model = 'super fucking long model name';
-    machineB.manufacturer = 'bruh';
-
-    let machineC = new MachineTemplate();
-    machineC.image = 'https://dummyimage.com/200x200/ff00ff/fff';
-    machineC.model = 'Hi there';
-
-    let machineD = new MachineTemplate();
-    machineD.image = 'https://dummyimage.com/950x750/cc9966/fff';
-    machineD.model = 'Bruh';
+    useEffect(() => {
+    }, [templates]);
 
     return (
-        <Stack
-            spacing={'2rem'}
-            direction={'row'}
-            justifyContent={'space-evenly'}
-            useFlexGap
-            sx={{ flexWrap: 'wrap', padding: '0rem 2rem 2rem 2rem' }}
-        >
-            <MachineTemplateComponentCard machine={machineA} />
-            <MachineTemplateComponentCard machine={machineB} />
-            <MachineTemplateComponentCard machine={machineC} />
-            <MachineTemplateComponentCard machine={machineD} />
-            <MachineTemplateComponentCard />
-            <MachineTemplateComponentCard machine={machineD} />
-        </Stack>
+        <>
+            {hasTemplates
+                ? (
+                    <Stack
+                        spacing={'2rem'}
+                        direction={'row'}
+                        justifyContent={'space-evenly'}
+                        useFlexGap
+                        sx={{ flexWrap: 'wrap', padding: '0rem 2rem 2rem 2rem' }}
+                    >
+                        {Object.entries(templates).map(([id, value]) => (
+                            <MachineTemplateComponentCard
+                                key={id}
+                                machine={value}
+                            />
+                        ))}
+                    </Stack>
+                )
+                : <EmptyPage
+                    header="You don't have any templates"
+                    subtitle='templates are necessary to create an inventory of your machines'
+                />
+            }
+        </>
     );
 };
 export default MachineEditorMainLayout;

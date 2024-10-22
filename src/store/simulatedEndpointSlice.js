@@ -14,7 +14,12 @@ export const simulatedEndpointSlice = createSlice({
         // - Machine templates - //
         addNewMachineTemplate: (state, action) => {
             let machineTemplate = action.payload;
-            const biggestId = Math.max(...state.object.machineTemplates.map(obj => obj.id));
+            let biggestId = Math.max(...state.object.machineTemplates.map(obj => obj.id), 0);
+
+            if (biggestId === null || biggestId === undefined) {
+                biggestId = 0;
+            }
+
             const newID = biggestId + 1;
 
             machineTemplate.id = newID;
@@ -24,20 +29,6 @@ export const simulatedEndpointSlice = createSlice({
             const id = action.payload;
             return state.object.machineTemplates.find(template => template.id === id) || null; // Return the template with matching ID or null
         },
-        getSurfaceMachineTemplate: (state, action) => {
-            const id = action.payload;
-            const completeMachineTemplate = state.object.machineTemplates.find(template => template.id === id) || null; // Return the template with matching ID or null
-
-            if (completeMachineTemplate === null) {
-                return null;
-            }
-
-            return {
-                "Manufacturer": completeMachineTemplate.Manufacturer,
-                "Model": completeMachineTemplate.Model,
-                "ID": completeMachineTemplate.id
-            };
-        },
         getMachineTemplateImage: (state, action) => {
             const id = action.payload;
             const completeMachineTemplate = state.object.machineTemplates.find(template => template.id === id) || null; // Return the template with matching ID or null
@@ -45,10 +36,10 @@ export const simulatedEndpointSlice = createSlice({
             return {
                 "Image": completeMachineTemplate.Image
             };
-        }
+        },
     }
 });
 
-export const { addNewMachineTemplate, getEntireMachineTemplate, getSurfaceMachineTemplate, getMachineTemplateImage } = simulatedEndpointSlice.actions;
+export const { addNewMachineTemplate, getEntireMachineTemplate, getMachineTemplateImage } = simulatedEndpointSlice.actions;
 
 export const simulatedEndpointReducers = simulatedEndpointSlice.reducer;

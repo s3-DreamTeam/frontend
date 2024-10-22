@@ -18,17 +18,22 @@ const MachineTemplateComponentCard = ({ machine = null }) => {
         machine = new MachineTemplate();
     }
 
-    return (
-        <ComponentCardFoundation
-            title={machine.model}
-            state={"normal"}
-            decorators={
+    /*
+                decorators={
                 [
                     { "label": 'hi', 'state': 'secondary' },
                     { "label": 'second', 'state': 'primary' }
                 ]
             }
-            image={machine.image}
+    */
+    return (
+        <ComponentCardFoundation
+            title={machine.Model}
+            state={"normal"}
+            image={machine.Image}
+            error={machine.errors}
+            isLoading={machine.isLoading ? true : false}
+            imageIsLoading={machine.imageIsLoading ? true : false}
             footerComponents={
                 <Typography>
                     footer
