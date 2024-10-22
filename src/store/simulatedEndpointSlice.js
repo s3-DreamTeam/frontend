@@ -37,9 +37,20 @@ export const simulatedEndpointSlice = createSlice({
                 "Image": completeMachineTemplate.Image
             };
         },
+        simRemoveMachineTemplate: (state, action) => {
+            const ID = action.payload;
+            console.log(state.object.machineTemplates);
+            for (let i = state.object.machineTemplates.length - 1; i >= 0; i--) {
+                if (state.object.machineTemplates[i].id === ID) {
+                    state.object.machineTemplates.splice(i, 1); // Remove the element in place
+                }
+            }
+
+            console.log(state.object.machineTemplates);
+        },
     }
 });
 
-export const { addNewMachineTemplate, getEntireMachineTemplate, getMachineTemplateImage } = simulatedEndpointSlice.actions;
+export const { addNewMachineTemplate, getEntireMachineTemplate, getMachineTemplateImage, simRemoveMachineTemplate } = simulatedEndpointSlice.actions;
 
 export const simulatedEndpointReducers = simulatedEndpointSlice.reducer;

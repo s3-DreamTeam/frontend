@@ -4,6 +4,7 @@ import SmallComponentCardMedia from "./smallMedia";
 import ColorCard from "./styledCard";
 import SmallDecoratorsArea from "./smallDecoratorArea";
 import { GetHighestDecoratorType } from "../../../utils/decoratorPriorityFinder";
+import { useEffect, useState } from "react";
 
 
 const ComponentCardFoundation = ({
@@ -12,14 +13,44 @@ const ComponentCardFoundation = ({
     decorators,
     state,
     footerComponents,
-    onClick,
+    onClick = () => { },
+    onLongPress = () => { },
     isLoading,
     imageIsLoading,
     error
 }) => {
+    const [isPressing, setIsPressing] = useState(false);
+    const [isLongPress, setIsLongPress] = useState(false);
+
+    const [timer, setTimer] = useState(null);
 
     if (decorators === undefined) decorators = [];
     const hasDecorators = decorators.length > 0;
+
+
+    const startPress = () => {
+        setIsPressing(true);
+        const newTimer = setTimeout(() => {
+            onLongPress();
+            setIsLongPress(true);
+        }, 500);
+        setTimer(newTimer);
+    };
+
+    const endPress = () => {
+        if (isPressing) {
+            clearTimeout(timer);
+            setIsPressing(false);
+            if (!isLongPress) {
+                onClick(); // Trigger short click if not a long press
+            }
+        }
+        setIsLongPress(false);
+    };
+
+    useEffect(() => {
+        return () => clearTimeout(timer); // Cleanup on unmount
+    }, [timer]);
 
     let color = 'inherit';
 
@@ -89,7 +120,12 @@ const ComponentCardFoundation = ({
                     </div>)
                     : (
                         <CardActionArea
-                            onClick={onClick}
+                            onMouseDown={startPress}
+                            onMouseUp={endPress}
+                            onMouseLeave={endPress}
+                            onTouchStart={startPress}
+                            onTouchEnd={endPress}
+                            onTouchCancel={endPress}
                             sx={{
                                 display: 'flex',
                                 flexDirection: 'column',

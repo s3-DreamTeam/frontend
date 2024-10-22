@@ -12,7 +12,11 @@ import MachineTemplate from "../../utils/machineTemplateObject";
  * @param {*} machine Machine object: `MachineTemplate` class.
  * @returns card displaying a machine template
  */
-const MachineTemplateComponentCard = ({ machine = null, onClick = () => { } }) => {
+const MachineTemplateComponentCard = ({
+    machine = null,
+    onLongClick = () => { },
+    onClick = () => { }
+}) => {
 
     if (machine == null) {
         machine = new MachineTemplate();
@@ -35,6 +39,7 @@ const MachineTemplateComponentCard = ({ machine = null, onClick = () => { } }) =
             isLoading={machine.isLoading}
             imageIsLoading={machine.imageIsLoading}
             onClick={onClick}
+            onLongPress={onLongClick}
             footerComponents={
                 <Typography>
                     footer
