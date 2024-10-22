@@ -1,6 +1,7 @@
 import { GetAllMachineTemplateIDs } from "../../../api/requests/interface/getAllMachineTemplateIDs";
 import { GetMachineTemplateImage } from "../../../api/requests/interface/getMachineTemplateImage";
 import { GetSurfaceMachineTemplate } from "../../../api/requests/interface/getSurfaceMachineTemplate";
+import { machineTemplatesLoaded } from "../../../store/initialDataLoadStatusSlice";
 import { resetMachineTemplateError, setMachineTemplateData, setMachineTemplateError, setMachineTemplateImageToLoaded, setMachineTemplateImageToLoading, setMachineTemplateToLoaded, setMachineTemplateToLoading } from "../../../store/machineTemplateSlice";
 import store from "../../../store/store";
 import { cleanUserMachineTemplatesIDs } from "./IdManager";
@@ -97,6 +98,9 @@ export const LoadUsersMachineTemplates = async ({
                                 id: id,
                                 data: image
                             }));
+
+                            // - TELLS THE APP THAT MACHINES TEMPLATE WERE LOADED AT MINIMUM ONCE - //
+                            store.dispatch(machineTemplatesLoaded());
                         }
                     });
                 }
@@ -104,6 +108,8 @@ export const LoadUsersMachineTemplates = async ({
         });
 
         if (ids.length == 0) {
+            // - TELLS THE APP THAT MACHINES TEMPLATE WERE LOADED AT MINIMUM ONCE - //
+            store.dispatch(machineTemplatesLoaded());
             processEnded();
         }
     }

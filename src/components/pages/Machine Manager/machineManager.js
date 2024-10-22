@@ -5,8 +5,8 @@ import { useSelector } from "react-redux";
 import ProcessStatusSnackBar from "../../processStatusSnackbar";
 import WholePageLoading from "../../wholePageLoading";
 import MachinesManagerMainLayout from "./machineManagerMainLayout";
-import MachineManagerFetchError from "./machineManagerFetchError";
 import HandleUserLoggedInStatus from "../../../utils/verifyLoggedIn";
+import FetchErrorPage from "../FetchErrorPage";
 
 const MachineManager = () => {
 
@@ -102,7 +102,7 @@ const MachineManager = () => {
                     machinesLoading
                         ? (<WholePageLoading />)
                         : (machinesError
-                            ? (<MachineManagerFetchError errorName={machinesError} onRetryClick={retryUserFetch} />)
+                            ? (<FetchErrorPage errorName={machinesError} onRetryClick={retryUserFetch} />)
                             : (<MachinesManagerMainLayout machines={allFetchedUsers} />))
                 }
             >

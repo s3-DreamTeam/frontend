@@ -5,6 +5,7 @@ import { allFetchedUsersReducers } from "./allFetchedUsersSlice";
 import { keycloakReducers } from "./keycloakSlice";
 import { simulatedEndpointReducers } from "./simulatedEndpointSlice";
 import { machineTemplateReducers } from "./machineTemplateSlice";
+import { initialDataLoadStatusReducers } from "./initialDataLoadStatusSlice";
 
 const store = configureStore({
     reducer: {
@@ -13,7 +14,8 @@ const store = configureStore({
         allFetchedUsers: allFetchedUsersReducers,
         keycloak: keycloakReducers,
         simulatedEndpointSlice: simulatedEndpointReducers,
-        machineTemplateSlice: machineTemplateReducers
+        machineTemplateSlice: machineTemplateReducers,
+        initialDataLoadStatus: initialDataLoadStatusReducers
     },
 });
 

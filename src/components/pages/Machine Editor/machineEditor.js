@@ -1,18 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import HandleUserLoggedInStatus from "../../../utils/verifyLoggedIn";
 import PageLayout from "../../pageLayout/pageLayout";
 import MachineEditorMainLayout from "./machineEditorMainLayout";
 import MachineEditorForm from "./machineEditorForm";
 import { LoadUsersMachineTemplates } from "../../../utils/ComplexStoreManagers/MachineTemplate/load";
 import ProcessStatusSnackBar from "../../processStatusSnackbar";
+import { useSelector } from "react-redux";
+import InitialLoadingPage from "../InitialLoadingPage";
+
 
 const MachineEditor = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [loadingSuccess, setLoadingSuccess] = useState(false);
     const [loadingErrors, setLoadingErrors] = useState(null);
+    const [insideTemplateForm, setInsideTemplateForm] = useState(false);
+    const [calledLoadOnPage, setCalledLoadOnPage] = useState(false);
+    const loadedUserTemplatesBefore = useSelector((state) => state.initialDataLoadStatus.machineTemplatesLoaded);
+
 
     HandleUserLoggedInStatus();
-    const [insideTemplateForm, setInsideTemplateForm] = useState(false);
 
     function HandleOnAdd() {
         setInsideTemplateForm(true);
@@ -21,6 +27,15 @@ const MachineEditor = () => {
     function HandleCancelForm() {
         setInsideTemplateForm(false);
     }
+
+    useEffect(() => {
+        console.warn("HERE HERE HERE", loadedUserTemplatesBefore, calledLoadOnPage);
+        if (!loadedUserTemplatesBefore && !calledLoadOnPage) {
+            setCalledLoadOnPage(true);
+            console.warn("should be fucking set to true now...");
+            loadTemplatesFromScratch();
+        }
+    }, [loadedUserTemplatesBefore, calledLoadOnPage]);
 
     function loadTemplatesFromScratch() {
         LoadUsersMachineTemplates({
@@ -89,7 +104,10 @@ const MachineEditor = () => {
                     isRefreshing={isLoading}
                     disableRefresh={isLoading}
                     childrens={
-                        <MachineEditorMainLayout></MachineEditorMainLayout>
+                        (loadedUserTemplatesBefore
+                            ? <MachineEditorMainLayout></MachineEditorMainLayout>
+                            : <InitialLoadingPage onRetryClick={loadTemplatesFromScratch} error={loadingErrors} isLoading={isLoading} />
+                        )
                     }
                 />)
             }
