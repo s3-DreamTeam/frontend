@@ -1,11 +1,6 @@
 import { BackendHeader, backendApi } from './backend';
 import Endpoints from './endpoints';
 import { setAllFetchedUsers } from '../store/allFetchedUsersSlice';
-import axios from 'axios';
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
 
 /**
  * # FetchAllUsers
@@ -35,7 +30,6 @@ export const FetchAllUsers = async ({
     console.log("REQ: FetchAllUsers");
     onStart();
     try {
-        await sleep(0);
         const header = BackendHeader();
         const response = await backendApi.get(Endpoints.GetAllUsers);
         console.log("Do I even get here?");
@@ -90,8 +84,7 @@ export const PostNewUser = async ({
     onStart();
     try {
         const header = BackendHeader();
-        await sleep(0);
-        await backendApi.post(Endpoints.AddNewUser, {
+        await backendApi.post(Endpoints.AddNewUser + "/bruh", {
             email: email,
             nom: lastName,
             prenom: name,
