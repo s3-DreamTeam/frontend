@@ -14,8 +14,10 @@ const MachineEditor = () => {
     const [loadingSuccess, setLoadingSuccess] = useState(false);
     const [loadingErrors, setLoadingErrors] = useState(null);
     const [insideTemplateForm, setInsideTemplateForm] = useState(false);
-    const [calledLoadOnPage, setCalledLoadOnPage] = useState(false);
     const loadedUserTemplatesBefore = useSelector((state) => state.initialDataLoadStatus.machineTemplatesLoaded);
+    const templates = useSelector((state) => state.machineTemplateSlice.machineTemplates);
+    const hasTemplates = Object.keys(templates).length > 0;
+
 
 
     HandleUserLoggedInStatus();
@@ -29,13 +31,10 @@ const MachineEditor = () => {
     }
 
     useEffect(() => {
-        console.warn("HERE HERE HERE", loadedUserTemplatesBefore, calledLoadOnPage);
-        if (!loadedUserTemplatesBefore && !calledLoadOnPage) {
-            setCalledLoadOnPage(true);
-            console.warn("should be fucking set to true now...");
+        if (!loadedUserTemplatesBefore) {
             loadTemplatesFromScratch();
         }
-    }, [loadedUserTemplatesBefore, calledLoadOnPage]);
+    }, []);
 
     function loadTemplatesFromScratch() {
         LoadUsersMachineTemplates({
@@ -82,6 +81,10 @@ const MachineEditor = () => {
         },
     };
 
+    const disableFilter = isLoading | loadedUserTemplatesBefore | !hasTemplates;
+    const disableSort = isLoading | loadedUserTemplatesBefore | !hasTemplates;
+    const disableList = isLoading | loadedUserTemplatesBefore | !hasTemplates;
+
     return (
         <>
             {insideTemplateForm
@@ -103,9 +106,12 @@ const MachineEditor = () => {
                     onRefresh={loadTemplatesFromScratch}
                     isRefreshing={isLoading}
                     disableRefresh={isLoading}
+                    disableFilter={disableFilter}
+                    disableList={disableList}
+                    disableSort={disableSort}
                     childrens={
                         (loadedUserTemplatesBefore
-                            ? <MachineEditorMainLayout></MachineEditorMainLayout>
+                            ? <MachineEditorMainLayout mappedTemplates={templates} />
                             : <InitialLoadingPage onRetryClick={loadTemplatesFromScratch} error={loadingErrors} isLoading={isLoading} />
                         )
                     }

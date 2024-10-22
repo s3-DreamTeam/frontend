@@ -14,10 +14,11 @@ const InitialLoadingPage = ({
     error,
     isLoading
 }) => {
+    const showAsLoading = isLoading & !error;
     return (
-        (isLoading
-            ? <WholePageLoading />
-            : <FetchErrorPage onRetryClick={onRetryClick} errorName={error} />
+        (!showAsLoading
+            ? <FetchErrorPage onRetryClick={onRetryClick} errorName={error} />
+            : <WholePageLoading />
         )
     );
 };

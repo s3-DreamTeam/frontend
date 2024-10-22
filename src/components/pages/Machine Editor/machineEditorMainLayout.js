@@ -1,7 +1,5 @@
 import { Stack } from "@mui/material";
 import MachineTemplateComponentCard from "../../ComponentCards/machineTemplateCard";
-import { LoadUsersMachineTemplates } from "../../../utils/ComplexStoreManagers/MachineTemplate/load";
-import { useSelector } from "react-redux";
 import EmptyPage from "../../emptyPage";
 import { useEffect } from "react";
 
@@ -14,11 +12,10 @@ import { useEffect } from "react";
  * @param {*} mappedMachines - Map of all the loaded machines templates of the user 
  */
 const MachineEditorMainLayout = ({ mappedTemplates }) => {
-    const templates = useSelector((state) => state.machineTemplateSlice.machineTemplates);
-    const hasTemplates = Object.keys(templates).length > 0;
+    const hasTemplates = Object.keys(mappedTemplates).length > 0;
 
     useEffect(() => {
-    }, [templates]);
+    }, [mappedTemplates]);
 
     return (
         <>
@@ -31,7 +28,7 @@ const MachineEditorMainLayout = ({ mappedTemplates }) => {
                         useFlexGap
                         sx={{ flexWrap: 'wrap', padding: '0rem 2rem 2rem 2rem' }}
                     >
-                        {Object.entries(templates).map(([id, value]) => (
+                        {Object.entries(mappedTemplates).map(([id, value]) => (
                             <MachineTemplateComponentCard
                                 key={id}
                                 machine={value}

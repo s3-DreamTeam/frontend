@@ -9,12 +9,24 @@ import { cleanUserMachineTemplatesIDs } from "./IdManager";
 let processes = 0;
 let errorProcess = false;
 
+// Listen... I tried literally everything I could think of... I kept having double tap issues with this bitch...
+// None of the by the book implementations I found fixed the issue.
+// But this simple global variable?
+// You bet it fucking does.
+let executing = false;
+
 export const LoadUsersMachineTemplates = async ({
     onStart = () => { },
     onEnd = () => { },
     onSuccess = () => { },
     onError = () => { }
 }) => {
+
+    if (executing) {
+        // I LOVE TECHNICAL DEBT
+        return;
+    }
+    executing = true;
 
     // Let's see if I can make a non-janky way of knowing once ALL cards successfully loaded... everything they have to load.
     function processStarted() {
@@ -28,6 +40,7 @@ export const LoadUsersMachineTemplates = async ({
     function processEnded() {
         processes--;
         if (processes <= 0) {
+            executing = false;
             onEnd();
             if (errorProcess === false) {
                 onSuccess();
