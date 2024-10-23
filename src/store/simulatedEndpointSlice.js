@@ -25,6 +25,13 @@ export const simulatedEndpointSlice = createSlice({
             machineTemplate.id = newID;
             state.object.machineTemplates.push(machineTemplate);
         },
+        simRemoveMachineTemplate: (state, action) => {
+            let ID = Number(action.payload);
+            console.log(state, ID);
+
+            state.object.machineTemplates = state.object.machineTemplates.filter(item => item.id !== ID);
+            console.log(state, ID);
+        },
         getEntireMachineTemplate: (state, action) => {
             const id = action.payload;
             return state.object.machineTemplates.find(template => template.id === id) || null; // Return the template with matching ID or null
@@ -36,17 +43,6 @@ export const simulatedEndpointSlice = createSlice({
             return {
                 "Image": completeMachineTemplate.Image
             };
-        },
-        simRemoveMachineTemplate: (state, action) => {
-            const ID = action.payload;
-            console.log(state.object.machineTemplates);
-            for (let i = state.object.machineTemplates.length - 1; i >= 0; i--) {
-                if (state.object.machineTemplates[i].id === ID) {
-                    state.object.machineTemplates.splice(i, 1); // Remove the element in place
-                }
-            }
-
-            console.log(state.object.machineTemplates);
         },
     }
 });
