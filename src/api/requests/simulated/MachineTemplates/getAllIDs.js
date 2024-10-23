@@ -22,7 +22,7 @@ export const SimulatedGetAllMAchineTemplateIDs = async ({
         const result = getAllIDsFromReduxStore(state);
         onSuccess(result);
     } catch (err) {
-        console.warn("SIM_GetAllMachineTemplateIDs failed");
+        console.warn("SIM_GetAllMachineTemplateIDs failed", err);
         onError(err);
     } finally {
         onEnd();

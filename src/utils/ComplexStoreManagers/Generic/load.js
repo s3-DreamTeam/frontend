@@ -15,9 +15,11 @@ export const UserInventoryLoader = async ({
     addNewToStoreReducer,
     removeFromStoreReducer,
     setToLoadingReducer,
+    setToLoadedReducer,
+    setImageToLoadingReducer,
+    setImageToLoadedReducer,
     resetErrorsReducer,
     setErrorsReducer,
-    setToLoadedReducer,
     setDataReducer,
 
     tellStoreMinimalLoadOccuredReducer,
@@ -72,6 +74,7 @@ export const UserInventoryLoader = async ({
                 onStart: () => {
                     // Set it to loading
                     store.dispatch(setToLoadingReducer(id));
+                    store.dispatch(setImageToLoadingReducer(id));
                     store.dispatch(resetErrorsReducer(id));
                     processStarted();
                 },
@@ -96,11 +99,11 @@ export const UserInventoryLoader = async ({
                         onStart: () => {
                             // Set it to loading
                             processStarted();
-                            store.dispatch(setToLoadingReducer(id));
+                            store.dispatch(setImageToLoadingReducer(id));
                         },
                         onEnd: () => {
                             processEnded();
-                            store.dispatch(setToLoadedReducer(id));
+                            store.dispatch(setImageToLoadedReducer(id));
                         },
                         onError: (e) => {
                             console.warn("Failed to get the image data with ID: " + id);
