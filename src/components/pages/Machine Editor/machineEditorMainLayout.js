@@ -56,7 +56,7 @@ const MachineEditorMainLayout = ({ mappedTemplates }) => {
                         {Object.entries(mappedTemplates).map(([id, value]) => (
                             <MachineTemplateComponentCard
                                 key={id}
-                                machine={value}
+                                object={value}
                                 onClick={() => console.log("SHORT CLICK")}
                                 onLongClick={() => { longClick(id); }}
                             />

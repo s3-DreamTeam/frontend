@@ -20,7 +20,7 @@ import { SimulatedNewMachineTemplate } from "../../simulated/MachineTemplates/ne
  */
 export const NewMachineTemplate = async ({
 
-    machineTemplateObject,
+    packet,
 
     onSuccess = () => { },
     onError = () => { },
@@ -29,7 +29,7 @@ export const NewMachineTemplate = async ({
 }) => {
     if (process.env.REACT_APP_SIMULATE_ENDPOINTS === 'yes') {
         SimulatedNewMachineTemplate({
-            machineTemplateObject: machineTemplateObject,
+            machineTemplateObject: packet,
             onSuccess: onSuccess,
             onError: onError,
             onEnd: onEnd,
@@ -37,7 +37,7 @@ export const NewMachineTemplate = async ({
         });
     } else {
         PostNewMachineTemplate({
-            machineTemplateObject: machineTemplateObject,
+            machineTemplateObject: packet,
             onSuccess: onSuccess,
             onError: onError,
             onEnd: onEnd,

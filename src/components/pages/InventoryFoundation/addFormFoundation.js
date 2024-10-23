@@ -1,15 +1,26 @@
 import { useState } from "react";
-import { getMachineTemplateObject } from "../../../utils/formUtils/formBuilderTemplates";
-import Form from "../../Forms/form";
 import { FormToPacket } from "../../../utils/formUtils/formToPacket";
+import { Form } from "react-router-dom";
 import ProcessStatusSnackBar from "../../processStatusSnackbar";
-import { NewMachineTemplate } from "../../../api/requests/interface/MachineTemplates/new";
 import SuccessDialog from "../../Dialogs/SuccessDialog";
 
-const MachineEditorForm = ({
-    onCancel = () => { }
+/**
+ * # AddFormFoundation
+ * @param onCancel: callback when the form is cancelled one way or another
+ * @param APICreateNewObject: Function that takes a packet as entry and calls the backend to create a new object with it.
+ * @param formObjectGetter: Function that gets a new form template object when called
+ * @param successDialogTitle: Object was created, give a title for the success that is!
+ * @param successDialogMessage: Message to put in the success dialog box.
+ * @returns 
+ */
+const AddFormFoundation = ({
+    onCancel = () => { },
+    APICreateNewObject = () => { console.log("Goofus forgot to specify an APICreateNewObject to their inventory page."); },
+    formObjectGetter,
+    successDialogTitle = "I forgor the title",
+    successDialogMessage = "Oops, this is a generic message!"
 }) => {
-    const [visualFormData, setVisualFormData] = useState(getMachineTemplateObject());
+    const [visualFormData, setVisualFormData] = useState(formObjectGetter);
     const [sendFormLoading, setSendFormLoading] = useState(false);
     const [sendFormError, setSendFormError] = useState(null);
     const [showDialog, setShowDialog] = useState(false);
@@ -19,7 +30,7 @@ const MachineEditorForm = ({
     }
 
     function formWasReset() {
-        const newForm = getMachineTemplateObject();
+        const newForm = formObjectGetter;
         setVisualFormData(newForm);
     }
 
@@ -55,7 +66,7 @@ const MachineEditorForm = ({
     };
 
     function SendForm(packet) {
-        NewMachineTemplate({
+        APICreateNewObject({
             packet: packet,
 
             onError: (err) => {
@@ -91,8 +102,8 @@ const MachineEditorForm = ({
                 attributes={SendFormProcessSnackbarProps}
             />
             <SuccessDialog
-                title="Template Created"
-                message="Your new template has successfully been added to your list!"
+                title={successDialogTitle}
+                message={successDialogMessage}
                 open={showDialog}
                 onClose={() => {
                     setShowDialog(false);
@@ -103,4 +114,4 @@ const MachineEditorForm = ({
     );
 };
 
-export default MachineEditorForm;
+export default AddFormFoundation;
