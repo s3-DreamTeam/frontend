@@ -103,7 +103,7 @@ const MachineEditor = () => {
                     }
                 />)
                 : (<PageLayout
-                    title="Machine Editor"
+                    title="Machine Editor ?!?"
                     onAdd={HandleOnAdd}
                     onRefresh={loadTemplatesFromScratch}
                     isRefreshing={isLoading}
