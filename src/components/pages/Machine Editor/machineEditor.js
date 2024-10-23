@@ -38,14 +38,16 @@ const MachineEditor = () => {
         }
     }, []);
 
+    useEffect(() => {
+        UpdateUserMachineTemplates({});
+    }, [insideTemplateForm]);
+
     function loadTemplatesFromScratch() {
         LoadUsersMachineTemplates({
             onSuccess: (e) => {
-                console.log("SUCCESS");
                 setLoadingSuccess(true);
             },
             onError: (e) => {
-                console.log(e);
                 setLoadingErrors(String(e));
             },
             onEnd: () => {
@@ -126,12 +128,5 @@ const MachineEditor = () => {
         </>
     );
 };
-
-/*
-    <EmptyPage
-        header="You don't have any templates"
-        subtitle='templates are necessary to keep an inventory of your machines'
-    />
-*/
 
 export default MachineEditor;

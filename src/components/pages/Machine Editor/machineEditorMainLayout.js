@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import DeleteDialog from "../../Dialogs/DeleteDialog";
 import { DeleteMachineTemplate } from "../../../api/requests/interface/deleteMachineTemplate";
 import { UpdateUserMachineTemplates } from "../../../utils/ComplexStoreManagers/MachineTemplate/update";
+import store from "../../../store/store";
+import { setMachineTemplateToLoaded, setMachineTemplateToLoading } from "../../../store/machineTemplateSlice";
 
 /**
  * # MachineEditorMainLayout
@@ -34,9 +36,9 @@ const MachineEditorMainLayout = ({ mappedTemplates }) => {
         DeleteMachineTemplate({
             ID: selectedTemplateId,
             onSuccess: (() => { UpdateUserMachineTemplates({}); }),
-            onEnd: (() => { console.log("end"); }),
-            onStart: (() => { console.log("start"); }),
-            onError: (() => { console.log("error"); })
+            onEnd: (() => { }),
+            onStart: (() => { store.dispatch(setMachineTemplateToLoading(selectedTemplateId)); }),
+            onError: (() => { store.dispatch(setMachineTemplateToLoaded(selectedTemplateId)); })
         });
     }
 

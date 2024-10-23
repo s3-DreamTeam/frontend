@@ -32,7 +32,7 @@ const MachineTemplateComponentCard = ({
     */
     return (
         <ComponentCardFoundation
-            title={machine.Model}
+            title={machine.Manufacturer}
             state={"normal"}
             image={machine.Image}
             error={machine.errors}
@@ -42,7 +42,7 @@ const MachineTemplateComponentCard = ({
             onLongPress={onLongClick}
             footerComponents={
                 <Typography>
-                    footer
+                    {machine.Model}
                 </Typography>
             }
         />
