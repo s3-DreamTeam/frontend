@@ -1,6 +1,6 @@
-import { GetAllMachineTemplateIDs } from "../../../api/requests/interface/getAllMachineTemplateIDs";
-import { GetMachineTemplateImage } from "../../../api/requests/interface/getMachineTemplateImage";
-import { GetSurfaceMachineTemplate } from "../../../api/requests/interface/getSurfaceMachineTemplate";
+import { GetAllMachineTemplateIDs } from "../../../api/requests/interface/MachineTemplates/getAllIDs";
+import { GetMachineTemplateImage } from "../../../api/requests/interface/MachineTemplates/getImage";
+import { GetSurfaceMachineTemplate } from "../../../api/requests/interface/MachineTemplates/getSurface";
 import { resetMachineTemplateError, setMachineTemplateData, setMachineTemplateError, setMachineTemplateImageToLoaded, setMachineTemplateImageToLoading, setMachineTemplateToLoaded, setMachineTemplateToLoading } from "../../../store/machineTemplateSlice";
 import store from "../../../store/store";
 import { cleanUserMachineTemplatesIDs, getNewMachineTemplateIds } from "./IdManager";
@@ -76,7 +76,7 @@ export const UpdateUserMachineTemplates = async ({
             });
         });
     }
-    console.log("go to this point");
+
     GetAllMachineTemplateIDs({
         onSuccess: GotAllTheIds,
         onError: onError,
@@ -86,7 +86,6 @@ export const UpdateUserMachineTemplates = async ({
 };
 
 async function setEmptyToLoading(ids) {
-    console.log("setEmptyToLoading");
     const state = store.getState();
     ids.forEach(id => {
         console.warn(state.machineTemplateSlice.machineTemplates[id]);

@@ -1,7 +1,7 @@
-import { addNewMachineTemplate } from "../../../store/simulatedEndpointSlice";
-import store from "../../../store/store";
-import { WaitSimulator } from "../../../utils/waitSimulator";
-import { RandomErrorSimulator } from "../../../utils/randomErrorSimulator";
+import { addNewMachineTemplate } from "../../../../store/simulatedEndpointSlice";
+import store from "../../../../store/store";
+import { WaitSimulator } from "../../../../utils/waitSimulator";
+import { RandomErrorSimulator } from "../../../../utils/randomErrorSimulator";
 
 /**
  * # SimulatedNewMachineTemplate

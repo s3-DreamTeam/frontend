@@ -3,7 +3,7 @@ import { getMachineTemplateObject } from "../../../utils/formUtils/formBuilderTe
 import Form from "../../Forms/form";
 import { FormToPacket } from "../../../utils/formUtils/formToPacket";
 import ProcessStatusSnackBar from "../../processStatusSnackbar";
-import { NewMachineTemplate } from "../../../api/requests/interface/newMachineTemplate";
+import { NewMachineTemplate } from "../../../api/requests/interface/MachineTemplates/new";
 import SuccessDialog from "../../Dialogs/SuccessDialog";
 
 const MachineEditorForm = ({

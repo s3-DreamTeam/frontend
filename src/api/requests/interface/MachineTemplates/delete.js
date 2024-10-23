@@ -1,12 +1,11 @@
-import { PostNewMachineTemplate } from "../real/newMachineTemplate";
-import { SimulatedNewMachineTemplate } from "../simulated/newMachineTemplate";
+import { PostDeleteMachineTemplate } from "../../real/MachineTemplates/delete";
+import { SimulatedDeleteMachineTemplate } from "../../simulated/MachineTemplates/delete";
+
 
 /**
- * # NewMachineTemplate
- * Function that calls the backend, to create a new machine template in it.
- * 
- * ---
- * @param {*} machineTemplateObject Object created by the machine template form's submition.
+ * # DeleteMachineTemplate
+ * Function that calls the backend with an ID...
+ * Basically telling it to fuck this one in particular.
  * 
  * ---
  * @param {*} onSuccess
@@ -18,26 +17,24 @@ import { SimulatedNewMachineTemplate } from "../simulated/newMachineTemplate";
  * @param {*} onStart
  * Callback executed right before the request.
  */
-export const NewMachineTemplate = async ({
-
-    machineTemplateObject,
-
+export const DeleteMachineTemplate = async ({
+    ID,
     onSuccess = () => { },
     onError = () => { },
     onEnd = () => { },
     onStart = () => { }
 }) => {
     if (process.env.REACT_APP_SIMULATE_ENDPOINTS === 'yes') {
-        SimulatedNewMachineTemplate({
-            machineTemplateObject: machineTemplateObject,
+        SimulatedDeleteMachineTemplate({
+            ID: ID,
             onSuccess: onSuccess,
             onError: onError,
             onEnd: onEnd,
             onStart: onStart
         });
     } else {
-        PostNewMachineTemplate({
-            machineTemplateObject: machineTemplateObject,
+        PostDeleteMachineTemplate({
+            ID: ID,
             onSuccess: onSuccess,
             onError: onError,
             onEnd: onEnd,

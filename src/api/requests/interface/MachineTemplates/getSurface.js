@@ -1,12 +1,10 @@
-import { PostDeleteMachineTemplate } from "../real/deleteMachineTemplate";
-import { FetchAllMachineTemplateIDs } from "../real/getAllMachineTemplateIDs";
-import { SimulatedDeleteMachineTemplate } from "../simulated/deleteMachineTemplate";
-import { SimulatedGetAllMAchineTemplateIDs } from "../simulated/getAllMachineTemplateIDs";
+import { PostGetSurfaceMachineTemplate } from "../../real/MachineTemplates/getSurface";
+import { SimulatedGetSurfaceMachineTemplate } from "../../simulated/MachineTemplates/getSurface";
 
 /**
- * # DeleteMachineTemplate
- * Function that calls the backend with an ID...
- * Basically telling it to fuck this one in particular.
+ * # GetSurfaceMachineTemplate
+ * Function that calls the backend, to ask to get the bare minimum information
+ * about a specific machine template. That means... their manufacturer and their names.
  * 
  * ---
  * @param {*} onSuccess
@@ -18,7 +16,7 @@ import { SimulatedGetAllMAchineTemplateIDs } from "../simulated/getAllMachineTem
  * @param {*} onStart
  * Callback executed right before the request.
  */
-export const DeleteMachineTemplate = async ({
+export const GetSurfaceMachineTemplate = async ({
     ID,
     onSuccess = () => { },
     onError = () => { },
@@ -26,7 +24,7 @@ export const DeleteMachineTemplate = async ({
     onStart = () => { }
 }) => {
     if (process.env.REACT_APP_SIMULATE_ENDPOINTS === 'yes') {
-        SimulatedDeleteMachineTemplate({
+        SimulatedGetSurfaceMachineTemplate({
             ID: ID,
             onSuccess: onSuccess,
             onError: onError,
@@ -34,7 +32,7 @@ export const DeleteMachineTemplate = async ({
             onStart: onStart
         });
     } else {
-        PostDeleteMachineTemplate({
+        PostGetSurfaceMachineTemplate({
             ID: ID,
             onSuccess: onSuccess,
             onError: onError,

@@ -1,10 +1,12 @@
-import { PostGetSurfaceMachineTemplate } from "../real/getSurfaceMachineTemplate";
-import { SimulatedGetSurfaceMachineTemplate } from "../simulated/getSurfaceMachineTemplate";
+import { FetchAllMachineTemplateIDs } from "../../real/MachineTemplates/getAllIDs";
+import { SimulatedGetAllMAchineTemplateIDs } from "../../simulated/MachineTemplates/getAllIDs";
 
 /**
- * # GetSurfaceMachineTemplate
- * Function that calls the backend, to ask to get the bare minimum information
- * about a specific machine template. That means... their manufacturer and their names.
+ * # GetAllMachineTemplateIDs
+ * Function that calls the backend, to ask an array of all of the logged in user's
+ * machines template IDs.
+ * 
+ * Used to check saved IDs and fetch the missing ones.
  * 
  * ---
  * @param {*} onSuccess
@@ -16,24 +18,22 @@ import { SimulatedGetSurfaceMachineTemplate } from "../simulated/getSurfaceMachi
  * @param {*} onStart
  * Callback executed right before the request.
  */
-export const GetSurfaceMachineTemplate = async ({
-    ID,
+export const GetAllMachineTemplateIDs = async ({
+
     onSuccess = () => { },
     onError = () => { },
     onEnd = () => { },
     onStart = () => { }
 }) => {
     if (process.env.REACT_APP_SIMULATE_ENDPOINTS === 'yes') {
-        SimulatedGetSurfaceMachineTemplate({
-            ID: ID,
+        SimulatedGetAllMAchineTemplateIDs({
             onSuccess: onSuccess,
             onError: onError,
             onEnd: onEnd,
             onStart: onStart
         });
     } else {
-        PostGetSurfaceMachineTemplate({
-            ID: ID,
+        FetchAllMachineTemplateIDs({
             onSuccess: onSuccess,
             onError: onError,
             onEnd: onEnd,

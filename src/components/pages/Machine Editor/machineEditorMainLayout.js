@@ -3,7 +3,7 @@ import MachineTemplateComponentCard from "../../ComponentCards/machineTemplateCa
 import EmptyPage from "../../emptyPage";
 import { useEffect, useState } from "react";
 import DeleteDialog from "../../Dialogs/DeleteDialog";
-import { DeleteMachineTemplate } from "../../../api/requests/interface/deleteMachineTemplate";
+import { DeleteMachineTemplate } from "../../../api/requests/interface/MachineTemplates/delete";
 import { UpdateUserMachineTemplates } from "../../../utils/ComplexStoreManagers/MachineTemplate/update";
 import store from "../../../store/store";
 import { setMachineTemplateToLoaded, setMachineTemplateToLoading } from "../../../store/machineTemplateSlice";

@@ -1,23 +1,23 @@
-import { backendApi, BackendHeader } from "../../backend";
-import Endpoints from "../../endpoints";
+import { backendApi, BackendHeader } from "../../../backend";
+import Endpoints from "../../../endpoints";
 
 /**
- * # PostNewMachineTemplate
+ * # PostDeleteMachineTemplate
  * See interface version for details
  */
-export const PostGetSurfaceMachineTemplate = async ({
+export const PostDeleteMachineTemplate = async ({
     ID,
     onSuccess = () => { },
     onError = () => { },
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: PostGetSurfaceMachineTemplate");
+    console.log("REQ: PostDeleteMachineTemplate");
     onStart();
     try {
         const header = BackendHeader();
         const response = await backendApi.post(
-            Endpoints.GetSurfaceMachineTemplate,
+            Endpoints.MachineTemplate.Delete,
             ID,
             header
         );

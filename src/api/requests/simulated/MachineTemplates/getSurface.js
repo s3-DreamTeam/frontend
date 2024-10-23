@@ -1,6 +1,6 @@
-import store from "../../../store/store";
-import { RandomErrorSimulator } from "../../../utils/randomErrorSimulator";
-import { WaitSimulator } from "../../../utils/waitSimulator";
+import store from "../../../../store/store";
+import { RandomErrorSimulator } from "../../../../utils/randomErrorSimulator";
+import { WaitSimulator } from "../../../../utils/waitSimulator";
 
 /**
  * # SimulatedGetSurfaceMachineTemplate

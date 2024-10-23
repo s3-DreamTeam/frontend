@@ -1,7 +1,5 @@
-import { PostGetMachineTemplateImage } from "../real/getMachineTemplateImage";
-import { PostGetSurfaceMachineTemplate } from "../real/getSurfaceMachineTemplate";
-import { SimulatedGetMachineTemplateImage } from "../simulated/getMachineTemplateImage";
-import { SimulatedGetSurfaceMachineTemplate } from "../simulated/getSurfaceMachineTemplate";
+import { PostGetMachineTemplateImage } from "../../real/MachineTemplates/getImage";
+import { SimulatedGetMachineTemplateImage } from "../../simulated/MachineTemplates/getImage";
 
 /**
  * # GetMachineTemplateImage

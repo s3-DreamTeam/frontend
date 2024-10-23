@@ -1,23 +1,23 @@
-import { backendApi, BackendHeader } from "../../backend";
-import Endpoints from "../../endpoints";
+import { backendApi, BackendHeader } from "../../../backend";
+import Endpoints from "../../../endpoints";
 
 /**
- * # PostGetMachineTemplateImage
+ * # PostNewMachineTemplate
  * See interface version for details
  */
-export const PostGetMachineTemplateImage = async ({
+export const PostGetSurfaceMachineTemplate = async ({
     ID,
     onSuccess = () => { },
     onError = () => { },
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: PostGetMachineTemplateImage");
+    console.log("REQ: PostGetSurfaceMachineTemplate");
     onStart();
     try {
         const header = BackendHeader();
         const response = await backendApi.post(
-            Endpoints.GetMachineTemplateImage,
+            Endpoints.MachineTemplate.Get.Surface,
             ID,
             header
         );

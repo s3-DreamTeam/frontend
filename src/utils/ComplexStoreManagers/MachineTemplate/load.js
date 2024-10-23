@@ -1,6 +1,6 @@
-import { GetAllMachineTemplateIDs } from "../../../api/requests/interface/getAllMachineTemplateIDs";
-import { GetMachineTemplateImage } from "../../../api/requests/interface/getMachineTemplateImage";
-import { GetSurfaceMachineTemplate } from "../../../api/requests/interface/getSurfaceMachineTemplate";
+import { GetAllMachineTemplateIDs } from "../../../api/requests/interface/MachineTemplates/getAllIDs";
+import { GetMachineTemplateImage } from "../../../api/requests/interface/MachineTemplates/getImage";
+import { GetSurfaceMachineTemplate } from "../../../api/requests/interface/MachineTemplates/getSurface";
 import { machineTemplatesLoaded } from "../../../store/initialDataLoadStatusSlice";
 import { resetMachineTemplateError, setMachineTemplateData, setMachineTemplateError, setMachineTemplateImageToLoaded, setMachineTemplateImageToLoading, setMachineTemplateToLoaded, setMachineTemplateToLoading } from "../../../store/machineTemplateSlice";
 import store from "../../../store/store";
@@ -120,7 +120,7 @@ export const LoadUsersMachineTemplates = async ({
             });
         });
 
-        if (ids.length == 0) {
+        if (ids.length === 0) {
             // - TELLS THE APP THAT MACHINES TEMPLATE WERE LOADED AT MINIMUM ONCE - //
             store.dispatch(machineTemplatesLoaded());
             processEnded();

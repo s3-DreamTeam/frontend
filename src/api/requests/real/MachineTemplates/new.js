@@ -1,5 +1,5 @@
-import { backendApi, BackendHeader } from "../../backend";
-import Endpoints from "../../endpoints";
+import { backendApi, BackendHeader } from "../../../backend";
+import Endpoints from "../../../endpoints";
 
 /**
  * # PostNewMachineTemplate
@@ -20,7 +20,7 @@ export const PostNewMachineTemplate = async ({
         //await sleep(5000);
         const header = BackendHeader();
         await backendApi.post(
-            Endpoints.CreateNewMachineTemplate,
+            Endpoints.MachineTemplate.New,
             {
                 machineTemplateObject
             },

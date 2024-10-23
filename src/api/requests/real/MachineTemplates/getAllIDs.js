@@ -1,5 +1,5 @@
-import { backendApi, BackendHeader } from "../../backend";
-import Endpoints from "../../endpoints";
+import { backendApi, BackendHeader } from "../../../backend";
+import Endpoints from "../../../endpoints";
 
 /**
  * # FetchAllMachineTemplateIDs
@@ -15,7 +15,7 @@ export const FetchAllMachineTemplateIDs = async ({
     onStart();
     try {
         const header = BackendHeader();
-        const response = await backendApi.get(Endpoints.GetAllMachineTemplateID);
+        const response = await backendApi.get(Endpoints.MachineTemplate.Get.AllID);
         console.log(response);
         onSuccess(response.data);
     } catch (err) {

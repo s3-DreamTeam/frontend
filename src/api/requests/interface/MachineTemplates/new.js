@@ -1,12 +1,12 @@
-import { FetchAllMachineTemplateIDs } from "../real/getAllMachineTemplateIDs";
-import { SimulatedGetAllMAchineTemplateIDs } from "../simulated/getAllMachineTemplateIDs";
+import { PostNewMachineTemplate } from "../../real/MachineTemplates/new";
+import { SimulatedNewMachineTemplate } from "../../simulated/MachineTemplates/new";
 
 /**
- * # GetAllMachineTemplateIDs
- * Function that calls the backend, to ask an array of all of the logged in user's
- * machines template IDs.
+ * # NewMachineTemplate
+ * Function that calls the backend, to create a new machine template in it.
  * 
- * Used to check saved IDs and fetch the missing ones.
+ * ---
+ * @param {*} machineTemplateObject Object created by the machine template form's submition.
  * 
  * ---
  * @param {*} onSuccess
@@ -18,7 +18,9 @@ import { SimulatedGetAllMAchineTemplateIDs } from "../simulated/getAllMachineTem
  * @param {*} onStart
  * Callback executed right before the request.
  */
-export const GetAllMachineTemplateIDs = async ({
+export const NewMachineTemplate = async ({
+
+    machineTemplateObject,
 
     onSuccess = () => { },
     onError = () => { },
@@ -26,14 +28,16 @@ export const GetAllMachineTemplateIDs = async ({
     onStart = () => { }
 }) => {
     if (process.env.REACT_APP_SIMULATE_ENDPOINTS === 'yes') {
-        SimulatedGetAllMAchineTemplateIDs({
+        SimulatedNewMachineTemplate({
+            machineTemplateObject: machineTemplateObject,
             onSuccess: onSuccess,
             onError: onError,
             onEnd: onEnd,
             onStart: onStart
         });
     } else {
-        FetchAllMachineTemplateIDs({
+        PostNewMachineTemplate({
+            machineTemplateObject: machineTemplateObject,
             onSuccess: onSuccess,
             onError: onError,
             onEnd: onEnd,
