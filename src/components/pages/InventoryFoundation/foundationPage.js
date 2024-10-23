@@ -58,7 +58,7 @@ const InventoryFoundationPage = ({
 
     useEffect(() => {
         if (!alreadyLoadedInventorySelector) {
-            loadTemplatesFromScratch();
+            loadFromScratch();
         } else {
             // Quiet loading
             UpdateInventory({});
@@ -130,7 +130,7 @@ const InventoryFoundationPage = ({
                             onCancel={HandleCancelForm}
                             APICreateNewObject={APICreateNewObject}
                             formObjectGetter={addNewFormObjectGetter}
-                            successDialogMessage={addNewSuccessDialogTitle}
+                            successDialogMessage={addNewSuccessDialogMessage}
                             successDialogTitle={addNewSuccessDialogTitle}
                         />
                     }

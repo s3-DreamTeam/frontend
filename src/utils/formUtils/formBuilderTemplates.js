@@ -1,6 +1,6 @@
 import { CheckboxFieldBuilder, DropdownFieldBuilder, ImageFieldBuilder, NumberFieldBuilder, TextBoxFieldBuilder } from "./formsObjects";
 
-export function getMachineTemplateObject() {
+export function machineTemplateFormBuilder() {
     return ({
         name: "Machine template form",
         sections: [

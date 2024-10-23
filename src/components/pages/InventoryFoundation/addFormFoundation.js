@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { FormToPacket } from "../../../utils/formUtils/formToPacket";
-import { Form } from "react-router-dom";
 import ProcessStatusSnackBar from "../../processStatusSnackbar";
 import SuccessDialog from "../../Dialogs/SuccessDialog";
+import Form from "../../Forms/form";
 
 /**
  * # AddFormFoundation
@@ -20,7 +20,7 @@ const AddFormFoundation = ({
     successDialogTitle = "I forgor the title",
     successDialogMessage = "Oops, this is a generic message!"
 }) => {
-    const [visualFormData, setVisualFormData] = useState(formObjectGetter);
+    const [visualFormData, setVisualFormData] = useState(formObjectGetter());
     const [sendFormLoading, setSendFormLoading] = useState(false);
     const [sendFormError, setSendFormError] = useState(null);
     const [showDialog, setShowDialog] = useState(false);
@@ -30,14 +30,12 @@ const AddFormFoundation = ({
     }
 
     function formWasReset() {
-        const newForm = formObjectGetter;
+        const newForm = formObjectGetter();
         setVisualFormData(newForm);
     }
 
     function wantToSubmitForm() {
         const packet = FormToPacket(visualFormData);
-        console.log(packet);
-
         SendForm(packet);
     }
 
@@ -86,7 +84,6 @@ const AddFormFoundation = ({
             }
         });
     }
-
     return (
         <>
             <Form

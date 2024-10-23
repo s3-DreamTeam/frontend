@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getMachineTemplateObject } from "../../../utils/formUtils/formBuilderTemplates";
+import { machineTemplateFormBuilder } from "../../../utils/formUtils/formBuilderTemplates";
 import Form from "../../Forms/form";
 import { FormToPacket } from "../../../utils/formUtils/formToPacket";
 import ProcessStatusSnackBar from "../../processStatusSnackbar";
@@ -9,7 +9,7 @@ import SuccessDialog from "../../Dialogs/SuccessDialog";
 const MachineEditorForm = ({
     onCancel = () => { }
 }) => {
-    const [visualFormData, setVisualFormData] = useState(getMachineTemplateObject());
+    const [visualFormData, setVisualFormData] = useState(machineTemplateFormBuilder());
     const [sendFormLoading, setSendFormLoading] = useState(false);
     const [sendFormError, setSendFormError] = useState(null);
     const [showDialog, setShowDialog] = useState(false);
@@ -19,7 +19,7 @@ const MachineEditorForm = ({
     }
 
     function formWasReset() {
-        const newForm = getMachineTemplateObject();
+        const newForm = machineTemplateFormBuilder();
         setVisualFormData(newForm);
     }
 
