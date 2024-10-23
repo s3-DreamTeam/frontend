@@ -4,6 +4,7 @@ import EmptyPage from "../../emptyPage";
 import { useEffect, useState } from "react";
 import DeleteDialog from "../../Dialogs/DeleteDialog";
 import { DeleteMachineTemplate } from "../../../api/requests/interface/deleteMachineTemplate";
+import { UpdateUserMachineTemplates } from "../../../utils/ComplexStoreManagers/MachineTemplate/update";
 
 /**
  * # MachineEditorMainLayout
@@ -32,7 +33,7 @@ const MachineEditorMainLayout = ({ mappedTemplates }) => {
     function deleteSelected() {
         DeleteMachineTemplate({
             ID: selectedTemplateId,
-            onSuccess: (() => { console.log("success"); }),
+            onSuccess: (() => { UpdateUserMachineTemplates({}); }),
             onEnd: (() => { console.log("end"); }),
             onStart: (() => { console.log("start"); }),
             onError: (() => { console.log("error"); })

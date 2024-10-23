@@ -1,9 +1,9 @@
 import { addNewMachineTemplateID, removeMachineTemplateByID } from "../../../store/machineTemplateSlice";
 import store from "../../../store/store";
 
-export const cleanUserMachineTemplatesIDs = (receivednewListOfTemplateIds) => {
+export const cleanUserMachineTemplatesIDs = (receivedListOfTemplateIds) => {
     const currentIDList = new Set(GetAllIDsInStore());
-    const newListOfTemplateIds = new Set(receivednewListOfTemplateIds);
+    const newListOfTemplateIds = new Set(receivedListOfTemplateIds);
 
     console.log(
         "current Ids ", currentIDList,
@@ -27,6 +27,21 @@ export const cleanUserMachineTemplatesIDs = (receivednewListOfTemplateIds) => {
             store.dispatch(removeMachineTemplateByID(currentId));
         }
     });
+};
+
+export const getNewMachineTemplateIds = (receivedListOfTemplateIds) => {
+    const currentIDList = new Set(GetAllIDsInStore());
+    const newListOfTemplateIds = new Set(receivedListOfTemplateIds);
+
+    const result = [];
+    // Adding the new IDs to the store
+    newListOfTemplateIds.forEach(newId => {
+        if (!currentIDList.has(newId)) {
+            result.push(newId);
+        }
+    });
+    console.log("well, the function says the new ids are: ", result);
+    return result;
 };
 
 function GetAllIDsInStore() {

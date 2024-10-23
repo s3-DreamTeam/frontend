@@ -7,6 +7,7 @@ import { LoadUsersMachineTemplates } from "../../../utils/ComplexStoreManagers/M
 import ProcessStatusSnackBar from "../../processStatusSnackbar";
 import { useSelector } from "react-redux";
 import InitialLoadingPage from "../InitialLoadingPage";
+import { UpdateUserMachineTemplates } from "../../../utils/ComplexStoreManagers/MachineTemplate/update";
 
 
 const MachineEditor = () => {
@@ -17,8 +18,6 @@ const MachineEditor = () => {
     const loadedUserTemplatesBefore = useSelector((state) => state.initialDataLoadStatus.machineTemplatesLoaded);
     const templates = useSelector((state) => state.machineTemplateSlice.machineTemplates);
     const hasTemplates = Object.keys(templates).length > 0;
-
-
 
     HandleUserLoggedInStatus();
 
@@ -33,6 +32,9 @@ const MachineEditor = () => {
     useEffect(() => {
         if (!loadedUserTemplatesBefore) {
             loadTemplatesFromScratch();
+        } else {
+            // Quiet loading
+            UpdateUserMachineTemplates({});
         }
     }, []);
 
