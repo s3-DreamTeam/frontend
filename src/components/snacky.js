@@ -31,7 +31,6 @@ const Snacky = () => {
                 setUpdate(true);
             });
         } catch (e) {
-            console.log("error");
             dispatch(setKeycloakError(e.message));
         }
     }, [updateAfterLogging]);

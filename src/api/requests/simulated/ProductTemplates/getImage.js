@@ -34,7 +34,6 @@ const getTemplateImage = (state, id) => {
     //console.log("getSurfaceMachineTemplate");
     //console.log(state.simulatedEndpointSlice.object.machineTemplates);
     const completeProductTemplate = state.simulatedEndpointSlice.object.productTemplates.find(template => template.id === id) || null; // Return the template with matching ID or null
-    console.log(completeProductTemplate);
     if (completeProductTemplate === null) {
         return null;
     }
