@@ -20,6 +20,18 @@ const Endpoints = {
         New: 'MachineTemplate/New',         // Here's a JSON, make a new object with it.
         Modify: 'MachineTemplate/Modify',      // Here's a JSON and an ID, overwrite the template with this.
         Delete: 'MachineTemplate/Delete',      // Delete the template with this ID.
+    },
+    //- Product templates - //
+    ProductTemplate: {
+        Get: {
+            Image: 'ProductTemplate/Get/Image',   // Here's an ID, give me the image for it.
+            Surface: 'ProductTemplate/Get/Surface', // Here's an ID, give me Manufacturer and Model for it.
+            Full: 'ProductTemplate/Get/Full',    // Here's an ID, Give me the entire product template
+            AllID: 'ProductTemplate/Get/AllID',   // Give me an array of all my product templates.
+        },
+        New: 'ProductTemplate/New',         // Here's a JSON, make a new object with it.
+        Modify: 'ProductTemplate/Modify',      // Here's a JSON and an ID, overwrite the template with this.
+        Delete: 'ProductTemplate/Delete',      // Delete the template with this ID.
     }
 };
 

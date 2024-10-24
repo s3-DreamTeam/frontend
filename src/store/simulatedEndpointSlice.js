@@ -13,7 +13,7 @@ export const simulatedEndpointSlice = createSlice({
     reducers: {
         // - Machine templates - //
         addNewMachineTemplate: (state, action) => {
-            let machineTemplate = action.payload;
+            let template = action.payload;
             let biggestId = Math.max(...state.object.machineTemplates.map(obj => obj.id), 0);
 
             if (biggestId === null || biggestId === undefined) {
@@ -22,31 +22,41 @@ export const simulatedEndpointSlice = createSlice({
 
             const newID = biggestId + 1;
 
-            machineTemplate.id = newID;
-            state.object.machineTemplates.push(machineTemplate);
+            template.id = newID;
+            state.object.machineTemplates.push(template);
         },
         simRemoveMachineTemplate: (state, action) => {
             let ID = Number(action.payload);
-            console.log(state, ID);
+            //console.log(state, ID);
 
             state.object.machineTemplates = state.object.machineTemplates.filter(item => item.id !== ID);
-            console.log(state, ID);
+            //console.log(state, ID);
         },
-        getEntireMachineTemplate: (state, action) => {
-            const id = action.payload;
-            return state.object.machineTemplates.find(template => template.id === id) || null; // Return the template with matching ID or null
-        },
-        getMachineTemplateImage: (state, action) => {
-            const id = action.payload;
-            const completeMachineTemplate = state.object.machineTemplates.find(template => template.id === id) || null; // Return the template with matching ID or null
 
-            return {
-                "Image": completeMachineTemplate.Image
-            };
+        // - Product templates - //
+        simAddNewProductTemplate: (state, action) => {
+            let template = action.payload;
+            let biggestId = Math.max(...state.object.productTemplates.map(obj => obj.id), 0);
+
+            if (biggestId === null || biggestId === undefined) {
+                biggestId = 0;
+            }
+
+            const newID = biggestId + 1;
+
+            template.id = newID;
+            state.object.productTemplates.push(template);
+        },
+        simRemoveProductTemplate: (state, action) => {
+            let ID = Number(action.payload);
+            //console.log(state, ID);
+
+            state.object.productTemplates = state.object.productTemplates.filter(item => item.id !== ID);
+            //console.log(state, ID);
         },
     }
 });
 
-export const { addNewMachineTemplate, getEntireMachineTemplate, getMachineTemplateImage, simRemoveMachineTemplate } = simulatedEndpointSlice.actions;
+export const { addNewMachineTemplate, simRemoveMachineTemplate, simAddNewProductTemplate, simRemoveProductTemplate } = simulatedEndpointSlice.actions;
 
 export const simulatedEndpointReducers = simulatedEndpointSlice.reducer;
