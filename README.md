@@ -1,2 +1,2 @@
 # frontend
-devant-fin
+devant-finit
