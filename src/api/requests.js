@@ -31,7 +31,7 @@ export const FetchAllUsers = async ({
     onStart();
     try {
         const header = BackendHeader();
-        const response = await backendApi.get(Endpoints.GetAllUsers);
+        const response = await backendApi.get(Endpoints.GetAllUsers, header);
         console.log(response);
         onSuccess(response.data);
         setAllFetchedUsers(response.data);
@@ -91,7 +91,7 @@ export const PostNewUser = async ({
             solde: balance,
             statusId: status
         },
-            //header
+            header
         );
         onSuccess();
     } catch (err) {
