@@ -91,7 +91,7 @@ export const PostNewUser = async ({
             solde: balance,
             statusId: status
         },
-            header
+            //header
         );
         onSuccess();
     } catch (err) {
