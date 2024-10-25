@@ -20,9 +20,9 @@ export default function GetMUIAppTheme() {
       mode: prefersDarkMode ? 'dark' : 'light',
     },
     typography: {
-      fontFamily: 'M PLUS Rounded 1c',
+      fontFamily: 'Nunito',
       allVariants: {
-        fontFamily: 'M PLUS Rounded 1c',
+        fontFamily: 'Nunito',
       },
     },
     components: {

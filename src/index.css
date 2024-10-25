@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: 'M PLUS Rounded 1c', 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Nunito', 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -8,10 +8,10 @@ body {
 }
 
 button {
-  font-family: 'M PLUS Rounded 1c'
+  font-family: 'Nunito'
 }
 
 code {
-  font-family: 'M PLUS Rounded 1c', source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: 'Nunito', source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
