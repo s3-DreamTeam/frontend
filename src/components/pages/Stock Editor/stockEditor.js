@@ -17,7 +17,7 @@ const StockEditor = () => {
 
     return (
         <InventoryFoundationPage
-            MainPageTitle="Product Editor"
+            MainPageTitle="Stock Editor"
             emptyInventoryTitle="You don't have any templates"
             emptyInventoryMessage="product templates are necessary to create inventories for your machines"
             loadingSnackbarMessage="Loading product templates..."

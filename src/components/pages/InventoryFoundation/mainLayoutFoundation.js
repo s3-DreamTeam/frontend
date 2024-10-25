@@ -3,6 +3,7 @@ import EmptyPage from "../../emptyPage";
 import { useEffect, useState } from "react";
 import DeleteDialog from "../../Dialogs/DeleteDialog";
 import store from "../../../store/store";
+import ProcessStatusSnackBar from "../../processStatusSnackbar";
 
 /**
  * # MainLayoutFoundation
@@ -39,6 +40,10 @@ const MainLayoutFoundation = ({
     const [selectedName, setselectedName] = useState("undefined");
     const [selectedId, setSelectedId] = useState(null);
 
+    const [deleteLoading, setDeleteLoading] = useState(false);
+    const [deleteSuccess, setDeleteSuccess] = useState(false);
+    const [deleteErrors, setDeleteErrors] = useState(null);
+
     useEffect(() => {
     }, [mappedObjects]);
 
@@ -52,12 +57,49 @@ const MainLayoutFoundation = ({
     function deleteSelected() {
         APIDeleteObject({
             ID: selectedId,
-            onSuccess: (() => { UpdateInventory({}); }),
-            onEnd: (() => { }),
-            onStart: (() => { store.dispatch(setObjectToLoadingReducer(selectedId)); }),
-            onError: (() => { store.dispatch(setObjectToLoadedReducer(selectedId)); })
+            onSuccess: (() => {
+                UpdateInventory({});
+                setDeleteSuccess(true);
+            }),
+            onEnd: (() => {
+                setDeleteLoading(false);
+            }),
+            onStart: (() => {
+                store.dispatch(setObjectToLoadingReducer(selectedId));
+                setDeleteLoading(true);
+                setDeleteErrors(null);
+                setDeleteSuccess(false);
+            }),
+            onError: ((e) => {
+                store.dispatch(setObjectToLoadedReducer(selectedId));
+                setDeleteErrors(String(e));
+            })
         });
     }
+
+    const DeleteProcessSnackbarProps = {
+        success: {
+            message: "Deleted!",
+            canClickAway: true,
+            hasCloseButton: true,
+            canRetry: false,
+            autoHideDuration: 2000
+        },
+        error: {
+            message: deleteErrors,
+            canClickAway: false,
+            hasCloseButton: true,
+            canRetry: false,
+            autoHideDuration: 2000
+        },
+        loading: {
+            message: deleteLoading,
+            canClickAway: false,
+            hasCloseButton: false,
+            canRetry: false,
+            autoHideDuration: null
+        },
+    };
 
     return (
         <>
@@ -91,6 +133,10 @@ const MainLayoutFoundation = ({
                 title={selectedName}
                 message={deleteDialogMessage}
                 open={showDialog}
+            />
+            <ProcessStatusSnackBar
+                status={deleteLoading ? 'loading' : (deleteErrors != null ? 'error' : (deleteSuccess ? 'success' : 'hidden'))}
+                attributes={DeleteProcessSnackbarProps}
             />
         </>
     );

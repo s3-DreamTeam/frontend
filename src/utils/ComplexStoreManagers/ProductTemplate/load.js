@@ -2,7 +2,7 @@ import { GetAllProductTemplateIDs } from "../../../api/requests/interface/Produc
 import { GetProductTemplateImage } from "../../../api/requests/interface/ProductTemplates/getImage";
 import { GetSurfaceProductTemplate } from "../../../api/requests/interface/ProductTemplates/getSurface";
 import { productTemplatesLoaded } from "../../../store/initialDataLoadStatusSlice";
-import { addNewProductTemplateID, removeProductTemplateByID, resetProductTemplateError, setProductTemplateData, setProductTemplateError, setProductTemplateImageToLoaded, setProductTemplateImageToLoading } from "../../../store/productTemplateSlice";
+import { addNewProductTemplateID, removeProductTemplateByID, resetProductTemplateError, setProductTemplateData, setProductTemplateError, setProductTemplateImageToLoaded, setProductTemplateImageToLoading, setProductTemplateToLoaded, setProductTemplateToLoading } from "../../../store/productTemplateSlice";
 import store from "../../../store/store";
 import { UserInventoryLoader } from "../Generic/load";
 
@@ -41,8 +41,8 @@ export const LoadUsersProductTemplates = async ({
         storeInventoryGetter: GetInventoryFromReduxStore,
         addNewToStoreReducer: addNewProductTemplateID,
         removeFromStoreReducer: removeProductTemplateByID,
-        setToLoadingReducer: setProductTemplateImageToLoading,
-        setToLoadedReducer: setProductTemplateImageToLoaded,
+        setToLoadingReducer: setProductTemplateToLoading,
+        setToLoadedReducer: setProductTemplateToLoaded,
         setImageToLoadingReducer: setProductTemplateImageToLoading,
         setImageToLoadedReducer: setProductTemplateImageToLoaded,
         resetErrorsReducer: resetProductTemplateError,
