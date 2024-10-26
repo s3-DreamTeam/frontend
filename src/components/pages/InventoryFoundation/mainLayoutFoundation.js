@@ -93,7 +93,7 @@ const MainLayoutFoundation = ({
             autoHideDuration: 2000
         },
         loading: {
-            message: "deleting " + selectedName,
+            message: "Deleting " + selectedName,
             canClickAway: false,
             hasCloseButton: false,
             canRetry: false,

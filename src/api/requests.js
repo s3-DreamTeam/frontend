@@ -83,7 +83,7 @@ export const PostNewUser = async ({
     onStart();
     try {
         const header = BackendHeader();
-        await backendApi.post(Endpoints.AddNewUser + "/bruh", {
+        await backendApi.put(Endpoints.AddNewUser + "/bruh", {
             email: email,
             nom: lastName,
             prenom: name,
