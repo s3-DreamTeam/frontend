@@ -1,5 +1,6 @@
 import { RealGetProductTemplateImage } from "../../real/ProductTemplates/getImage";
 import { SimulatedGetProductTemplateImage } from "../../simulated/ProductTemplates/getImage";
+import { isSimulated } from "../isSimulated";
 
 /**
  * # GetProductTemplateImage
@@ -28,7 +29,7 @@ export const GetProductTemplateImage = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    if (process.env.REACT_APP_SIMULATE_ENDPOINTS === 'yes') {
+    if (isSimulated()) {
         SimulatedGetProductTemplateImage({
             ID: ID,
             onSuccess: onSuccess,

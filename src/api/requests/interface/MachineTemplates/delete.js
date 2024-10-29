@@ -1,5 +1,6 @@
 import { PostDeleteMachineTemplate } from "../../real/MachineTemplates/delete";
 import { SimulatedDeleteMachineTemplate } from "../../simulated/MachineTemplates/delete";
+import { isSimulated } from "../isSimulated";
 
 
 /**
@@ -24,7 +25,7 @@ export const DeleteMachineTemplate = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    if (process.env.REACT_APP_SIMULATE_ENDPOINTS === 'yes') {
+    if (isSimulated()) {
         SimulatedDeleteMachineTemplate({
             ID: ID,
             onSuccess: onSuccess,

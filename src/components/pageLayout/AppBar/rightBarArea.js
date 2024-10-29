@@ -1,8 +1,18 @@
-import { Stack } from '@mui/material';
+import { Stack, Switch } from '@mui/material';
 import ProfileButton from './profileButton';
 import MoreButton from './moreButton';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSimulated } from '../../../store/simulatedEndpointSlice';
 
 const RightBarArea = () => {
+    const isSimulated = useSelector((state) => state.simulatedEndpointSlice.simulated);
+    const dispatch = useDispatch();
+
+    function switchChanged(event) {
+        console.log(event);
+        dispatch(setSimulated(event.target.checked));
+    }
+
     return (
         <Stack
             direction='row'
@@ -12,6 +22,11 @@ const RightBarArea = () => {
         >
             <ProfileButton shown={true} />
             <MoreButton shown={true} />
+            <Switch
+                checked={isSimulated}
+                onChange={switchChanged}
+                inputProps={{ 'aria-label': 'controlled' }}
+            />
         </Stack>
     );
 };

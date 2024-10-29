@@ -1,5 +1,6 @@
 import { RealGetSurfaceProductTemplate } from "../../real/ProductTemplates/getSurface";
 import { SimulatedGetSurfaceProductTemplate } from "../../simulated/ProductTemplates/getSurface";
+import { isSimulated } from "../isSimulated";
 
 /**
  * # GetSurfaceProductTemplate
@@ -23,7 +24,7 @@ export const GetSurfaceProductTemplate = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    if (process.env.REACT_APP_SIMULATE_ENDPOINTS === 'yes') {
+    if (isSimulated()) {
         SimulatedGetSurfaceProductTemplate({
             ID: ID,
             onSuccess: onSuccess,

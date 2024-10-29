@@ -7,10 +7,16 @@ export const simulatedEndpointSlice = createSlice({
             machineTemplates: [],
             productTemplates: [],
             machineInventory: [],
-            productInventory: []
+            productInventory: [],
         },
+        simulated: false
     },
     reducers: {
+        setSimulated: (state, action) => {
+            let wantedState = action.payload;
+            state.simulated = wantedState;
+        },
+
         // - Machine templates - //
         addNewMachineTemplate: (state, action) => {
             let template = action.payload;
@@ -57,6 +63,6 @@ export const simulatedEndpointSlice = createSlice({
     }
 });
 
-export const { addNewMachineTemplate, simRemoveMachineTemplate, simAddNewProductTemplate, simRemoveProductTemplate } = simulatedEndpointSlice.actions;
+export const { setSimulated, addNewMachineTemplate, simRemoveMachineTemplate, simAddNewProductTemplate, simRemoveProductTemplate } = simulatedEndpointSlice.actions;
 
 export const simulatedEndpointReducers = simulatedEndpointSlice.reducer;

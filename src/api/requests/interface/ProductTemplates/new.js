@@ -1,5 +1,6 @@
 import { RealNewProductTemplate } from "../../real/ProductTemplates/new";
 import { SimulatedNewProductTemplate } from "../../simulated/ProductTemplates/new";
+import { isSimulated } from "../isSimulated";
 
 /**
  * # NewProductTemplate
@@ -27,7 +28,7 @@ export const NewProductTemplate = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    if (process.env.REACT_APP_SIMULATE_ENDPOINTS === 'yes') {
+    if (isSimulated()) {
         SimulatedNewProductTemplate({
             packet: packet,
             onSuccess: onSuccess,

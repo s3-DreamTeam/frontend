@@ -1,5 +1,6 @@
 import { RealDeleteProductTemplate } from "../../real/ProductTemplates/delete";
 import { SimulatedDeleteProductTemplate } from "../../simulated/ProductTemplates/delete";
+import { isSimulated } from "../isSimulated";
 
 
 /**
@@ -24,7 +25,7 @@ export const DeleteProductTemplate = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    if (process.env.REACT_APP_SIMULATE_ENDPOINTS === 'yes') {
+    if (isSimulated()) {
         SimulatedDeleteProductTemplate({
             ID: ID,
             onSuccess: onSuccess,

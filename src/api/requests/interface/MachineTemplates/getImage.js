@@ -1,5 +1,6 @@
 import { PostGetMachineTemplateImage } from "../../real/MachineTemplates/getImage";
 import { SimulatedGetMachineTemplateImage } from "../../simulated/MachineTemplates/getImage";
+import { isSimulated } from "../isSimulated";
 
 /**
  * # GetMachineTemplateImage
@@ -28,7 +29,7 @@ export const GetMachineTemplateImage = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    if (process.env.REACT_APP_SIMULATE_ENDPOINTS === 'yes') {
+    if (isSimulated()) {
         SimulatedGetMachineTemplateImage({
             ID: ID,
             onSuccess: onSuccess,

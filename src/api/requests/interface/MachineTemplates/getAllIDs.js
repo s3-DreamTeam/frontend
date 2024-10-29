@@ -1,5 +1,6 @@
 import { FetchAllMachineTemplateIDs } from "../../real/MachineTemplates/getAllIDs";
 import { SimulatedGetAllMAchineTemplateIDs } from "../../simulated/MachineTemplates/getAllIDs";
+import { isSimulated } from "../isSimulated";
 
 /**
  * # GetAllMachineTemplateIDs
@@ -25,7 +26,7 @@ export const GetAllMachineTemplateIDs = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    if (process.env.REACT_APP_SIMULATE_ENDPOINTS === 'yes') {
+    if (isSimulated()) {
         SimulatedGetAllMAchineTemplateIDs({
             onSuccess: onSuccess,
             onError: onError,

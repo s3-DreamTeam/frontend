@@ -1,5 +1,6 @@
 import { PostNewMachineTemplate } from "../../real/MachineTemplates/new";
 import { SimulatedNewMachineTemplate } from "../../simulated/MachineTemplates/new";
+import { isSimulated } from "../isSimulated";
 
 /**
  * # NewMachineTemplate
@@ -27,7 +28,7 @@ export const NewMachineTemplate = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    if (process.env.REACT_APP_SIMULATE_ENDPOINTS === 'yes') {
+    if (isSimulated()) {
         SimulatedNewMachineTemplate({
             machineTemplateObject: packet,
             onSuccess: onSuccess,

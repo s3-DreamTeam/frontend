@@ -1,5 +1,6 @@
 import { RealGetAllProductTemplateIDs } from "../../real/ProductTemplates/getAllIDs";
 import { SimulatedGetAllProductTemplateIDs } from "../../simulated/ProductTemplates/getAllIDs";
+import { isSimulated } from "../isSimulated";
 
 /**
  * # GetAllProductTemplateIDs
@@ -25,7 +26,7 @@ export const GetAllProductTemplateIDs = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    if (process.env.REACT_APP_SIMULATE_ENDPOINTS === 'yes') {
+    if (isSimulated()) {
         SimulatedGetAllProductTemplateIDs({
             onSuccess: onSuccess,
             onError: onError,

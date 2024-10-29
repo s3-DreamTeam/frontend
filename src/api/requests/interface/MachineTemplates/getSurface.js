@@ -1,5 +1,6 @@
 import { PostGetSurfaceMachineTemplate } from "../../real/MachineTemplates/getSurface";
 import { SimulatedGetSurfaceMachineTemplate } from "../../simulated/MachineTemplates/getSurface";
+import { isSimulated } from "../isSimulated";
 
 /**
  * # GetSurfaceMachineTemplate
@@ -23,7 +24,7 @@ export const GetSurfaceMachineTemplate = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    if (process.env.REACT_APP_SIMULATE_ENDPOINTS === 'yes') {
+    if (isSimulated()) {
         SimulatedGetSurfaceMachineTemplate({
             ID: ID,
             onSuccess: onSuccess,
