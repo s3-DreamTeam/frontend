@@ -21,6 +21,18 @@ const Endpoints = {
         Modify: 'MachineTemplate/Modify',      // Here's a JSON and an ID, overwrite the template with this.
         Delete: 'MachineTemplate/Delete',      // Delete the template with this ID.
     },
+    //- Machine Inventory - //
+    MachineInventory: {
+        Get: {
+            Image: 'MachineInventory/Get/Image',    // Here's an ID, give me the image for it.
+            Surface: 'MachineInventory/Get/Surface',// Here's an ID, give me Manufacturer, Model & location for it.
+            Full: 'MachineInventory/Get/Full',      // Here's an ID, Give me the entire machine's object data
+            AllID: 'MachineInventory/Get/AllID',    // Give me an array of all my machines in my inventory.
+        },
+        New: 'MachineInventory/New',            // Here's a JSON, make a new object with it.
+        //Modify: 'MachineInventory/Modify',      // Here's a JSON and an ID, overwrite the machine with this.
+        Delete: 'MachineInventory/Delete',      // Delete the machine in my inventory with this ID.
+    },
     //- Product templates - //
     ProductTemplate: {
         Get: {
@@ -32,6 +44,18 @@ const Endpoints = {
         New: 'ProductTemplate/New',         // Here's a JSON, make a new object with it.
         Modify: 'ProductTemplate/Modify',      // Here's a JSON and an ID, overwrite the template with this.
         Delete: 'ProductTemplate/Delete',      // Delete the template with this ID.
+    },
+    //- Product inventory - //
+    ProductInventory: {
+        Get: {
+            Image: 'ProductInventory/Get/Image',    // Here's an ID, give me the image for it.
+            Surface: 'ProductInventory/Get/Surface',// Here's an ID, give me Manufacturer, Model, and how much I got.
+            Full: 'ProductInventory/Get/Full',      // Here's an ID, Give me the entire product object
+            AllID: 'ProductInventory/Get/AllID',    // Give me an array of all my products in my inventory.
+        },
+        New: 'ProductInventory/New',            // Here's a JSON, make a new object with it.
+        //Modify: 'ProductInventory/Modify',      // Here's a JSON and an ID, overwrite the product with this.
+        Delete: 'ProductInventory/Delete',      // Delete the product with this ID.
     }
 };
 

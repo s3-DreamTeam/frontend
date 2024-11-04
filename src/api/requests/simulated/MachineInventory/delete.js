@@ -1,29 +1,29 @@
-import { simRemoveMachineTemplate } from "../../../../store/simulatedEndpointSlice";
+import { simRemoveMachineFromInventory } from "../../../../store/simulatedEndpointSlice";
 import store from "../../../../store/store";
 import { RandomErrorSimulator } from "../../../../utils/randomErrorSimulator";
 import { WaitSimulator } from "../../../../utils/waitSimulator";
 
 /**
- * # SimulatedDeleteMachineTemplate
+ * # SimulatedDeleteMachineInventory
  * See Interface version for details.
  */
-export const SimulatedDeleteMachineTemplate = async ({
+export const SimulatedDeleteMachineInventory = async ({
     ID,
     onSuccess = () => { },
     onError = () => { },
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: SIM_DeleteMachineTemplate: ", ID);
+    console.log("REQ: SIM_DeleteMachineInventory: ", ID);
 
     onStart();
     try {
         await WaitSimulator();
         RandomErrorSimulator();
-        store.dispatch(simRemoveMachineTemplate(ID));
+        store.dispatch(simRemoveMachineFromInventory(ID));
         onSuccess(null);
     } catch (err) {
-        console.warn("SIM_DeleteMachineTemplate failed");
+        console.warn("SIM_DeleteMachineInventory failed");
         onError(err);
     } finally {
         onEnd();

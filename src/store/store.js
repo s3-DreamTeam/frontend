@@ -7,6 +7,8 @@ import { simulatedEndpointReducers } from "./simulatedEndpointSlice";
 import { machineTemplateReducers } from "./machineTemplateSlice";
 import { initialDataLoadStatusReducers } from "./initialDataLoadStatusSlice";
 import { productTemplateReducers } from "./productTemplateSlice";
+import { productInventoryReducers } from "./productInventorySlice";
+import { machineInventoryReducers } from "./machineInventorySlice";
 
 const store = configureStore({
     reducer: {
@@ -16,7 +18,9 @@ const store = configureStore({
         keycloak: keycloakReducers,
         simulatedEndpointSlice: simulatedEndpointReducers,
         machineTemplateSlice: machineTemplateReducers,
+        machineInventorySlice: machineInventoryReducers,
         productTemplateSlice: productTemplateReducers,
+        productInventorySlice: productInventoryReducers,
         initialDataLoadStatus: initialDataLoadStatusReducers,
     },
 });

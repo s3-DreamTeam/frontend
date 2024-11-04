@@ -17,6 +17,8 @@ export const simulatedEndpointSlice = createSlice({
             state.simulated = wantedState;
         },
 
+
+
         // - Machine templates - //
         addNewMachineTemplate: (state, action) => {
             let template = action.payload;
@@ -39,6 +41,8 @@ export const simulatedEndpointSlice = createSlice({
             //console.log(state, ID);
         },
 
+
+
         // - Product templates - //
         simAddNewProductTemplate: (state, action) => {
             let template = action.payload;
@@ -60,9 +64,67 @@ export const simulatedEndpointSlice = createSlice({
             state.object.productTemplates = state.object.productTemplates.filter(item => item.id !== ID);
             //console.log(state, ID);
         },
+
+
+
+        // - Machine Inventory - //
+        simAddNewMachineInInventory: (state, action) => {
+            let template = action.payload;
+            let biggestId = Math.max(...state.object.machineInventory.map(obj => obj.id), 0);
+
+            if (biggestId === null || biggestId === undefined) {
+                biggestId = 0;
+            }
+
+            const newID = biggestId + 1;
+
+            template.id = newID;
+            state.object.machineInventory.push(template);
+        },
+        simRemoveMachineFromInventory: (state, action) => {
+            let ID = Number(action.payload);
+            //console.log(state, ID);
+
+            state.object.machineInventory = state.object.machineInventory.filter(item => item.id !== ID);
+            //console.log(state, ID);
+        },
+
+
+
+        // - Product Inventory - //
+        simAddNewProductInInventory: (state, action) => {
+            let template = action.payload;
+            let biggestId = Math.max(...state.object.productInventory.map(obj => obj.id), 0);
+
+            if (biggestId === null || biggestId === undefined) {
+                biggestId = 0;
+            }
+
+            const newID = biggestId + 1;
+
+            template.id = newID;
+            state.object.productInventory.push(template);
+        },
+        simRemoveProductFromInventory: (state, action) => {
+            let ID = Number(action.payload);
+            //console.log(state, ID);
+
+            state.object.productInventory = state.object.productInventory.filter(item => item.id !== ID);
+            //console.log(state, ID);
+        },
     }
 });
 
-export const { setSimulated, addNewMachineTemplate, simRemoveMachineTemplate, simAddNewProductTemplate, simRemoveProductTemplate } = simulatedEndpointSlice.actions;
+export const {
+    setSimulated,
+    addNewMachineTemplate,
+    simRemoveMachineTemplate,
+    simAddNewProductTemplate,
+    simRemoveProductTemplate,
+    simAddNewMachineInInventory,
+    simRemoveMachineFromInventory,
+    simAddNewProductInInventory,
+    simRemoveProductFromInventory
+} = simulatedEndpointSlice.actions;
 
 export const simulatedEndpointReducers = simulatedEndpointSlice.reducer;
