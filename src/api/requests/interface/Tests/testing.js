@@ -1,3 +1,4 @@
+import MachineTemplate from "../../../../utils/machineTemplateObject";
 import { backendApi, BackendHeader } from "../../../backend";
 import Endpoints from "../../../endpoints";
 
@@ -16,7 +17,7 @@ export const FetchBackendTest = async ({
     onStart();
     try {
         const header = BackendHeader();
-        const response = await backendApi.post(Endpoints.Test, 6969, header);
+        const response = await backendApi.post(Endpoints.Test, new MachineTemplate(), header);
         console.log("REQ: FetchBackendTest - SUCCESS");
         console.log(response);
         onSuccess(response.data);
