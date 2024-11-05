@@ -1,17 +1,17 @@
 import { useSelector } from "react-redux";
 import HandleUserLoggedInStatus from "../../../utils/verifyLoggedIn";
 import InventoryFoundationPage from "../InventoryFoundation/foundationPage";
-import { productTemplateFormBuilder } from "../../../utils/formUtils/formBuilderTemplates";
-import ProductTemplateComponentCard from "../../ComponentCards/productTemplateCard";
-import { setProductTemplateToLoaded, setProductTemplateToLoading } from "../../../store/productTemplateSlice";
-import { NewProductTemplate } from "../../../api/requests/interface/ProductTemplates/new";
-import { DeleteProductTemplate } from "../../../api/requests/interface/ProductTemplates/delete";
-import { LoadUsersProductTemplates } from "../../../utils/ComplexStoreManagers/ProductTemplate/load";
-import { UpdateUserProductTemplates } from "../../../utils/ComplexStoreManagers/ProductTemplate/update";
+import { newProductFormBuilder } from "../../../utils/formUtils/formBuilderTemplates";
+import ProductInventoryComponentCard from "../../ComponentCards/productInventoryCard";
+import { setProductInventoryToLoaded, setProductInventoryToLoading } from "../../../store/productInventorySlice";
+import { NewProductInInventory } from "../../../api/requests/interface/ProductInventory/new";
+import { DeleteProductFromInventory } from "../../../api/requests/interface/ProductInventory/delete";
+import { LoadUsersProductInventory } from "../../../utils/ComplexStoreManagers/ProductInventory/load";
+import { UpdateUserProducts } from "../../../utils/ComplexStoreManagers/ProductInventory/update";
 
 const StockManager = () => {
-    const loadedUserTemplatesBefore = useSelector((state) => state.initialDataLoadStatus.productTemplatesLoaded);
-    const templates = useSelector((state) => state.productTemplateSlice.productTemplates);
+    const loadedBefore = useSelector((state) => state.initialDataLoadStatus.productInventoryLoaded);
+    const products = useSelector((state) => state.productInventorySlice.productInventory);
 
     HandleUserLoggedInStatus();
 
@@ -26,20 +26,20 @@ const StockManager = () => {
             AddNewFormTitle="New Product"
             addNewSuccessDialogTitle="Product created"
             addNewSuccessDialogMessage="Your product was successfully created and added to your inventory!"
-            addNewFormObjectGetter={productTemplateFormBuilder}
+            addNewFormObjectGetter={newProductFormBuilder}
 
-            ComponentCard={ProductTemplateComponentCard}
+            ComponentCard={ProductInventoryComponentCard}
 
-            setObjectToLoadedReducer={setProductTemplateToLoaded}
-            setObjectToLoadingReducer={setProductTemplateToLoading}
+            setObjectToLoadedReducer={setProductInventoryToLoaded}
+            setObjectToLoadingReducer={setProductInventoryToLoading}
 
-            alreadyLoadedInventorySelector={loadedUserTemplatesBefore}
-            inventoryObjectsSelector={templates}
+            alreadyLoadedInventorySelector={loadedBefore}
+            inventoryObjectsSelector={products}
 
-            APICreateNewObject={NewProductTemplate}
-            APIDeleteObject={DeleteProductTemplate}
-            LoadInventory={LoadUsersProductTemplates}
-            UpdateInventory={UpdateUserProductTemplates}
+            APICreateNewObject={NewProductInInventory}
+            APIDeleteObject={DeleteProductFromInventory}
+            LoadInventory={LoadUsersProductInventory}
+            UpdateInventory={UpdateUserProducts}
         />
     );
 };

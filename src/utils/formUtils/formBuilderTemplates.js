@@ -120,14 +120,6 @@ export function productTemplateFormBuilder() {
                         ["anything", "warmth", "cold", "room temperature"],
                         null
                     ),
-                    NumberFieldBuilder(
-                        "Bar code",
-                        true,
-                        "000 000",
-                        null,
-                        null,
-                        null
-                    ),
                     CheckboxFieldBuilder(
                         "Consumable",
                         false
@@ -202,32 +194,55 @@ export function productTemplateFormBuilder() {
                     ),
                 ]
             },
+        ]
+    });
+};
+
+
+export function newProductFormBuilder() {
+    return ({
+        name: "New Product form",
+        sections: [
+            {
+                name: "General Information",
+                components: [
+                    ImageFieldBuilder(
+                        "Product's Image",
+                        false,
+                    ),
+                    TextBoxFieldBuilder(
+                        "Model",
+                        true,
+                        ""
+                    ),
+                    NumberFieldBuilder(
+                        "Bar code",
+                        true,
+                        "000 000",
+                        null,
+                        null,
+                        null
+                    ),
+                ]
+            },
             {
                 name: "Costs",
                 components: [
                     NumberFieldBuilder(
-                        "Price per unit",
+                        "Targeted profit margin",
                         true,
-                        null,
-                        "$",
-                        null,
-                        0
-                    ),
-                    NumberFieldBuilder(
-                        "Targeted retail price",
-                        true,
-                        null,
-                        "$",
-                        null,
+                        20,
+                        "%",
+                        100,
                         0
                     ),
                     NumberFieldBuilder(
                         "Minimum profit margin",
                         true,
-                        null,
+                        10,
                         "%",
-                        null,
-                        null
+                        100,
+                        0
                     ),
                 ]
             }
