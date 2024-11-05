@@ -15,7 +15,8 @@ import Product from "../../utils/productInventoryObject";
 const ProductInventoryComponentCard = ({
     object = null,
     onLongClick = () => { },
-    onClick = () => { }
+    onClick = () => { },
+    size = "large"
 }) => {
 
     if (object == null) {
@@ -30,6 +31,16 @@ const ProductInventoryComponentCard = ({
                 ]
             }
     */
+    let fontSize = (size === "large" ? '1rem' : '0.75rem');
+
+    function handleClicked() {
+        onClick(object);
+    }
+
+    function handleLongClick() {
+        onLongClick(object);
+    }
+
     return (
         <ComponentCardFoundation
             title={object.Manufacturer}
@@ -38,10 +49,13 @@ const ProductInventoryComponentCard = ({
             error={object.errors}
             isLoading={object.isLoading}
             imageIsLoading={object.imageIsLoading}
-            onClick={onClick}
-            onLongPress={onLongClick}
+            onClick={handleClicked}
+            onLongPress={handleLongClick}
+            size={size}
             footerComponents={
-                <Typography>
+                <Typography
+                    fontSize={fontSize}
+                >
                     {object.Model}
                 </Typography>
             }

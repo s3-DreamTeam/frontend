@@ -15,7 +15,8 @@ import ProductTemplate from "../../utils/productTemplateObject";
 const ProductTemplateComponentCard = ({
     object = null,
     onLongClick = () => { },
-    onClick = () => { }
+    onClick = () => { },
+    size = "large"
 }) => {
 
     if (object == null) {
@@ -30,6 +31,17 @@ const ProductTemplateComponentCard = ({
                 ]
             }
     */
+
+    function handleClicked() {
+        onClick(object);
+    }
+
+    function handleLongClick() {
+        onLongClick(object);
+    }
+
+    let fontSize = (size === "large" ? '1rem' : '0.75rem');
+
     return (
         <ComponentCardFoundation
             title={object.Manufacturer}
@@ -38,10 +50,13 @@ const ProductTemplateComponentCard = ({
             error={object.errors}
             isLoading={object.isLoading}
             imageIsLoading={object.imageIsLoading}
-            onClick={onClick}
-            onLongPress={onLongClick}
+            onClick={handleClicked}
+            onLongPress={handleLongClick}
+            size={size}
             footerComponents={
-                <Typography>
+                <Typography
+                    fontSize={fontSize}
+                >
                     {object.Model}
                 </Typography>
             }

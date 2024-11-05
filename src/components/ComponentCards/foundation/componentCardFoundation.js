@@ -17,7 +17,8 @@ const ComponentCardFoundation = ({
     onLongPress = () => { },
     isLoading,
     imageIsLoading,
-    error
+    error,
+    size = "large"
 }) => {
     const [isPressing, setIsPressing] = useState(false);
     const [isLongPress, setIsLongPress] = useState(false);
@@ -53,6 +54,13 @@ const ComponentCardFoundation = ({
     }, [timer]);
 
     let color = 'inherit';
+
+
+    let maxRem = (size === "large" ? '20rem' : '10rem');
+    let StandardBorder = (size === "large" ? '1.5rem' : '0.75rem');
+    let decoratorPadding = '0 ' + StandardBorder + ' ' + StandardBorder + ' ' + StandardBorder;
+    let actionAreaHeight = (size === "large" ? '2.5rem' : '1.25rem');
+    let progressSize = (size === "large" ? 100 : 50);
 
     switch (state) {
         default:
@@ -95,11 +103,11 @@ const ComponentCardFoundation = ({
             <ColorCard
                 colorvariant={color}
                 sx={{
-                    minHeight: '20rem',
-                    minWidth: '20rem',
-                    maxWidth: '20rem',
-                    maxHeight: '20rem',
-                    borderRadius: hasDecorators ? '0 1.5rem 1.5rem 1.5rem' : '1.5rem',
+                    minHeight: maxRem,
+                    minWidth: maxRem,
+                    maxWidth: maxRem,
+                    maxHeight: maxRem,
+                    borderRadius: hasDecorators ? decoratorPadding : StandardBorder,
                     display: 'flex',
                     flexDirection: 'column',
                 }}
@@ -110,11 +118,11 @@ const ComponentCardFoundation = ({
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            height: '20rem'
+                            height: maxRem
                         }}
                     >
                         <CircularProgress
-                            size={100}
+                            size={progressSize}
                             color="inherit"
                         />
                     </div>)
@@ -130,17 +138,21 @@ const ComponentCardFoundation = ({
                                 display: 'flex',
                                 flexDirection: 'column',
                                 height: '100%',
-                                padding: '1.5rem'
+                                padding: StandardBorder
                             }}
                         >
-                            <SmallComponentCardHeader title={title} />
+                            <SmallComponentCardHeader
+                                title={title}
+                                size={size}
+                            />
                             <SmallComponentCardMedia
                                 title={title}
                                 image={image}
+                                size={size}
                                 isLoading={imageIsLoading}
                             />
                             <CardActions
-                                sx={{ height: '2.5rem', flexShrink: 0 }} // Footer takes 10% of the height
+                                sx={{ height: actionAreaHeight, flexShrink: 0 }} // Footer takes 10% of the height
                             >
                                 {footerComponents}
                             </CardActions>

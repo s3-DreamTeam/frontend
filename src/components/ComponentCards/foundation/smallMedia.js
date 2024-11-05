@@ -4,8 +4,14 @@ import { CardMedia, CircularProgress } from "@mui/material";
 const SmallComponentCardMedia = ({
     title,
     image,
-    isLoading
+    isLoading,
+    size = "large"
 }) => {
+    let height = (size === "large" ? '12.5rem' : '5.5rem');
+    let maxWidth = (size === "large" ? '15rem' : '7.5rem');
+    let borderSize = (size === "large" ? '1.5rem' : '0.75rem');
+    let progressSize = (size === "large" ? 80 : 40);
+
     return (
         <CardMedia
             component="div"
@@ -13,12 +19,12 @@ const SmallComponentCardMedia = ({
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                height: '12.5rem', // Image area takes 80%
+                height: height, // Image area takes 80%
             }}
         >
             {isLoading
                 ? (<CircularProgress
-                    size={80}
+                    size={progressSize}
                     color="inherit"
                 />)
                 : (
@@ -28,10 +34,10 @@ const SmallComponentCardMedia = ({
                                 src={image}
                                 alt={title}
                                 style={{
-                                    maxHeight: '12.5rem',
-                                    maxWidth: '15rem',
+                                    maxHeight: height,
+                                    maxWidth: maxWidth,
                                     objectFit: 'cover',
-                                    borderRadius: '1.5rem'
+                                    borderRadius: borderSize
                                 }}
                             />)
                         : (
