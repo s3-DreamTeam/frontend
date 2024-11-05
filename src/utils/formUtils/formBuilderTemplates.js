@@ -249,3 +249,28 @@ export function newProductFormBuilder() {
         ]
     });
 };
+
+export function newMachineFormBuilder() {
+    return ({
+        name: "New Machine form",
+        sections: [
+            {
+                name: "General Information",
+                components: [
+                    ImageFieldBuilder(
+                        "Machine's Image",
+                        false,
+                    ),
+                    NumberFieldBuilder(
+                        "Serial Number",
+                        true,
+                        "",
+                        null,
+                        null,
+                        null
+                    ),
+                ]
+            }
+        ]
+    });
+};

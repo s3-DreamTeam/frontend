@@ -65,22 +65,22 @@ export const machineInventorySlice = createSlice({
             const ID = action.payload.id;
             const data = action.payload.data;
 
-            const updatedTemplate = Object.assign(state.machineInventory[ID], data);
-            state.machineInventory[ID] = updatedTemplate;
+            const updated = Object.assign(state.machineInventory[ID], data);
+            state.machineInventory[ID] = updated;
         }
     }
 });
 
 export const {
-    addNewMachineTemplateID,
-    removeMachineTemplateByID,
-    setMachineTemplateToLoading,
-    setMachineTemplateToLoaded,
-    setMachineTemplateData,
-    setMachineTemplateImageToLoading,
-    setMachineTemplateImageToLoaded,
-    setMachineTemplateError,
-    resetMachineTemplateError
+    addNewMachineInventoryID,
+    removeMachineInventoryByID,
+    setMachineInventoryToLoading,
+    setMachineInventoryToLoaded,
+    setMachineInventoryData,
+    setMachineInventoryImageToLoading,
+    setMachineInventoryImageToLoaded,
+    setMachineInventoryError,
+    resetMachineInventoryError
 } = machineInventorySlice.actions;
 
 export const machineInventoryReducers = machineInventorySlice.reducer;

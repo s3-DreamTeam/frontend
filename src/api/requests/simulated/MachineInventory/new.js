@@ -20,6 +20,7 @@ export const SimulatedNewMachineInventory = async ({
     onStart = () => { }
 }) => {
     console.log("REQ: SIM_NewMachineInventory");
+    console.log(machineInventoryObject);
 
     onStart();
     try {
