@@ -108,7 +108,7 @@ const Testing = () => {
                                 <Button
                                     size="large"
                                     variant="contained"
-                                    color="inherit"
+                                    color="primary"
                                     onClick={buttonClicked}
                                     sx={{
                                         borderRadius: '1.5rem',
