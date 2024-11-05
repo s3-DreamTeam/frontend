@@ -16,7 +16,7 @@ export const FetchBackendTest = async ({
     onStart();
     try {
         const header = BackendHeader();
-        const response = await backendApi.get(Endpoints.Test, header);
+        const response = await backendApi.get(Endpoints.Test);
         console.log("REQ: FetchBackendTest - SUCCESS");
         console.log(response);
         onSuccess(response.data);
