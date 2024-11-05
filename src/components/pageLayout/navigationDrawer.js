@@ -35,6 +35,7 @@ const NavigationDrawer = ({ open, onClose }) => {
             <StyledDivider aria-hidden='true' thiccness={2} flexItem />
 
             <NavigationDrawerButton title='changelogs' correspondingAppRoute={AppRoutes.Changelogs} icon={<TextSnippetRounded />} />
+            <NavigationDrawerButton title='testing' correspondingAppRoute={AppRoutes.Testing} icon={<TextSnippetRounded />} />
         </Stack>
     );
 

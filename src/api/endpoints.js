@@ -8,6 +8,7 @@
 const Endpoints = {
     GetAllUsers: 'getallusagers',
     AddNewUser: 'insertUsager',
+    Test: 'test',
 
     //- Machine templates - //
     MachineTemplate: {

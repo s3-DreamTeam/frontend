@@ -15,7 +15,8 @@ export const AppRoutes = {
     StockManager: "/StockManager",
     MachineEditor: "/MachineEditor",
     StockEditor: "/StockEditor",
-    Changelogs: "/Changelogs"
+    Changelogs: "/Changelogs",
+    Testing: "/Testing"
 };
 
 /**

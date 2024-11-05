@@ -12,12 +12,14 @@ import StockEditor from "./pages/Stock Editor/stockEditor";
 import Changelogs from "./pages/Changelogs/changelogs";
 import NotLoggedInPage from "./pages/Keycloak Pages/notLoggedInPage";
 import KeycloakPages from "./keycloakPages";
+import Testing from "./pages/Testing/testing";
 
 let startedInit = false;
 const Snacky = () => {
     const [updateAfterLogging, setUpdate] = useState(false);
     const dispatch = useDispatch();
 
+    // - Initializing Keycloak - //
     useEffect(() => {
         if (startedInit) return;
         startedInit = true;
@@ -63,6 +65,10 @@ const Snacky = () => {
                         <Route
                             path={AppRoutes.Changelogs}
                             element={<Changelogs />}
+                        />
+                        <Route
+                            path={AppRoutes.Testing}
+                            element={<Testing />}
                         />
                         <Route
                             path={AppRoutes.NotLoggedIn}
