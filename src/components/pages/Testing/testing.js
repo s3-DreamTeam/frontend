@@ -44,7 +44,7 @@ const Testing = () => {
                 setSuccess(true);
                 setErrors(null);
                 setFullError(null);
-                setMessage(message);
+                setMessage(data);
             }
         });
     }
