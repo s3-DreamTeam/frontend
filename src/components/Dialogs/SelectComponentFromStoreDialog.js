@@ -10,7 +10,8 @@ import ErrorDialog from './ErrorDialog';
 export default function SelectComponentFromStoreDialog({
     onClose,
     onConfirm,
-    title = null,
+    title = "Nothing :(",
+    message = "It would appear as if you have nothing to choose from",
     components,
     ComponentCard,
     open
@@ -27,8 +28,8 @@ export default function SelectComponentFromStoreDialog({
         return (
             <ErrorDialog
                 onClose={onClose}
-                title=":("
-                message="Mhh... It would appear like you have nothing to choose from!"
+                title={title}
+                message={message}
                 open={open}
             />
         );

@@ -54,13 +54,18 @@ export function TextBoxFieldBuilder(
 export function ImageFieldBuilder(
     name,
     required,
+    value
 ) {
+    let image = null;
+    if (value !== undefined) {
+        image = value;
+    }
     return {
         name: name,
         type: FieldTypes.Image,
         required: required,
         error: null,
-        value: null,
+        value: image,
         verify: ImageFieldValueTester
     };
 }

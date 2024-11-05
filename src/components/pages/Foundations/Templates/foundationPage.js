@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
-import HandleUserLoggedInStatus from "../../../utils/verifyLoggedIn";
-import PageLayout from "../../pageLayout/pageLayout";
-import ProcessStatusSnackBar from "../../processStatusSnackbar";
-import AddFormFoundation from "./addFormFoundation";
-import MainLayoutFoundation from "./mainLayoutFoundation";
-import InitialLoadingPage from "../InitialLoadingPage";
+import HandleUserLoggedInStatus from "../../../../utils/verifyLoggedIn";
+import PageLayout from "../../../pageLayout/pageLayout";
+import ProcessStatusSnackBar from "../../../processStatusSnackbar";
+import AddFormFoundation from "../addFormFoundation";
+import MainLayoutFoundation from "../mainLayoutFoundation";
+import InitialLoadingPage from "../../InitialLoadingPage";
 
 /**
- * # InventoryFoundationPage
+ * # TemplateFoundationPage
  * 
  * Created because we've got 4 whole ass pages that do the same thing...
  * just with different names, cards, and forms.
  * @returns 
  */
-const InventoryFoundationPage = ({
+const TemplateFoundationPage = ({
     MainPageTitle = "Goofus",
     loadingSnackbarMessage = "loading something bruh",
 
@@ -173,4 +173,4 @@ const InventoryFoundationPage = ({
     );
 };
 
-export default InventoryFoundationPage;
+export default TemplateFoundationPage;

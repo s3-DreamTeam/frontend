@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import HandleUserLoggedInStatus from "../../../utils/verifyLoggedIn";
-import InventoryFoundationPage from "../InventoryFoundation/foundationPage";
+import InventoryFoundationPage from "../Foundations/Templates/foundationPage";
 import { newProductFormBuilder } from "../../../utils/formUtils/formBuilderTemplates";
 import ProductInventoryComponentCard from "../../ComponentCards/productInventoryCard";
 import { setProductInventoryToLoaded, setProductInventoryToLoading } from "../../../store/productInventorySlice";

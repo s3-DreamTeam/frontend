@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import InventoryFoundationPage from "../InventoryFoundation/foundationPage";
 import MachineTemplateComponentCard from "../../ComponentCards/machineTemplateCard";
 import { setMachineTemplateToLoaded, setMachineTemplateToLoading } from "../../../store/machineTemplateSlice";
 import { machineTemplateFormBuilder } from "../../../utils/formUtils/formBuilderTemplates";
@@ -7,6 +6,7 @@ import { NewMachineTemplate } from "../../../api/requests/interface/MachineTempl
 import { DeleteMachineTemplate } from "../../../api/requests/interface/MachineTemplates/delete";
 import { LoadUsersMachineTemplates } from "../../../utils/ComplexStoreManagers/MachineTemplate/load";
 import { UpdateUserMachineTemplates } from "../../../utils/ComplexStoreManagers/MachineTemplate/update";
+import TemplateFoundationPage from "../Foundations/Templates/foundationPage";
 
 
 const MachineEditor = () => {
@@ -14,7 +14,7 @@ const MachineEditor = () => {
     const templates = useSelector((state) => state.machineTemplateSlice.machineTemplates);
 
     return (
-        <InventoryFoundationPage
+        <TemplateFoundationPage
             MainPageTitle="Machine Editor"
             emptyInventoryTitle="You don't have any templates"
             emptyInventoryMessage="machine templates are necessary to create an inventory of your machines"

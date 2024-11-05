@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import HandleUserLoggedInStatus from "../../../utils/verifyLoggedIn";
-import InventoryFoundationPage from "../InventoryFoundation/foundationPage";
 import { productTemplateFormBuilder } from "../../../utils/formUtils/formBuilderTemplates";
 import ProductTemplateComponentCard from "../../ComponentCards/productTemplateCard";
 import { setProductTemplateToLoaded, setProductTemplateToLoading } from "../../../store/productTemplateSlice";
@@ -8,6 +7,7 @@ import { NewProductTemplate } from "../../../api/requests/interface/ProductTempl
 import { DeleteProductTemplate } from "../../../api/requests/interface/ProductTemplates/delete";
 import { LoadUsersProductTemplates } from "../../../utils/ComplexStoreManagers/ProductTemplate/load";
 import { UpdateUserProductTemplates } from "../../../utils/ComplexStoreManagers/ProductTemplate/update";
+import TemplateFoundationPage from "../Foundations/Templates/foundationPage";
 
 const StockEditor = () => {
     const loadedUserTemplatesBefore = useSelector((state) => state.initialDataLoadStatus.productTemplatesLoaded);
@@ -16,7 +16,7 @@ const StockEditor = () => {
     HandleUserLoggedInStatus();
 
     return (
-        <InventoryFoundationPage
+        <TemplateFoundationPage
             MainPageTitle="Stock Editor"
             emptyInventoryTitle="You don't have any templates"
             emptyInventoryMessage="product templates are necessary to create inventories for your machines"
