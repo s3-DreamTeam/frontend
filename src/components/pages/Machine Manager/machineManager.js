@@ -10,6 +10,7 @@ import InventoryFoundationPage from "../Foundations/Inventory/foundationPage";
 import MachineTemplateComponentCard from "../../ComponentCards/machineTemplateCard";
 import { MachineInventoryFormBuilder } from "../../../utils/formUtils/Forms/MachineInventory/Builder";
 import { GetFullMachineTemplate } from "../../../api/requests/interface/MachineTemplates/getFull";
+import { LoadUsersMachineTemplates } from "../../../utils/ComplexStoreManagers/MachineTemplate/load";
 
 const MachineManager = () => {
     const loadedBefore = useSelector((state) => state.initialDataLoadStatus.machineInventoryLoaded);
@@ -51,6 +52,7 @@ const MachineManager = () => {
             APIDeleteObject={DeleteMachineFromInventory}
             LoadInventory={LoadUsersMachineInventory}
             UpdateInventory={UpdateUserMachineInventory}
+            LoadTemplates={LoadUsersMachineTemplates}
         />
     );
 };

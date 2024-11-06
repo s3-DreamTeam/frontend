@@ -3,7 +3,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { DialogTransition } from './Transition/dialogTransition';
 import { CustomDialog } from './Foundation/customDialog';
-import { Stack, Typography } from '@mui/material';
+import { CircularProgress, Stack, Typography } from '@mui/material';
 import ErrorDialog from './ErrorDialog';
 
 
@@ -14,9 +14,9 @@ export default function SelectComponentFromStoreDialog({
     message = "It would appear as if you have nothing to choose from",
     components,
     ComponentCard,
-    open
+    open,
+    loading = false,
 }) {
-
     let noComponents = !components;
     if (components !== null) {
         if (Object.keys(components).length === 0) {
@@ -24,7 +24,7 @@ export default function SelectComponentFromStoreDialog({
         }
     }
 
-    if (noComponents) {
+    if (noComponents && !loading) {
         return (
             <ErrorDialog
                 onClose={onClose}
@@ -62,27 +62,36 @@ export default function SelectComponentFromStoreDialog({
                         color='textPrimary'
                         backgroundColor="#00000000"
                     >
-                        Choose a template
+                        {loading ? "Loading..." : "Choose a template"}
                     </Typography>
                 </DialogTitle>
                 <DialogContent>
-                    <Stack
-                        spacing={'2rem'}
-                        direction={'row'}
-                        justifyContent={'space-evenly'}
-                        useFlexGap
-                        sx={{ flexWrap: 'wrap', padding: '0rem 2rem 2rem 2rem' }}
-                    >
-                        {Object.entries(components).map(([id, value]) => (
-                            <ComponentCard
-                                key={id}
-                                object={value}
-                                onClick={handleComponentClick}
-                                onLongClick={() => { }}
-                                size="small"
-                            />
-                        ))}
-                    </Stack>
+                    {loading
+                        ? (
+                            <div
+                                style={{ padding: '3rem' }}
+                            >
+                                <CircularProgress />
+                            </div>
+                        )
+                        : (<Stack
+                            spacing={'2rem'}
+                            direction={'row'}
+                            justifyContent={'space-evenly'}
+                            useFlexGap
+                            sx={{ flexWrap: 'wrap', padding: '0rem 2rem 2rem 2rem' }}
+                        >
+                            {Object.entries(components).map(([id, value]) => (
+                                <ComponentCard
+                                    key={id}
+                                    object={value}
+                                    onClick={handleComponentClick}
+                                    onLongClick={() => { }}
+                                    size="small"
+                                />
+                            ))}
+                        </Stack>)}
+
                 </DialogContent>
             </CustomDialog>
         </React.Fragment>

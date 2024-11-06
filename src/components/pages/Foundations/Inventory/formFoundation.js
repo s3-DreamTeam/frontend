@@ -94,6 +94,7 @@ const InventoryFormFoundation = ({
                     formObjectGetter={GetForm}
                     successDialogMessage={successDialogMessage}
                     successDialogTitle={successDialogTitle}
+                    templateID={fullTemplate.id}
                 />)
                 :
                 (<WholePageLoading />)}

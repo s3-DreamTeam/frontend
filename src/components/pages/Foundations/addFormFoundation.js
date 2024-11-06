@@ -18,7 +18,8 @@ const AddFormFoundation = ({
     APICreateNewObject = () => { console.log("Goofus forgot to specify an APICreateNewObject to their inventory page."); },
     formObjectGetter,
     successDialogTitle = "I forgor the title",
-    successDialogMessage = "Oops, this is a generic message!"
+    successDialogMessage = "Oops, this is a generic message!",
+    templateID = null,
 }) => {
     const [visualFormData, setVisualFormData] = useState(formObjectGetter());
     const [sendFormLoading, setSendFormLoading] = useState(false);
@@ -64,6 +65,7 @@ const AddFormFoundation = ({
     };
 
     function SendForm(packet) {
+        packet["TemplateID"] = templateID;
         console.log("SENT OBJECT", packet);
         APICreateNewObject({
             packet: packet,

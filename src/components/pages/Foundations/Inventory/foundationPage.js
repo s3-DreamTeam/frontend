@@ -43,10 +43,16 @@ const InventoryFoundationPage = ({
     APIGetFullTemplate,
     LoadInventory,
     UpdateInventory,
+    LoadTemplates
 }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [loadingSuccess, setLoadingSuccess] = useState(false);
     const [loadingErrors, setLoadingErrors] = useState(null);
+
+    const [templateLoading, setTemplateLoading] = useState(false);
+    const [templateSuccess, setTemplateSuccess] = useState(false);
+    const [templateErrors, setTemplateError] = useState(null);
+
     const [insideCreationForm, setInsideCreationForm] = useState(false);
     const [templateSelectionShown, setTemplateSelectionShown] = useState(false);
     const [selectedTemplate, setSelectedTemplate] = useState(null);
@@ -56,7 +62,31 @@ const InventoryFoundationPage = ({
     HandleUserLoggedInStatus();
 
     function HandleOnAdd() {
-        setTemplateSelectionShown(true);
+        if (alreadyLoadedTemplatesSelector) {
+            console.log("YES I ALREADY LOADED THEM");
+            setTemplateSelectionShown(true);
+        } else {
+            console.log("LEMME LOAD EM");
+            LoadTemplates(
+                {
+                    onSuccess: (e) => {
+                        setTemplateSuccess(true);
+                    },
+                    onError: (e) => {
+                        setTemplateError(String(e));
+                    },
+                    onEnd: () => {
+                        setTemplateLoading(false);
+                    },
+                    onStart: () => {
+                        setTemplateLoading(true);
+                        setTemplateError(null);
+                        setTemplateSuccess(false);
+                        setTemplateSelectionShown(true);
+                    }
+                }
+            );
+        }
     }
 
     function HandleCancelForm() {
@@ -198,6 +228,7 @@ const InventoryFoundationPage = ({
                 components={templateObjectsSelector}
                 ComponentCard={TemplateComponentCard}
                 open={templateSelectionShown}
+                loading={templateLoading}
             />
         </>
     );
