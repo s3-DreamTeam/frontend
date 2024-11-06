@@ -1,4 +1,4 @@
-import { ErrorRounded } from "@mui/icons-material";
+import { MonitorHeartRounded } from "@mui/icons-material";
 import HandleUserLoggedInStatus from "../../../utils/verifyLoggedIn";
 import FullPageCard from "../../fullPageCard";
 import { useState } from "react";
@@ -27,7 +27,7 @@ const NoBackend = () => {
                 subtitle="Snacky couldn't perform a valid health check on the backend... Try refreshing? Maybe we're doing maintenance? Or perhaps Charles has refactored something again..."
                 color="error"
                 header={
-                    <ErrorRounded
+                    <MonitorHeartRounded
                         style={{
                             fontSize: 120,
                         }}
