@@ -13,6 +13,7 @@ import Changelogs from "./pages/Changelogs/changelogs";
 import NotLoggedInPage from "./pages/Keycloak Pages/notLoggedInPage";
 import KeycloakPages from "./keycloakPages";
 import Testing from "./pages/Testing/testing";
+import NoBackend from "./pages/NoBackend/NoBackend";
 
 let startedInit = false;
 const Snacky = () => {
@@ -73,6 +74,10 @@ const Snacky = () => {
                         <Route
                             path={AppRoutes.NotLoggedIn}
                             element={<NotLoggedInPage />}
+                        />
+                        <Route
+                            path={AppRoutes.NoBackend}
+                            element={<NoBackend />}
                         />
                         <Route
                             path='*'

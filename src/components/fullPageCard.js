@@ -53,7 +53,7 @@ const FullPageCard = ({ title, subtitle, color, header, footer }) => {
                         {title}
                     </Typography>
                     <Typography
-                        variant="body1"
+                        variant="h6"
                         fontWeight={500}
                         align="center"
                     >
