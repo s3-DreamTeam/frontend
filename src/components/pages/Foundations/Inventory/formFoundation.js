@@ -34,7 +34,7 @@ const InventoryFormFoundation = ({
 
     function FetchFullTemplate() {
         APIGetFullTemplate({
-            ID: formSelectedTemplate.ID,
+            ID: formSelectedTemplate.id,
 
             onError: (err) => {
                 setErrors(err.message);
@@ -52,7 +52,7 @@ const InventoryFormFoundation = ({
                 setErrors(null);
                 setSuccess(true);
                 setFullTemplate(object);
-                console.log(object);
+                console.log("Received: ", object);
             }
         });
     }

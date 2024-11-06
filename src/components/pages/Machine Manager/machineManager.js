@@ -18,7 +18,6 @@ const MachineManager = () => {
     const machines = useSelector((state) => state.machineInventorySlice.machineInventory);
     const templates = useSelector((state) => state.machineTemplateSlice.machineTemplates);
 
-    console.warn(templates);
     HandleUserLoggedInStatus();
 
     return (

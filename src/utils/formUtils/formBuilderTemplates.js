@@ -9,7 +9,7 @@ export function machineTemplateFormBuilder() {
                 components: [
                     ImageFieldBuilder(
                         "Machine's image",
-                        true
+                        false
                     ),
                     TextBoxFieldBuilder(
                         "Manufacturer",
@@ -29,7 +29,7 @@ export function machineTemplateFormBuilder() {
                         null
                     ),
                     CheckboxFieldBuilder(
-                        "Has seerial numbers",
+                        "Has serial numbers",
                         false
                     ),
                     CheckboxFieldBuilder(

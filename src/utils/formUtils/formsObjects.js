@@ -60,12 +60,14 @@ export function ImageFieldBuilder(
     if (value !== undefined) {
         image = value;
     }
+
     return {
         name: name,
         type: FieldTypes.Image,
         required: required,
         error: null,
         value: image,
+        default: image,
         verify: ImageFieldValueTester
     };
 }

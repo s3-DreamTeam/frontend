@@ -64,6 +64,7 @@ const AddFormFoundation = ({
     };
 
     function SendForm(packet) {
+        console.log("SENT OBJECT", packet);
         APICreateNewObject({
             packet: packet,
 

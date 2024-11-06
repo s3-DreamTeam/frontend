@@ -7,7 +7,7 @@ import { ImageFieldValueTester } from "../../../utils/formUtils/valueTesters/ima
 export const FormImageField = ({ fieldObject, onSomethingChanged, disabled }) => {
     const [isError, setIsError] = useState(fieldObject.error !== null);
     const [errorString, setErrorString] = useState(fieldObject.error);
-    const [image, setImage] = useState(fieldObject.value);
+    const [image, setImage] = useState(fieldObject.default);
     const title = fieldObject.name;
 
     function imageSourceChanged(newImage) {

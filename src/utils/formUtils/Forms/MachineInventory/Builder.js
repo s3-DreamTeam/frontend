@@ -2,7 +2,7 @@ import { ImageFieldBuilder, TextBoxFieldBuilder } from "../../formsObjects";
 import { MachineInventoryFormClimateField, MachineInventoryFormConnectivity, MachineInventoryFormIdentificationField, MachineInventoryFormPayments } from "./DynamicSectionsBuilders";
 
 export function MachineInventoryFormBuilder(templateObject) {
-    const image = templateObject.Image;
+    const image = templateObject["Machine's image"];
     const hasSerialNumber = templateObject["Has serial numbers"];
     const hasVaryingColors = templateObject["Color varies"];
     const climate = templateObject["Climate"];
@@ -16,14 +16,11 @@ export function MachineInventoryFormBuilder(templateObject) {
     const hasCreditCards = templateObject["Credit cards"];
     const hasCash = templateObject["Cash"];
 
-
     const identificationSection = MachineInventoryFormIdentificationField(hasSerialNumber, hasVaryingColors);
     const climateSection = MachineInventoryFormClimateField(climate);
     const connectivitySection = MachineInventoryFormConnectivity(hasInternet, hasBluetooth, hasPhysical);
     const paymentSection = MachineInventoryFormPayments(hasOnlineStore, hasDebitCards, hasCreditCards, hasCash);
-
-
-    return ({
+    let Form = {
         name: "New Machine in Inventory",
         sections: [
             {
@@ -46,10 +43,24 @@ export function MachineInventoryFormBuilder(templateObject) {
                     ),
                 ]
             },
-            identificationSection,
-            climateSection,
-            connectivitySection,
-            paymentSection
         ]
-    });
+    };
+
+    if (identificationSection !== null) {
+        Form.sections.push(identificationSection);
+    }
+
+    if (climateSection !== null) {
+        Form.sections.push(climateSection);
+    }
+
+    if (connectivitySection !== null) {
+        Form.sections.push(connectivitySection);
+    }
+
+    if (paymentSection !== null) {
+        Form.sections.push(paymentSection);
+    }
+
+    return (Form);
 }

@@ -13,7 +13,7 @@ export const SimulatedGetFullMachineTemplate = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: SimulatedGetFullMachineTemplate");
+    console.log("REQ: SimulatedGetFullMachineTemplate", ID);
 
     onStart();
     try {

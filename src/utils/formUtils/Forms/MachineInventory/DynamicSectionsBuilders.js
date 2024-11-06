@@ -62,13 +62,21 @@ export function MachineInventoryFormIdentificationField(serialNumberCheckBox, co
     ) : null;
 
     if (serialNumberCheckBox || colorVariesCheckBox) {
-        return {
+        let Section = {
             name: "Identification",
             components: [
-                serialNumberField,
-                colorField
             ]
         };
+
+        if (serialNumberField !== null) {
+            Section.components.push(serialNumberField);
+        }
+
+        if (colorField !== null) {
+            Section.components.push(colorField);
+        }
+
+        return (Section);
     } else {
         return null;
     }
@@ -112,16 +120,34 @@ export function MachineInventoryFormConnectivity(internet, Bluetooth, physical) 
     ) : null;
 
     if (internet || Bluetooth || physical) {
-        return {
+
+        let Section = {
             name: "Connectivity",
             components: [
-                networkNameField,
-                networkPasswordField,
-                bluetoothNameField,
-                bluetoothPasswordField,
-                physicalField
             ]
         };
+
+        if (networkNameField !== null) {
+            Section.components.push(networkNameField);
+        }
+
+        if (networkPasswordField !== null) {
+            Section.components.push(networkPasswordField);
+        }
+
+        if (bluetoothNameField !== null) {
+            Section.components.push(bluetoothNameField);
+        }
+
+        if (bluetoothPasswordField !== null) {
+            Section.components.push(bluetoothPasswordField);
+        }
+
+        if (physicalField !== null) {
+            Section.components.push(physicalField);
+        }
+
+        return (Section);
     } else {
         return null;
     }
@@ -156,15 +182,29 @@ export function MachineInventoryFormPayments(online, debit, credit, cash) {
     ) : null;
 
     if (online || debit || credit || cash) {
-        return {
+        let Section = {
             name: "Payments",
             components: [
-                onlineField,
-                debitField,
-                creditField,
-                cashField
             ]
         };
+
+        if (onlineField !== null) {
+            Section.components.push(onlineField);
+        }
+
+        if (debitField !== null) {
+            Section.components.push(debitField);
+        }
+
+        if (creditField !== null) {
+            Section.components.push(creditField);
+        }
+
+        if (cashField !== null) {
+            Section.components.push(cashField);
+        }
+
+        return (Section);
     } else {
         return null;
     }
