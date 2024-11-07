@@ -52,19 +52,19 @@ const MachineInventoryComponentCard = ({
                     console.log("Gotten template: ", template);
                     setTemplate(template);
                     setModel(template.Model);
+
+                    if (object["Lowest product count"] <= 0) {
+                        setDecorators(
+                            [
+                                { "label": "Empty", "state": "warning" }
+                            ]
+                        );
+                    }
                 }
             });
         }
     }, [template, object]);
 
-    /*
-                decorators={
-                [
-                    { "label": 'hi', 'state': 'secondary' },
-                    { "label": 'second', 'state': 'primary' }
-                ]
-            }
-    */
     let fontSize = (size === "large" ? '1rem' : '0.75rem');
 
     function handleClicked() {
@@ -90,7 +90,13 @@ const MachineInventoryComponentCard = ({
             decorators={decorators}
             footerComponents={
                 ((templateLoading || hasNoTemplate)
-                    ? <LinearProgress />
+                    ? <LinearProgress
+                        color={hasNoTemplate ? 'error' : 'primary'}
+                        sx={{
+                            width: '100%',
+                            borderRadius: '1.5rem'
+                        }}
+                    />
                     : <Typography
                         fontSize={fontSize}
                     >

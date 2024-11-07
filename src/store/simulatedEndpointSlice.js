@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+let biggestMachineTemplateID = 0;
+let biggestMachineInventoryID = 0;
+let biggestProductTemplateID = 0;
+let biggestProductInventoryID = 0;
+
 export const simulatedEndpointSlice = createSlice({
     name: 'simulatedEndpointSlice',
     initialState: {
@@ -17,12 +22,11 @@ export const simulatedEndpointSlice = createSlice({
             state.simulated = wantedState;
         },
 
-
-
         // - Machine templates - //
         addNewMachineTemplate: (state, action) => {
             let template = action.payload;
-            let biggestId = Math.max(...state.object.machineTemplates.map(obj => obj.id), 0);
+            let biggestId = biggestMachineTemplateID + 1;
+            biggestMachineTemplateID = biggestId;
 
             if (biggestId === null || biggestId === undefined) {
                 biggestId = 0;
@@ -46,7 +50,8 @@ export const simulatedEndpointSlice = createSlice({
         // - Product templates - //
         simAddNewProductTemplate: (state, action) => {
             let template = action.payload;
-            let biggestId = Math.max(...state.object.productTemplates.map(obj => obj.id), 0);
+            let biggestId = biggestProductTemplateID + 1;
+            biggestProductTemplateID = biggestId;
 
             if (biggestId === null || biggestId === undefined) {
                 biggestId = 0;
@@ -70,7 +75,8 @@ export const simulatedEndpointSlice = createSlice({
         // - Machine Inventory - //
         simAddNewMachineInInventory: (state, action) => {
             let template = action.payload;
-            let biggestId = Math.max(...state.object.machineInventory.map(obj => obj.id), 0);
+            let biggestId = biggestMachineInventoryID + 1;
+            biggestMachineInventoryID = biggestId;
 
             if (biggestId === null || biggestId === undefined) {
                 biggestId = 0;
@@ -94,7 +100,8 @@ export const simulatedEndpointSlice = createSlice({
         // - Product Inventory - //
         simAddNewProductInInventory: (state, action) => {
             let template = action.payload;
-            let biggestId = Math.max(...state.object.productInventory.map(obj => obj.id), 0);
+            let biggestId = biggestProductInventoryID + 1;
+            biggestProductInventoryID = biggestId;
 
             if (biggestId === null || biggestId === undefined) {
                 biggestId = 0;

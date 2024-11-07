@@ -16,7 +16,11 @@ export const productInventorySlice = createSlice({
          */
         addNewProductInventoryID: (state, action) => {
             const ID = action.payload;
-            state.productInventory[ID] = {};
+            try {
+                state.productInventory[ID] = {};
+            } catch {
+                console.warn("PRODUCT INVENTORY STORE: INVALID ID");
+            }
         },
         /**
          * Remove entries that matches the given ID
@@ -26,33 +30,61 @@ export const productInventorySlice = createSlice({
          */
         removeProductInventoryByID: (state, action) => {
             const ID = action.payload;
-            delete state.productInventory[ID];
+            try {
+                delete state.productInventory[ID];
+            } catch {
+                console.warn("PRODUCT INVENTORY STORE: INVALID ID");
+            }
         },
         setProductInventoryToLoading: (state, action) => {
             const ID = action.payload;
-            state.productInventory[ID].isLoading = true;
+            try {
+                state.productInventory[ID].isLoading = true;
+            } catch {
+                console.warn("PRODUCT INVENTORY STORE: INVALID ID");
+            }
         },
         setProductInventoryToLoaded: (state, action) => {
             const ID = action.payload;
-            state.productInventory[ID].isLoading = false;
+            try {
+                state.productInventory[ID].isLoading = false;
+            } catch {
+                console.warn("PRODUCT INVENTORY STORE: INVALID ID");
+            }
         },
         setProductInventoryImageToLoading: (state, action) => {
             const ID = action.payload;
-            state.productInventory[ID].imageIsLoading = true;
+            try {
+                state.productInventory[ID].imageIsLoading = true;
+            } catch {
+                console.warn("PRODUCT INVENTORY STORE: INVALID ID");
+            }
         },
         setProductInventoryImageToLoaded: (state, action) => {
             const ID = action.payload;
-            state.productInventory[ID].imageIsLoading = false;
+            try {
+                state.productInventory[ID].imageIsLoading = false;
+            } catch {
+                console.warn("PRODUCT INVENTORY STORE: INVALID ID");
+            }
         },
         setProductInventoryError: (state, action) => {
             const data = action.payload;
             const ID = data.id;
             const error = data.error;
-            state.productInventory[ID].errors = error;
+            try {
+                state.productInventory[ID].errors = error;
+            } catch {
+                console.warn("PRODUCT INVENTORY STORE: INVALID ID");
+            }
         },
         resetProductInventoryError: (state, action) => {
             const ID = action.payload;
-            state.productInventory[ID].errors = null;
+            try {
+                state.productInventory[ID].errors = null;
+            } catch {
+                console.warn("PRODUCT INVENTORY STORE: INVALID ID");
+            }
         },
         /**
          * Pass it any small object, and it'll overwrite / add the attributes to the correcsponding object of that ID.
@@ -65,8 +97,12 @@ export const productInventorySlice = createSlice({
             const ID = action.payload.id;
             const data = action.payload.data;
 
-            const updatedInventory = Object.assign(state.productInventory[ID], data);
-            state.productInventory[ID] = updatedInventory;
+            try {
+                const updatedInventory = Object.assign(state.productInventory[ID], data);
+                state.productInventory[ID] = updatedInventory;
+            } catch {
+                console.warn("PRODUCT INVENTORY STORE: INVALID ID");
+            }
         }
     }
 });

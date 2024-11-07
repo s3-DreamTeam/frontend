@@ -43,6 +43,7 @@ const getSurfaceMachineInventory = (state, id) => {
         "Name": completeMachineInventory.Name,
         "Location": completeMachineInventory.Location,
         "TemplateID": completeMachineInventory.TemplateID,
+        "Lowest product count": 0,
         "id": completeMachineInventory.id
     };
 };

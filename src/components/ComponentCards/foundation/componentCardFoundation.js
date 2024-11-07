@@ -18,7 +18,8 @@ const ComponentCardFoundation = ({
     isLoading,
     imageIsLoading,
     error,
-    size = "large"
+    size = "large",
+    loadingHeader = false
 }) => {
     const [isPressing, setIsPressing] = useState(false);
     const [isLongPress, setIsLongPress] = useState(false);
@@ -144,6 +145,7 @@ const ComponentCardFoundation = ({
                             <SmallComponentCardHeader
                                 title={title}
                                 size={size}
+                                loading={loadingHeader}
                             />
                             <SmallComponentCardMedia
                                 title={title}
@@ -152,7 +154,12 @@ const ComponentCardFoundation = ({
                                 isLoading={imageIsLoading}
                             />
                             <CardActions
-                                sx={{ height: actionAreaHeight, flexShrink: 0 }} // Footer takes 10% of the height
+                                sx={{
+                                    height: actionAreaHeight,
+                                    flexShrink: 0,
+                                    width: '100%',
+                                    justifyContent: 'center'
+                                }} // Footer takes 10% of the height
                             >
                                 {footerComponents}
                             </CardActions>

@@ -117,135 +117,93 @@ export function productTemplateFormBuilder() {
                         "Climate",
                         true,
                         "",
-                        ["anything", "warmth", "cold", "room temperature"],
+                        ["anything", "hot", "cold", "room temperature"],
                         null
                     ),
                     CheckboxFieldBuilder(
-                        "Consumable",
+                        "Edible",
+                        false
+                    ),
+                    CheckboxFieldBuilder(
+                        "Fragile",
                         false
                     )
                 ]
             },
             {
-                name: "Packaging",
+                name: "Identification",
+                components: [
+                    CheckboxFieldBuilder(
+                        "Color varies",
+                        false
+                    ),
+                    CheckboxFieldBuilder(
+                        "Has bar code",
+                        false
+                    ),
+                    CheckboxFieldBuilder(
+                        "Flavor varies",
+                        false
+                    ),
+                    CheckboxFieldBuilder(
+                        "Is packaged",
+                        false
+                    ),
+                    CheckboxFieldBuilder(
+                        "Can expire",
+                        false
+                    )
+                ]
+            },
+            {
+                name: "Product Specs",
                 components: [
                     DropdownFieldBuilder(
-                        "Format",
+                        "Shape",
                         true,
                         null,
                         [
-                            "Custom",
-                            "355ml can",
-                            "raw liquid",
-                            "2L bottle",
-                            "Gum pack"
+                            "Cylinder",
+                            "Sphere",
+                            "Box",
+                            "Odd"
                         ],
-                        {
-                            Custom: [
-                                DropdownFieldBuilder(
-                                    "Shape",
-                                    true,
-                                    null,
-                                    [
-                                        "Cylinder",
-                                        "Sphere",
-                                        "Box"
-                                    ],
-                                    null
-                                ),
-                                NumberFieldBuilder(
-                                    "Width",
-                                    true,
-                                    null,
-                                    'cm',
-                                    null,
-                                    null
-                                ),
-                                NumberFieldBuilder(
-                                    "Height",
-                                    true,
-                                    null,
-                                    'cm',
-                                    null,
-                                    null
-                                ),
-                                NumberFieldBuilder(
-                                    "Length",
-                                    true,
-                                    null,
-                                    'cm',
-                                    null,
-                                    null
-                                ),
-                                NumberFieldBuilder(
-                                    "distributed amount",
-                                    false,
-                                    null,
-                                    null,
-                                    null,
-                                    null
-                                ),
-                                CheckboxFieldBuilder(
-                                    "is in packaged",
-                                    false
-                                )
-                            ]
-                        }
-                    ),
-                ]
-            },
-        ]
-    });
-};
-
-
-export function newProductFormBuilder() {
-    return ({
-        name: "New Product form",
-        sections: [
-            {
-                name: "General Information",
-                components: [
-                    ImageFieldBuilder(
-                        "Product's Image",
-                        false,
-                    ),
-                    TextBoxFieldBuilder(
-                        "Model",
-                        true,
-                        ""
+                        null
                     ),
                     NumberFieldBuilder(
-                        "Bar code",
+                        "Width",
                         true,
-                        "000 000",
                         null,
+                        'cm',
+                        null,
+                        null
+                    ),
+                    NumberFieldBuilder(
+                        "Height",
+                        true,
+                        null,
+                        'cm',
+                        null,
+                        null
+                    ),
+                    NumberFieldBuilder(
+                        "Length",
+                        true,
+                        null,
+                        'cm',
+                        null,
+                        null
+                    ),
+                    NumberFieldBuilder(
+                        "Weight",
+                        true,
+                        null,
+                        'kg',
                         null,
                         null
                     ),
                 ]
             },
-            {
-                name: "Costs",
-                components: [
-                    NumberFieldBuilder(
-                        "Targeted profit margin",
-                        true,
-                        20,
-                        "%",
-                        100,
-                        0
-                    ),
-                    NumberFieldBuilder(
-                        "Minimum profit margin",
-                        true,
-                        10,
-                        "%",
-                        100,
-                        0
-                    ),
-                ]
-            }
         ]
     });
 };

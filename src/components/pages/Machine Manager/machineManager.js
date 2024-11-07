@@ -34,6 +34,7 @@ const MachineManager = () => {
             addNewSuccessDialogMessage="Your machine was successfully created and added to your inventory"
             noTemplatesDialogMessage="We couldn't find any templates for you to choose from. Ensure that you've created at least one machine templates before trying to add machines to your inventory! Go to 'Machine Editor' to create some."
             noTemplatesDialogTitle="No Machine Templates :/"
+            objectNameKey="Name"
             addNewFormObjectGetter={MachineInventoryFormBuilder}
 
             ComponentCard={MachineInventoryComponentCard}

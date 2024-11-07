@@ -34,7 +34,8 @@ const MainLayoutFoundation = ({
 
     deleteDialogMessage = "OOps, goofus forgot to specify a delete message dialog",
     emptyInventoryTitle = "Forgor to specify",
-    emptyInventoryMessage = "Forgot to specify a custom empty page yapping"
+    emptyInventoryMessage = "Forgot to specify a custom empty page yapping",
+    objectNameKey = "Model"
 }) => {
     const [showDialog, setShowDialog] = useState(false);
     const [selectedName, setselectedName] = useState("undefined");
@@ -48,7 +49,7 @@ const MainLayoutFoundation = ({
     }, [mappedObjects]);
 
     function longClick(id) {
-        const name = mappedObjects[id].Model;
+        const name = mappedObjects[id][objectNameKey];
         setselectedName(name);
         setSelectedId(id);
         setShowDialog(true);

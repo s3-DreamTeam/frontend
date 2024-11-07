@@ -37,8 +37,10 @@ const getSurfaceProduct = (state, id) => {
     }
 
     return {
-        "Manufacturer": completeProductInInventory.Manufacturer,
-        "Model": completeProductInInventory.Model,
+        "Variant": completeProductInInventory.Variant,
+        "TemplateID": completeProductInInventory.TemplateID,
+        "Quantity": 0,
         "id": completeProductInInventory.id
     };
 };
+

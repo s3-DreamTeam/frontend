@@ -37,6 +37,6 @@ const getInventoryImage = (state, id) => {
     }
     const image = completeProductInInventory[`Product's Image`];
     return {
-        "Image": image,
+        "Product's Image": image,
     };
 };

@@ -37,6 +37,7 @@ const InventoryFoundationPage = ({
     deleteObjectDialogMessage = "Bro forgot this bit...",
     emptyInventoryMessage = "Bro forgot this too",
     emptyInventoryTitle = "Ruh oh... Forgor",
+    objectNameKey = "Model",
 
     APIDeleteObject,
     APICreateNewObject,
@@ -63,10 +64,10 @@ const InventoryFoundationPage = ({
 
     function HandleOnAdd() {
         if (alreadyLoadedTemplatesSelector) {
-            console.log("YES I ALREADY LOADED THEM");
+            //console.log("YES I ALREADY LOADED THEM");
             setTemplateSelectionShown(true);
         } else {
-            console.log("LEMME LOAD EM");
+            //console.log("LEMME LOAD EM");
             LoadTemplates(
                 {
                     onSuccess: (e) => {
@@ -204,6 +205,7 @@ const InventoryFoundationPage = ({
                                 deleteDialogMessage={deleteObjectDialogMessage}
                                 emptyInventoryMessage={emptyInventoryMessage}
                                 emptyInventoryTitle={emptyInventoryTitle}
+                                objectNameKey={objectNameKey}
                             />
                             : <InitialLoadingPage
                                 onRetryClick={loadFromScratch}
