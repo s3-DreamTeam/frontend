@@ -1,6 +1,9 @@
-import { Typography } from "@mui/material";
+import { LinearProgress, Typography } from "@mui/material";
 import ComponentCardFoundation from "./foundation/componentCardFoundation";
-import MachineTemplate from "../../utils/machineTemplateObject";
+import { useEffect, useState } from "react";
+import { GetTemplateFromID } from "./Querries/MachineTemplateGetter";
+import { setMachineInventoryError } from "../../store/machineInventorySlice";
+import MachineInventory from "../../utils/machineInventoryObject";
 
 /**
  * # MachineInventoryComponentCard
@@ -17,9 +20,43 @@ const MachineInventoryComponentCard = ({
     onClick = () => { },
     size = "large"
 }) => {
+    const [template, setTemplate] = useState(null);
+    const [model, setModel] = useState("Not Found");
+    const [templateLoading, setTemplateLoading] = useState(false);
+    const [decorators, setDecorators] = useState(null);
+
     if (object == null) {
-        object = new MachineTemplate();
+        object = new MachineInventory();
     }
+
+    // Extract Model from TemplateID. Fetch Template if not found in our local stuff.
+    useEffect(() => {
+        if (template === null) {
+            console.log("TemplateID before the call", object.TemplateID);
+            GetTemplateFromID({
+                ID: object.TemplateID,
+                onStart: () => {
+                    setTemplateLoading(true);
+                },
+                onError: (e) => {
+                    setMachineInventoryError({ id: object.ID, error: String(e) });
+                    setDecorators(
+                        [
+                            { "label": "No Template", "state": "error" }
+                        ]
+                    );
+                },
+                onEnd: () => {
+                    setTemplateLoading(false);
+                },
+                onSuccess: (template) => {
+                    console.log(template);
+                    setTemplate(template);
+                    setModel(template.Model);
+                }
+            });
+        }
+    }, [template]);
 
     /*
                 decorators={
@@ -50,12 +87,16 @@ const MachineInventoryComponentCard = ({
             onClick={handleClicked}
             onLongPress={handleLongClick}
             size={size}
+            decorators={decorators}
             footerComponents={
-                <Typography
-                    fontSize={fontSize}
-                >
-                    {object.Model}
-                </Typography>
+                (templateLoading
+                    ? <LinearProgress />
+                    : <Typography
+                        fontSize={fontSize}
+                    >
+                        {model}
+                    </Typography>
+                )
             }
         />
     );

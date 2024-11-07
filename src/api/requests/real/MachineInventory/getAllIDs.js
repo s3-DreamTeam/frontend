@@ -15,7 +15,7 @@ export const FetchAllMachineInventoryIDs = async ({
     onStart();
     try {
         const header = BackendHeader();
-        const response = await backendApi.get(Endpoints.MachineInventory.Get.AllID);
+        const response = await backendApi.get(Endpoints.MachineInventory.Get.AllID, header);
         console.log(response);
         onSuccess(response.data);
     } catch (err) {

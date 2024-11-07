@@ -15,7 +15,7 @@ export const RealGetAllProductTemplateIDs = async ({
     onStart();
     try {
         const header = BackendHeader();
-        const response = await backendApi.get(Endpoints.ProductTemplate.Get.AllID);
+        const response = await backendApi.get(Endpoints.ProductTemplate.Get.AllID, header);
         console.log(response);
         onSuccess(response.data);
     } catch (err) {

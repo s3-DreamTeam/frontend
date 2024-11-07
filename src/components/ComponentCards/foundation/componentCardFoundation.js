@@ -25,7 +25,7 @@ const ComponentCardFoundation = ({
 
     const [timer, setTimer] = useState(null);
 
-    if (decorators === undefined) decorators = [];
+    if (decorators === undefined || decorators === null) decorators = [];
     const hasDecorators = decorators.length > 0;
 
 

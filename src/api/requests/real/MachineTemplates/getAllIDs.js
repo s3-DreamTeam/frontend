@@ -15,7 +15,7 @@ export const FetchAllMachineTemplateIDs = async ({
     onStart();
     try {
         const header = BackendHeader();
-        const response = await backendApi.get(Endpoints.MachineTemplate.Get.AllID);
+        const response = await backendApi.get(Endpoints.MachineTemplate.Get.AllID, header);
         console.log(response);
         onSuccess(response.data);
     } catch (err) {
