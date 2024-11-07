@@ -34,6 +34,7 @@ export const SimulatedGetSurfaceMachineTemplate = async ({
 const getSurfaceMachineTemplate = (state, id) => {
     //console.log("getSurfaceMachineTemplate");
     //console.log(state.simulatedEndpointSlice.object.machineTemplates);
+    console.log("before simulated machine fetch");
     const completeMachineTemplate = state.simulatedEndpointSlice.object.machineTemplates.find(template => template.id === id) || null; // Return the template with matching ID or null
     //console.log(completeMachineTemplate);
     if (completeMachineTemplate === null) {

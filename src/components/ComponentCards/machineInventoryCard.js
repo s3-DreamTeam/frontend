@@ -32,7 +32,6 @@ const MachineInventoryComponentCard = ({
     // Extract Model from TemplateID. Fetch Template if not found in our local stuff.
     useEffect(() => {
         if (template === null && object.TemplateID !== undefined) {
-            console.log("object before the call", object);
             GetTemplateFromID({
                 ID: object.TemplateID,
                 onStart: () => {
@@ -75,8 +74,6 @@ const MachineInventoryComponentCard = ({
     function handleLongClick() {
         onLongClick(object);
     }
-
-    console.log("object before render", object);
 
     const hasNoTemplate = template === null || template === undefined;
     return (

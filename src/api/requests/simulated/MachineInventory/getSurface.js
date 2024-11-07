@@ -40,8 +40,8 @@ const getSurfaceMachineInventory = (state, id) => {
     }
 
     return {
-        "Name": completeMachineInventory.Manufacturer,
-        "Location": completeMachineInventory.Model,
+        "Name": completeMachineInventory.Name,
+        "Location": completeMachineInventory.Location,
         "TemplateID": completeMachineInventory.TemplateID,
         "id": completeMachineInventory.id
     };

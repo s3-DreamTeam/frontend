@@ -26,33 +26,61 @@ export const machineTemplateSlice = createSlice({
          */
         removeMachineTemplateByID: (state, action) => {
             const ID = action.payload;
-            delete state.machineTemplates[ID];
+            try {
+                delete state.machineTemplates[ID];
+            } catch {
+                console.warn("MACHINE TEMPLATE SLICE: DELETE ERROR: INVALID ID");
+            }
         },
         setMachineTemplateToLoading: (state, action) => {
             const ID = action.payload;
-            state.machineTemplates[ID].isLoading = true;
+            try {
+                state.machineTemplates[ID].isLoading = true;
+            } catch {
+                console.warn("MACHINE TEMPLATE SLICE: TO LOADING ERROR: INVALID ID");
+            }
         },
         setMachineTemplateToLoaded: (state, action) => {
             const ID = action.payload;
-            state.machineTemplates[ID].isLoading = false;
+            try {
+                state.machineTemplates[ID].isLoading = false;
+            } catch {
+                console.warn("MACHINE TEMPLATE SLICE: INVALID ID");
+            }
         },
         setMachineTemplateImageToLoading: (state, action) => {
             const ID = action.payload;
-            state.machineTemplates[ID].imageIsLoading = true;
+            try {
+                state.machineTemplates[ID].imageIsLoading = true;
+            } catch {
+                console.warn("MACHINE TEMPLATE SLICE: INVALID ID");
+            }
         },
         setMachineTemplateImageToLoaded: (state, action) => {
             const ID = action.payload;
-            state.machineTemplates[ID].imageIsLoading = false;
+            try {
+                state.machineTemplates[ID].imageIsLoading = false;
+            } catch {
+                console.warn("MACHINE TEMPLATE SLICE: INVALID ID");
+            }
         },
         setMachineTemplateError: (state, action) => {
             const data = action.payload;
             const ID = data.id;
             const error = data.error;
-            state.machineTemplates[ID].errors = error;
+            try {
+                state.machineTemplates[ID].errors = error;
+            } catch {
+                console.warn("MACHINE TEMPLATE SLICE: INVALID ID");
+            }
         },
         resetMachineTemplateError: (state, action) => {
             const ID = action.payload;
-            state.machineTemplates[ID].errors = null;
+            try {
+                state.machineTemplates[ID].errors = null;
+            } catch {
+                console.warn("MACHINE TEMPLATE SLICE: INVALID ID");
+            }
         },
         /**
          * Pass it any small object, and it'll overwrite / add the attributes to the correcsponding object of that ID.
@@ -66,7 +94,11 @@ export const machineTemplateSlice = createSlice({
             const data = action.payload.data;
 
             const updatedTemplate = Object.assign(state.machineTemplates[ID], data);
-            state.machineTemplates[ID] = updatedTemplate;
+            try {
+                state.machineTemplates[ID] = updatedTemplate;
+            } catch {
+                console.warn("MACHINE TEMPLATE SLICE: SET DATA: INVALID ID");
+            }
         }
     }
 });

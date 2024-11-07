@@ -17,11 +17,13 @@ export function GetTemplateFromID({
     const localTemplate = GetLocalTemplate(state, ID);
 
     if (localTemplate !== null && localTemplate !== undefined) {
+        console.log("WE GOT THE TEMPLATE LOCALLY?!?");
         onSuccess(localTemplate);
         return;
     }
 
     // Oh... We don't have it locally... :(
+    console.log("WE DON'T HAVE IT LOCALLY");
     FetchTemplate({
         id: ID,
         onStart: onStart,
@@ -33,8 +35,13 @@ export function GetTemplateFromID({
 }
 
 const GetLocalTemplate = (state, id) => {
-    const completeMachineTemplate = state.machineTemplateSlice.machineTemplates[id];
-    return completeMachineTemplate;
+    try {
+        const completeMachineTemplate = state.machineTemplateSlice.machineTemplates[id];
+        return completeMachineTemplate;
+    } catch {
+        console.warn("inventory item tried to load local template with invalid ID: ", id);
+        return null;
+    }
 };
 
 function FetchTemplate({
