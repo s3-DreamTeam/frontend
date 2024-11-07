@@ -16,7 +16,7 @@ export function GetTemplateFromID({
     const state = store.getState();
     const localTemplate = GetLocalTemplate(state, ID);
 
-    if (localTemplate !== null) {
+    if (localTemplate !== null && localTemplate !== undefined) {
         onSuccess(localTemplate);
         return;
     }
@@ -24,10 +24,10 @@ export function GetTemplateFromID({
     // Oh... We don't have it locally... :(
     FetchTemplate({
         id: ID,
-        onStart: { onStart },
-        onEnd: { onEnd },
-        onSuccess: { onSuccess },
-        onError: { onError }
+        onStart: onStart,
+        onEnd: onEnd,
+        onSuccess: onSuccess,
+        onError: onError
     });
 
 }
@@ -66,7 +66,7 @@ function FetchTemplate({
                 id: id,
                 data: surfaceData
             }));
-
+            console.log("Fetch Template got: ", surfaceData);
             onSuccess(surfaceData);
 
             GetMachineTemplateImage({

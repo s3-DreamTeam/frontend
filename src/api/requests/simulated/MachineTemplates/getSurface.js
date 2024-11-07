@@ -21,6 +21,7 @@ export const SimulatedGetSurfaceMachineTemplate = async ({
         RandomErrorSimulator();
         const state = store.getState();
         const result = getSurfaceMachineTemplate(state, ID);
+        console.log("SIM_GetSurfaceMachineTemplate : Success", result);
         onSuccess(result);
     } catch (err) {
         console.warn("SIM_GetSurfaceMachineTemplate failed");

@@ -31,8 +31,8 @@ const MachineInventoryComponentCard = ({
 
     // Extract Model from TemplateID. Fetch Template if not found in our local stuff.
     useEffect(() => {
-        if (template === null) {
-            console.log("TemplateID before the call", object.TemplateID);
+        if (template === null && object.TemplateID !== undefined) {
+            console.log("object before the call", object);
             GetTemplateFromID({
                 ID: object.TemplateID,
                 onStart: () => {
@@ -50,13 +50,13 @@ const MachineInventoryComponentCard = ({
                     setTemplateLoading(false);
                 },
                 onSuccess: (template) => {
-                    console.log(template);
+                    console.log("Gotten template: ", template);
                     setTemplate(template);
                     setModel(template.Model);
                 }
             });
         }
-    }, [template]);
+    }, [template, object]);
 
     /*
                 decorators={
@@ -76,9 +76,12 @@ const MachineInventoryComponentCard = ({
         onLongClick(object);
     }
 
+    console.log("object before render", object);
+
+    const hasNoTemplate = template === null || template === undefined;
     return (
         <ComponentCardFoundation
-            title={object.Manufacturer}
+            title={object.Name}
             state={"normal"}
             image={object.Image}
             error={object.errors}
@@ -89,7 +92,7 @@ const MachineInventoryComponentCard = ({
             size={size}
             decorators={decorators}
             footerComponents={
-                (templateLoading
+                ((templateLoading || hasNoTemplate)
                     ? <LinearProgress />
                     : <Typography
                         fontSize={fontSize}
