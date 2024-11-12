@@ -142,7 +142,7 @@ const Testing = () => {
                                 >
                                     {errors
                                         ? fullError
-                                        : message
+                                        : String(message)
                                     }
                                 </Box>
                             </div>
