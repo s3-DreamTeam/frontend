@@ -45,6 +45,9 @@ const Testing = () => {
                 setErrors(null);
                 setFullError(null);
                 setMessage(data);
+                console.log("============================== - RECEIVED");
+                console.log(data);
+                console.log("==============================");
             }
         });
     }
