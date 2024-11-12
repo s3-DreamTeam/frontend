@@ -17,7 +17,22 @@ export const FetchBackendTest = async ({
     onStart();
     try {
         const header = BackendHeader();
-        const response = await backendApi.post(Endpoints.Test, new MachineTemplate(), header);
+        const response = await backendApi.post(Endpoints.Test, {
+            "Machine's Image": null,
+            "Manufacturer": "Manufactuer",
+            "Model": "Model",
+            "Climate": "cooled",
+            "Has serial numbers": false,
+            "Color varies": true,
+            "See through window": false,
+            "Has internet connection": true,
+            "Has Bluetooth": true,
+            "Has physical connection": false,
+            "Online store": false,
+            "Debit cards": true,
+            "Credit cards": true,
+            "Cash": false,
+        }, header);
         console.log("REQ: FetchBackendTest - SUCCESS");
         console.log(response);
         onSuccess(response.data);

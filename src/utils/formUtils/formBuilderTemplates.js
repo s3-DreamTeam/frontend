@@ -8,7 +8,7 @@ export function machineTemplateFormBuilder() {
                 name: "General information",
                 components: [
                     ImageFieldBuilder(
-                        "Machine's image",
+                        "Machine's Image",
                         false
                     ),
                     TextBoxFieldBuilder(
