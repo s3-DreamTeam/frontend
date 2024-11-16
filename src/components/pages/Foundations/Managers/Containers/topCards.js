@@ -10,8 +10,8 @@ const TopManagerCard = ({ color, children, maxWidth, minWidth }) => {
                 maxWidth: maxWidth,
                 minWidth: minWidth,
                 flexDirection: "column",
-                justifyContent: "center", // Center content vertically in the card
-                alignItems: "center", // Center content horizontally in the card
+                justifyContent: "center",
+                alignItems: "center",
             }}
         >
             {children}
