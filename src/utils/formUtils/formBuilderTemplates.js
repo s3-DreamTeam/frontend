@@ -43,6 +43,35 @@ export function machineTemplateFormBuilder() {
                 ]
             },
             {
+                name: "Inventory",
+                components: [
+                    NumberFieldBuilder(
+                        "Row Count",
+                        true,
+                        null,
+                        null,
+                        30,
+                        1
+                    ),
+                    NumberFieldBuilder(
+                        "Column Count",
+                        true,
+                        null,
+                        null,
+                        30,
+                        1
+                    ),
+                    NumberFieldBuilder(
+                        "Quantity Per Slots",
+                        true,
+                        null,
+                        null,
+                        null,
+                        1
+                    )
+                ]
+            },
+            {
                 name: "Connectivity",
                 components: [
                     CheckboxFieldBuilder(
