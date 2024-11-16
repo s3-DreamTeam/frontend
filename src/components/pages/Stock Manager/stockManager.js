@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import HandleUserLoggedInStatus from "../../../utils/verifyLoggedIn";
-import { newProductFormBuilder } from "../../../utils/formUtils/formBuilderTemplates";
 import ProductInventoryComponentCard from "../../ComponentCards/productInventoryCard";
 import { setProductInventoryToLoaded, setProductInventoryToLoading } from "../../../store/productInventorySlice";
 import { NewProductInInventory } from "../../../api/requests/interface/ProductInventory/new";
@@ -12,6 +11,8 @@ import { LoadUsersProductTemplates } from "../../../utils/ComplexStoreManagers/P
 import { GetFullProductTemplate } from "../../../api/requests/interface/ProductTemplates/getFull";
 import InventoryFoundationPage from "../Foundations/Inventory/foundationPage";
 import { ProductInventoryFormBuilder } from "../../../utils/formUtils/Forms/ProductInventory/Builder";
+import { AppRoutes } from "../../../utils/routerRouteManager";
+import SetupProductInventoryPage from "../../../utils/PreNavigation/SetupProductInventoryPage";
 
 const StockManager = () => {
     const loadedBefore = useSelector((state) => state.initialDataLoadStatus.productInventoryLoaded);
@@ -48,6 +49,9 @@ const StockManager = () => {
             alreadyLoadedTemplatesSelector={templatesLoadedBefore}
             inventoryObjectsSelector={products}
             templateObjectsSelector={templates}
+
+            onItemClickEndpoint={AppRoutes.StockInventory}
+            onItemClickSetup={SetupProductInventoryPage}
 
             APIGetFullTemplate={GetFullProductTemplate}
             APICreateNewObject={NewProductInInventory}

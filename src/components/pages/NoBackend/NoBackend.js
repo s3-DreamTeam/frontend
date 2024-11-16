@@ -17,7 +17,7 @@ const NoBackend = () => {
     function setToSimulated() {
         dispatch(setSimulated(true));
         setShown(false);
-        navigate(AppRoutes.Analytics);
+        navigate(AppRoutes.Home);
     }
 
     return (

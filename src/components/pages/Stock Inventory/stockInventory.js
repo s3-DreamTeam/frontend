@@ -1,21 +1,19 @@
 import HandleUserLoggedInStatus from "../../../utils/verifyLoggedIn";
 import EmptyPage from "../../emptyPage";
 import PageLayout from "../../pageLayout/pageLayout";
+import Manager from "../Foundations/Managers/manager";
 
-const Changelogs = () => {
+const StockInventory = () => {
 
     HandleUserLoggedInStatus();
 
     return (
         <>
             <PageLayout
-                title="Changelogs"
+                title="Temporary"
                 hideActionBar={true}
                 childrens={
-                    <EmptyPage
-                        header="Missing Changelogs"
-                        subtitle="We couldn't find any changelogs to display here."
-                    />
+                    <Manager />
                 }
             >
             </PageLayout>
@@ -23,4 +21,4 @@ const Changelogs = () => {
     );
 };
 
-export default Changelogs;
+export default StockInventory;

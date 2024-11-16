@@ -14,6 +14,7 @@ import NotLoggedInPage from "./pages/Keycloak Pages/notLoggedInPage";
 import KeycloakPages from "./keycloakPages";
 import Testing from "./pages/Testing/testing";
 import NoBackend from "./pages/NoBackend/NoBackend";
+import StockInventory from "./pages/Stock Inventory/stockInventory";
 
 let startedInit = false;
 const Snacky = () => {
@@ -56,12 +57,16 @@ const Snacky = () => {
                             element={<StockManager />}
                         />
                         <Route
-                            path={AppRoutes.MachineEditor}
-                            element={<MachineEditor />}
-                        />
-                        <Route
                             path={AppRoutes.StockEditor}
                             element={<StockEditor />}
+                        />
+                        <Route
+                            path={AppRoutes.StockInventory}
+                            element={<StockInventory />}
+                        />
+                        <Route
+                            path={AppRoutes.MachineEditor}
+                            element={<MachineEditor />}
                         />
                         <Route
                             path={AppRoutes.Changelogs}

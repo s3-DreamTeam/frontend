@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import DeleteDialog from "../../Dialogs/DeleteDialog";
 import store from "../../../store/store";
 import ProcessStatusSnackBar from "../../processStatusSnackbar";
+import { useNavigate } from "react-router-dom";
 
 /**
  * # MainLayoutFoundation
@@ -32,6 +33,9 @@ const MainLayoutFoundation = ({
     setObjectToLoadingReducer,
     setObjectToLoadedReducer,
 
+    onItemClickSetup = () => { },
+    onItemClickEndpoint = "",
+
     deleteDialogMessage = "OOps, goofus forgot to specify a delete message dialog",
     emptyInventoryTitle = "Forgor to specify",
     emptyInventoryMessage = "Forgot to specify a custom empty page yapping",
@@ -45,6 +49,7 @@ const MainLayoutFoundation = ({
     const [deleteSuccess, setDeleteSuccess] = useState(false);
     const [deleteErrors, setDeleteErrors] = useState(null);
 
+    const navigate = useNavigate();
     useEffect(() => {
     }, [mappedObjects]);
 
@@ -117,7 +122,10 @@ const MainLayoutFoundation = ({
                             <ComponentCard
                                 key={id}
                                 object={value}
-                                onClick={() => console.log("SHORT CLICK")}
+                                onClick={() => {
+                                    onItemClickSetup(id);
+                                    navigate(onItemClickEndpoint);
+                                }}
                                 onLongClick={() => { longClick(id); }}
                             />
                         ))}

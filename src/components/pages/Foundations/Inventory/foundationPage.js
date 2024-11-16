@@ -39,6 +39,8 @@ const InventoryFoundationPage = ({
     emptyInventoryTitle = "Ruh oh... Forgor",
     objectNameKey = "Model",
 
+    onItemClickSetup = () => { console.log("Lol, this isn't working"); },
+    onItemClickEndpoint = "",
     APIDeleteObject,
     APICreateNewObject,
     APIGetFullTemplate,
@@ -206,6 +208,8 @@ const InventoryFoundationPage = ({
                                 emptyInventoryMessage={emptyInventoryMessage}
                                 emptyInventoryTitle={emptyInventoryTitle}
                                 objectNameKey={objectNameKey}
+                                onItemClickSetup={onItemClickSetup}
+                                onItemClickEndpoint={onItemClickEndpoint}
                             />
                             : <InitialLoadingPage
                                 onRetryClick={loadFromScratch}

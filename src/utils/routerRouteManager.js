@@ -8,16 +8,18 @@ import { useLocation } from "react-router-dom";
  * when refering or navigating somewhere.
  */
 export const AppRoutes = {
-    Home: "/",
+    Home: "/StockInventory",
     Analytics: "/",
     NotLoggedIn: "/AuthentificationError",
     MachineManager: "/MachineManager",
-    StockManager: "/StockManager",
     MachineEditor: "/MachineEditor",
-    StockEditor: "/StockEditor",
     Changelogs: "/Changelogs",
     Testing: "/Testing",
-    NoBackend: "/NoBackend"
+    NoBackend: "/NoBackend",
+
+    StockManager: "/StockManager",
+    StockEditor: "/StockEditor",
+    StockInventory: "/StockInventory"
 };
 
 /**

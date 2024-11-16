@@ -9,6 +9,7 @@ import { initialDataLoadStatusReducers } from "./initialDataLoadStatusSlice";
 import { productTemplateReducers } from "./productTemplateSlice";
 import { productInventoryReducers } from "./productInventorySlice";
 import { machineInventoryReducers } from "./machineInventorySlice";
+import { productManagerReducers } from "./productManagerSlice";
 
 const store = configureStore({
     reducer: {
@@ -21,6 +22,7 @@ const store = configureStore({
         machineInventorySlice: machineInventoryReducers,
         productTemplateSlice: productTemplateReducers,
         productInventorySlice: productInventoryReducers,
+        productManager: productManagerReducers,
         initialDataLoadStatus: initialDataLoadStatusReducers,
     },
 });
