@@ -46,7 +46,7 @@ const ProductTemplateComponentCard = ({
         <ComponentCardFoundation
             title={object.Manufacturer}
             state={"normal"}
-            image={object.Image}
+            image={object["Product's Image"]}
             error={object.errors}
             isLoading={object.isLoading}
             imageIsLoading={object.imageIsLoading}

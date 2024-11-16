@@ -41,6 +41,6 @@ const getTemplateImage = (state, id) => {
     const image = completeProductTemplate[`Product's Image`];
     //console.warn(image);
     return {
-        "Image": image,
+        "Product's Image": image,
     };
 };

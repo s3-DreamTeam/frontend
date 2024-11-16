@@ -42,6 +42,6 @@ const getInventoryImage = (state, id) => {
     const image = completeMachineInventory[`Machine's Image`];
     //console.warn(image);
     return {
-        "Image": image,
+        "Machine's Image": image,
     };
 };

@@ -23,6 +23,8 @@ const MachineTemplateComponentCard = ({
         object = new MachineTemplate();
     }
 
+    console.log(object);
+
     /*
                 decorators={
                 [
@@ -45,7 +47,7 @@ const MachineTemplateComponentCard = ({
         <ComponentCardFoundation
             title={object.Manufacturer}
             state={"normal"}
-            image={object.Image}
+            image={object["Machine's Image"]}
             error={object.errors}
             isLoading={object.isLoading}
             imageIsLoading={object.imageIsLoading}

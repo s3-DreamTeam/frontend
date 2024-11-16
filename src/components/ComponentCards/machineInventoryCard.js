@@ -80,7 +80,7 @@ const MachineInventoryComponentCard = ({
         <ComponentCardFoundation
             title={object.Name}
             state={"normal"}
-            image={object.Image}
+            image={object["Machine's Image"]}
             error={object.errors}
             isLoading={object.isLoading}
             imageIsLoading={object.imageIsLoading}

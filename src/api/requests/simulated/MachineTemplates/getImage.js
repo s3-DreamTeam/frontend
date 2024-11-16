@@ -13,7 +13,7 @@ export const SimulatedGetMachineTemplateImage = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: SIM_GetSurfaceMachineTemplate");
+    console.log("REQ: SIM_GetMachineTemplateImage");
 
     onStart();
     try {
@@ -23,7 +23,7 @@ export const SimulatedGetMachineTemplateImage = async ({
         const result = getTemplateImage(state, ID);
         onSuccess(result);
     } catch (err) {
-        console.warn("SIM_GetSurfaceMachineTemplate failed");
+        console.warn("SIM_GetMachineTemplateImage failed");
         onError(err);
     } finally {
         onEnd();
@@ -34,14 +34,14 @@ const getTemplateImage = (state, id) => {
     //console.log("getSurfaceMachineTemplate");
     //console.log(state.simulatedEndpointSlice.object.machineTemplates);
     const completeMachineTemplate = state.simulatedEndpointSlice.object.machineTemplates.find(template => template.id === id) || null; // Return the template with matching ID or null
-    //console.log(completeMachineTemplate);
+    console.log("COMPLETE TEMPLATE I'M SEARCHING THROUGH: ", completeMachineTemplate);
     if (completeMachineTemplate === null) {
         return null;
     }
     //console.warn(completeMachineTemplate);
-    const image = completeMachineTemplate[`Machine's image`];
-    //console.warn(image);
+    const image = completeMachineTemplate[`Machine's Image`];
+    console.warn(image);
     return {
-        "Image": image,
+        "Machine's Image": image,
     };
 };

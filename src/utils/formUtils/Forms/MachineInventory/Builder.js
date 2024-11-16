@@ -2,7 +2,7 @@ import { ImageFieldBuilder, TextBoxFieldBuilder } from "../../formsObjects";
 import { MachineInventoryFormClimateField, MachineInventoryFormConnectivity, MachineInventoryFormIdentificationField, MachineInventoryFormPayments } from "./DynamicSectionsBuilders";
 
 export function MachineInventoryFormBuilder(templateObject) {
-    const image = templateObject["Machine's image"];
+    const image = templateObject["Machine's Image"];
     const hasSerialNumber = templateObject["Has serial numbers"];
     const hasVaryingColors = templateObject["Color varies"];
     const climate = templateObject["Climate"];
