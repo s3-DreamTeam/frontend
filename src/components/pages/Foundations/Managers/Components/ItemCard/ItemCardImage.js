@@ -46,7 +46,24 @@ const ItemCardImage = ({
                                 }}
                             />)
                         : (
-                            <NoPhotographyRounded fontSize="large" />
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    width: '100%',
+                                    alignItems: 'center',
+                                    alignContent: 'center',
+                                    justifyContent: 'center',
+                                    justifyItems: 'center',
+                                }}
+                            >
+                                <NoPhotographyRounded
+                                    color="disabled"
+                                    style={{
+                                        fontSize: "5rem",
+
+                                    }}
+                                />
+                            </div>
                         ))}
         </div>
 

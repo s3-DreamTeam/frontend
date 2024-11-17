@@ -36,6 +36,7 @@ const getSurfaceProduct = (state, id) => {
         return null;
     }
 
+    console.log("RETURNED PRODUCT IN INVENTORY: ", completeProductInInventory);
     return {
         "Variant": completeProductInInventory.Variant,
         "TemplateID": completeProductInInventory.TemplateID,

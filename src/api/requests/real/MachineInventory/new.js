@@ -21,9 +21,7 @@ export const PostNewMachineInventory = async ({
         const header = BackendHeader();
         await backendApi.post(
             Endpoints.MachineInventory.New,
-            {
-                machineInventoryObject
-            },
+            machineInventoryObject,
             header
         );
         onSuccess();

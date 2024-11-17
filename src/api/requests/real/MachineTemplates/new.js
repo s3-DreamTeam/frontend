@@ -21,9 +21,7 @@ export const PostNewMachineTemplate = async ({
         const header = BackendHeader();
         await backendApi.post(
             Endpoints.MachineTemplate.New,
-            {
-                machineTemplateObject
-            },
+            machineTemplateObject,
             header
         );
         onSuccess();

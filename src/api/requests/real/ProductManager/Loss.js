@@ -2,10 +2,10 @@ import { backendApi, BackendHeader } from "../../../backend";
 import Endpoints from "../../../endpoints";
 
 /**
- * # RealNewProductInInventory
+ * # RealProductsLossToInventory
  * See interface version for details
  */
-export const RealNewProductsAddedToInventory = async ({
+export const RealProductsLossToInventory = async ({
 
     packet,
 
@@ -14,13 +14,13 @@ export const RealNewProductsAddedToInventory = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: RealNewProductsAddedToInventory");
+    console.log("REQ: RealProductsLossToInventory");
     onStart();
     try {
         //await sleep(5000);
         const header = BackendHeader();
         await backendApi.post(
-            Endpoints.ProductInventory.Manage.Add,
+            Endpoints.ProductInventory.Manage.Loss,
             packet,
             header
         );

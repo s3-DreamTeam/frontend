@@ -13,6 +13,10 @@ import InventoryFormFoundation from "./FormPage";
 import { productManagerFormAddBuilder } from "../../../utils/formUtils/Forms/productManagerFormAdd";
 import { NewProductsAddedToInventory } from "../../../api/requests/interface/ProductManager/Add";
 import { GetSurfaceProductInInventory } from "../../../api/requests/interface/ProductInventory/getSurface";
+import { productManagerFormLossBuilder } from "../../../utils/formUtils/Forms/productManagerFormLoss";
+import { ProductsLossToInventory } from "../../../api/requests/interface/ProductManager/Loss";
+import store from "../../../store/store";
+import { setProductInventoryData } from "../../../store/productInventorySlice";
 
 let isFetching = false;
 
@@ -20,6 +24,8 @@ const StockInventory = () => {
     const [fullProduct, setFullProduct] = useState(null);
     const [fullTemplate, setFullTemplate] = useState(null);
     const [inForm, setInForm] = useState(false);
+    const [inLoss, setInLoss] = useState(false);
+    const [inAdd, setInAdd] = useState(false);
 
     const [cardTitle, setCardTitle] = useState(null);
     const [cardImage, setCardImage] = useState(null);
@@ -32,7 +38,6 @@ const StockInventory = () => {
     const productID = useSelector((state) => state.productManager.productManagerId);
 
     HandleUserLoggedInStatus();
-    console.log("PRODUCT ID: ", productID);
 
     // - Fetch Necessary Informations - //
     useEffect(() => {
@@ -84,6 +89,8 @@ const StockInventory = () => {
 
     function cancelForm() {
         setInForm(false);
+        setInAdd(false);
+        setInLoss(false);
         GetSurfaceProductInInventory({
             ID: productID,
             onStart: () => {
@@ -98,15 +105,62 @@ const StockInventory = () => {
             onSuccess: (data) => {
                 console.log("GOT", data);
                 setQuantity(data["Quantity"]);
+                store.dispatch(setProductInventoryData({
+                    id: productID,
+                    data: data
+                }));
             }
         });
     }
 
     function newClicked() {
+        setInAdd(true);
+        setInLoss(false);
         setInForm(true);
     }
 
-    console.log("WHAT THE FUCK IS IT AT: ", inForm);
+    function lossClicked() {
+        setInAdd(false);
+        setInLoss(true);
+        setInForm(true);
+    }
+
+    function GetForm() {
+        if (inAdd) {
+            return (productManagerFormAddBuilder());
+        }
+        return (productManagerFormLossBuilder(quantity));
+    }
+
+    function API({
+        packet,
+        onStart = () => { },
+        onEnd = () => { },
+        onSuccess = () => { },
+        onError = () => { },
+    }) {
+        if (inAdd) {
+            console.log("NEW PRODUCTS ADDED");
+            NewProductsAddedToInventory({
+                packet: packet,
+                onStart: onStart,
+                onEnd: onEnd,
+                onSuccess: onSuccess,
+                onError: onError,
+            });
+        }
+        else {
+            console.log("PRODUCT LOST");
+            ProductsLossToInventory({
+                packet: packet,
+                onStart: onStart,
+                onEnd: onEnd,
+                onSuccess: onSuccess,
+                onError: onError,
+            });
+        }
+    }
+
     return (
         inForm ?
             <PageLayout
@@ -121,8 +175,8 @@ const StockInventory = () => {
                     <InventoryFormFoundation
                         itemID={fullProduct.id}
                         onCancel={cancelForm}
-                        formObjectGetter={productManagerFormAddBuilder}
-                        APIFormEndpoint={NewProductsAddedToInventory}
+                        formObjectGetter={GetForm}
+                        APIFormEndpoint={API}
                         successDialogTitle="Success"
                         successDialogMessage="Quantity has been updated"
                     />
@@ -154,6 +208,8 @@ const StockInventory = () => {
                     >
                         <ProductManagerPageFooter
                             onNewClick={newClicked}
+                            onLossClick={lossClicked}
+                            disabled={footerLoading}
                         />
                     </Manager>
                 }

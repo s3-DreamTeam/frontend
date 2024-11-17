@@ -21,9 +21,7 @@ export const RealNewProductInInventory = async ({
         const header = BackendHeader();
         await backendApi.post(
             Endpoints.ProductInventory.New,
-            {
-                packet
-            },
+            packet,
             header
         );
         onSuccess();

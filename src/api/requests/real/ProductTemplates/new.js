@@ -21,9 +21,7 @@ export const RealNewProductTemplate = async ({
         const header = BackendHeader();
         await backendApi.post(
             Endpoints.ProductTemplate.New,
-            {
-                packet
-            },
+            packet,
             header
         );
         onSuccess();

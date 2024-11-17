@@ -5,8 +5,10 @@ const { default: BigButton } = require("./BigButtons");
 
 const ProductManagerPageFooter = ({
     onLossClick,
-    onNewClick
+    onNewClick,
+    disabled = false,
 }) => {
+    console.log("DISABLED??? ", disabled);
     return (
         <Stack
             spacing={"2rem"}
@@ -24,12 +26,14 @@ const ProductManagerPageFooter = ({
                 color="error"
                 Icon={RemoveRounded}
                 onClick={onLossClick}
+                disabled={disabled}
             />
             <BigButton
                 name="New stock"
                 color="success"
                 Icon={AddRounded}
                 onClick={onNewClick}
+                disabled={disabled}
             />
         </Stack>
     );

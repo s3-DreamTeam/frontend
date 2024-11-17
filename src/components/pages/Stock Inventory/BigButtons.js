@@ -5,11 +5,15 @@ const BigButton = ({
     Icon,
     name,
     color,
-    onClick
+    onClick,
+    disabled
 }) => {
+    console.log("IS IT DISABLED? ", disabled);
+    const buttonColor = disabled ? "disabled" : "inherit";
+
     return (
         <ColorCard
-            colorvariant={color}
+            colorvariant={disabled ? "disabled" : color}
             alignContent="space-evenly"
             alignItems="space-evenly"
             justifyContent="space-evenly"
@@ -31,6 +35,7 @@ const BigButton = ({
                     padding: '0rem'
                 }}
                 onClick={onClick}
+                disabled={disabled}
             >
                 <CardContent
                     sx={{
@@ -48,10 +53,12 @@ const BigButton = ({
                             style={{
                                 fontSize: "5rem",
                             }}
+                            color={buttonColor}
                         />
                         <Typography
                             fontSize="2.5rem"
                             fontWeight={800}
+                            color={disabled ? "textDisabled" : null}
                         >
                             {name}
                         </Typography>

@@ -125,8 +125,18 @@ export const simulatedEndpointSlice = createSlice({
             const ID = packet.id;
             const quantity = packet["Gained Quantity"];
 
-            console.warn(state.object.productInventory);
+            console.warn("MY QUANTITY IS ADD: ", quantity);
             state.object.productInventory.find(product => product.id === ID)["Quantity"] += Number(quantity);
+            //console.log(state, ID);
+        },
+        simRemoveFromProductQuantity: (state, action) => {
+            let packet = action.payload;
+            console.warn(packet);
+            const ID = packet.id;
+            const quantity = packet["Lost Quantity"];
+
+            console.warn("MY QUANTITY IS LOST: ", quantity);
+            state.object.productInventory.find(product => product.id === ID)["Quantity"] -= Number(quantity);
             //console.log(state, ID);
         },
     }
@@ -142,7 +152,8 @@ export const {
     simRemoveMachineFromInventory,
     simAddNewProductInInventory,
     simRemoveProductFromInventory,
-    simAddToProductQuantity
+    simAddToProductQuantity,
+    simRemoveFromProductQuantity
 } = simulatedEndpointSlice.actions;
 
 export const simulatedEndpointReducers = simulatedEndpointSlice.reducer;

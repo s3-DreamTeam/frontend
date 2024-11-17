@@ -18,3 +18,6 @@
 - Everytime you do, hot reload WON't WORK.
 
 there you go charle
+
+# Note
+- This is the WORST react code and file structure you WILL EVER SEE. This sucks. I'm sorry.
