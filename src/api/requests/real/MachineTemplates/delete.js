@@ -21,7 +21,7 @@ export const PostDeleteMachineTemplate = async ({
             ID,
             header
         );
-        onSuccess(response);
+        onSuccess(response.data);
     } catch (err) {
         onError(err);
     } finally {
