@@ -1,4 +1,3 @@
-import { LinearProgress, Typography } from "@mui/material";
 import ComponentCardFoundation from "./foundation/componentCardFoundation";
 import Product from "../../utils/productInventoryObject";
 import { useEffect, useState } from "react";
@@ -48,7 +47,7 @@ const ProductInventoryComponentCard = ({
                 },
                 onEnd: () => {
                     setTemplateLoading(false);
-
+                    console.log("OBJECT : ", object);
                     if (object.Quantity === 0) {
                         setDecorators(
                             [
@@ -64,19 +63,21 @@ const ProductInventoryComponentCard = ({
                 }
             });
         }
+        // Technical debt bullshit. Not correctly handling quantity updates here makes this the only way of removing empty flag from cards without having to change endpoints on the pages
+        if (object.Quantity !== 0) {
+            setDecorators(null);
+        }
     }, [template, object]);
 
     let fontSize = (size === "large" ? '1rem' : '0.75rem');
 
     function handleClicked() {
-        console.log(object);
         onClick(object);
     }
 
     function handleLongClick() {
         onLongClick(object);
     }
-
     return (
         <ComponentCardFoundation
             title={title}

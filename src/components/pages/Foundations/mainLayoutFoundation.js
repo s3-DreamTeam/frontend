@@ -123,7 +123,8 @@ const MainLayoutFoundation = ({
                                 key={id}
                                 object={value}
                                 onClick={() => {
-                                    onItemClickSetup(id);
+                                    console.log("CLICKED THE ITEM, ID IS: ", value.id);
+                                    onItemClickSetup(value.id);
                                     navigate(onItemClickEndpoint);
                                 }}
                                 onLongClick={() => { longClick(id); }}

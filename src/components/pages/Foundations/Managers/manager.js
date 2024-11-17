@@ -7,29 +7,38 @@ import ManagerTop from "./Containers/managerTop";
  * The object that creates an inventory manager page.
  * @returns 
  */
-const Manager = () => {
+const Manager = ({
+    name = "",
+    image = null,
+    cardColor = null,
+    CardFooter = null,
+    imageLoading = false,
+    footerLoading = false,
+    nameLoading = false,
+    children
+}) => {
     return (
         <Box
             display="flexbox"
-            justifyItems="cdnter"
+            justifyItems="center"
+            justifyContent="center"
             alignContent="top"
+            alignItems="center"
             sx={{
                 height: '100%',
+                width: '100%'
             }}
         >
-            <ManagerTop />
-            <Box>
-                <ColorCard>
-                    <Typography>
-                        Bruh
-                    </Typography>
-                </ColorCard>
-                <ColorCard>
-                    <Typography>
-                        Bruh
-                    </Typography>
-                </ColorCard>
-            </Box>
+            <ManagerTop
+                name={name}
+                image={image}
+                color={cardColor}
+                Footer={CardFooter}
+                imageLoading={imageLoading}
+                footerLoading={footerLoading}
+                nameLoading={nameLoading}
+            />
+            {children}
         </Box>
     );
 };

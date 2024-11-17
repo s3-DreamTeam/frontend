@@ -1,4 +1,6 @@
 import TopManagerCard from "../../Containers/topCards";
+import ItemCardFooter from "./ItemCardFooter";
+import ItemCardImage from "./ItemCardImage";
 import ItemCardName from "./ItemCardName";
 
 const ItemCard = ({
@@ -19,11 +21,20 @@ const ItemCard = ({
             <div
                 style={{
                     padding: '2rem',
+                    height: '100%'
                 }}
             >
                 <ItemCardName
                     text={name}
                     loading={nameLoading}
+                />
+                <ItemCardImage
+                    image={image}
+                    loading={imageLoading}
+                />
+                <ItemCardFooter
+                    Footer={Footer}
+                    loading={footerLoading}
                 />
             </div>
         </TopManagerCard>

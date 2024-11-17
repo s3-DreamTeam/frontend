@@ -6,7 +6,8 @@ const ItemCardName = ({
 }) => {
     return (
         <Typography
-            variant="h5"
+            variant="h4"
+            fontWeight={700}
             align="center"
             noWrap
             textOverflow='ellipsis'
@@ -14,6 +15,7 @@ const ItemCardName = ({
                 whiteSpace: 'nowrap', // Prevent wrapping
                 overflow: 'hidden', // Hide overflow
                 textOverflow: 'ellipsis', // Show ellipsis for overflow text
+                paddingBottom: '1rem'
             }}
         >
             {loading ?

@@ -119,6 +119,16 @@ export const simulatedEndpointSlice = createSlice({
             state.object.productInventory = state.object.productInventory.filter(item => item.id !== ID);
             //console.log(state, ID);
         },
+        simAddToProductQuantity: (state, action) => {
+            let packet = action.payload;
+            console.warn(packet);
+            const ID = packet.id;
+            const quantity = packet["Gained Quantity"];
+
+            console.warn(state.object.productInventory);
+            state.object.productInventory.find(product => product.id === ID)["Quantity"] += Number(quantity);
+            //console.log(state, ID);
+        },
     }
 });
 
@@ -131,7 +141,8 @@ export const {
     simAddNewMachineInInventory,
     simRemoveMachineFromInventory,
     simAddNewProductInInventory,
-    simRemoveProductFromInventory
+    simRemoveProductFromInventory,
+    simAddToProductQuantity
 } = simulatedEndpointSlice.actions;
 
 export const simulatedEndpointReducers = simulatedEndpointSlice.reducer;

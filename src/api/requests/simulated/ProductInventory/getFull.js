@@ -13,7 +13,7 @@ export const SimulatedGetFullProductInInventory = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: SimulatedGetFullProductInInventory");
+    console.log("REQ: SimulatedGetFullProductInInventory", ID);
 
     onStart();
     try {
@@ -21,6 +21,7 @@ export const SimulatedGetFullProductInInventory = async ({
         RandomErrorSimulator();
         const state = store.getState();
         const result = getInventory(state, ID);
+        console.log("SimulatedGetFullProductInInventory => ", result);
         onSuccess(result);
     } catch (err) {
         console.warn("SimulatedGetFullProductInInventory failed");

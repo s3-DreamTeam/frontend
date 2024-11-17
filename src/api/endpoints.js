@@ -55,9 +55,14 @@ const Endpoints = {
             Full: 'ProductInventory/Get/Full',      // Here's an ID, Give me the entire product object
             AllID: 'ProductInventory/Get/AllID',    // Give me an array of all my products in my inventory.
         },
+        Manage: {
+            Add: 'ProductInventory/Manage/Add',     // New products of this kind were added.
+            Loss: 'ProductInventory/Manage/Loss'    // We lost some products :(
+        },
         New: 'ProductInventory/New',            // Here's a JSON, make a new object with it.
         //Modify: 'ProductInventory/Modify',      // Here's a JSON and an ID, overwrite the product with this.
         Delete: 'ProductInventory/Delete',      // Delete the product with this ID.
+
     }
 };
 

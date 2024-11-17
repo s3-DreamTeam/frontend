@@ -39,7 +39,7 @@ const getSurfaceProduct = (state, id) => {
     return {
         "Variant": completeProductInInventory.Variant,
         "TemplateID": completeProductInInventory.TemplateID,
-        "Quantity": 0,
+        "Quantity": completeProductInInventory.Quantity,
         "id": completeProductInInventory.id
     };
 };

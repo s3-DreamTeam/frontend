@@ -1,21 +1,13 @@
 import { useState } from "react";
 import { FormToPacket } from "../../../utils/formUtils/formToPacket";
-import ProcessStatusSnackBar from "../../processStatusSnackbar";
 import SuccessDialog from "../../Dialogs/SuccessDialog";
 import Form from "../../Forms/form";
+import ProcessStatusSnackBar from "../../processStatusSnackbar";
 
-/**
- * # AddFormFoundation
- * @param onCancel: callback when the form is cancelled one way or another
- * @param APICreateNewObject: Function that takes a packet as entry and calls the backend to create a new object with it.
- * @param formObjectGetter: Function that gets a new form template object when called
- * @param successDialogTitle: Object was created, give a title for the success that is!
- * @param successDialogMessage: Message to put in the success dialog box.
- * @returns 
- */
-const AddFormFoundation = ({
+const InventoryFormFoundation = ({
+    itemID,
     onCancel = () => { },
-    APICreateNewObject = () => { console.log("Goofus forgot to specify an APICreateNewObject to their inventory page."); },
+    APIFormEndpoint = () => { console.log("Goofus forgot to specify an APIFormEndpoint to their inventory page."); },
     formObjectGetter,
     successDialogTitle = "I forgor the title",
     successDialogMessage = "Oops, this is a generic message!",
@@ -65,10 +57,9 @@ const AddFormFoundation = ({
     };
 
     function SendForm(packet) {
-        packet["TemplateID"] = templateID;
-        packet["Quantity"] = 0;
+        packet["id"] = itemID;
         console.log("SENT OBJECT", packet);
-        APICreateNewObject({
+        APIFormEndpoint({
             packet: packet,
 
             onError: (err) => {
@@ -115,4 +106,4 @@ const AddFormFoundation = ({
     );
 };
 
-export default AddFormFoundation;
+export default InventoryFormFoundation;

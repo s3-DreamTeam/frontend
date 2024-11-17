@@ -9,6 +9,7 @@ export const productManagerSlice = createSlice({
         setProductManagerPageID: (state, action) => {
             const ID = action.payload;
             state.productManagerId = ID;
+            console.log("ID IS IN STORE", ID);
         },
     }
 });

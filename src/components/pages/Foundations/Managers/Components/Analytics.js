@@ -14,6 +14,7 @@ const ManagerAnalyticsCard = () => {
                 alignItems="center" // Center horizontally
                 sx={{
                     height: "100%", // Ensure the box fills the card's height
+                    padding: '2rem'
                 }}
             >
                 <Typography
