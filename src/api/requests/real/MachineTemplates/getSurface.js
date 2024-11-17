@@ -21,7 +21,8 @@ export const PostGetSurfaceMachineTemplate = async ({
             ID,
             header
         );
-        onSuccess(response);
+        console.log("MACHINE TEMPLATE SURFACE: ", response.data);
+        onSuccess(response.data);
     } catch (err) {
         onError(err);
     } finally {
