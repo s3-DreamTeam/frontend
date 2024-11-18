@@ -33,7 +33,7 @@ const InventoryFormFoundation = ({
     }, []);
 
     function FetchFullTemplate() {
-        console.log("TRYING TO FETCH FULL TEMPLATES FROM THIS OBJECT: ", formSelectedTemplate);
+        console.log("InventoryFormFoundation: TRYING TO FETCH FULL TEMPLATES FROM THIS OBJECT: ", formSelectedTemplate);
         APIGetFullTemplate({
             ID: formSelectedTemplate.id,
 
@@ -53,7 +53,7 @@ const InventoryFormFoundation = ({
                 setErrors(null);
                 setSuccess(true);
                 setFullTemplate(object);
-                console.log("Received: ", object);
+                console.log("InventoryFormFoundation: FETCHING FULL TEMPLATES WAS A SUCCESS, I Received: ", object);
             }
         });
     }
