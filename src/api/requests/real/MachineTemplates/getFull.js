@@ -12,7 +12,7 @@ export const RealGetFullMachineTemplate = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: FetchFullMachineTemplate");
+    console.log("REQ: FetchFullMachineTemplate - ID", ID);
     onStart();
     try {
         const header = BackendHeader();
