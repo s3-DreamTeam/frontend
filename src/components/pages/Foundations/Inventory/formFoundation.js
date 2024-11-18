@@ -33,6 +33,7 @@ const InventoryFormFoundation = ({
     }, []);
 
     function FetchFullTemplate() {
+        console.log("TRYING TO FETCH FULL TEMPLATES FROM THIS OBJECT: ", formSelectedTemplate);
         APIGetFullTemplate({
             ID: formSelectedTemplate.id,
 
