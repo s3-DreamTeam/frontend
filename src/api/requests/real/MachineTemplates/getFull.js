@@ -21,6 +21,7 @@ export const RealGetFullMachineTemplate = async ({
             ID,
             header
         );
+        console.log("REQ: FetchFullMachineTemplate - GOTTEN", response.data);
         onSuccess(response.data);
     } catch (err) {
         onError(err);

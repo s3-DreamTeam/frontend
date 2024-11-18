@@ -12,7 +12,7 @@ export const PostGetSurfaceMachineTemplate = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: PostGetSurfaceMachineTemplate");
+    console.log("REQ: PostGetSurfaceMachineTemplate - ID IS ", ID);
     onStart();
     try {
         const header = BackendHeader();
@@ -21,7 +21,7 @@ export const PostGetSurfaceMachineTemplate = async ({
             ID,
             header
         );
-        console.log("MACHINE TEMPLATE SURFACE: ", response.data);
+        console.log("PostGetSurfaceMachineTemplate - MACHINE TEMPLATE SURFACE: ", response.data);
         onSuccess(response.data);
     } catch (err) {
         onError(err);

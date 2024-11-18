@@ -21,6 +21,7 @@ export const PostDeleteMachineFromInventory = async ({
             ID,
             header
         );
+        console.log("REQ: PostDeleteMachineFromInventory GOTTEN: ", response.data);
         onSuccess(response.data);
     } catch (err) {
         onError(err);

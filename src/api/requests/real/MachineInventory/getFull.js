@@ -21,6 +21,7 @@ export const RealGetFullMachineInventory = async ({
             ID,
             header
         );
+        console.log("RealGetFullMachineInventory - GOTTEN: ", response.data);
         onSuccess(response.data);
     } catch (err) {
         onError(err);

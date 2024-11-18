@@ -34,7 +34,7 @@ export const FetchBackendTest = async ({
             "Cash": false,
         }, header);
         console.log("REQ: FetchBackendTest - SUCCESS");
-        console.log(response);
+        console.log("REQ: FetchBackendTest - GOTTEN: ", response.data);
         onSuccess(response.data);
     } catch (err) {
         console.warn("REQ: FetchBackendTest - FAILED", err);

@@ -21,7 +21,7 @@ export const PostGetMachineTemplateImage = async ({
             ID,
             header
         );
-        console.log("MACHINE IMAGE: ", response.data);
+        console.log("PostGetMachineTemplateImage - MACHINE IMAGE: ", response.data);
         onSuccess(response.data);
     } catch (err) {
         onError(err);
