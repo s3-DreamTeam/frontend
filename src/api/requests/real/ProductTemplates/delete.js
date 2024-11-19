@@ -21,6 +21,7 @@ export const RealDeleteProductTemplate = async ({
             ID,
             header
         );
+        console.log("REQ: RealDeleteProductTemplate - GOTTEN : ", response.data);
         onSuccess(response.data);
     } catch (err) {
         onError(err);

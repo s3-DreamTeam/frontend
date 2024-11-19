@@ -21,6 +21,7 @@ export const RealGetFullProductTemplate = async ({
             ID,
             header
         );
+        console.log("RealGetFullProductTemplate - GOTTEN: ", response.data);
         onSuccess(response.data);
     } catch (err) {
         onError(err);

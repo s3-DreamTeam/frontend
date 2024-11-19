@@ -21,6 +21,7 @@ export const RealGetProductTemplateImage = async ({
             ID,
             header
         );
+        console.log("RealGetProductTemplateImage - GOTTEN: ", response.data);
         onSuccess(response.data);
     } catch (err) {
         onError(err);
