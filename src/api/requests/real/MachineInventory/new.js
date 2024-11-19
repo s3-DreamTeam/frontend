@@ -14,7 +14,7 @@ export const PostNewMachineInventory = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: PostNewMachineInventory");
+    console.log("REQ: PostNewMachineInventory, With object: ", machineInventoryObject);
     onStart();
     try {
         //await sleep(5000);
