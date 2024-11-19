@@ -21,6 +21,7 @@ export const RealDeleteProductFromInventory = async ({
             ID,
             header
         );
+        console.log("REQ: RealDeleteProductFromInventory - GOTTEN : ", response.data);
         onSuccess(response.data);
     } catch (err) {
         onError(err);

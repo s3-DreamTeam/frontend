@@ -21,6 +21,7 @@ export const RealGetFullProductInInventory = async ({
             ID,
             header
         );
+        console.log("REQ: RealGetFullProductInInventory - GOTTEN : ", response.data);
         onSuccess(response.data);
     } catch (err) {
         onError(err);

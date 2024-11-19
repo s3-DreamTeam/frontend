@@ -21,6 +21,7 @@ export const RealGetProductInInventoryImage = async ({
             ID,
             header
         );
+        console.log("REQ: RealGetProductInInventoryImage - GOTTEN : ", response.data);
         onSuccess(response.data);
     } catch (err) {
         onError(err);

@@ -21,6 +21,7 @@ export const RealGetSurfaceProductInInventory = async ({
             ID,
             header
         );
+        console.log("REQ: RealGetSurfaceProductInInventory - GOTTEN : ", response.data);
         onSuccess(response.data);
     } catch (err) {
         onError(err);
