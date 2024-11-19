@@ -29,7 +29,7 @@ const InventorySlot = ({
             return null;
         }
 
-        //GetSurfaceProductInInventory({})
+        //GetSurfaceProductInInventory({}
     }
 
 
