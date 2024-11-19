@@ -26,33 +26,61 @@ export const productTemplateSlice = createSlice({
          */
         removeProductTemplateByID: (state, action) => {
             const ID = action.payload;
-            delete state.productTemplates[ID];
+            try {
+                delete state.productTemplates[ID];
+            } catch {
+                console.warn("PRODUCT TEMPLATE STORE: INVALID ID", ID);
+            }
         },
         setProductTemplateToLoading: (state, action) => {
             const ID = action.payload;
-            state.productTemplates[ID].isLoading = true;
+            try {
+                state.productTemplates[ID].isLoading = true;
+            } catch {
+                console.warn("PRODUCT TEMPLATE STORE: INVALID ID", ID);
+            }
         },
         setProductTemplateToLoaded: (state, action) => {
             const ID = action.payload;
-            state.productTemplates[ID].isLoading = false;
+            try {
+                state.productTemplates[ID].isLoading = false;
+            } catch {
+                console.warn("PRODUCT TEMPLATE STORE: INVALID ID", ID);
+            }
         },
         setProductTemplateImageToLoading: (state, action) => {
             const ID = action.payload;
-            state.productTemplates[ID].imageIsLoading = true;
+            try {
+                state.productTemplates[ID].imageIsLoading = true;
+            } catch {
+                console.warn("PRODUCT TEMPLATE STORE: INVALID ID", ID);
+            }
         },
         setProductTemplateImageToLoaded: (state, action) => {
             const ID = action.payload;
-            state.productTemplates[ID].imageIsLoading = false;
+            try {
+                state.productTemplates[ID].imageIsLoading = false;
+            } catch {
+                console.warn("PRODUCT TEMPLATE STORE: INVALID ID", ID);
+            }
         },
         setProductTemplateError: (state, action) => {
             const data = action.payload;
             const ID = data.id;
             const error = data.error;
-            state.productTemplates[ID].errors = error;
+            try {
+                state.productTemplates[ID].errors = error;
+            } catch {
+                console.warn("PRODUCT TEMPLATE STORE: INVALID ID", ID);
+            }
         },
         resetProductTemplateError: (state, action) => {
             const ID = action.payload;
-            state.productTemplates[ID].errors = null;
+            try {
+                state.productTemplates[ID].errors = null;
+            } catch {
+                console.warn("PRODUCT TEMPLATE STORE: INVALID ID", ID);
+            }
         },
         /**
          * Pass it any small object, and it'll overwrite / add the attributes to the correcsponding object of that ID.
@@ -65,8 +93,12 @@ export const productTemplateSlice = createSlice({
             const ID = action.payload.id;
             const data = action.payload.data;
 
-            const updatedTemplate = Object.assign(state.productTemplates[ID], data);
-            state.productTemplates[ID] = updatedTemplate;
+            try {
+                const updatedTemplate = Object.assign(state.productTemplates[ID], data);
+                state.productTemplates[ID] = updatedTemplate;
+            } catch {
+                console.warn("PRODUCT TEMPLATE STORE: INVALID ID. I COULD NOT SET THE DATA TO WHAT YOU WANTED. SORRY.", ID);
+            }
         }
     }
 });
