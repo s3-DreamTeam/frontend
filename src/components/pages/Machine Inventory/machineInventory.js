@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import HandleUserLoggedInStatus from "../../../utils/verifyLoggedIn";
 import { GetFullMachineInInventory } from "../../../api/requests/interface/MachineInventory/getFull";
@@ -29,6 +29,8 @@ import { machineManagerFormAddBuilder } from "../../../utils/formUtils/Forms/mac
 import { machineManagerFormRemoveBuilder } from "../../../utils/formUtils/Forms/machineManagerFormRemove";
 import { MachineManagerAdd } from "../../../api/requests/interface/MachineManager/add";
 import { MachineManagerRemove } from "../../../api/requests/interface/MachineManager/remove";
+import { GetSurfaceProductInInventory } from "../../../api/requests/interface/ProductInventory/getSurface";
+import { setProductInventoryData } from "../../../store/productInventorySlice";
 
 let isFetching = false;
 
@@ -66,6 +68,7 @@ const MachineInventoryPage = () => {
     const [inventoryError, setInventoryError] = useState(true);
     const machineID = useSelector((state) => state.machineManager.machineManagerId);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     HandleUserLoggedInStatus();
 
@@ -155,11 +158,37 @@ const MachineInventoryPage = () => {
         });
     }
 
+    function UpdateAffectedProduct() {
+        // Updates my redux store only for the product which quantity was affected.
+        const productID = selectedSlot.ProductID;
+        if (productID === null) {
+            return;
+        }
+
+        GetSurfaceProductInInventory({
+            ID: productID,
+            onStart: () => {
+                setInventoryLoading(true);
+            },
+            onEnd: () => {
+                setInventoryLoading(false);
+            },
+            onError: (e) => {
+                console.error(e);
+                setInventoryError(e.message);
+            },
+            onSuccess: (data) => {
+                console.log("Successfully gotten the surface of the used product. Updating it.");
+                dispatch(setProductInventoryData({ id: productID, "data": data }));
+            }
+        });
+    }
 
     function cancelForm() {
         setInForm(false);
         setInAdd(false);
         setInLoss(false);
+        UpdateAffectedProduct();
         setToLoading(selectedSlot);
         GetFullInventory(machineID, false);
     }

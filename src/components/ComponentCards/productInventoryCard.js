@@ -5,6 +5,7 @@ import { GetProductTemplateFromID } from "./Querries/ProductTemplateGetter";
 import { setProductTemplateError } from "../../store/productTemplateSlice";
 import store from "../../store/store";
 import { setProductInventoryError } from "../../store/productInventorySlice";
+import { Typography } from "@mui/material";
 
 /**
  * # ProductInventoryComponentCard
@@ -20,6 +21,7 @@ const ProductInventoryComponentCard = ({
     object = null,
     onLongClick = () => { },
     onClick = () => { },
+    showQuantity = false,
     size = "large"
 }) => {
     const [template, setTemplate] = useState(null);
@@ -85,6 +87,13 @@ const ProductInventoryComponentCard = ({
         onLongClick(object);
     }
 
+    let FooterText = "Error";
+    if (showQuantity) {
+        FooterText = (<Typography fontWeight={800}>{`${object.Quantity} Left`}</Typography>);
+    } else {
+        FooterText = object.Variant;
+    }
+
     return (
         <ComponentCardFoundation
             title={title}
@@ -99,7 +108,7 @@ const ProductInventoryComponentCard = ({
             size={size}
             decorators={decorators}
             footerComponents={
-                object.Variant
+                FooterText
             }
         />
     );

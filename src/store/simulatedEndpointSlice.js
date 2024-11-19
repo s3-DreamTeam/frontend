@@ -170,7 +170,11 @@ export const simulatedEndpointSlice = createSlice({
                     console.log(`Slot ${slot} in machine ${ID} has been reset.`);
                     console.log(`Adding lost quantity back to associated product (if not null)`);
                     if (productID !== null) {
-                        state.object.productInventory.find(product => product.id === productID)["Quantity"] += Number(quantity);
+                        try {
+                            state.object.productInventory.find(product => product.id === productID)["Quantity"] += Number(quantity);
+                        } catch {
+                            console.warn("Failed to set quantity. Perhaps ID is not valid.");
+                        }
                     }
                 } else {
                     console.warn(`Slot ${slot} not found in machine ${ID}.`);

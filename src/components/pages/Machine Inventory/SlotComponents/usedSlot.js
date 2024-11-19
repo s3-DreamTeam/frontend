@@ -4,6 +4,7 @@ import store from "../../../../store/store";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { AddRounded, RemoveRounded } from "@mui/icons-material";
+import Product from "../../../../utils/productInventoryObject";
 
 const UsedSlot = ({
     slot,
@@ -35,6 +36,16 @@ const UsedSlot = ({
     const text = `${slot.Quantity}/${template["Quantity Per Slots"]} left`;
     const quantity = slot.Quantity;
     const price = `Sells at ${slot.Price}$`;
+    const productError = product === undefined;
+
+    let object = null;
+    if (productError) {
+        object = new Product();
+        object.errors = "INVALID";
+    } else {
+        object = product;
+    }
+
     return (
         <div
             style={{
@@ -96,7 +107,7 @@ const UsedSlot = ({
                                 variant="contained"
                                 color="success"
                                 startIcon={<AddRounded />}
-                                disabled={(product.Quantity === 0) || (slot.Quantity === Number(template["Quantity Per Slots"]))}
+                                disabled={productError || (product.Quantity === 0) || (slot.Quantity === Number(template["Quantity Per Slots"]))}
                                 onClick={() => { onAdd(slot); }}
                                 sx={{
                                     borderRadius: '1.5rem',
@@ -113,7 +124,7 @@ const UsedSlot = ({
                                 color="error"
                                 startIcon={<RemoveRounded />}
                                 onClick={() => { onRemove(slot); }}
-                                disabled={quantity === 0}
+                                disabled={quantity === 0 || productError}
                                 sx={{
                                     borderRadius: '1.5rem',
                                     width: '100%',
@@ -141,8 +152,9 @@ const UsedSlot = ({
                     </div>
                 </div>
                 <ProductInventoryComponentCard
-                    object={product}
+                    object={object}
                     size="small"
+                    showQuantity={true}
                 />
             </div>
         </div>

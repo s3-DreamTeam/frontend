@@ -36,6 +36,9 @@ export default function SelectComponentFromStoreDialog({
     }
 
     function handleComponentClick(e) {
+        if (e.error) {
+            console.warn("THIS COMPONENT HAS POTENTIAL ISSUES AND ERRORS");
+        }
         onConfirm(e);
     }
 

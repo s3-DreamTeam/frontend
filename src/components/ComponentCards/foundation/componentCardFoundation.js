@@ -5,6 +5,7 @@ import ColorCard from "./styledCard";
 import SmallDecoratorsArea from "./smallDecoratorArea";
 import { GetHighestDecoratorType } from "../../../utils/decoratorPriorityFinder";
 import { useEffect, useState } from "react";
+import StyledTooltip from "../../styledTooltip";
 
 
 const ComponentCardFoundation = ({
@@ -19,7 +20,7 @@ const ComponentCardFoundation = ({
     imageIsLoading,
     error,
     size = "large",
-    loadingHeader = false
+    loadingHeader = false,
 }) => {
     const [isPressing, setIsPressing] = useState(false);
     const [isLongPress, setIsLongPress] = useState(false);
@@ -101,71 +102,75 @@ const ComponentCardFoundation = ({
                 decorators={decorators}
                 globalColor={color}
             />
-            <ColorCard
-                colorvariant={color}
-                sx={{
-                    minHeight: maxRem,
-                    minWidth: maxRem,
-                    maxWidth: maxRem,
-                    maxHeight: maxRem,
-                    borderRadius: hasDecorators ? decoratorPadding : StandardBorder,
-                    display: 'flex',
-                    flexDirection: 'column',
-                }}
+            <StyledTooltip
+                title={error ? error : null}
             >
-                {isLoading
-                    ? (<div
-                        style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            height: maxRem
-                        }}
-                    >
-                        <CircularProgress
-                            size={progressSize}
-                            color="inherit"
-                        />
-                    </div>)
-                    : (
-                        <CardActionArea
-                            onMouseDown={startPress}
-                            onMouseUp={endPress}
-                            onMouseLeave={endPress}
-                            onTouchStart={startPress}
-                            onTouchEnd={endPress}
-                            onTouchCancel={endPress}
-                            sx={{
+                <ColorCard
+                    colorvariant={color}
+                    sx={{
+                        minHeight: maxRem,
+                        minWidth: maxRem,
+                        maxWidth: maxRem,
+                        maxHeight: maxRem,
+                        borderRadius: hasDecorators ? decoratorPadding : StandardBorder,
+                        display: 'flex',
+                        flexDirection: 'column',
+                    }}
+                >
+                    {isLoading
+                        ? (<div
+                            style={{
                                 display: 'flex',
-                                flexDirection: 'column',
-                                height: '100%',
-                                padding: StandardBorder
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                height: maxRem
                             }}
                         >
-                            <SmallComponentCardHeader
-                                title={title}
-                                size={size}
-                                loading={loadingHeader}
+                            <CircularProgress
+                                size={progressSize}
+                                color="inherit"
                             />
-                            <SmallComponentCardMedia
-                                title={title}
-                                image={image}
-                                size={size}
-                                isLoading={imageIsLoading}
-                            />
-                            <CardActions
+                        </div>)
+                        : (
+                            <CardActionArea
+                                onMouseDown={startPress}
+                                onMouseUp={endPress}
+                                onMouseLeave={endPress}
+                                onTouchStart={startPress}
+                                onTouchEnd={endPress}
+                                onTouchCancel={endPress}
                                 sx={{
-                                    height: actionAreaHeight,
-                                    flexShrink: 0,
-                                    width: '100%',
-                                    justifyContent: 'center'
-                                }} // Footer takes 10% of the height
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    height: '100%',
+                                    padding: StandardBorder
+                                }}
                             >
-                                {footerComponents}
-                            </CardActions>
-                        </CardActionArea>
-                    )}
-            </ColorCard>
+                                <SmallComponentCardHeader
+                                    title={title}
+                                    size={size}
+                                    loading={loadingHeader}
+                                />
+                                <SmallComponentCardMedia
+                                    title={title}
+                                    image={image}
+                                    size={size}
+                                    isLoading={imageIsLoading}
+                                />
+                                <CardActions
+                                    sx={{
+                                        height: actionAreaHeight,
+                                        flexShrink: 0,
+                                        width: '100%',
+                                        justifyContent: 'center'
+                                    }} // Footer takes 10% of the height
+                                >
+                                    {footerComponents}
+                                </CardActions>
+                            </CardActionArea>
+                        )}
+                </ColorCard>
+            </StyledTooltip>
         </div>
     );
 };
