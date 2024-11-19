@@ -5,11 +5,18 @@ const AvailableSlot = ({
     slot,
     onSet,
 }) => {
+
+    function clicked() {
+        console.log("An available slot has been clicked");
+        onSet(slot);
+    }
+
     return (
         <CardActionArea
             sx={{
                 width: '90%'
             }}
+            onClick={clicked}
         >
             <CardContent
                 sx={{

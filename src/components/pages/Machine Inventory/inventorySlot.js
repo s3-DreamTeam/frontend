@@ -1,17 +1,20 @@
 import { Typography } from "@mui/material";
 import ColorCard from "../../ComponentCards/foundation/styledCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AvailableSlot from "./SlotComponents/availableSlot";
 import LoadingSlot from "./SlotComponents/loadingSlot";
+import UsedSlot from "./SlotComponents/usedSlot";
 
 const InventorySlot = ({
     slot = null,
+    machine,
+    template,
     onSet = () => { },
     onReset = () => { },
     onAdd = () => { },
     onRemove = () => { }
 }) => {
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [errors, setErrors] = useState(null);
 
     const price = slot.Price;
@@ -23,15 +26,13 @@ const InventorySlot = ({
     const available = (Quantity === 0) && (productID === null);
 
     // - Get the associated template - //
-    function GetAssociatedProduct(id) {
-        // Check if there is none first:
-        if (id === null) {
-            return null;
+    useEffect(() => {
+        if (slot.loading !== undefined) {
+            setLoading(true);
+        } else {
+            setLoading(false);
         }
-
-        //GetSurfaceProductInInventory({}
-    }
-
+    }, [slot]);
 
     return (
         <ColorCard
@@ -48,18 +49,27 @@ const InventorySlot = ({
             }}
         >
             <Typography
-                variant="h6"
+                variant="h4"
                 fontWeight={800}
                 sx={{
-                    paddingX: '1.5rem'
+                    paddingX: '1.5rem',
+                    width: '5%'
                 }}
             >
                 {slotName}
             </Typography>
+            <div
+                style={{
+                    padding: '1rem',
+                    width: '5%'
+                }}
+            />
             {
                 loading
                     ? <LoadingSlot />
-                    : <AvailableSlot slot={slot} />
+                    : (available
+                        ? <AvailableSlot slot={slot} onSet={onSet} />
+                        : <UsedSlot slot={slot} machine={machine} template={template} onAdd={onAdd} onRemove={onRemove} onReset={onReset} />)
             }
         </ColorCard>
     );

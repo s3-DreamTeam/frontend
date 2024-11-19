@@ -148,7 +148,7 @@ export const simulatedEndpointSlice = createSlice({
         simResetMachineInventorySlot: (state, action) => {
             let packet = action.payload;
             let ID = Number(packet.id);
-            let slot = Number(packet.Slot); // Ensure proper type match
+            let slot = packet.Slot; // Ensure proper type match
 
             console.log(`Trying to reset slot ${slot} of machine ${ID}`);
 
@@ -176,7 +176,7 @@ export const simulatedEndpointSlice = createSlice({
         simSetMachineInventorySlot: (state, action) => {
             let packet = action.payload;
             let ID = Number(packet.id);
-            let slot = Number(packet.Slot);
+            let slot = packet.Slot;
             let productID = Number(packet.ProductID);
 
             console.log(`Trying to set slot ${slot} of machine ${ID} with product ${productID}`);
@@ -203,7 +203,7 @@ export const simulatedEndpointSlice = createSlice({
         simAddMachineInventorySlotQuantity: (state, action) => {
             let packet = action.payload;
             let ID = Number(packet.id);
-            let slot = Number(packet.Slot);
+            let slot = packet.Slot;
             let quantity = Number(packet.Quantity);
             let price = Number(packet.Price);
 
@@ -232,7 +232,7 @@ export const simulatedEndpointSlice = createSlice({
         simRemoveMachineInventorySlotQuantity: (state, action) => {
             let packet = action.payload;
             let ID = Number(packet.id);
-            let slot = Number(packet.Slot);
+            let slot = packet.Slot;
             let quantity = Number(packet.Quantity);
 
             console.log(`Trying to remove ${quantity} from slot ${slot} of machine ${ID}`);

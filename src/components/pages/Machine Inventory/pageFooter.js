@@ -6,7 +6,14 @@ import LoadingPageFooter from "./loadingPageFooter";
 const MachineInventoryPageFooter = ({
     inventory = null,
     errors = null,
-    loading = null
+    loading = null,
+    machine,
+    template,
+    onSet,
+    onAdd,
+    onRemove,
+    onReset,
+    onRetry
 }) => {
     return (
         <Stack
@@ -17,11 +24,19 @@ const MachineInventoryPageFooter = ({
         >
             {
                 errors
-                    ? <ErrorPageFooter />
+                    ? <ErrorPageFooter error={errors} onRetry={onRetry} />
                     : (
                         loading
                             ? <LoadingPageFooter />
-                            : <InventoryPageFooter inventory={inventory} />
+                            : <InventoryPageFooter
+                                machine={machine}
+                                template={template}
+                                inventory={inventory}
+                                onAdd={onAdd}
+                                onRemove={onRemove}
+                                onReset={onReset}
+                                onSet={onSet}
+                            />
                     )
             }
         </Stack>

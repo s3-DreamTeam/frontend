@@ -4,7 +4,7 @@ const LoadingSlot = () => {
     return (
         <LinearProgress
             sx={{
-                width: '90%',
+                width: '70%',
                 borderRadius: '1.5rem',
                 marginRight: '2rem'
             }}

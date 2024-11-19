@@ -3,6 +3,8 @@ import Product from "../../utils/productInventoryObject";
 import { useEffect, useState } from "react";
 import { GetProductTemplateFromID } from "./Querries/ProductTemplateGetter";
 import { setProductTemplateError } from "../../store/productTemplateSlice";
+import store from "../../store/store";
+import { setProductInventoryError } from "../../store/productInventorySlice";
 
 /**
  * # ProductInventoryComponentCard
@@ -38,7 +40,7 @@ const ProductInventoryComponentCard = ({
                     setTemplateLoading(true);
                 },
                 onError: (e) => {
-                    setProductTemplateError({ id: object.ID, error: String(e) });
+                    store.dispatch(setProductInventoryError({ id: object.ID, error: String(e) }));
                     setDecorators(
                         [
                             { "label": "No Template", "state": "error" }
@@ -47,7 +49,7 @@ const ProductInventoryComponentCard = ({
                 },
                 onEnd: () => {
                     setTemplateLoading(false);
-                    console.log("OBJECT : ", object);
+                    console.log("ON END: OBJECT : ", object);
                     if (object.Quantity === 0) {
                         setDecorators(
                             [
@@ -64,8 +66,12 @@ const ProductInventoryComponentCard = ({
             });
         }
         // Technical debt bullshit. Not correctly handling quantity updates here makes this the only way of removing empty flag from cards without having to change endpoints on the pages
-        if (object.Quantity !== 0) {
-            setDecorators(null);
+        if (object.Quantity === 0 && object.errors === null) {
+            setDecorators(
+                [
+                    { "label": "Empty", "state": "warning" }
+                ]
+            );
         }
     }, [template, object]);
 
@@ -78,6 +84,7 @@ const ProductInventoryComponentCard = ({
     function handleLongClick() {
         onLongClick(object);
     }
+
     return (
         <ComponentCardFoundation
             title={title}

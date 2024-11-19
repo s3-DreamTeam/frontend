@@ -1,4 +1,4 @@
-import { simResetMachineInventorySlot } from "../../../../store/simulatedEndpointSlice";
+import { simResetMachineInventorySlot, simSetMachineInventorySlot } from "../../../../store/simulatedEndpointSlice";
 import store from "../../../../store/store";
 import { RandomErrorSimulator } from "../../../../utils/randomErrorSimulator";
 import { WaitSimulator } from "../../../../utils/waitSimulator";
@@ -20,7 +20,7 @@ export const SimulatedMachineManagerSet = async ({
     try {
         await WaitSimulator();
         RandomErrorSimulator();
-        store.dispatch(simResetMachineInventorySlot(packet));
+        store.dispatch(simSetMachineInventorySlot(packet));
         onSuccess(null);
     } catch (err) {
         console.warn("SimulatedMachineManagerSet failed");
