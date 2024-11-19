@@ -31,6 +31,13 @@ const Endpoints = {
             Full: 'MachineInventory/Get/Full',      // Here's an ID, Give me the entire machine's object data
             AllID: 'MachineInventory/Get/AllID',    // Give me an array of all my machines in my inventory.
         },
+        Manage: {
+            Reset: 'MachineInventory/Manage/Reset',
+            Add: 'MachineInventory/Manage/Add',
+            Set: 'MachineInventory/Manage/Set',
+            Remove: 'MachineInventory/Manage/Remove',
+            Get: 'MachineInventory/Manage/Remove',
+        },
         New: 'MachineInventory/New',            // Here's a JSON, make a new object with it.
         //Modify: 'MachineInventory/Modify',      // Here's a JSON and an ID, overwrite the machine with this.
         Delete: 'MachineInventory/Delete',      // Delete the machine in my inventory with this ID.

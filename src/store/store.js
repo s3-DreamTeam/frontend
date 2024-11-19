@@ -10,6 +10,7 @@ import { productTemplateReducers } from "./productTemplateSlice";
 import { productInventoryReducers } from "./productInventorySlice";
 import { machineInventoryReducers } from "./machineInventorySlice";
 import { productManagerReducers } from "./productManagerSlice";
+import { machineManagerReducers } from "./machineManagerSlice";
 
 const store = configureStore({
     reducer: {
@@ -20,6 +21,7 @@ const store = configureStore({
         simulatedEndpointSlice: simulatedEndpointReducers,
         machineTemplateSlice: machineTemplateReducers,
         machineInventorySlice: machineInventoryReducers,
+        machineManager: machineManagerReducers,
         productTemplateSlice: productTemplateReducers,
         productInventorySlice: productInventoryReducers,
         productManager: productManagerReducers,

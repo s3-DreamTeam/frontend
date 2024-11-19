@@ -13,6 +13,7 @@ export const AppRoutes = {
     NotLoggedIn: "/AuthentificationError",
     MachineManager: "/MachineManager",
     MachineEditor: "/MachineEditor",
+    MachineInventory: "/MachineInventory",
     Changelogs: "/Changelogs",
     Testing: "/Testing",
     NoBackend: "/NoBackend",

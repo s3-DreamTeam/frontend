@@ -11,6 +11,8 @@ import MachineTemplateComponentCard from "../../ComponentCards/machineTemplateCa
 import { MachineInventoryFormBuilder } from "../../../utils/formUtils/Forms/MachineInventory/Builder";
 import { GetFullMachineTemplate } from "../../../api/requests/interface/MachineTemplates/getFull";
 import { LoadUsersMachineTemplates } from "../../../utils/ComplexStoreManagers/MachineTemplate/load";
+import { AppRoutes } from "../../../utils/routerRouteManager";
+import SetupMachineInventoryPage from "../../../utils/PreNavigation/SetupMachineInventoryPage";
 
 const MachineManager = () => {
     const loadedBefore = useSelector((state) => state.initialDataLoadStatus.machineInventoryLoaded);
@@ -47,6 +49,9 @@ const MachineManager = () => {
             alreadyLoadedTemplatesSelector={templatesLoadedBefore}
             inventoryObjectsSelector={machines}
             templateObjectsSelector={templates}
+
+            onItemClickEndpoint={AppRoutes.MachineInventory}
+            onItemClickSetup={SetupMachineInventoryPage}
 
             APIGetFullTemplate={GetFullMachineTemplate}
             APICreateNewObject={NewMachineInInventory}

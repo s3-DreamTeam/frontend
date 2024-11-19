@@ -15,6 +15,7 @@ import KeycloakPages from "./keycloakPages";
 import Testing from "./pages/Testing/testing";
 import NoBackend from "./pages/NoBackend/NoBackend";
 import StockInventory from "./pages/Stock Inventory/stockInventory";
+import MachineInventoryPage from "./pages/Machine Inventory/machineInventory";
 
 let startedInit = false;
 const Snacky = () => {
@@ -53,6 +54,14 @@ const Snacky = () => {
                             element={<MachineManager />}
                         />
                         <Route
+                            path={AppRoutes.MachineInventory}
+                            element={<MachineInventoryPage />}
+                        />
+                        <Route
+                            path={AppRoutes.MachineEditor}
+                            element={<MachineEditor />}
+                        />
+                        <Route
                             path={AppRoutes.StockManager}
                             element={<StockManager />}
                         />
@@ -63,10 +72,6 @@ const Snacky = () => {
                         <Route
                             path={AppRoutes.StockInventory}
                             element={<StockInventory />}
-                        />
-                        <Route
-                            path={AppRoutes.MachineEditor}
-                            element={<MachineEditor />}
                         />
                         <Route
                             path={AppRoutes.Changelogs}
