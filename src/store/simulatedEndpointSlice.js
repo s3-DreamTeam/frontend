@@ -158,6 +158,9 @@ export const simulatedEndpointSlice = createSlice({
             if (machine) {
                 // Find the slot
                 let slotToUpdate = machine.Inventory.find(item => item.Slot === slot);
+                const productID = slotToUpdate.ProductID;
+                const quantity = slotToUpdate.Quantity;
+                console.log(`The slot that needs to be reset has ${quantity} items of product with ID: `, productID);
 
                 if (slotToUpdate) {
                     // Update slot attributes
@@ -165,6 +168,10 @@ export const simulatedEndpointSlice = createSlice({
                     slotToUpdate.Quantity = 0;
                     slotToUpdate.Price = 0;
                     console.log(`Slot ${slot} in machine ${ID} has been reset.`);
+                    console.log(`Adding lost quantity back to associated product (if not null)`);
+                    if (productID !== null) {
+                        state.object.productInventory.find(product => product.id === productID)["Quantity"] += Number(quantity);
+                    }
                 } else {
                     console.warn(`Slot ${slot} not found in machine ${ID}.`);
                 }
@@ -204,6 +211,7 @@ export const simulatedEndpointSlice = createSlice({
             let packet = action.payload;
             let ID = Number(packet.id);
             let slot = packet.Slot;
+            let productID = packet.ProductID;
             let quantity = Number(packet.Quantity);
             let price = Number(packet.Price);
 
@@ -220,7 +228,9 @@ export const simulatedEndpointSlice = createSlice({
                     // Update slot attributes
                     slotToUpdate.Quantity += quantity;
                     slotToUpdate.Price = price;
-                    console.log(`Slot ${slot} in machine ${ID} has been set.`);
+                    console.log(`Slot ${slot} in machine ${ID} has had it's quantity increased`);
+                    console.log("Removing quantity from parent product with ID: ", productID);
+                    state.object.productInventory.find(product => product.id === productID)["Quantity"] -= Number(quantity);
                 } else {
                     console.warn(`Slot ${slot} not found in machine ${ID}.`);
                 }
@@ -233,6 +243,7 @@ export const simulatedEndpointSlice = createSlice({
             let packet = action.payload;
             let ID = Number(packet.id);
             let slot = packet.Slot;
+            let productID = packet.ProductID;
             let quantity = Number(packet.Quantity);
 
             console.log(`Trying to remove ${quantity} from slot ${slot} of machine ${ID}`);
@@ -247,7 +258,10 @@ export const simulatedEndpointSlice = createSlice({
                 if (slotToUpdate) {
                     // Update slot attributes
                     slotToUpdate.Quantity -= quantity;
-                    console.log(`Slot ${slot} in machine ${ID} has been set.`);
+                    console.log(`Slot ${slot} in machine ${ID} has had quantity decreased`);
+                    console.log("Adding removed quantity back to corresponding product with ID", productID);
+                    state.object.productInventory.find(product => product.id === productID)["Quantity"] += Number(quantity);
+
                 } else {
                     console.warn(`Slot ${slot} not found in machine ${ID}.`);
                 }

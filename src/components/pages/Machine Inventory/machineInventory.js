@@ -25,6 +25,10 @@ import ErrorDialog from "../../Dialogs/ErrorDialog";
 import { MachineManagerSet } from "../../../api/requests/interface/MachineManager/set";
 import { MachineManagerReset } from "../../../api/requests/interface/MachineManager/reset";
 import QuestionDialog from "../../Dialogs/QuestionDialog";
+import { machineManagerFormAddBuilder } from "../../../utils/formUtils/Forms/machineManagerFormAdd";
+import { machineManagerFormRemoveBuilder } from "../../../utils/formUtils/Forms/machineManagerFormRemove";
+import { MachineManagerAdd } from "../../../api/requests/interface/MachineManager/add";
+import { MachineManagerRemove } from "../../../api/requests/interface/MachineManager/remove";
 
 let isFetching = false;
 
@@ -32,6 +36,7 @@ const MachineInventoryPage = () => {
     const [fullMachine, setFullMachine] = useState(null);
     const [fullTemplate, setFullTemplate] = useState(null);
     const [fullInventory, setFullInventory] = useState(null);
+    const allProducts = useSelector((state) => state.productInventorySlice.productInventory);
 
     const [inForm, setInForm] = useState(false);
     const [inLoss, setInLoss] = useState(false);
@@ -155,44 +160,28 @@ const MachineInventoryPage = () => {
         setInForm(false);
         setInAdd(false);
         setInLoss(false);
-        GetSurfaceMachineInInventory({
-            ID: machineID,
-            onStart: () => {
-                setFooterLoading(true);
-            },
-            onEnd: () => {
-                setFooterLoading(false);
-            },
-            onError: () => {
-                // :(
-            },
-            onSuccess: (data) => {
-                console.log("SURFACE GOT: ", data);
-                store.dispatch(setMachineInventoryData({
-                    id: machineID,
-                    data: data
-                }));
-            }
-        });
-    }
-
-    function newClicked() {
-        setInAdd(true);
-        setInLoss(false);
-        setInForm(true);
-    }
-
-    function lossClicked() {
-        setInAdd(false);
-        setInLoss(true);
-        setInForm(true);
+        setToLoading(selectedSlot);
+        GetFullInventory(machineID, false);
     }
 
     function GetForm() {
+        const quantityInThere = Number(selectedSlot.Quantity);
+        const maximumQuantity = Number(fullTemplate["Quantity Per Slots"]);
+        //console.log("The slot's product ID is ", selectedSlot);
+        const quantityLeftOfProduct = Number(allProducts[selectedSlot.ProductID]["Quantity"]);
+
+        console.log(`Buidling forms knowing that there's ${quantityInThere} product in the slot, the maximum is ${maximumQuantity} and we got ${quantityLeftOfProduct} left to put`);
         if (inAdd) {
-            return (productManagerFormAddBuilder());
+            let maximumThatCanFit = maximumQuantity - quantityInThere;
+            if (quantityLeftOfProduct < maximumThatCanFit) {
+                maximumThatCanFit = quantityLeftOfProduct;
+            }
+
+            console.log("The maximum that can fit is: ", maximumThatCanFit);
+            return (machineManagerFormAddBuilder(maximumThatCanFit));
         }
-        return (productManagerFormLossBuilder(0));
+
+        return (machineManagerFormRemoveBuilder(quantityInThere));
     }
 
     function API({
@@ -202,9 +191,11 @@ const MachineInventoryPage = () => {
         onSuccess = () => { },
         onError = () => { },
     }) {
+        packet["ProductID"] = selectedSlot.ProductID;
+        packet["Slot"] = selectedSlot.Slot;
         if (inAdd) {
             console.log("NEW PRODUCTS ADDED");
-            NewProductsAddedToInventory({
+            MachineManagerAdd({
                 packet: packet,
                 onStart: onStart,
                 onEnd: onEnd,
@@ -213,8 +204,8 @@ const MachineInventoryPage = () => {
             });
         }
         else {
-            console.log("PRODUCT LOST");
-            ProductsLossToInventory({
+            console.log("PRODUCT REMOVED");
+            MachineManagerRemove({
                 packet: packet,
                 onStart: onStart,
                 onEnd: onEnd,
@@ -270,10 +261,17 @@ const MachineInventoryPage = () => {
     }
 
     function onAdd(slot) {
-
+        setSelectedSlot(slot);
+        setInAdd(true);
+        setInLoss(false);
+        setInForm(true);
     }
 
     function onRemove(slot) {
+        setSelectedSlot(slot);
+        setInAdd(false);
+        setInLoss(true);
+        setInForm(true);
     }
 
     function onReset(slot) {
@@ -356,7 +354,7 @@ const MachineInventoryPage = () => {
     return (
         inForm ?
             <PageLayout
-                title="Doing product's inventory"
+                title="Managing Slot"
                 hideActionBar={true}
                 hasGoBackArrow={true}
                 hideNavigationDrawer={true}

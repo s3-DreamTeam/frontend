@@ -27,12 +27,12 @@ const InventorySlot = ({
 
     // - Get the associated template - //
     useEffect(() => {
-        if (slot.loading !== undefined) {
+        if (slot.loading !== undefined || template === null || machine === null) {
             setLoading(true);
         } else {
             setLoading(false);
         }
-    }, [slot]);
+    }, [slot, machine, template]);
 
     return (
         <ColorCard

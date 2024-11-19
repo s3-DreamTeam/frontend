@@ -24,7 +24,7 @@ const UsedSlot = ({
         setProduct(neededProduct);
     }, [allProducts]);
 
-    if (template === null) {
+    if (template === null || product === null) {
         return (
             <Typography>
                 Template is null
@@ -32,9 +32,8 @@ const UsedSlot = ({
         );
     }
 
-    //console.log("slot: ", slot);
-
     const text = `${slot.Quantity}/${template["Quantity Per Slots"]} left`;
+    const quantity = slot.Quantity;
     const price = `Sells at ${slot.Price}$`;
     return (
         <div
@@ -97,7 +96,8 @@ const UsedSlot = ({
                                 variant="contained"
                                 color="success"
                                 startIcon={<AddRounded />}
-                                onClick={onAdd}
+                                disabled={(product.Quantity === 0) || (slot.Quantity === Number(template["Quantity Per Slots"]))}
+                                onClick={() => { onAdd(slot); }}
                                 sx={{
                                     borderRadius: '1.5rem',
                                     width: '100%',
@@ -112,7 +112,8 @@ const UsedSlot = ({
                                 variant="contained"
                                 color="error"
                                 startIcon={<RemoveRounded />}
-                                onClick={onRemove}
+                                onClick={() => { onRemove(slot); }}
+                                disabled={quantity === 0}
                                 sx={{
                                     borderRadius: '1.5rem',
                                     width: '100%',

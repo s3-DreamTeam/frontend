@@ -1,8 +1,8 @@
 import { NumberFieldBuilder } from "../formsObjects";
 
-export function machineManagerFormAddBuilder(maxQuantity) {
+export function machineManagerFormRemoveBuilder(maxQuantity) {
     return ({
-        name: "Put products in this slot",
+        name: "Remove products from this slot",
         sections: [
             {
                 name: "Information",
@@ -14,15 +14,7 @@ export function machineManagerFormAddBuilder(maxQuantity) {
                         null,
                         maxQuantity,
                         0
-                    ),
-                    NumberFieldBuilder(
-                        "Price",
-                        true,
-                        null,
-                        "$",
-                        null,
-                        0
-                    ),
+                    )
                 ]
             },
         ]
