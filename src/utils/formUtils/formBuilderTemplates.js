@@ -50,7 +50,7 @@ export function machineTemplateFormBuilder() {
                         true,
                         null,
                         null,
-                        30,
+                        15,
                         1
                     ),
                     NumberFieldBuilder(
@@ -58,7 +58,7 @@ export function machineTemplateFormBuilder() {
                         true,
                         null,
                         null,
-                        30,
+                        15,
                         1
                     ),
                     NumberFieldBuilder(
@@ -205,7 +205,7 @@ export function productTemplateFormBuilder() {
                         null,
                         'cm',
                         null,
-                        null
+                        0
                     ),
                     NumberFieldBuilder(
                         "Height",
@@ -213,7 +213,7 @@ export function productTemplateFormBuilder() {
                         null,
                         'cm',
                         null,
-                        null
+                        0
                     ),
                     NumberFieldBuilder(
                         "Length",
@@ -221,7 +221,7 @@ export function productTemplateFormBuilder() {
                         null,
                         'cm',
                         null,
-                        null
+                        0
                     ),
                     NumberFieldBuilder(
                         "Weight",
