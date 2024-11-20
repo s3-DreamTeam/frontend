@@ -57,7 +57,11 @@ const MachineInventoryComponentCard = ({
                 onSuccess: (gottenTemplate) => {
                     console.log("MIC: Gotten template: ", gottenTemplate);
                     setTemplate(gottenTemplate);
-                    setModel(gottenTemplate.Model);
+                    try {
+                        setModel(gottenTemplate.Model);
+                    } catch {
+                        setModel("Error");
+                    }
 
                     if (object["Lowest product count"] <= 0) {
                         setDecorators(
