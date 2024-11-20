@@ -73,7 +73,7 @@ const MachineInventoryComponentCard = ({
                 }
             });
         }
-        /*
+
         if (object.TemplateID !== undefined && object.TemplateID !== null) {
             if (object["Lowest product count"] <= 0) {
                 setDecorators(
@@ -85,7 +85,7 @@ const MachineInventoryComponentCard = ({
                 setDecorators(null);
             }
         }
-        */
+
     }, [template, object]);
 
     let fontSize = (size === "large" ? '1rem' : '0.75rem');
