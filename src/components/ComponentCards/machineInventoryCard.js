@@ -2,8 +2,9 @@ import { LinearProgress, Typography } from "@mui/material";
 import ComponentCardFoundation from "./foundation/componentCardFoundation";
 import { useEffect, useState } from "react";
 import { GetTemplateFromID } from "./Querries/MachineTemplateGetter";
-import { setMachineInventoryError } from "../../store/machineInventorySlice";
+import { resetMachineInventoryError, setMachineInventoryError } from "../../store/machineInventorySlice";
 import MachineInventory from "../../utils/machineInventoryObject";
+import store from "../../store/store";
 
 /**
  * # MachineInventoryComponentCard
@@ -31,14 +32,17 @@ const MachineInventoryComponentCard = ({
 
     // Extract Model from TemplateID. Fetch Template if not found in our local stuff.
     useEffect(() => {
+        console.log("object is: ", object);
         if (template === null && object.TemplateID !== undefined) {
+            console.warn("Getting template associated with the machine's ID");
             GetTemplateFromID({
                 ID: object.TemplateID,
                 onStart: () => {
                     setTemplateLoading(true);
+                    store.dispatch(resetMachineInventoryError(object.id));
                 },
                 onError: (e) => {
-                    setMachineInventoryError({ id: object.ID, error: String(e) });
+                    store.dispatch(setMachineInventoryError({ id: object.id, error: String(e) }));
                     setDecorators(
                         [
                             { "label": "No Template", "state": "error" }
@@ -52,7 +56,6 @@ const MachineInventoryComponentCard = ({
                     console.log("MIC: Gotten template: ", template);
                     setTemplate(template);
                     setModel(template.Model);
-                    console.log("MID: Lowest product count: ", object["Lowest product count"]);
 
                     if (object["Lowest product count"] <= 0) {
                         setDecorators(
@@ -64,9 +67,7 @@ const MachineInventoryComponentCard = ({
                 }
             });
         }
-        console.warn("HERE, BEFORE CHECK, TEMPLATE ID IS: ", object.TemplateID);
         if (object.TemplateID !== undefined && object.TemplateID !== null) {
-            console.warn("HERE, BEFORE CHECK");
             if (object["Lowest product count"] <= 0) {
                 setDecorators(
                     [

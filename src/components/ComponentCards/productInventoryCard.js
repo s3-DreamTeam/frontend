@@ -2,9 +2,8 @@ import ComponentCardFoundation from "./foundation/componentCardFoundation";
 import Product from "../../utils/productInventoryObject";
 import { useEffect, useState } from "react";
 import { GetProductTemplateFromID } from "./Querries/ProductTemplateGetter";
-import { setProductTemplateError } from "../../store/productTemplateSlice";
 import store from "../../store/store";
-import { setProductInventoryError } from "../../store/productInventorySlice";
+import { resetProductInventoryError, setProductInventoryError } from "../../store/productInventorySlice";
 import { Typography } from "@mui/material";
 
 /**
@@ -40,9 +39,10 @@ const ProductInventoryComponentCard = ({
                 ID: object.TemplateID,
                 onStart: () => {
                     setTemplateLoading(true);
+                    store.dispatch(resetProductInventoryError(object.id));
                 },
                 onError: (e) => {
-                    store.dispatch(setProductInventoryError({ id: object.ID, error: String(e) }));
+                    store.dispatch(setProductInventoryError({ id: object.id, error: String(e) }));
                     setDecorators(
                         [
                             { "label": "No Template", "state": "error" }
