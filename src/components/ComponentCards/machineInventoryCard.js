@@ -32,7 +32,7 @@ const MachineInventoryComponentCard = ({
 
     // Extract Model from TemplateID. Fetch Template if not found in our local stuff.
     useEffect(() => {
-        console.log("object is: ", object);
+        console.log("Can this go through the statement?");
         if (template === null && object.TemplateID !== undefined) {
             console.warn("Getting template associated with the machine's ID");
             GetTemplateFromID({
