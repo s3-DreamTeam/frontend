@@ -36,7 +36,7 @@ const Endpoints = {
             Add: 'MachineInventory/Manage/Add',
             Set: 'MachineInventory/Manage/Set',
             Remove: 'MachineInventory/Manage/Remove',
-            Get: 'MachineInventory/Manage/Remove',
+            Get: 'MachineInventory/Manage/Get',
         },
         New: 'MachineInventory/New',            // Here's a JSON, make a new object with it.
         //Modify: 'MachineInventory/Modify',      // Here's a JSON and an ID, overwrite the machine with this.
