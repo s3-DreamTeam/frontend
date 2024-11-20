@@ -5,6 +5,7 @@ import { GetTemplateFromID } from "./Querries/MachineTemplateGetter";
 import { resetMachineInventoryError, setMachineInventoryError } from "../../store/machineInventorySlice";
 import MachineInventory from "../../utils/machineInventoryObject";
 import store from "../../store/store";
+import { GetSurfaceMachineTemplate } from "../../api/requests/interface/MachineTemplates/getSurface";
 
 /**
  * # MachineInventoryComponentCard
@@ -35,13 +36,14 @@ const MachineInventoryComponentCard = ({
         console.log("Can this go through the statement?");
         if (template === null && object.TemplateID !== undefined && templateLoading === false) {
             console.warn("Getting template associated with the machine's ID");
-            GetTemplateFromID({
+            GetSurfaceMachineTemplate({
                 ID: object.TemplateID,
                 onStart: () => {
                     setTemplateLoading(true);
                     store.dispatch(resetMachineInventoryError(object.id));
                 },
                 onError: (e) => {
+                    console.log(e);
                     store.dispatch(setMachineInventoryError({ id: object.id, error: String(e) }));
                     setDecorators(
                         [
