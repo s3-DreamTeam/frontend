@@ -1,8 +1,19 @@
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Stack } from "@mui/material";
 
 const LoadingPageFooter = () => {
     return (
-        <CircularProgress />
+        <Stack
+            direction='column'
+            justifyContent='center'
+            alignItems='center'
+            sx={{
+                height: '100%'
+            }}
+        >
+            <CircularProgress
+                size={120}
+            />
+        </Stack >
     );
 };
 

@@ -32,7 +32,7 @@ export const SimulatedMachineManagerGet = async ({
     }
 };
 
-const getMachineInventory = async (state, id) => {
+export const getMachineInventory = async (state, id) => {
     const completeMachine = state.simulatedEndpointSlice.object.machineInventory.find(inventory => inventory.id === id) || null; // Return the machine with matching ID or null
 
     if (completeMachine === null) {

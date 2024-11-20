@@ -31,6 +31,9 @@ import { MachineManagerAdd } from "../../../api/requests/interface/MachineManage
 import { MachineManagerRemove } from "../../../api/requests/interface/MachineManager/remove";
 import { GetSurfaceProductInInventory } from "../../../api/requests/interface/ProductInventory/getSurface";
 import { setProductInventoryData } from "../../../store/productInventorySlice";
+import ErrorPage from "../../errorPage";
+import { IconButton } from "@mui/material";
+import { RefreshRounded } from "@mui/icons-material";
 
 let isFetching = false;
 
@@ -51,6 +54,7 @@ const MachineInventoryPage = () => {
     const [cardTitle, setCardTitle] = useState(null);
     const [cardTitleError, setCardTitleError] = useState(false);
     const [titleLoading, setTitleLoading] = useState(true);
+    const [model, setModel] = useState("loading");
 
     const [selectedSlot, setSelectedSlot] = useState(null);
 
@@ -59,6 +63,8 @@ const MachineInventoryPage = () => {
     const [cardImage, setCardImage] = useState(null);
     const [cardImageError, setCardImageError] = useState(false);
     const [imageLoading, setImageLoading] = useState(true);
+
+    const [globalErrors, setGlobalErrors] = useState(null);
 
     const [productLoading, setProductLoading] = useState(false);
     const products = useSelector((state) => state.productInventorySlice.productInventory);
@@ -101,37 +107,42 @@ const MachineInventoryPage = () => {
                 onError: (e) => {
                     setCardTitleError(e.message);
                     setCardImageError(true);
+                    setGlobalErrors("GetFullMachine: " + e.message);
                 },
                 onSuccess: (data) => {
                     console.log("Successfully retreived the full machine! - ", data);
                     setFullMachine(data);
                     setCardImage(data["Machine's Image"]);
                     setCardTitle(data.Name);
-                    setQuantity(data.Quantity);
+                    setQuantity(data["Lowest product count"]);
 
-                    GetFullTemplate(data.TemplateID);
+                    GetFullTemplate(data);
                 }
             });
         }
     }
 
-    function GetFullTemplate(id) {
+    function GetFullTemplate(aFullMachine) {
         GetFullMachineTemplate({
-            ID: id,
+            ID: aFullMachine.id,
             onStart: () => {
                 isFetching = true;
+                setFooterLoading(true);
             },
             onEnd: () => {
                 isFetching = false;
+                setFooterLoading(false);
             },
             onError: (e) => {
                 console.log(e);
+                setGlobalErrors("GetFullTemplate: " + e.message);
             },
             onSuccess: (data) => {
                 console.log("Got the full template of the machine! - ", data);
                 setFullTemplate(data);
                 setCardTitle(data.Manufacturer);
                 setTitleLoading(false);
+                setModel(aFullMachine.Name);
             }
         });
     }
@@ -191,6 +202,7 @@ const MachineInventoryPage = () => {
         UpdateAffectedProduct();
         setToLoading(selectedSlot);
         GetFullInventory(machineID, false);
+        ReloadMachineData();
     }
 
     function GetForm() {
@@ -242,6 +254,31 @@ const MachineInventoryPage = () => {
                 onError: onError,
             });
         }
+    }
+
+    function ReloadMachineData() {
+        console.log("RELOADING MACHINE DATA");
+        GetFullMachineInInventory({
+            ID: machineID,
+            onStart: () => {
+                setTitleLoading(true);
+                setFooterLoading(true);
+                setCardTitleError(null);
+            },
+            onEnd: () => {
+                setTitleLoading(false);
+                setFooterLoading(false);
+            },
+            onSuccess: (data) => {
+                console.warn("Successfully reloaded the machine data.");
+                dispatch(setMachineInventoryData({ id: machineID, "data": data }));
+                setQuantity(data["Lowest product count"]);
+                setFullMachine(data);
+            },
+            onError: (e) => {
+                setCardTitleError(e.message);
+            },
+        });
     }
 
     // - Product Loading handling - //
@@ -368,6 +405,7 @@ const MachineInventoryPage = () => {
             onSuccess: () => {
                 console.log("Success! Now gonna reload the inventory.");
                 GetFullInventory(machineID, false);
+                ReloadMachineData();
             },
             onError: (e) => {
                 setInventoryError(e.message);
@@ -404,74 +442,93 @@ const MachineInventoryPage = () => {
             </PageLayout>
             :
             <>
-                <PageLayout
-                    title="Manager"
-                    hideActionBar={true}
-                    hasGoBackArrow={true}
-                    hideNavigationDrawer={true}
-                    onGoBack={() => {
-                        navigate(AppRoutes.MachineManager);
-                    }}
-                    childrens={
-                        <Manager
-                            name={cardTitle}
-                            nameLoading={titleLoading}
-                            image={cardImage}
-                            imageLoading={imageLoading}
-                            footerLoading={footerLoading}
-                            CardFooter={
-                                <ProductManagerCardFooter
-                                    variant="cardVariant"
-                                    inStock={quantity}
+                {globalErrors
+                    ? <ErrorPage
+                        header={"Global errors occured"}
+                        subtitle={globalErrors}
+                        actionButton={
+                            <IconButton
+                                size="small"
+                                onClick={() => {
+                                    setGlobalErrors(null);
+                                    GetFullMachine();
+                                }}
+                            >
+                                <RefreshRounded fontSize="large" />
+                            </IconButton>
+                        }
+                    />
+
+                    : <><PageLayout
+                        title="Manager"
+                        hideActionBar={true}
+                        hasGoBackArrow={true}
+                        hideNavigationDrawer={true}
+                        onGoBack={() => {
+                            navigate(AppRoutes.MachineManager);
+                        }}
+                        childrens={
+                            <Manager
+                                name={cardTitle}
+                                nameLoading={titleLoading}
+                                image={cardImage}
+                                imageLoading={imageLoading}
+                                footerLoading={footerLoading}
+                                CardFooter={
+                                    <ProductManagerCardFooter
+                                        variant={model}
+                                        inStock={quantity}
+                                    />
+                                }
+                            >
+                                <MachineInventoryPageFooter
+                                    loading={inventoryLoading}
+                                    errors={inventoryError}
+                                    inventory={fullInventory}
+                                    machine={fullMachine}
+                                    template={fullTemplate}
+                                    onAdd={onAdd}
+                                    onRemove={onRemove}
+                                    onReset={onReset}
+                                    onSet={onSet}
+                                    onRetry={RetryGettingInventory}
                                 />
-                            }
-                        >
-                            <MachineInventoryPageFooter
-                                loading={inventoryLoading}
-                                errors={inventoryError}
-                                inventory={fullInventory}
-                                machine={fullMachine}
-                                template={fullTemplate}
-                                onAdd={onAdd}
-                                onRemove={onRemove}
-                                onReset={onReset}
-                                onSet={onSet}
-                                onRetry={RetryGettingInventory}
-                            />
-                        </Manager>
-                    }
-                >
-                </PageLayout>
-                <SelectComponentFromStoreDialog
-                    onClose={() => { setProductSelectionShown(false); }}
-                    onConfirm={SelectedAProduct}
-                    title={"No products"}
-                    message={"You have no products to choose from"}
-                    components={products}
-                    ComponentCard={ProductInventoryComponentCard}
-                    open={productSelectionShown}
-                    loading={productLoading}
-                />
-                <ErrorDialog
-                    onClose={() => {
-                        setQuantityWarningShown(false);
-                    }}
-                    title="Quantity Warning"
-                    message="You selected a product that you DON'T currently have in stock! You won't be able to add any until you have some left in stock."
-                    open={quantityWarningShown}
-                />
-                <QuestionDialog
-                    onClose={() => {
-                        setResetDialogShown(false);
-                    }}
-                    onConfirm={() => {
-                        setResetDialogShown(false);
-                        WantsToResetSlot();
-                    }}
-                    title="Are you sure?"
-                    message="This slot will be liberated, the products currently in it will go back in your stock inventory."
-                    open={resetDialogShown}
-                />
+                            </Manager>
+                        }
+                    >
+                    </PageLayout>
+                        <SelectComponentFromStoreDialog
+                            onClose={() => { setProductSelectionShown(false); }}
+                            onConfirm={SelectedAProduct}
+                            title={"No products"}
+                            message={"You have no products to choose from. You must create a product from a template in Stock Manager."}
+                            components={products}
+                            ComponentCard={ProductInventoryComponentCard}
+                            open={productSelectionShown}
+                            loading={productLoading}
+                        />
+                        <ErrorDialog
+                            onClose={() => {
+                                setQuantityWarningShown(false);
+                            }}
+                            title="Quantity Warning"
+                            message="You selected a product that you DON'T currently have in stock! You won't be able to add any until you have some left in stock."
+                            open={quantityWarningShown}
+                        />
+                        <QuestionDialog
+                            onClose={() => {
+                                setResetDialogShown(false);
+                            }}
+                            onConfirm={() => {
+                                setResetDialogShown(false);
+                                WantsToResetSlot();
+                            }}
+                            title="Are you sure?"
+                            message="This slot will be liberated, the products currently in it will go back in your stock inventory."
+                            open={resetDialogShown}
+                        />
+                    </>
+                }
             </>
     );
 };

@@ -21,6 +21,7 @@ export const SimulatedGetFullMachineTemplate = async ({
         RandomErrorSimulator();
         const state = store.getState();
         const result = getTemplate(state, ID);
+        console.log("REQ: SimulatedGetFullMachineTemplate - GOT", result);
         onSuccess(result);
     } catch (err) {
         console.warn("SimulatedGetFullMachineTemplate failed");

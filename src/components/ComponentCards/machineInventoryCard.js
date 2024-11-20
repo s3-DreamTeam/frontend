@@ -49,9 +49,10 @@ const MachineInventoryComponentCard = ({
                     setTemplateLoading(false);
                 },
                 onSuccess: (template) => {
-                    console.log("Gotten template: ", template);
+                    console.log("MIC: Gotten template: ", template);
                     setTemplate(template);
                     setModel(template.Model);
+                    console.log("MID: Lowest product count: ", object["Lowest product count"]);
 
                     if (object["Lowest product count"] <= 0) {
                         setDecorators(
@@ -62,6 +63,19 @@ const MachineInventoryComponentCard = ({
                     }
                 }
             });
+        }
+        console.warn("HERE, BEFORE CHECK, TEMPLATE ID IS: ", object.TemplateID);
+        if (object.TemplateID !== undefined && object.TemplateID !== null) {
+            console.warn("HERE, BEFORE CHECK");
+            if (object["Lowest product count"] <= 0) {
+                setDecorators(
+                    [
+                        { "label": "Empty", "state": "warning" }
+                    ]
+                );
+            } else {
+                setDecorators(null);
+            }
         }
     }, [template, object]);
 

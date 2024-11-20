@@ -23,8 +23,6 @@ const MachineTemplateComponentCard = ({
         object = new MachineTemplate();
     }
 
-    console.log(object);
-
     /*
                 decorators={
                 [
