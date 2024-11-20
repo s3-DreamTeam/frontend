@@ -52,10 +52,10 @@ const MachineInventoryComponentCard = ({
                 onEnd: () => {
                     setTemplateLoading(false);
                 },
-                onSuccess: (template) => {
-                    console.log("MIC: Gotten template: ", template);
-                    setTemplate(template);
-                    setModel(template.Model);
+                onSuccess: (gottenTemplate) => {
+                    console.log("MIC: Gotten template: ", gottenTemplate);
+                    setTemplate(gottenTemplate);
+                    setModel(gottenTemplate.Model);
 
                     if (object["Lowest product count"] <= 0) {
                         setDecorators(
@@ -67,6 +67,7 @@ const MachineInventoryComponentCard = ({
                 }
             });
         }
+        /*
         if (object.TemplateID !== undefined && object.TemplateID !== null) {
             if (object["Lowest product count"] <= 0) {
                 setDecorators(
@@ -78,6 +79,7 @@ const MachineInventoryComponentCard = ({
                 setDecorators(null);
             }
         }
+        */
     }, [template, object]);
 
     let fontSize = (size === "large" ? '1rem' : '0.75rem');
