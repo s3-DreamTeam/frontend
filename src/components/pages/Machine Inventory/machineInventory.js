@@ -436,33 +436,33 @@ const MachineInventoryPage = () => {
             </PageLayout>
             :
             <>
-                {globalErrors
-                    ? <ErrorPage
-                        header={"Global errors occured"}
-                        subtitle={globalErrors}
-                        actionButton={
-                            <IconButton
-                                size="small"
-                                onClick={() => {
-                                    setGlobalErrors(null);
-                                    GetFullMachine();
-                                }}
-                            >
-                                <RefreshRounded fontSize="large" />
-                            </IconButton>
-                        }
-                    />
-
-                    : <><PageLayout
-                        title="Manager"
-                        hideActionBar={true}
-                        hasGoBackArrow={true}
-                        hideNavigationDrawer={true}
-                        onGoBack={() => {
-                            navigate(AppRoutes.MachineManager);
-                        }}
-                        childrens={
-                            <Manager
+                <PageLayout
+                    title="Manager"
+                    hideActionBar={true}
+                    hasGoBackArrow={true}
+                    hideNavigationDrawer={true}
+                    onGoBack={() => {
+                        navigate(AppRoutes.MachineManager);
+                    }}
+                    childrens={
+                        globalErrors
+                            ? <ErrorPage
+                                header={"Global errors occured"}
+                                subtitle={globalErrors}
+                                retryTooltip="Reload the whole page?"
+                                actionButton={
+                                    <IconButton
+                                        size="small"
+                                        onClick={() => {
+                                            setGlobalErrors(null);
+                                            GetFullMachine();
+                                        }}
+                                    >
+                                        <RefreshRounded fontSize="large" />
+                                    </IconButton>
+                                }
+                            />
+                            : <Manager
                                 name={cardTitle}
                                 nameLoading={titleLoading}
                                 image={cardImage}
@@ -488,41 +488,39 @@ const MachineInventoryPage = () => {
                                     onRetry={RetryGettingInventory}
                                 />
                             </Manager>
-                        }
-                    >
-                    </PageLayout>
-                        <SelectComponentFromStoreDialog
-                            onClose={() => { setProductSelectionShown(false); }}
-                            onConfirm={SelectedAProduct}
-                            title={"No products"}
-                            message={"You have no products to choose from. You must create a product from a template in Stock Manager."}
-                            components={products}
-                            ComponentCard={ProductInventoryComponentCard}
-                            open={productSelectionShown}
-                            loading={productLoading}
-                        />
-                        <ErrorDialog
-                            onClose={() => {
-                                setQuantityWarningShown(false);
-                            }}
-                            title="Quantity Warning"
-                            message="You selected a product that you DON'T currently have in stock! You won't be able to add any until you have some left in stock."
-                            open={quantityWarningShown}
-                        />
-                        <QuestionDialog
-                            onClose={() => {
-                                setResetDialogShown(false);
-                            }}
-                            onConfirm={() => {
-                                setResetDialogShown(false);
-                                WantsToResetSlot();
-                            }}
-                            title="Are you sure?"
-                            message="This slot will be liberated, the products currently in it will go back in your stock inventory."
-                            open={resetDialogShown}
-                        />
-                    </>
-                }
+                    }
+                >
+                </PageLayout>
+                <SelectComponentFromStoreDialog
+                    onClose={() => { setProductSelectionShown(false); }}
+                    onConfirm={SelectedAProduct}
+                    title={"No products"}
+                    message={"You have no products to choose from. You must create a product from a template in Stock Manager."}
+                    components={products}
+                    ComponentCard={ProductInventoryComponentCard}
+                    open={productSelectionShown}
+                    loading={productLoading}
+                />
+                <ErrorDialog
+                    onClose={() => {
+                        setQuantityWarningShown(false);
+                    }}
+                    title="Quantity Warning"
+                    message="You selected a product that you DON'T currently have in stock! You won't be able to add any until you have some left in stock."
+                    open={quantityWarningShown}
+                />
+                <QuestionDialog
+                    onClose={() => {
+                        setResetDialogShown(false);
+                    }}
+                    onConfirm={() => {
+                        setResetDialogShown(false);
+                        WantsToResetSlot();
+                    }}
+                    title="Are you sure?"
+                    message="This slot will be liberated, the products currently in it will go back in your stock inventory."
+                    open={resetDialogShown}
+                />
             </>
     );
 };
