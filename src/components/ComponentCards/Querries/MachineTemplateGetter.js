@@ -17,7 +17,7 @@ export function GetTemplateFromID({
     const localTemplate = GetLocalTemplate(state, ID);
 
     if (localTemplate !== null && localTemplate !== undefined) {
-        //console.log("WE GOT THE TEMPLATE LOCALLY?!?");
+        console.log("WE GOT THE TEMPLATE LOCALLY?!?");
         onSuccess(localTemplate);
         return;
     }
