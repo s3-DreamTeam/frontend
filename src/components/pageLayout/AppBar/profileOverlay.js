@@ -8,7 +8,9 @@ const ProfileOverlay = ({
 }) => {
     function Logout() {
         const instance = keycloakInstance();
-        instance.logout();
+        instance.logout({
+            redirectUri: window.location.origin
+        });
     }
 
     return (
