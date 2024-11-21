@@ -9,7 +9,7 @@ const ProfileOverlay = ({
     function Logout() {
         const instance = keycloakInstance();
         instance.logout({
-            redirectUri: window.location.origin
+            redirectUri: "https://snacky.zacse.org/"
         });
     }
 
