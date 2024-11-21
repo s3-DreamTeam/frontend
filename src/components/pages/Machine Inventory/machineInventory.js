@@ -117,6 +117,7 @@ const MachineInventoryPage = () => {
     }
 
     function GetFullTemplate(aFullMachine) {
+        console.log("BEFORE GETTING THE FULL TEMPLATE FROM THE FOLLOWING OBJECT: ", aFullMachine);
         GetFullMachineTemplate({
             ID: aFullMachine.id,
             onStart: () => {
