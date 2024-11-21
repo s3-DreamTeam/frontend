@@ -26,6 +26,7 @@ export const RealMachineManagerReset = async ({
         );
         onSuccess();
     } catch (err) {
+        console.log("REQ: RealMachineManagerReset, ERROR : ", err.message);
         onError(err);
     } finally {
         onEnd();

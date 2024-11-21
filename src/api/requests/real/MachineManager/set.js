@@ -26,6 +26,7 @@ export const RealMachineManagerSet = async ({
         );
         onSuccess();
     } catch (err) {
+        console.log("REQ: RealMachineManagerSet, ERROR : ", err.message);
         onError(err);
     } finally {
         onEnd();

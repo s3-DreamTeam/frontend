@@ -21,7 +21,13 @@ export const PostGetSurfaceMachineTemplate = async ({
             ID,
             header
         );
-        console.log("PostGetSurfaceMachineTemplate - MACHINE TEMPLATE SURFACE: ", response.data);
+        console.log("REQ: PostGetSurfaceMachineTemplate - GOTTEN: ", response.data);
+        console.log("REQ: PostGetSurfaceMachineTemplate - EXPECTED: ", {
+            "Manufacturer": "text",
+            "Model": "text",
+            "id": 0
+        });
+
         onSuccess(response.data);
     } catch (err) {
         onError(err);

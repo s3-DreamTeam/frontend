@@ -22,8 +22,16 @@ export const PostGetSurfaceMachineInventory = async ({
             header
         );
         console.log("PostGetSurfaceMachineInventory: - GOTTEN: ", response.data);
+        console.log("PostGetSurfaceMachineInventory: - EXPECTED: ", {
+            "Name": "the name",
+            "Location": "the location",
+            "Lowest product count": 0,
+            "TemplateID": 0,
+            "id": 0
+        });
         onSuccess(response.data);
     } catch (err) {
+        console.log("PostGetSurfaceMachineInventory: - ERROR: ", err.message);
         onError(err);
     } finally {
         onEnd();

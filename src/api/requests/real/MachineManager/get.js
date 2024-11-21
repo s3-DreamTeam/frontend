@@ -12,7 +12,7 @@ export const RealMachineManagerGet = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: RealMachineManagerGet - ID", ID);
+    console.log("REQ: RealMachineManagerGet - ID: ", ID);
     onStart();
     try {
         const header = BackendHeader();
@@ -21,7 +21,27 @@ export const RealMachineManagerGet = async ({
             ID,
             header
         );
-        console.log("REQ: RealMachineManagerGet - GOTTEN", response.data);
+        console.log("REQ: RealMachineManagerGet - GOTTEN: ", response.data);
+        console.log("REQ: RealMachineManagerGet - EXPECTED : ", [
+            {
+                "Slot": "A2",
+                "ProductID": 0,
+                "Quantity": 0,
+                "Price": 0
+            },
+            {
+                "Slot": "A3",
+                "ProductID": 0,
+                "Quantity": 0,
+                "Price": 0
+            },
+            {
+                "Slot": "A4",
+                "ProductID": 0,
+                "Quantity": 0,
+                "Price": 0
+            }
+        ]);
         onSuccess(response.data);
     } catch (err) {
         onError(err);

@@ -22,6 +22,24 @@ export const RealGetFullMachineTemplate = async ({
             header
         );
         console.log("REQ: FetchFullMachineTemplate - GOTTEN", response.data);
+        console.log("REQ: FetchFullMachineTemplate - EXPECTED", {
+            "Machine's Image": "text",
+            "Manufacturer": "text",
+            "Model": "text",
+            "Climate": "text",
+            "Has serial number": true,
+            "Color varies": true,
+            "See through window": true,
+            "Has internet connection": true,
+            "Has Bluetooth": true,
+            "Has physical connection": false,
+            "Online store": false,
+            "Debit cards": true,
+            "Credit cards": true,
+            "Cash": false,
+            "id": 0
+        });
+
         onSuccess(response.data);
     } catch (err) {
         onError(err);

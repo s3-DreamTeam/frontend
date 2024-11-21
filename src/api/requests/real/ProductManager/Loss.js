@@ -14,7 +14,7 @@ export const RealProductsLossToInventory = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: RealProductsLossToInventory");
+    console.log("REQ: RealProductsLossToInventory - SENDING: ", packet);
     onStart();
     try {
         //await sleep(5000);
@@ -26,6 +26,7 @@ export const RealProductsLossToInventory = async ({
         );
         onSuccess();
     } catch (err) {
+        console.log("REQ: RealProductsLossToInventory - ERROR: ", err.message);
         onError(err);
     } finally {
         onEnd();

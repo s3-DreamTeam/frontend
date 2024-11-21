@@ -22,6 +22,13 @@ export const RealGetSurfaceProductInInventory = async ({
             header
         );
         console.log("REQ: RealGetSurfaceProductInInventory - GOTTEN : ", response.data);
+        console.log("REQ: RealGetSurfaceProductInInventory - EXPECTED : ", {
+            "Variant": "text",
+            "TemplateID": 0,
+            "Quantity": 0,
+            "id": 0
+        });
+
         onSuccess(response.data);
     } catch (err) {
         onError(err);

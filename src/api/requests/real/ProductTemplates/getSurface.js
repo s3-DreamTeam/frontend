@@ -22,6 +22,12 @@ export const RealGetSurfaceProductTemplate = async ({
             header
         );
         console.log("RealGetSurfaceProductTemplate - GOTTEN: ", response.data);
+        console.log("RealGetSurfaceProductTemplate - EXPECTED: ", {
+            "Manufacturer": "text",
+            "Model": "text",
+            "id": 0
+        });
+
         onSuccess(response.data);
     } catch (err) {
         onError(err);

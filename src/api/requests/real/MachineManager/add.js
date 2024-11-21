@@ -26,6 +26,7 @@ export const RealMachineManagerAdd = async ({
         );
         onSuccess();
     } catch (err) {
+        console.warn("REQ: RealMachineManagerAdd, ERROR : ", err.message);
         onError(err);
     } finally {
         onEnd();

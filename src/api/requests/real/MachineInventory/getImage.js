@@ -24,6 +24,7 @@ export const PostGetMachineInventoryImage = async ({
         console.log("PostGetMachineInventoryImage - GOTTEN: ", response.data);
         onSuccess(response.data);
     } catch (err) {
+        console.log("PostGetMachineInventoryImage - ERROR: ", err.message);
         onError(err);
     } finally {
         onEnd();

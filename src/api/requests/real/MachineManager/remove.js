@@ -26,6 +26,7 @@ export const RealMachineManagerRemove = async ({
         );
         onSuccess();
     } catch (err) {
+        console.log("REQ: RealMachineManagerRemove, ERROR : ", err.message);
         onError(err);
     } finally {
         onEnd();
