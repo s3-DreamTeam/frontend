@@ -54,9 +54,9 @@ export function InitKeycloakInstance({
 
     actualKeycloakInstance.onTokenExpired = () => {
       console.log('KEYCLOAK: token expired', actualKeycloakInstance.token);
-      actualKeycloakInstance.updateToken(30).success(() => {
-        console.log('KEYCLOAK: successfully get a new token');
-      }).error(() => {
+      actualKeycloakInstance.updateToken(20).finally(() => {
+        console.log('KEYCLOAK: updated token?');
+      }).catch(() => {
         console.warn("KEYCLOAK: FAILED TO RENEW EXPIRED TOKEN :(");
       });
     };

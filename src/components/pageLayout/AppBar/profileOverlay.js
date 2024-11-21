@@ -2,6 +2,7 @@ import { Button, Typography } from "@mui/material";
 import ProfileCircle from "./profileCircle";
 import StyledDivider from "../../divider/styledDivider";
 import { keycloakInstance } from "../../../api/keycloak";
+import ProfileTokenRenewTimer from "./profileTokenRenewTimer";
 
 const ProfileOverlay = ({
     profile = null
@@ -59,12 +60,13 @@ const ProfileOverlay = ({
                     style={{
                         display: 'flex',
                         width: '100%',
-                        justifyContent: 'right',
+                        justifyContent: 'space-between',
                         justifyItems: 'right',
-                        alignContent: 'right',
-                        alignItems: 'right'
+                        alignContent: 'center',
+                        alignItems: 'center'
                     }}
                 >
+                    <ProfileTokenRenewTimer />
                     <Button
                         sx={{
                             margin: '0'

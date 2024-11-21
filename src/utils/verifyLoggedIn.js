@@ -31,16 +31,18 @@ const HandleUserLoggedInStatus = () => {
         });
 
         // - Trying to check if your token is valid - //
-        console.log("HEALTH: Authenticated? ", keycloak.authenticated);
-        console.log("HEALTH: Expired? ", keycloak.isTokenExpired(60));
+        //console.log("HEALTH: Authenticated? ", keycloak.authenticated);
 
-        if (keycloak.isTokenExpired(60)) {
-            console.warn("trying to renew the token...");
-            keycloak.updateToken(61).finally(() => {
-                console.log('KEYCLOAK: got a new token?');
-            }).catch(() => {
-                console.warn("KEYCLOAK: FAILED TO RENEW EXPIRED TOKEN :(");
-            });
+        if (keycloak.authenticated) {
+            console.log("HEALTH: Expired? ", keycloak.isTokenExpired(60));
+            if (keycloak.isTokenExpired(60)) {
+                console.warn("trying to renew the token...");
+                keycloak.updateToken(61).finally(() => {
+                    console.log('KEYCLOAK: got a new token?');
+                }).catch(() => {
+                    console.warn("KEYCLOAK: FAILED TO RENEW EXPIRED TOKEN :(");
+                });
+            }
         }
     }
 

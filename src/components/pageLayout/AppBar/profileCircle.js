@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import ColorCard from "../../ComponentCards/foundation/styledCard";
 
-const ProfileCircle = ({ firstname, lastname }) => {
+const ProfileCircle = ({ firstname = "?", lastname = "?" }) => {
     const firstLetter = firstname[0].toUpperCase();
     const lastLetter = lastname[0].toUpperCase();
 

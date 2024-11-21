@@ -5,13 +5,14 @@ const ProfileMenu = ({
     authenticated = false,
     profile = null
 }) => {
+
     return (
         <div
             style={{
                 paddingLeft: '1rem',
                 paddingRight: '1rem',
                 paddingTop: '0.25rem',
-                paddingBottom: '0.25rem'
+                paddingBottom: '0.25rem',
             }}
         >
             {authenticated
