@@ -36,9 +36,9 @@ const HandleUserLoggedInStatus = () => {
 
         if (keycloak.isTokenExpired(60)) {
             console.warn("trying to renew the token...");
-            keycloak.updateToken(61).success(() => {
-                console.log('KEYCLOAK: successfully got a new token');
-            }).error(() => {
+            keycloak.updateToken(61).finally(() => {
+                console.log('KEYCLOAK: got a new token?');
+            }).catch(() => {
                 console.warn("KEYCLOAK: FAILED TO RENEW EXPIRED TOKEN :(");
             });
         }
