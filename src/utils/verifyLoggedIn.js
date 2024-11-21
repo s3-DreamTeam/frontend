@@ -33,6 +33,15 @@ const HandleUserLoggedInStatus = () => {
         // - Trying to check if your token is valid - //
         console.log("HEALTH: Authenticated? ", keycloak.authenticated);
         console.log("HEALTH: Expired? ", keycloak.isTokenExpired(60));
+
+        if (keycloak.isTokenExpired(60)) {
+            console.warn("trying to renew the token...");
+            keycloak.updateToken(61).success(() => {
+                console.log('KEYCLOAK: successfully got a new token');
+            }).error(() => {
+                console.warn("KEYCLOAK: FAILED TO RENEW EXPIRED TOKEN :(");
+            });
+        }
     }
 
     return true;
