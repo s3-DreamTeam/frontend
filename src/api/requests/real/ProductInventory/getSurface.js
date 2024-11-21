@@ -12,7 +12,7 @@ export const RealGetSurfaceProductInInventory = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: RealGetSurfaceProductInInventory");
+    console.log(Endpoints.ProductInventory.Get.Surface + ": REQ: RealGetSurfaceProductInInventory - SENT: ", ID);
     onStart();
     try {
         const header = BackendHeader();
@@ -21,8 +21,8 @@ export const RealGetSurfaceProductInInventory = async ({
             ID,
             header
         );
-        console.log("REQ: RealGetSurfaceProductInInventory - GOTTEN : ", response.data);
-        console.log("REQ: RealGetSurfaceProductInInventory - EXPECTED : ", {
+        console.log(Endpoints.ProductInventory.Get.Surface + ": REQ: RealGetSurfaceProductInInventory - GOTTEN : ", response.data);
+        console.log(Endpoints.ProductInventory.Get.Surface + ": REQ: RealGetSurfaceProductInInventory - EXPECTED : ", {
             "Variant": "text",
             "TemplateID": 0,
             "Quantity": 0,
@@ -31,6 +31,7 @@ export const RealGetSurfaceProductInInventory = async ({
 
         onSuccess(response.data);
     } catch (err) {
+        console.log(Endpoints.ProductInventory.Get.Surface + ": REQ: RealGetSurfaceProductInInventory - ERROR : ", err.message);
         onError(err);
     } finally {
         onEnd();

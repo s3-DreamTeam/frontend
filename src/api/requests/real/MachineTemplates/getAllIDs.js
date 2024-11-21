@@ -11,14 +11,15 @@ export const FetchAllMachineTemplateIDs = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: FetchAllMachineTemplateIDs");
+    console.log(Endpoints.MachineTemplate.Get.AllID + ": REQ: FetchAllMachineTemplateIDs");
     onStart();
     try {
         const header = BackendHeader();
         const response = await backendApi.get(Endpoints.MachineTemplate.Get.AllID, header);
-        console.log("FetchAllMachineTemplateIDs - MACHINE IDS: ", response.data);
+        console.log(Endpoints.MachineTemplate.Get.AllID + ": REQ: FetchAllMachineTemplateIDs - GOTTEN: ", response.data);
         onSuccess(response.data);
     } catch (err) {
+        console.log(Endpoints.MachineTemplate.Get.AllID + ": REQ: FetchAllMachineTemplateIDs - ERROR: ", err.message);
         onError(err);
     } finally {
         onEnd();

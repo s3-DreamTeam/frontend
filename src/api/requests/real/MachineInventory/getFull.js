@@ -12,7 +12,7 @@ export const RealGetFullMachineInventory = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: RealGetFullMachineInventory");
+    console.log(Endpoints.MachineInventory.Get.Full + ": REQ: RealGetFullMachineInventory - SENT: ", ID);
     onStart();
     try {
         const header = BackendHeader();
@@ -21,8 +21,8 @@ export const RealGetFullMachineInventory = async ({
             ID,
             header
         );
-        console.log("RealGetFullMachineInventory - GOTTEN: ", response.data);
-        console.log("RealGetFullMachineInventory - EXPECTED: ", {
+        console.log(Endpoints.MachineInventory.Get.Full + ": REQ: RealGetFullMachineInventory - GOTTEN: ", response.data);
+        console.log(Endpoints.MachineInventory.Get.Full + ": REQ: RealGetFullMachineInventory - EXPECTED: ", {
             "Machine's Image": "text",
             "Name": "the name",
             "Location": "the location",
@@ -46,6 +46,7 @@ export const RealGetFullMachineInventory = async ({
 
         onSuccess(response.data);
     } catch (err) {
+        console.log(Endpoints.MachineInventory.Get.Full + ": REQ: RealGetFullMachineInventory - ERROR: ", err.message);
         onError(err);
     } finally {
         onEnd();

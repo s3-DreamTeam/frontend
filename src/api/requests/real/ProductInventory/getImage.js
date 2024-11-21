@@ -12,7 +12,7 @@ export const RealGetProductInInventoryImage = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: RealGetProductInInventoryImage");
+    console.log(Endpoints.ProductInventory.Get.Image + ": REQ: RealGetProductInInventoryImage - SENT: ", ID);
     onStart();
     try {
         const header = BackendHeader();
@@ -21,9 +21,10 @@ export const RealGetProductInInventoryImage = async ({
             ID,
             header
         );
-        console.log("REQ: RealGetProductInInventoryImage - GOTTEN : ", response.data);
+        console.log(Endpoints.ProductInventory.Get.Image + ": REQ: RealGetProductInInventoryImage - GOTTEN : ", response.data);
         onSuccess(response.data);
     } catch (err) {
+        console.log(Endpoints.ProductInventory.Get.Image + ": REQ: RealGetProductInInventoryImage - ERROR : ", err.message);
         onError(err);
     } finally {
         onEnd();

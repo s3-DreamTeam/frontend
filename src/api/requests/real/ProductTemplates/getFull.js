@@ -12,7 +12,7 @@ export const RealGetFullProductTemplate = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: RealGetFullProductTemplate");
+    console.log(Endpoints.ProductTemplate.Get.Full + ": REQ: RealGetFullProductTemplate - SENT: ", ID);
     onStart();
     try {
         const header = BackendHeader();
@@ -21,8 +21,8 @@ export const RealGetFullProductTemplate = async ({
             ID,
             header
         );
-        console.log("RealGetFullProductTemplate - GOTTEN: ", response.data);
-        console.log("RealGetFullProductTemplate - EXPECTED: ", {
+        console.log(Endpoints.ProductTemplate.Get.Full + ": REQ: RealGetFullProductTemplate - GOTTEN: ", response.data);
+        console.log(Endpoints.ProductTemplate.Get.Full + ": REQ: RealGetFullProductTemplate - EXPECTED: ", {
             "Product's Image": "text",
             "Manufacturer": "text",
             "Model": "text",
@@ -45,6 +45,7 @@ export const RealGetFullProductTemplate = async ({
 
         onSuccess(response.data);
     } catch (err) {
+        console.log(Endpoints.ProductTemplate.Get.Full + ": REQ: RealGetFullProductTemplate - ERROR: ", err.message);
         onError(err);
     } finally {
         onEnd();

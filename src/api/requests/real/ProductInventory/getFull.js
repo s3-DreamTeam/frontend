@@ -12,7 +12,7 @@ export const RealGetFullProductInInventory = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: RealGetFullProductInInventory");
+    console.log(Endpoints.ProductInventory.Get.Full + ": REQ: RealGetFullProductInInventory - SENT: ", ID);
     onStart();
     try {
         const header = BackendHeader();
@@ -21,8 +21,8 @@ export const RealGetFullProductInInventory = async ({
             ID,
             header
         );
-        console.log("REQ: RealGetFullProductInInventory - GOTTEN : ", response.data);
-        console.log("REQ: RealGetFullProductInInventory - EXPECTED : ", {
+        console.log(Endpoints.ProductInventory.Get.Full + ": REQ: RealGetFullProductInInventory - GOTTEN : ", response.data);
+        console.log(Endpoints.ProductInventory.Get.Full + ": REQ: RealGetFullProductInInventory - EXPECTED : ", {
             "Product's Image": "text",
             "Variant": "text",
             "Profit Margin": "10",
@@ -42,6 +42,7 @@ export const RealGetFullProductInInventory = async ({
 
         onSuccess(response.data);
     } catch (err) {
+        console.log(Endpoints.ProductInventory.Get.Full + ": REQ: RealGetFullProductInInventory - ERROR : ", err.message);
         onError(err);
     } finally {
         onEnd();

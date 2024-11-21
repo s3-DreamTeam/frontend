@@ -12,7 +12,7 @@ export const RealMachineManagerGet = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: RealMachineManagerGet - ID: ", ID);
+    console.log(Endpoints.MachineInventory.Manage.Get + ": REQ: RealMachineManagerGet - ID: ", ID);
     onStart();
     try {
         const header = BackendHeader();
@@ -21,8 +21,8 @@ export const RealMachineManagerGet = async ({
             ID,
             header
         );
-        console.log("REQ: RealMachineManagerGet - GOTTEN: ", response.data);
-        console.log("REQ: RealMachineManagerGet - EXPECTED : ", [
+        console.log(Endpoints.MachineInventory.Manage.Get + ": REQ: RealMachineManagerGet - GOTTEN: ", response.data);
+        console.log(Endpoints.MachineInventory.Manage.Get + ": REQ: RealMachineManagerGet - EXPECTED : ", [
             {
                 "Slot": "A2",
                 "ProductID": 0,
@@ -44,6 +44,7 @@ export const RealMachineManagerGet = async ({
         ]);
         onSuccess(response.data);
     } catch (err) {
+        console.log(Endpoints.MachineInventory.Manage.Get + ": REQ: RealMachineManagerGet - ERROR: ", err.message);
         onError(err);
     } finally {
         onEnd();

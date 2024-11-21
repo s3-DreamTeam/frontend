@@ -12,7 +12,7 @@ export const RealGetFullMachineTemplate = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: FetchFullMachineTemplate - ID", ID);
+    console.log(Endpoints.MachineTemplate.Get.Full + " REQ: FetchFullMachineTemplate - ID", ID);
     onStart();
     try {
         const header = BackendHeader();
@@ -21,8 +21,8 @@ export const RealGetFullMachineTemplate = async ({
             ID,
             header
         );
-        console.log("REQ: FetchFullMachineTemplate - GOTTEN", response.data);
-        console.log("REQ: FetchFullMachineTemplate - EXPECTED", {
+        console.log(Endpoints.MachineTemplate.Get.Full + ": REQ: FetchFullMachineTemplate - GOTTEN", response.data);
+        console.log(Endpoints.MachineTemplate.Get.Full + ": REQ: FetchFullMachineTemplate - EXPECTED", {
             "Machine's Image": "text",
             "Manufacturer": "text",
             "Model": "text",
@@ -42,6 +42,7 @@ export const RealGetFullMachineTemplate = async ({
 
         onSuccess(response.data);
     } catch (err) {
+        console.log(Endpoints.MachineTemplate.Get.Full + ": REQ: FetchFullMachineTemplate - ERROR", err.message);
         onError(err);
     } finally {
         onEnd();

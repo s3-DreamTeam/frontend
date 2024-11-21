@@ -12,7 +12,7 @@ export const RealDeleteProductTemplate = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: RealDeleteProductTemplate");
+    console.log(Endpoints.ProductTemplate.Delete + ": REQ: RealDeleteProductTemplate - SENT: ", ID);
     onStart();
     try {
         const header = BackendHeader();
@@ -21,9 +21,10 @@ export const RealDeleteProductTemplate = async ({
             ID,
             header
         );
-        console.log("REQ: RealDeleteProductTemplate - GOTTEN : ", response.data);
+        console.log(Endpoints.ProductTemplate.Delete + ": REQ: RealDeleteProductTemplate - GOTTEN : ", response.data);
         onSuccess(response.data);
     } catch (err) {
+        console.log(Endpoints.ProductTemplate.Delete + ": REQ: RealDeleteProductTemplate - ERROR : ", err.message);
         onError(err);
     } finally {
         onEnd();

@@ -11,14 +11,15 @@ export const RealGetAllProductTemplateIDs = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: RealGetAllProductTemplateIDs");
+    console.log(Endpoints.ProductTemplate.Get.AllID + ": REQ: RealGetAllProductTemplateIDs");
     onStart();
     try {
         const header = BackendHeader();
         const response = await backendApi.get(Endpoints.ProductTemplate.Get.AllID, header);
-        console.log("REQ: RealGetAllProductTemplateIDs - GOTTEN : ", response.data);
+        console.log(Endpoints.ProductTemplate.Get.AllID + ": REQ: RealGetAllProductTemplateIDs - GOTTEN : ", response.data);
         onSuccess(response.data);
     } catch (err) {
+        console.log(Endpoints.ProductTemplate.Get.AllID + ": REQ: RealGetAllProductTemplateIDs - ERROR : ", err.message);
         onError(err);
     } finally {
         onEnd();

@@ -14,7 +14,7 @@ export const PostNewMachineInventory = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: PostNewMachineInventory, With object: ", machineInventoryObject);
+    console.log(Endpoints.MachineInventory.New + ": REQ: PostNewMachineInventory - SENT: ", machineInventoryObject);
     onStart();
     try {
         //await sleep(5000);
@@ -26,6 +26,7 @@ export const PostNewMachineInventory = async ({
         );
         onSuccess();
     } catch (err) {
+        console.log(Endpoints.MachineInventory.New + ": REQ: PostNewMachineInventory - ERROR: ", err.message);
         onError(err);
     } finally {
         onEnd();

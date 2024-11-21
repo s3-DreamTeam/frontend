@@ -14,7 +14,7 @@ export const RealMachineManagerAdd = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: RealMachineManagerAdd, POST, SENDING : ", packet);
+    console.log(Endpoints.MachineInventory.Manage.Add + ": REQ: RealMachineManagerAdd - SENT : ", packet);
     onStart();
     try {
         //await sleep(5000);
@@ -26,7 +26,7 @@ export const RealMachineManagerAdd = async ({
         );
         onSuccess();
     } catch (err) {
-        console.warn("REQ: RealMachineManagerAdd, ERROR : ", err.message);
+        console.warn(Endpoints.MachineInventory.Manage.Add + ": REQ: RealMachineManagerAdd - ERROR : ", err.message);
         onError(err);
     } finally {
         onEnd();

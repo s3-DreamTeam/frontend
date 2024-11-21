@@ -12,7 +12,7 @@ export const PostDeleteMachineTemplate = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: PostDeleteMachineTemplate");
+    console.log(Endpoints.MachineTemplate.Delete + " REQ: PostDeleteMachineTemplate - SENT: ", ID);
     onStart();
     try {
         const header = BackendHeader();
@@ -21,9 +21,10 @@ export const PostDeleteMachineTemplate = async ({
             ID,
             header
         );
-        console.log("PostDeleteMachineTemplate - GOTTEN : ", response.data);
+        console.log(Endpoints.MachineTemplate.Delete + ": REQ: PostDeleteMachineTemplate - GOTTEN : ", response.data);
         onSuccess(response.data);
     } catch (err) {
+        console.log(Endpoints.MachineTemplate.Delete + ": REQ: PostDeleteMachineTemplate - ERROR : ", err.message);
         onError(err);
     } finally {
         onEnd();

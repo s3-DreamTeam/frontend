@@ -14,7 +14,7 @@ export const RealMachineManagerRemove = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: RealMachineManagerRemove, POST, SENDING : ", packet);
+    console.log(Endpoints.MachineInventory.Manage.Remove + ": REQ: RealMachineManagerRemove - SENT : ", packet);
     onStart();
     try {
         //await sleep(5000);
@@ -26,7 +26,7 @@ export const RealMachineManagerRemove = async ({
         );
         onSuccess();
     } catch (err) {
-        console.log("REQ: RealMachineManagerRemove, ERROR : ", err.message);
+        console.log(Endpoints.MachineInventory.Manage.Remove + ": REQ: RealMachineManagerRemove - ERROR : ", err.message);
         onError(err);
     } finally {
         onEnd();

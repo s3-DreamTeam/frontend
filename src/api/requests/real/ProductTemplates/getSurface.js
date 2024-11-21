@@ -12,7 +12,7 @@ export const RealGetSurfaceProductTemplate = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: RealGetSurfaceProductTemplate");
+    console.log(Endpoints.ProductTemplate.Get.Surface + ": REQ: RealGetSurfaceProductTemplate - SENT: ", ID);
     onStart();
     try {
         const header = BackendHeader();
@@ -21,8 +21,8 @@ export const RealGetSurfaceProductTemplate = async ({
             ID,
             header
         );
-        console.log("RealGetSurfaceProductTemplate - GOTTEN: ", response.data);
-        console.log("RealGetSurfaceProductTemplate - EXPECTED: ", {
+        console.log(Endpoints.ProductTemplate.Get.Surface + ": REQ: RealGetSurfaceProductTemplate - GOTTEN: ", response.data);
+        console.log(Endpoints.ProductTemplate.Get.Surface + ": REQ: RealGetSurfaceProductTemplate - EXPECTED: ", {
             "Manufacturer": "text",
             "Model": "text",
             "id": 0
@@ -30,6 +30,7 @@ export const RealGetSurfaceProductTemplate = async ({
 
         onSuccess(response.data);
     } catch (err) {
+        console.log(Endpoints.ProductTemplate.Get.Surface + ": REQ: RealGetSurfaceProductTemplate - ERROR: ", err.message);
         onError(err);
     } finally {
         onEnd();

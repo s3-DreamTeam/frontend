@@ -14,7 +14,7 @@ export const RealNewProductsAddedToInventory = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: RealNewProductsAddedToInventory - SENDING: ", packet);
+    console.log(Endpoints.ProductInventory.Manage.Add + ": REQ: RealNewProductsAddedToInventory - SENDING: ", packet);
     onStart();
     try {
         //await sleep(5000);
@@ -26,7 +26,7 @@ export const RealNewProductsAddedToInventory = async ({
         );
         onSuccess();
     } catch (err) {
-        console.log("REQ: RealNewProductsAddedToInventory - ERROR: ", err.message);
+        console.log(Endpoints.ProductInventory.Manage.Add + ": REQ: RealNewProductsAddedToInventory - ERROR: ", err.message);
         onError(err);
     } finally {
         onEnd();

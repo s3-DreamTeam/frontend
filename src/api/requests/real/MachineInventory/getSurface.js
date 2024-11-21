@@ -12,7 +12,7 @@ export const PostGetSurfaceMachineInventory = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: PostGetSurfaceMachineInventory");
+    console.log(Endpoints.MachineInventory.Get.Surface + ": REQ: PostGetSurfaceMachineInventory - SENT: ", ID);
     onStart();
     try {
         const header = BackendHeader();
@@ -21,8 +21,8 @@ export const PostGetSurfaceMachineInventory = async ({
             ID,
             header
         );
-        console.log("PostGetSurfaceMachineInventory: - GOTTEN: ", response.data);
-        console.log("PostGetSurfaceMachineInventory: - EXPECTED: ", {
+        console.log(Endpoints.MachineInventory.Get.Surface + ": REQ: PostGetSurfaceMachineInventory: - GOTTEN: ", response.data);
+        console.log(Endpoints.MachineInventory.Get.Surface + ": REQ: PostGetSurfaceMachineInventory: - EXPECTED: ", {
             "Name": "the name",
             "Location": "the location",
             "Lowest product count": 0,
@@ -31,7 +31,7 @@ export const PostGetSurfaceMachineInventory = async ({
         });
         onSuccess(response.data);
     } catch (err) {
-        console.log("PostGetSurfaceMachineInventory: - ERROR: ", err.message);
+        console.log(Endpoints.MachineInventory.Get.Surface + ": REQ: PostGetSurfaceMachineInventory: - ERROR: ", err.message);
         onError(err);
     } finally {
         onEnd();

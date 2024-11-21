@@ -14,7 +14,7 @@ export const RealMachineManagerReset = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: RealMachineManagerReset, POST, SENDING : ", packet);
+    console.log(Endpoints.MachineInventory.Manage.Reset + ": REQ: RealMachineManagerReset - SENT : ", packet);
     onStart();
     try {
         //await sleep(5000);
@@ -26,7 +26,7 @@ export const RealMachineManagerReset = async ({
         );
         onSuccess();
     } catch (err) {
-        console.log("REQ: RealMachineManagerReset, ERROR : ", err.message);
+        console.log(Endpoints.MachineInventory.Manage.Reset + ": REQ: RealMachineManagerReset - ERROR : ", err.message);
         onError(err);
     } finally {
         onEnd();

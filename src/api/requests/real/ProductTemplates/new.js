@@ -14,7 +14,7 @@ export const RealNewProductTemplate = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: RealNewProductTemplate");
+    console.log(Endpoints.ProductTemplate.New + ": REQ: RealNewProductTemplate - SENT: ", packet);
     onStart();
     try {
         //await sleep(5000);
@@ -26,6 +26,7 @@ export const RealNewProductTemplate = async ({
         );
         onSuccess();
     } catch (err) {
+        console.log(Endpoints.ProductTemplate.New + ": REQ: RealNewProductTemplate - ERROR: ", err.message);
         onError(err);
     } finally {
         onEnd();

@@ -14,7 +14,7 @@ export const RealMachineManagerSet = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: RealMachineManagerSet, POST, SENDING : ", packet);
+    console.log(Endpoints.MachineInventory.Manage.Set + ": REQ: RealMachineManagerSet - POST - SENDING : ", packet);
     onStart();
     try {
         //await sleep(5000);
@@ -26,7 +26,7 @@ export const RealMachineManagerSet = async ({
         );
         onSuccess();
     } catch (err) {
-        console.log("REQ: RealMachineManagerSet, ERROR : ", err.message);
+        console.log(Endpoints.MachineInventory.Manage.Set + ": REQ: RealMachineManagerSet - ERROR : ", err.message);
         onError(err);
     } finally {
         onEnd();

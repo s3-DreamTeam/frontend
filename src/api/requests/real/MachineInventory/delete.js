@@ -12,7 +12,7 @@ export const PostDeleteMachineFromInventory = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: PostDeleteMachineFromInventory");
+    console.log(Endpoints.MachineInventory.Delete + ": REQ: PostDeleteMachineFromInventory - SENT: ", ID);
     onStart();
     try {
         const header = BackendHeader();
@@ -21,9 +21,10 @@ export const PostDeleteMachineFromInventory = async ({
             ID,
             header
         );
-        console.log("REQ: PostDeleteMachineFromInventory GOTTEN: ", response.data);
+        console.log(Endpoints.MachineInventory.Delete + ": REQ: PostDeleteMachineFromInventory - GOTTEN: ", response.data);
         onSuccess(response.data);
     } catch (err) {
+        console.log(Endpoints.MachineInventory.Delete + ": REQ: PostDeleteMachineFromInventory - ERROR: ", err.message);
         onError(err);
     } finally {
         onEnd();

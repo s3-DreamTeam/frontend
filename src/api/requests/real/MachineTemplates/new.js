@@ -14,7 +14,7 @@ export const PostNewMachineTemplate = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: PostNewMachineTemplate");
+    console.log(Endpoints.MachineTemplate.New + ": REQ: PostNewMachineTemplate - SENT: ", machineTemplateObject);
     onStart();
     try {
         //await sleep(5000);
@@ -26,6 +26,7 @@ export const PostNewMachineTemplate = async ({
         );
         onSuccess();
     } catch (err) {
+        console.log(Endpoints.MachineTemplate.New + ": REQ: PostNewMachineTemplate - ERROR: ", err.message);
         onError(err);
     } finally {
         onEnd();

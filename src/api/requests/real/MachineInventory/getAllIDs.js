@@ -11,15 +11,16 @@ export const FetchAllMachineInventoryIDs = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: FetchAllMachineInventoryIDs");
+    console.log(Endpoints.MachineInventory.Get.AllID + ": REQ: FetchAllMachineInventoryIDs");
     onStart();
     try {
         const header = BackendHeader();
         const response = await backendApi.get(Endpoints.MachineInventory.Get.AllID, header);
-        console.log("FetchAllMachineInventoryIDs - GOTTEN: ", response.data);
-        console.log("FetchAllMachineInventoryIDs - EXPECTED: ", [0, 1, 2, 3]);
+        console.log(Endpoints.MachineInventory.Get.AllID + ": REQ: FetchAllMachineInventoryIDs - GOTTEN: ", response.data);
+        console.log(Endpoints.MachineInventory.Get.AllID + ": REQ: FetchAllMachineInventoryIDs - EXPECTED: ", [0, 1, 2, 3]);
         onSuccess(response.data);
     } catch (err) {
+        console.log(Endpoints.MachineInventory.Get.AllID + ": REQ: FetchAllMachineInventoryIDs - GOTTEN: ", err.message);
         onError(err);
     } finally {
         onEnd();

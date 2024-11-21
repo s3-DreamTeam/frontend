@@ -12,7 +12,7 @@ export const PostGetMachineInventoryImage = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: PostGetMachineInventoryImage");
+    console.log(Endpoints.MachineInventory.Get.Image + ": REQ: PostGetMachineInventoryImage - SENT: ", ID);
     onStart();
     try {
         const header = BackendHeader();
@@ -21,10 +21,10 @@ export const PostGetMachineInventoryImage = async ({
             ID,
             header
         );
-        console.log("PostGetMachineInventoryImage - GOTTEN: ", response.data);
+        console.log(Endpoints.MachineInventory.Get.Image + ": REQ: PostGetMachineInventoryImage - GOTTEN: ", response.data);
         onSuccess(response.data);
     } catch (err) {
-        console.log("PostGetMachineInventoryImage - ERROR: ", err.message);
+        console.log(Endpoints.MachineInventory.Get.Image + ": REQ: PostGetMachineInventoryImage - ERROR: ", err.message);
         onError(err);
     } finally {
         onEnd();

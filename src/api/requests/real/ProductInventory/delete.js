@@ -12,7 +12,7 @@ export const RealDeleteProductFromInventory = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: RealDeleteProductFromInventory");
+    console.log(Endpoints.ProductInventory.Delete + ": REQ: RealDeleteProductFromInventory");
     onStart();
     try {
         const header = BackendHeader();
@@ -21,9 +21,10 @@ export const RealDeleteProductFromInventory = async ({
             ID,
             header
         );
-        console.log("REQ: RealDeleteProductFromInventory - GOTTEN : ", response.data);
+        console.log(Endpoints.ProductInventory.Delete + ": REQ: RealDeleteProductFromInventory - GOTTEN : ", response.data);
         onSuccess(response.data);
     } catch (err) {
+        console.log(Endpoints.ProductInventory.Delete + ": REQ: RealDeleteProductFromInventory - ERROR : ", err.message);
         onError(err);
     } finally {
         onEnd();

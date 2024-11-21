@@ -12,7 +12,7 @@ export const PostGetMachineTemplateImage = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: PostGetMachineTemplateImage");
+    console.log(Endpoints.MachineTemplate.Get.Image + ": REQ: PostGetMachineTemplateImage");
     onStart();
     try {
         const header = BackendHeader();
@@ -21,9 +21,10 @@ export const PostGetMachineTemplateImage = async ({
             ID,
             header
         );
-        console.log("PostGetMachineTemplateImage - MACHINE IMAGE: ", response.data);
+        console.log(Endpoints.MachineTemplate.Get.Image + ": REQ: PostGetMachineTemplateImage - GOTTEM: ", response.data);
         onSuccess(response.data);
     } catch (err) {
+        console.log(Endpoints.MachineTemplate.Get.Image + ": REQ: PostGetMachineTemplateImage - ERROR: ", err.message);
         onError(err);
     } finally {
         onEnd();
