@@ -1,7 +1,6 @@
 import { LinearProgress, Typography } from "@mui/material";
 import ComponentCardFoundation from "./foundation/componentCardFoundation";
 import { useEffect, useState } from "react";
-import { GetTemplateFromID } from "./Querries/MachineTemplateGetter";
 import { resetMachineInventoryError, setMachineInventoryError } from "../../store/machineInventorySlice";
 import MachineInventory from "../../utils/machineInventoryObject";
 import store from "../../store/store";
@@ -101,7 +100,7 @@ const MachineInventoryComponentCard = ({
     const hasNoTemplate = template === null || template === undefined;
     return (
         <ComponentCardFoundation
-            title={object.Name}
+            title={String(object.Name)}
             state={"normal"}
             image={object["Machine's Image"]}
             error={object.errors}

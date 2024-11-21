@@ -21,7 +21,6 @@ const RightBarArea = () => {
             sx={{ flexGrow: 1 }}
         >
             <ProfileButton shown={true} />
-            <MoreButton shown={true} />
             <Switch
                 checked={isSimulated}
                 onChange={switchChanged}
