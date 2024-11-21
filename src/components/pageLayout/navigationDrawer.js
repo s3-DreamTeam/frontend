@@ -45,6 +45,7 @@ const NavigationDrawer = ({ open, onClose }) => {
             open={open}
             onClose={onClose}
             sx={{
+                overflowY: 'scroll',
                 flexShrink: 0,
                 "& .MuiDrawer-paper": { borderWidth: 0, backgroundColor: '#00000000' },
                 boxSizing: 'border-box'
@@ -54,7 +55,7 @@ const NavigationDrawer = ({ open, onClose }) => {
             <Toolbar />
             <Card
                 elevation={20}
-                sx={{ height: '100%', borderRadius: '0 1.5rem 1.5rem 0', padding: '1.5rem' }}
+                sx={{ height: '100%', borderRadius: '0 1.5rem 1.5rem 0', padding: '1.5rem', overflowY: 'scroll' }}
             >
                 {DrawerContents}
             </Card>

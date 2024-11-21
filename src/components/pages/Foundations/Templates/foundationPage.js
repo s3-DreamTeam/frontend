@@ -5,6 +5,7 @@ import ProcessStatusSnackBar from "../../../processStatusSnackbar";
 import AddFormFoundation from "../addFormFoundation";
 import MainLayoutFoundation from "../mainLayoutFoundation";
 import InitialLoadingPage from "../../InitialLoadingPage";
+import ErrorDialog from "../../../Dialogs/ErrorDialog";
 
 /**
  * # TemplateFoundationPage
@@ -37,6 +38,7 @@ const TemplateFoundationPage = ({
     LoadInventory,
     UpdateInventory,
 }) => {
+    const [temporaryErrorDialog, setTemporaryErrorDialog] = useState(false);
     const [pageNotLoaded, setPageNotLoaded] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
     const [loadingSuccess, setLoadingSuccess] = useState(false);
@@ -157,6 +159,9 @@ const TemplateFoundationPage = ({
                                 deleteDialogMessage={deleteObjectDialogMessage}
                                 emptyInventoryMessage={emptyInventoryMessage}
                                 emptyInventoryTitle={emptyInventoryTitle}
+                                onItemClickSetup={() => {
+                                    setTemporaryErrorDialog(true);
+                                }}
                             />
                             : <InitialLoadingPage
                                 onRetryClick={loadFromScratch}
@@ -170,6 +175,14 @@ const TemplateFoundationPage = ({
             <ProcessStatusSnackBar
                 status={isLoading ? 'loading' : (loadingErrors != null ? 'error' : (loadingSuccess ? 'success' : 'hidden'))}
                 attributes={LoadTemplatesProcessSnackbarProps}
+            />
+            <ErrorDialog
+                onClose={() => {
+                    setTemporaryErrorDialog(false);
+                }}
+                title="Not Implemented"
+                message="Modifying existing templates currently isn't supported. Press the template for a couple seconds to delete it."
+                open={temporaryErrorDialog}
             />
         </>
     );

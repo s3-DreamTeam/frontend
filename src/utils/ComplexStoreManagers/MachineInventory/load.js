@@ -11,6 +11,7 @@ import { UserInventoryLoader } from "../Generic/load";
 // None of the by the book implementations I found fixed the issue.
 // But this simple global variable?
 // You bet it fucking does.
+// This prevents the issue where multiple components try to fetch requests to the backend... while only one is necessary.
 
 let technicalDebtGlobalObject = {
     processes: 0,

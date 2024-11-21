@@ -60,6 +60,7 @@ const NoBackend = () => {
                         }}
                     />
                 }
+                shadow
             >
                 {loading
                     ? <LinearProgress
