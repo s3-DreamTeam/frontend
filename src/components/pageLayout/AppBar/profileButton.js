@@ -1,45 +1,65 @@
-import { PersonRounded } from '@mui/icons-material';
+import { PersonOffRounded, PersonRounded } from '@mui/icons-material';
 import { AppBarIconButton } from './appBarIconButton';
 import { keycloakInstance } from '../../../api/keycloak';
+import { Menu } from '@mui/material';
+import { useState } from 'react';
+import ProfileMenu from './profileMenu';
 
 const ProfileButton = ({ onClick, shown, disabled }) => {
+    const [anchorPosition, setAnchorPosotion] = useState(null);
+    const [userProfile, setUserProfile] = useState(null);
 
     async function getInfo() {
         const instance = keycloakInstance();
         let userInfo = null;
-        let userProfile = null;
-
         try {
             userInfo = await instance.loadUserInfo();
         } catch {
             console.warn("Failed to load user info... rip...");
         }
-
-        try {
-            userProfile = await instance.loadUserProfile();
-        } catch {
-            console.warn("Failed to load user profile... rip...");
-        }
+        setUserProfile(userInfo);
         console.log(instance);
-
-        console.log("authenticated? ", instance.authenticated);
-        console.log("Info? ", userInfo);
-        console.log("Profile? ", userProfile);
     }
 
-    function onClick() {
+    function clicked(event) {
         getInfo();
+        setAnchorPosotion(event.currentTarget);
     }
 
+    const authed = keycloakInstance().authenticated;
+    const opened = Boolean(anchorPosition);
     return (
-        <AppBarIconButton
-            onClick={onClick}
-            disabled={disabled}
-            shown={shown}
-            isRight={true}
-        >
-            <PersonRounded fontSize='large' />
-        </AppBarIconButton>
+        <>
+            <AppBarIconButton
+                onClick={clicked}
+                disabled={disabled}
+                shown={shown}
+                isRight={true}
+            >
+                {
+                    authed
+                        ? <PersonRounded fontSize='large' />
+                        : <PersonOffRounded fontSize='large' color='error' />
+                }
+            </AppBarIconButton>
+            <Menu
+                open={opened}
+                anchorEl={anchorPosition}
+                onClose={() => {
+                    setAnchorPosotion(null);
+                }}
+                PaperProps={{
+                    sx: {
+                        borderRadius: '1.5rem'
+                    }
+                }}
+            >
+                <ProfileMenu
+                    authenticated={authed}
+                    profile={userProfile}
+                />
+            </Menu>
+        </>
     );
 };
 
