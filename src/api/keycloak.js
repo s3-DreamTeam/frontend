@@ -51,6 +51,15 @@ export function InitKeycloakInstance({
     }).finally(() => {
       onFinally();
     });
+
+    actualKeycloakInstance.onTokenExpired = () => {
+      console.log('KEYCLOAK: token expired', actualKeycloakInstance.token);
+      actualKeycloakInstance.updateToken(30).success(() => {
+        console.log('KEYCLOAK: successfully get a new token');
+      }).error(() => {
+        console.warn("KEYCLOAK: FAILED TO RENEW EXPIRED TOKEN :(");
+      });
+    };
   } catch (error) {
     onFatalError(error);
   }

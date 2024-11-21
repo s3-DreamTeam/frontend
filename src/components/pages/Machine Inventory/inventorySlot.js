@@ -17,6 +17,7 @@ const InventorySlot = ({
     const [loading, setLoading] = useState(true);
     const [errors, setErrors] = useState(null);
 
+    console.log("When drawing a slot, it's equal to ", slot);
     const price = slot.Price;
     const productID = slot.ProductID;
     const Quantity = slot.Quantity;
