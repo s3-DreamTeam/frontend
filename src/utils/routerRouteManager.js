@@ -20,7 +20,7 @@ export const AppRoutes = {
 
     StockManager: "/StockManager",
     StockEditor: "/StockEditor",
-    StockInventory: "/StockInventory"
+    StockInventory: "/StockWarehouse"
 };
 
 /**

@@ -48,6 +48,7 @@ const InventoryFoundationPage = ({
     UpdateInventory,
     LoadTemplates
 }) => {
+    const [pageNotLoaded, setPageNotLoaded] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
     const [loadingSuccess, setLoadingSuccess] = useState(false);
     const [loadingErrors, setLoadingErrors] = useState(null);
@@ -111,6 +112,7 @@ const InventoryFoundationPage = ({
             // Quiet loading
             UpdateInventory({});
         }
+        setPageNotLoaded(false);
     }, []);
 
     useEffect(() => {
@@ -214,7 +216,7 @@ const InventoryFoundationPage = ({
                             : <InitialLoadingPage
                                 onRetryClick={loadFromScratch}
                                 error={loadingErrors}
-                                isLoading={isLoading}
+                                isLoading={isLoading || pageNotLoaded}
                             />
                         )
                     }

@@ -63,6 +63,8 @@ const SideActionMenu = ({
         return () => clearTimeout(timeout); // Clean up timeout on unmount
     }, [sideActionsMenuState, sideActionsMenuAnimationState, dispatch]);
 
+    const hideOtherFeatures = true;
+
     return (
         <div
             className={animateClass}
@@ -70,10 +72,10 @@ const SideActionMenu = ({
                 justifyContent: 'center',
                 alignContent: 'center',
                 position: 'fixed',
-                top: '35%',
+                top: '50%',
                 right: '0%',
                 transition: 'transform 0.2s ease',
-                transform: animateClass === 'shown' ? 'translateX(0)' : 'translateX(100%)'
+                transform: animateClass === 'shown' ? 'translate(0,-50%)' : 'translate(150%,-50%)'
             }}
         >
             <Card
@@ -85,9 +87,9 @@ const SideActionMenu = ({
                 }}
             >
                 <Stack spacing={1}>
-                    <SAMSortBy disabled={disableSort} />
-                    <SAMFilter disabled={disableFilter} />
-                    <SAMList disabled={disableList} />
+                    {hideOtherFeatures ? null : <SAMSortBy disabled={disableSort} />}
+                    {hideOtherFeatures ? null : <SAMFilter disabled={disableFilter} />}
+                    {hideOtherFeatures ? null : <SAMList disabled={disableList} />}
                     <SAMRefresh disabled={disableRefresh} onClick={onRefresh} isRefreshing={isRefreshing} />
                     <SAMDivider />
                     <SAMAdd disabled={disableNew} onClick={onAdd} />

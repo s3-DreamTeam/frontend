@@ -504,7 +504,7 @@ const MachineInventoryPage = () => {
                     onClose={() => { setProductSelectionShown(false); }}
                     onConfirm={SelectedAProduct}
                     title={"No products"}
-                    message={"You have no products to choose from. You must create a product from a template in Stock Manager."}
+                    message={"You have no products to choose from. You must create a product in the warehouse from a template in Stock Editor."}
                     components={products}
                     ComponentCard={ProductInventoryComponentCard}
                     open={productSelectionShown}

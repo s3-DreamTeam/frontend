@@ -37,6 +37,7 @@ const TemplateFoundationPage = ({
     LoadInventory,
     UpdateInventory,
 }) => {
+    const [pageNotLoaded, setPageNotLoaded] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
     const [loadingSuccess, setLoadingSuccess] = useState(false);
     const [loadingErrors, setLoadingErrors] = useState(null);
@@ -61,6 +62,7 @@ const TemplateFoundationPage = ({
             // Quiet loading
             UpdateInventory({});
         }
+        setPageNotLoaded(false);
     }, []);
 
     useEffect(() => {
@@ -159,7 +161,7 @@ const TemplateFoundationPage = ({
                             : <InitialLoadingPage
                                 onRetryClick={loadFromScratch}
                                 error={loadingErrors}
-                                isLoading={isLoading}
+                                isLoading={isLoading || pageNotLoaded}
                             />
                         )
                     }

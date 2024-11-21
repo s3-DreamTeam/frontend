@@ -27,7 +27,7 @@ const NavigationDrawer = ({ open, onClose }) => {
             <StyledDivider aria-hidden='true' thiccness={2} flexItem />
 
             <NavigationDrawerButton title='machine manager' correspondingAppRoute={AppRoutes.MachineManager} icon={<AodRounded />} />
-            <NavigationDrawerButton title='Stock manager' correspondingAppRoute={AppRoutes.StockManager} icon={<WarehouseRounded />} />
+            <NavigationDrawerButton title='Stock warehouse' correspondingAppRoute={AppRoutes.StockManager} icon={<WarehouseRounded />} />
             <StyledDivider aria-hidden='true' thiccness={2} flexItem />
 
             <NavigationDrawerButton title='machine editor' correspondingAppRoute={AppRoutes.MachineEditor} icon={<ConstructionRounded />} />

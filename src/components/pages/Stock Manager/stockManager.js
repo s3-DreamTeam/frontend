@@ -25,16 +25,16 @@ const StockManager = () => {
 
     return (
         <InventoryFoundationPage
-            MainPageTitle="Stock Manager"
+            MainPageTitle="Stock Warehouse"
             emptyInventoryTitle="You don't have any products"
-            emptyInventoryMessage="Ensure you created templates before adding new products to your inventory."
+            emptyInventoryMessage="Ensure you created templates before adding new products to your warehouse."
             loadingSnackbarMessage="Loading products..."
             deleteObjectDialogMessage="This product will be removed from all machines that currently has it."
 
             AddNewFormTitle="New Product"
             addNewSuccessDialogTitle="Product created"
-            addNewSuccessDialogMessage="Your product was successfully created and added to your inventory!"
-            noTemplatesDialogMessage="We couldn't find any templates for you to choose from. Ensure that you've created at least one product template before trying to add new products to your inventory! Go to 'Stock Editor'"
+            addNewSuccessDialogMessage="Your product was successfully created and added to your warehouse!"
+            noTemplatesDialogMessage="We couldn't find any templates for you to choose from. Ensure that you've created at least one template before trying to add new products to your warehouse! Go to 'Stock Editor'"
             noTemplatesDialogTitle="No Product Templates :("
             objectNameKey="Variant"
             addNewFormObjectGetter={ProductInventoryFormBuilder}
@@ -77,7 +77,7 @@ const StockManager = () => {
 
     return (
         <PageLayout
-            title="Stock Manager"
+            title="Stock Warehouse"
             childrens={
                 <EmptyPage
                     header="You have no products"

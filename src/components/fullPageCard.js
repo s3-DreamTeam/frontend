@@ -2,7 +2,7 @@ const { Box, Typography } = require("@mui/material");
 const { default: ColorCard } = require("./ComponentCards/foundation/styledCard");
 
 
-const FullPageCard = ({ title, subtitle, color, header, footer }) => {
+const FullPageCard = ({ title, subtitle, color, header, footer, children }) => {
     return (
         <div
             style={{
@@ -13,6 +13,7 @@ const FullPageCard = ({ title, subtitle, color, header, footer }) => {
                 display: 'flex', // Add this
                 justifyContent: 'center', // Center horizontally
                 alignItems: 'center', // Center vertically
+                flexDirection: 'column'
             }}
         >
             <ColorCard
@@ -61,6 +62,7 @@ const FullPageCard = ({ title, subtitle, color, header, footer }) => {
                     </Typography>
                 </Box>
             </ColorCard>
+            {children}
         </div>
     );
 

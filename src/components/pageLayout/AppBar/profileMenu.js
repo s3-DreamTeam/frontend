@@ -5,8 +5,6 @@ const ProfileMenu = ({
     authenticated = false,
     profile = null
 }) => {
-
-    authenticated = true;
     return (
         <div
             style={{
