@@ -27,7 +27,7 @@ import { GetSurfaceProductInInventory } from "../../../api/requests/interface/Pr
 import { setProductInventoryData } from "../../../store/productInventorySlice";
 import ErrorPage from "../../errorPage";
 import { IconButton } from "@mui/material";
-import { RefreshRounded } from "@mui/icons-material";
+import { RefreshRounded, UndoRounded } from "@mui/icons-material";
 
 let isFetching = false;
 
@@ -118,8 +118,16 @@ const MachineInventoryPage = () => {
 
     function GetFullTemplate(aFullMachine) {
         console.log("BEFORE GETTING THE FULL TEMPLATE FROM THE FOLLOWING OBJECT: ", aFullMachine);
+
+        let id = null;
+        if (aFullMachine.id === undefined) {
+            id = aFullMachine.TemplateID;
+        } else {
+            id = aFullMachine.id;
+        }
+
         GetFullMachineTemplate({
-            ID: aFullMachine.id,
+            ID: id,
             onStart: () => {
                 isFetching = true;
                 setFooterLoading(true);
