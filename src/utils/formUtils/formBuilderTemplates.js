@@ -66,7 +66,7 @@ export function machineTemplateFormBuilder() {
                         true,
                         null,
                         null,
-                        null,
+                        2000000000,
                         1
                     )
                 ]
