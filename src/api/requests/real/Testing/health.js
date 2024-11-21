@@ -12,15 +12,15 @@ export const RealHealthCheck = async ({
     onEnd = () => { },
     onStart = () => { }
 }) => {
-    console.log("REQ: RealHealthCheck");
+    console.log(Endpoints.Health + ": REQ: RealHealthCheck");
     onStart();
     try {
         const header = BackendHeader();
         await backendApi.get(Endpoints.Health, header);
-        console.log("REQ: RealHealthCheck - SUCCESS");
+        console.log(Endpoints.Health + ": REQ: RealHealthCheck - SUCCESS");
         onSuccess();
     } catch (err) {
-        console.warn("REQ: RealHealthCheck - FAILED", err);
+        console.warn(Endpoints.Health + ": REQ: RealHealthCheck - FAILED", err);
         onError(err);
     } finally {
         onEnd();
