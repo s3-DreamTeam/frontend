@@ -17,14 +17,14 @@ const InventorySlot = ({
     const [loading, setLoading] = useState(true);
     const [errors, setErrors] = useState(null);
 
-    console.log("When drawing a slot, it's equal to ", slot);
     const price = slot.Price;
     const productID = slot.ProductID;
     const Quantity = slot.Quantity;
     const slotName = slot.Slot;
 
     const empty = (Quantity === 0) && (productID !== null);
-    const available = (Quantity === 0) && (productID === null);
+    const available = (productID === null);
+    console.log(`available: ${available}, empty: ${empty}`);
 
     // - Get the associated template - //
     useEffect(() => {
