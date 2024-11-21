@@ -46,21 +46,22 @@ export function InitKeycloakInstance({
   try {
     actualKeycloakInstance.init({ onLoad: 'login-required' }).then(auth => {
       onSuccess(auth);
+      actualKeycloakInstance.onTokenExpired = () => {
+        console.log('KEYCLOAK: token expired', actualKeycloakInstance.token);
+        actualKeycloakInstance.updateToken(20).finally(() => {
+          console.log('KEYCLOAK: updated token?');
+        }).catch(() => {
+          console.warn("KEYCLOAK: FAILED TO RENEW EXPIRED TOKEN :(");
+        });
+      };
+
     }).catch(error => {
       onInitError(error);
     }).finally(() => {
       onFinally();
     });
-
-    actualKeycloakInstance.onTokenExpired = () => {
-      console.log('KEYCLOAK: token expired', actualKeycloakInstance.token);
-      actualKeycloakInstance.updateToken(20).finally(() => {
-        console.log('KEYCLOAK: updated token?');
-      }).catch(() => {
-        console.warn("KEYCLOAK: FAILED TO RENEW EXPIRED TOKEN :(");
-      });
-    };
   } catch (error) {
+    console.log("FAILED TO INITIALIZE KEYCLOAK.");
     onFatalError(error);
   }
 }

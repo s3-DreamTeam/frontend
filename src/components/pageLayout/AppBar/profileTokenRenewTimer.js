@@ -5,6 +5,7 @@ import StyledTooltip from "../../styledTooltip";
 
 const ProfileTokenRenewTimer = () => {
     const [time, setTime] = useState("...");
+    const [expired, setExpired] = useState(false);
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -29,6 +30,17 @@ const ProfileTokenRenewTimer = () => {
 
         const currentTime = Math.floor(Date.now() / 1000);
         let timeLeft = expiresAt - currentTime;
+
+        if (timeLeft < 0) {
+            setExpired(true);
+            setTime("Expired");
+            return;
+        }
+
+        if (expired) {
+            setExpired(false);
+        }
+
         let unit = 's';
 
         if (timeLeft > 60) {
@@ -44,7 +56,7 @@ const ProfileTokenRenewTimer = () => {
             title="Time until token is renewed"
         >
             <Typography
-                color={error ? "error" : "textDisabled"}
+                color={error ? "error" : (expired ? "warning" : "textDisabled")}
                 variant="body2"
             >
                 {time}

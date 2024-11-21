@@ -33,6 +33,7 @@ const HandleUserLoggedInStatus = () => {
         // - Trying to check if your token is valid - //
         //console.log("HEALTH: Authenticated? ", keycloak.authenticated);
 
+        /*
         if (keycloak.authenticated) {
             console.log("HEALTH: Expired? ", keycloak.isTokenExpired(60));
             if (keycloak.isTokenExpired(60)) {
@@ -44,6 +45,7 @@ const HandleUserLoggedInStatus = () => {
                 });
             }
         }
+        */
     }
 
     return true;
