@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { keycloakInstance } from "../../../api/keycloak";
-import { Typography } from "@mui/material";
+import { CircularProgress, Typography } from "@mui/material";
 import StyledTooltip from "../../styledTooltip";
 
 const ProfileTokenRenewTimer = () => {
-    const [time, setTime] = useState("...");
+    const [time, setTime] = useState(null);
     const [expired, setExpired] = useState(false);
     const [error, setError] = useState(null);
 
@@ -55,12 +55,16 @@ const ProfileTokenRenewTimer = () => {
         <StyledTooltip
             title="Time until token is renewed"
         >
-            <Typography
-                color={error ? "error" : (expired ? "warning" : "textDisabled")}
-                variant="body2"
-            >
-                {time}
-            </Typography>
+            {
+                time === null
+                    ? <CircularProgress size="1.5rem" />
+                    : <Typography
+                        color={error ? "error" : (expired ? "warning" : "textDisabled")}
+                        variant="body2"
+                    >
+                        {time}
+                    </Typography>
+            }
         </StyledTooltip>
     );
 };

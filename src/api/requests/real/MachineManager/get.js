@@ -21,6 +21,9 @@ export const RealMachineManagerGet = async ({
             ID,
             header
         );
+
+        const technicalDebt_parsedObject = removeNegativeIDs(response.data);
+
         console.log(Endpoints.MachineInventory.Manage.Get + ": REQ: RealMachineManagerGet - GOTTEN: ", response.data);
         console.log(Endpoints.MachineInventory.Manage.Get + ": REQ: RealMachineManagerGet - EXPECTED : ", [
             {
@@ -50,3 +53,7 @@ export const RealMachineManagerGet = async ({
         onEnd();
     }
 };
+
+function removeNegativeIDs(array) {
+
+}

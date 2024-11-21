@@ -6,6 +6,15 @@ const ProfileMenu = ({
     profile = null
 }) => {
 
+    /*
+    profile = {
+        "given_name": "amog",
+        "family_name": "sus",
+        "email": "bruh@usherbrooke.ca",
+        "name": "amog sus"
+    };
+    authenticated = true;
+    */
     return (
         <div
             style={{

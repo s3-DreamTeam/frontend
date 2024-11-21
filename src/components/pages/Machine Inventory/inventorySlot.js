@@ -24,7 +24,7 @@ const InventorySlot = ({
 
     const empty = (Quantity === 0) && (productID !== null);
     const available = (productID === null);
-    console.log(`available: ${available}, empty: ${empty}`);
+    //console.log(`available: ${available}, empty: ${empty}`);
 
     // - Get the associated template - //
     useEffect(() => {
