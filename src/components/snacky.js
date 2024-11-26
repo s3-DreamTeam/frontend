@@ -74,14 +74,6 @@ const Snacky = () => {
                             element={<StockInventory />}
                         />
                         <Route
-                            path={AppRoutes.Changelogs}
-                            element={<Changelogs />}
-                        />
-                        <Route
-                            path={AppRoutes.Testing}
-                            element={<Testing />}
-                        />
-                        <Route
                             path={AppRoutes.NotLoggedIn}
                             element={<NotLoggedInPage />}
                         />
@@ -100,5 +92,16 @@ const Snacky = () => {
         </>
     );
 };
+
+/*
+                        <Route
+                            path={AppRoutes.Changelogs}
+                            element={<Changelogs />}
+                        />
+                        <Route
+                            path={AppRoutes.Testing}
+                            element={<Testing />}
+                        />
+*/
 
 export default Snacky;

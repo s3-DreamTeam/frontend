@@ -14,8 +14,8 @@ export const AppRoutes = {
     MachineManager: "/MachineManager",
     MachineEditor: "/MachineEditor",
     MachineInventory: "/MachineInventory",
-    Changelogs: "/Changelogs",
-    Testing: "/Testing",
+    //Changelogs: "/Changelogs",
+    //Testing: "/Testing",
     NoBackend: "/NoBackend",
 
     StockManager: "/StockManager",

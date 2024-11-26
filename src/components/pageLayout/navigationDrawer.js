@@ -32,12 +32,15 @@ const NavigationDrawer = ({ open, onClose }) => {
 
             <NavigationDrawerButton title='machine editor' correspondingAppRoute={AppRoutes.MachineEditor} icon={<ConstructionRounded />} />
             <NavigationDrawerButton title='stock editor' correspondingAppRoute={AppRoutes.StockEditor} icon={<ConstructionRounded />} />
+        </Stack>
+    );
+
+    /*
             <StyledDivider aria-hidden='true' thiccness={2} flexItem />
 
             <NavigationDrawerButton title='changelogs' correspondingAppRoute={AppRoutes.Changelogs} icon={<TextSnippetRounded />} />
             <NavigationDrawerButton title='testing' correspondingAppRoute={AppRoutes.Testing} icon={<TextSnippetRounded />} />
-        </Stack>
-    );
+    */
 
     return (
         <Drawer
