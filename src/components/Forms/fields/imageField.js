@@ -31,13 +31,16 @@ export const FormImageField = ({ fieldObject, onSomethingChanged, disabled }) =>
         setImage(fieldObject.value);
     }, [fieldObject]);
 
+    const size = image === null ? null : String(Math.floor(image.length / 1000) + "KB");
+
     return (
         <FormInput
             title={title}
             isError={isError}
-            subText={errorString}
+            subText={errorString || size}
             align="top"
             disabled={disabled}
+            isRequired={fieldObject.required}
         >
             <ImageSelectorCard
                 onFileNameChanged={() => { }}

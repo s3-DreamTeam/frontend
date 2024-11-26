@@ -1,3 +1,5 @@
+import RequiredStar from "./requiredStar";
+
 const { Typography, Box } = require("@mui/material");
 
 /**
@@ -14,7 +16,8 @@ export const FormInput = ({
     children,
     align = "center",
     subText = null,
-    disabled
+    disabled,
+    isRequired = false
 }) => {
     const textColor = disabled ? "textDisabled" : null;
 
@@ -27,16 +30,25 @@ export const FormInput = ({
             marginBottom="1rem"
         >
             <div>
-                <Typography
-                    variant="h5"
-                    color={isError ? 'error' : textColor}
+                <div
+                    style={{
+                        display: 'flex'
+                    }}
                 >
-                    {title}
-                </Typography>
+                    {isRequired
+                        ? <RequiredStar isError={isError} />
+                        : null}
+                    <Typography
+                        variant="h5"
+                        color={isError ? 'error' : textColor}
+                    >
+                        {title}
+                    </Typography>
+                </div>
                 {subText
                     ? (<Typography
                         variant="body1"
-                        color={isError ? 'error' : textColor}
+                        color={isError ? 'error' : "textDisabled"}
                     >
                         {subText}
                     </Typography>)

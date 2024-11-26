@@ -43,7 +43,8 @@ export function ProductInventoryFormBuilder(templateObject) {
                         null,
                         '%',
                         null,
-                        null
+                        null,
+                        true
                     ),
                 ]
             },

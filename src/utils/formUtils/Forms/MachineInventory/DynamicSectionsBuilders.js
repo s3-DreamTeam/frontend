@@ -21,7 +21,8 @@ export function MachineInventoryFormClimateField(dropdownAnswer) {
                         null,
                         "C",
                         null,
-                        null
+                        null,
+                        true
                     ),
                     NumberFieldBuilder(
                         "Set temperature",
@@ -29,7 +30,8 @@ export function MachineInventoryFormClimateField(dropdownAnswer) {
                         "0",
                         "C",
                         null,
-                        null
+                        null,
+                        true
                     ),
                     NumberFieldBuilder(
                         "Max temperature",
@@ -37,7 +39,8 @@ export function MachineInventoryFormClimateField(dropdownAnswer) {
                         null,
                         "C",
                         null,
-                        null
+                        null,
+                        true
                     ),
                 ]
             };

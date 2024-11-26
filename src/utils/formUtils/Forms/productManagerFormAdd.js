@@ -21,7 +21,8 @@ export function productManagerFormAddBuilder() {
                         null,
                         "$",
                         null,
-                        0
+                        0,
+                        true
                     ),
                 ]
             },

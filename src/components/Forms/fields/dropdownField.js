@@ -1,4 +1,4 @@
-import { MenuItem, TextField } from "@mui/material";
+import { MenuItem, TextField, Typography } from "@mui/material";
 import { FormInput } from "../foundations/input";
 import { DropdownFieldValueTester } from "../../../utils/formUtils/valueTesters/dropdownFieldValueTester";
 import { useEffect, useState } from "react";
@@ -37,6 +37,7 @@ export const FormDropdownField = ({ fieldObject, onSomethingChanged, disabled })
             title={title}
             isError={isError}
             disabled={disabled}
+            isRequired={required}
         >
             <TextField
                 variant="filled"
@@ -54,7 +55,7 @@ export const FormDropdownField = ({ fieldObject, onSomethingChanged, disabled })
                 InputProps={{
                     style: {
                         borderRadius: '1.5rem',
-                        minWidth: '5rem'
+                        minWidth: '5rem',
                     },
                 }}
             >
@@ -63,7 +64,11 @@ export const FormDropdownField = ({ fieldObject, onSomethingChanged, disabled })
                         key={choice}
                         value={choice}
                     >
-                        {choice}
+                        <Typography
+                            color={choice === "no value" ? "textDisabled" : "inherit"}
+                        >
+                            {choice}
+                        </Typography>
                     </MenuItem>
                 ))}
             </TextField>

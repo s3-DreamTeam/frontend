@@ -7,5 +7,11 @@ export function DropdownFieldValueTester(newValue, fieldObject) {
         return FormFieldError.isRequired;
     }
 
+    console.warn(newValue);
+
+    if ((newValue === "no value") && required) {
+        return FormFieldError.isRequired;
+    }
+
     return null;
 }

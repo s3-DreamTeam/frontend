@@ -10,6 +10,7 @@ export function NumberFieldValueTester(newValue, fieldObject) {
 
     const maximumAllowed = fieldObject.max;
     const minimumAllowed = fieldObject.min;
+    const isFloat = fieldObject.isFloat;
 
     // Test if value is a valid number
     try {
@@ -19,7 +20,7 @@ export function NumberFieldValueTester(newValue, fieldObject) {
         }
         const numericalValue = Number(newValue);
 
-        console.log("Value : ", numericalValue, " Max: ", maximumAllowed, " min: ", minimumAllowed);
+        //console.log("Value : ", numericalValue, " Max: ", maximumAllowed, " min: ", minimumAllowed);
         if ((numericalValue > maximumAllowed) && (fieldObject.max !== null)) {
             return FormFieldError.isAboveMax + maximumAllowed;
         }
@@ -28,6 +29,14 @@ export function NumberFieldValueTester(newValue, fieldObject) {
         }
     } catch {
         return FormFieldError.isNotNumber;
+    }
+
+    if (newValue.length > 50) {
+        return FormFieldError.isTooLong + `(${newValue.length}/50)`;
+    }
+
+    if (!isFloat && (newValue.indexOf(".") !== -1)) {
+        return "Cannot have decimals";
     }
 
     return null;

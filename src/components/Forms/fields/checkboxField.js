@@ -30,6 +30,7 @@ export const FormCheckbox = ({
         <FormInput
             title={title}
             disabled={disabled}
+            isRequired={fieldObject.required}
         >
             <Checkbox
                 size="large"

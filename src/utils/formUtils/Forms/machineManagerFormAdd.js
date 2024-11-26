@@ -21,7 +21,8 @@ export function machineManagerFormAddBuilder(maxQuantity) {
                         null,
                         "$",
                         null,
-                        0
+                        0,
+                        true
                     ),
                 ]
             },

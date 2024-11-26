@@ -95,6 +95,14 @@ export function DropdownFieldBuilder(
     choices,
     subCategories
 ) {
+
+    choices.push("no value");
+
+    let value = "no value";
+    if (defaultValue !== null) {
+        value = defaultValue;
+    }
+
     return {
         name: name,
         type: FieldTypes.Dropdown,
@@ -102,7 +110,7 @@ export function DropdownFieldBuilder(
         defaultValue: defaultValue,
         choices: choices,
         error: null,
-        value: null,
+        value: value,
         verify: DropdownFieldValueTester,
         subCategories,
     };
@@ -162,7 +170,20 @@ export function NumberFieldBuilder(
     symbol,
     max,
     min,
+    isFloat
 ) {
+    if (max === null) {
+        max = 2000000000;
+    }
+
+    if (min === null) {
+        min = -2000000000;
+    }
+
+    if (isFloat === undefined) {
+        isFloat = false;
+    }
+
     return {
         name: name,
         type: FieldTypes.NumberField,
@@ -173,6 +194,7 @@ export function NumberFieldBuilder(
         min: min,
         error: null,
         value: null,
+        isFloat: isFloat,
         verify: NumberFieldValueTester
     };
 }

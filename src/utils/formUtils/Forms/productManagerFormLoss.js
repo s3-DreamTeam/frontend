@@ -18,7 +18,7 @@ export function productManagerFormLossBuilder(currentAmount) {
                     DropdownFieldBuilder(
                         "Reason",
                         true,
-                        "",
+                        null,
                         ["Expired", "Stolen", "Discarded", "Other"],
                         null
                     )

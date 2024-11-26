@@ -24,7 +24,7 @@ export function machineTemplateFormBuilder() {
                     DropdownFieldBuilder(
                         "Climate",
                         true,
-                        "",
+                        null,
                         ["cooled", "warmed", "wide range", "none"],
                         null
                     ),
@@ -138,14 +138,14 @@ export function productTemplateFormBuilder() {
                     DropdownFieldBuilder(
                         "Consistency",
                         true,
-                        "",
+                        null,
                         ["liquid", "flimsy", "solid"],
                         null
                     ),
                     DropdownFieldBuilder(
                         "Climate",
                         true,
-                        "",
+                        null,
                         ["anything", "hot", "cold", "room temperature"],
                         null
                     ),
@@ -205,7 +205,8 @@ export function productTemplateFormBuilder() {
                         null,
                         'cm',
                         null,
-                        0
+                        0,
+                        true
                     ),
                     NumberFieldBuilder(
                         "Height",
@@ -213,7 +214,8 @@ export function productTemplateFormBuilder() {
                         null,
                         'cm',
                         null,
-                        0
+                        0,
+                        true
                     ),
                     NumberFieldBuilder(
                         "Length",
@@ -221,7 +223,8 @@ export function productTemplateFormBuilder() {
                         null,
                         'cm',
                         null,
-                        0
+                        0,
+                        true
                     ),
                     NumberFieldBuilder(
                         "Weight",
@@ -229,7 +232,8 @@ export function productTemplateFormBuilder() {
                         null,
                         'kg',
                         null,
-                        null
+                        null,
+                        true
                     ),
                 ]
             },

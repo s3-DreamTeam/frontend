@@ -35,6 +35,7 @@ export const FormTextField = ({ fieldObject, onSomethingChanged, disabled }) => 
             title={title}
             isError={isError}
             disabled={disabled}
+            isRequired={fieldObject.required}
         >
             <TextField
                 variant="filled"

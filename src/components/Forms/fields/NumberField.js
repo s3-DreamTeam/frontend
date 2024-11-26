@@ -48,6 +48,7 @@ export const FormNumberField = ({ fieldObject, onSomethingChanged, disabled }) =
             title={title}
             disabled={disabled}
             isError={isError}
+            isRequired={fieldObject.required}
         >
             <TextField
                 variant="filled"

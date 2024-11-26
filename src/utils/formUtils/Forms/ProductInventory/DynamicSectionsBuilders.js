@@ -109,7 +109,8 @@ export function ProductInventoryFormClimateField(dropdownAnswer) {
                         null,
                         "C",
                         null,
-                        null
+                        null,
+                        true
                     ),
                     NumberFieldBuilder(
                         "Prefered",
@@ -117,7 +118,8 @@ export function ProductInventoryFormClimateField(dropdownAnswer) {
                         "0",
                         "C",
                         null,
-                        null
+                        null,
+                        true
                     ),
                     NumberFieldBuilder(
                         "Max temperature",
@@ -125,7 +127,8 @@ export function ProductInventoryFormClimateField(dropdownAnswer) {
                         null,
                         "C",
                         null,
-                        null
+                        null,
+                        true
                     ),
                 ]
             };
