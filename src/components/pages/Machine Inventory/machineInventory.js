@@ -103,7 +103,7 @@ const MachineInventoryPage = () => {
                     setCardImageError(true);
                     setGlobalErrors("GetFullMachine: " + e.message);
                 },
-                onSuccess: async (data) => {
+                onSuccess: (data) => {
                     console.log("Successfully retreived the full machine! - ", data);
                     setFullMachine(data);
                     setCardImage(data["Machine's Image"]);
