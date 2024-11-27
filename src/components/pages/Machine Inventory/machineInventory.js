@@ -109,7 +109,6 @@ const MachineInventoryPage = () => {
                     setCardImage(data["Machine's Image"]);
                     setCardTitle(data.Name);
                     setQuantity(data["Lowest product count"]);
-                    LoadProducts();
                     GetFullTemplate(data);
                 }
             });
@@ -146,6 +145,18 @@ const MachineInventoryPage = () => {
                 setCardTitle(data.Manufacturer);
                 setTitleLoading(false);
                 setModel(aFullMachine.Name);
+                LoadProducts({
+                    onStart: () => {
+                        setInventoryLoading(true);
+                    },
+                    onEnd: () => {
+                        setInventoryLoading(false);
+                    },
+                    onSuccess: () => {
+                    },
+                    onError: (e) => {
+                    },
+                });
             }
         });
     }
