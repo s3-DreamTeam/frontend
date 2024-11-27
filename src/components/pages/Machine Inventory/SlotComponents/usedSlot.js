@@ -22,6 +22,11 @@ const UsedSlot = ({
     useEffect(() => {
         console.log("Finding needed product of ID: ", slot.ProductID);
         const neededProduct = allProducts[slot.ProductID];
+
+        if (neededProduct === undefined) {
+            console.warn(`Could not find product of ID ${slot.ProductID} in the local store...`);
+        }
+
         setProduct(neededProduct);
     }, [allProducts]);
 

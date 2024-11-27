@@ -103,13 +103,13 @@ const MachineInventoryPage = () => {
                     setCardImageError(true);
                     setGlobalErrors("GetFullMachine: " + e.message);
                 },
-                onSuccess: (data) => {
+                onSuccess: async (data) => {
                     console.log("Successfully retreived the full machine! - ", data);
                     setFullMachine(data);
                     setCardImage(data["Machine's Image"]);
                     setCardTitle(data.Name);
                     setQuantity(data["Lowest product count"]);
-
+                    LoadProducts();
                     GetFullTemplate(data);
                 }
             });
