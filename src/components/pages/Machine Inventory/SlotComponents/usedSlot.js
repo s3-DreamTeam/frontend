@@ -166,7 +166,7 @@ const UsedSlot = ({
                     showQuantity={true}
                     onClick={() => {
                         SetupProductInventoryPage(slot.ProductID, AppRoutes.MachineInventory);
-                        navigate(AppRoutes.StockManager);
+                        navigate(AppRoutes.StockInventory);
                     }}
                 />
             </div>
