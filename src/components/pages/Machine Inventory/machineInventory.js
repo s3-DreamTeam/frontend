@@ -119,10 +119,12 @@ const MachineInventoryPage = () => {
         console.log("BEFORE GETTING THE FULL TEMPLATE FROM THE FOLLOWING OBJECT: ", aFullMachine);
 
         let id = null;
-        if (aFullMachine.id === undefined) {
+        if (aFullMachine.TemplateID === undefined) {
             id = aFullMachine.TemplateID;
+            setGlobalErrors("I can't get a template from a machine with ID null/undefined...");
+            return;
         } else {
-            id = aFullMachine.id;
+            id = aFullMachine.TemplateID;
         }
 
         GetFullMachineTemplate({
