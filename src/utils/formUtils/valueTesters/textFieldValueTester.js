@@ -12,8 +12,8 @@ export function textFieldValueTester(newValue, fieldObject) {
     }
 
     // Nuh huh, don't try to put SQL in ur names... silly aah
-    if (newValue.indexOf(';') !== -1) {
-        return "Illegal caracter: ';'";
-    }
+    //if (newValue.indexOf(';') !== -1) {
+    //    return "Illegal caracter: ';'";
+    //}
     return null;
 }

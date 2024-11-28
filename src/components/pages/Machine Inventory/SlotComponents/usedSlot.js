@@ -5,6 +5,9 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { AddRounded, RemoveRounded } from "@mui/icons-material";
 import Product from "../../../../utils/productInventoryObject";
+import SetupProductInventoryPage from "../../../../utils/PreNavigation/SetupProductInventoryPage";
+import { useNavigate } from "react-router-dom";
+import { AppRoutes } from "../../../../utils/routerRouteManager";
 
 const UsedSlot = ({
     slot,
@@ -15,6 +18,7 @@ const UsedSlot = ({
     onReset = () => { },
 }) => {
     const [product, setProduct] = useState(null);
+    const navigate = useNavigate();
 
     // - Get the product from the store - //
     const allProducts = useSelector((state) => state.productInventorySlice.productInventory);
@@ -160,6 +164,10 @@ const UsedSlot = ({
                     object={object}
                     size="small"
                     showQuantity={true}
+                    onClick={() => {
+                        SetupProductInventoryPage(slot.ProductID);
+                        navigate(AppRoutes.StockManager);
+                    }}
                 />
             </div>
         </div>
