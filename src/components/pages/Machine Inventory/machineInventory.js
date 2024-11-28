@@ -248,6 +248,7 @@ const MachineInventoryPage = () => {
     }) {
         packet["ProductID"] = selectedSlot.ProductID;
         packet["Slot"] = selectedSlot.Slot;
+        packet["id"] = fullMachine.id;
         if (inAdd) {
             console.log("NEW PRODUCTS ADDED");
             MachineManagerAdd({
