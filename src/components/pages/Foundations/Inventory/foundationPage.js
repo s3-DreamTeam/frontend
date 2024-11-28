@@ -212,6 +212,7 @@ const InventoryFoundationPage = ({
                                 objectNameKey={objectNameKey}
                                 onItemClickSetup={onItemClickSetup}
                                 onItemClickEndpoint={onItemClickEndpoint}
+                                onCreateClick={HandleOnAdd}
                             />
                             : <InitialLoadingPage
                                 onRetryClick={loadFromScratch}

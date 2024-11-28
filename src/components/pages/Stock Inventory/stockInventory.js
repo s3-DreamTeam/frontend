@@ -37,6 +37,10 @@ const StockInventory = () => {
     const navigate = useNavigate();
     const productID = useSelector((state) => state.productManager.productManagerId);
 
+    if (productID === null) {
+        navigate(AppRoutes.Home);
+    }
+
     HandleUserLoggedInStatus();
 
     // - Fetch Necessary Informations - //

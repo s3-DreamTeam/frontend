@@ -1,10 +1,11 @@
-import { Stack } from "@mui/material";
+import { Button, IconButton, Stack } from "@mui/material";
 import EmptyPage from "../../emptyPage";
 import { useEffect, useState } from "react";
 import DeleteDialog from "../../Dialogs/DeleteDialog";
 import store from "../../../store/store";
 import ProcessStatusSnackBar from "../../processStatusSnackbar";
 import { useNavigate } from "react-router-dom";
+import { AddRounded } from "@mui/icons-material";
 
 /**
  * # MainLayoutFoundation
@@ -32,6 +33,8 @@ const MainLayoutFoundation = ({
     UpdateInventory,
     setObjectToLoadingReducer,
     setObjectToLoadedReducer,
+
+    onCreateClick = () => { },
 
     onItemClickSetup = () => { },
     onItemClickEndpoint = "",
@@ -135,6 +138,31 @@ const MainLayoutFoundation = ({
                 : <EmptyPage
                     header={emptyInventoryTitle}
                     subtitle={emptyInventoryMessage}
+                    actionButton={
+                        <div
+                            style={{
+                                display: 'flex',
+                                width: '100%',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                paddingTop: '1rem'
+                            }}
+                        >
+                            <Button
+                                size="large"
+                                variant="contained"
+                                color="secondary"
+                                startIcon={<AddRounded />}
+                                onClick={onCreateClick}
+                                sx={{
+                                    borderRadius: '1.5rem',
+                                    width: 'auto',
+                                }}
+                            >
+                                create one!
+                            </Button>
+                        </div>
+                    }
                 />
             }
             <DeleteDialog

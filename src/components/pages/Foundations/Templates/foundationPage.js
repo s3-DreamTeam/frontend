@@ -159,6 +159,7 @@ const TemplateFoundationPage = ({
                                 deleteDialogMessage={deleteObjectDialogMessage}
                                 emptyInventoryMessage={emptyInventoryMessage}
                                 emptyInventoryTitle={emptyInventoryTitle}
+                                onCreateClick={HandleOnAdd}
                                 onItemClickSetup={() => {
                                     setTemporaryErrorDialog(true);
                                 }}
