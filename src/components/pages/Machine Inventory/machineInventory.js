@@ -448,6 +448,7 @@ const MachineInventoryPage = () => {
     }
 
     // - Retry getting inventory - //
+    // Allo charle - //
     function RetryGettingInventory() {
         GetFullInventory(machineID, true);
     }
