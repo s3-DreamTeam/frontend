@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 export const productManagerSlice = createSlice({
     name: 'productManager',
     initialState: {
-        productManagerId: null
+        productManagerId: null,
+        productManagerGoBackEndpoint: ""
     },
     reducers: {
         setProductManagerPageID: (state, action) => {
@@ -11,8 +12,13 @@ export const productManagerSlice = createSlice({
             state.productManagerId = ID;
             console.log("ID IS IN STORE", ID);
         },
+        setProductManagerPageGoBackEndpoint: (state, action) => {
+            const endpoint = action.payload;
+            state.productManagerGoBackEndpoint = endpoint;
+            console.log("ENDPOINT IS IN STORE", endpoint);
+        },
     }
 });
 
-export const { setProductManagerPageID } = productManagerSlice.actions;
+export const { setProductManagerPageID, setProductManagerPageGoBackEndpoint } = productManagerSlice.actions;
 export const productManagerReducers = productManagerSlice.reducer;

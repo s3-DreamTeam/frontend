@@ -51,6 +51,7 @@ const StockManager = () => {
             templateObjectsSelector={templates}
 
             onItemClickEndpoint={AppRoutes.StockInventory}
+            originalEndpoint={AppRoutes.StockManager}
             onItemClickSetup={SetupProductInventoryPage}
 
             APIGetFullTemplate={GetFullProductTemplate}

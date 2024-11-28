@@ -41,6 +41,7 @@ const InventoryFoundationPage = ({
 
     onItemClickSetup = () => { console.log("Lol, this isn't working"); },
     onItemClickEndpoint = "",
+    originalEndpoint = "",
     APIDeleteObject,
     APICreateNewObject,
     APIGetFullTemplate,
@@ -211,6 +212,7 @@ const InventoryFoundationPage = ({
                                 emptyInventoryTitle={emptyInventoryTitle}
                                 objectNameKey={objectNameKey}
                                 onItemClickSetup={onItemClickSetup}
+                                originalEndpoint={originalEndpoint}
                                 onItemClickEndpoint={onItemClickEndpoint}
                                 onCreateClick={HandleOnAdd}
                             />

@@ -38,6 +38,7 @@ const MainLayoutFoundation = ({
 
     onItemClickSetup = () => { },
     onItemClickEndpoint = "",
+    originalEndpoint = "",
 
     deleteDialogMessage = "OOps, goofus forgot to specify a delete message dialog",
     emptyInventoryTitle = "Forgor to specify",
@@ -127,7 +128,7 @@ const MainLayoutFoundation = ({
                                 object={value}
                                 onClick={() => {
                                     console.log("CLICKED THE ITEM, ID IS: ", value.id);
-                                    onItemClickSetup(value.id);
+                                    onItemClickSetup(value.id, originalEndpoint);
                                     navigate(onItemClickEndpoint);
                                 }}
                                 onLongClick={() => { longClick(id); }}

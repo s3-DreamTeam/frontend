@@ -21,7 +21,7 @@ const StockEditor = () => {
             emptyInventoryTitle="You don't have any templates"
             emptyInventoryMessage="product templates are necessary to create inventories for your machines"
             loadingSnackbarMessage="Loading product templates..."
-            deleteObjectDialogMessage="Any machines using products with this template will ALSO be deleted. This action IS NOT reversible."
+            deleteObjectDialogMessage="We currently CANNOT delete a template that is in use. An error will occur if it's the case."//"Any machines using products with this template will ALSO be deleted. This action IS NOT reversible."
 
             AddNewFormTitle="New Product Template"
             addNewSuccessDialogTitle="Template created"

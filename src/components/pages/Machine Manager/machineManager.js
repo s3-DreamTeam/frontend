@@ -51,6 +51,7 @@ const MachineManager = () => {
             templateObjectsSelector={templates}
 
             onItemClickEndpoint={AppRoutes.MachineInventory}
+            originalEndpoint={AppRoutes.MachineManager}
             onItemClickSetup={SetupMachineInventoryPage}
 
             APIGetFullTemplate={GetFullMachineTemplate}

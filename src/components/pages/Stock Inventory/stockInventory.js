@@ -36,6 +36,8 @@ const StockInventory = () => {
     const [footerLoading, setFooterLoading] = useState(true);
     const navigate = useNavigate();
     const productID = useSelector((state) => state.productManager.productManagerId);
+    const goBackEndpoint = useSelector((state) => state.productManager.productManagerGoBackEndpoint);
+
 
     if (productID === null) {
         navigate(AppRoutes.Home);
@@ -194,7 +196,7 @@ const StockInventory = () => {
                 hasGoBackArrow={true}
                 hideNavigationDrawer={true}
                 onGoBack={() => {
-                    navigate(AppRoutes.StockManager);
+                    navigate(goBackEndpoint);
                 }}
                 childrens={
                     <Manager

@@ -165,7 +165,7 @@ const UsedSlot = ({
                     size="small"
                     showQuantity={true}
                     onClick={() => {
-                        SetupProductInventoryPage(slot.ProductID);
+                        SetupProductInventoryPage(slot.ProductID, AppRoutes.MachineInventory);
                         navigate(AppRoutes.StockManager);
                     }}
                 />

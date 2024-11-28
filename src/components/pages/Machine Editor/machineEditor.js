@@ -19,7 +19,7 @@ const MachineEditor = () => {
             emptyInventoryTitle="You don't have any templates"
             emptyInventoryMessage="machine templates are necessary to create an inventory of your machines"
             loadingSnackbarMessage="Loading machine templates..."
-            deleteObjectDialogMessage="Any machines using this template will ALSO be deleted. This action IS NOT reversible."
+            deleteObjectDialogMessage="We currently CANNOT delete a template that is in use. An error will occur if it's the case."//"Any machines using this template will ALSO be deleted. This action IS NOT reversible."
 
             AddNewFormTitle="New Machine Template"
             addNewSuccessDialogTitle="Template created"
