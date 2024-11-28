@@ -206,7 +206,7 @@ export function productTemplateFormBuilder() {
                         'cm',
                         null,
                         0,
-                        true
+                        false
                     ),
                     NumberFieldBuilder(
                         "Height",
@@ -215,7 +215,7 @@ export function productTemplateFormBuilder() {
                         'cm',
                         null,
                         0,
-                        true
+                        false
                     ),
                     NumberFieldBuilder(
                         "Length",
@@ -224,7 +224,7 @@ export function productTemplateFormBuilder() {
                         'cm',
                         null,
                         0,
-                        true
+                        false
                     ),
                     NumberFieldBuilder(
                         "Weight",
@@ -233,7 +233,7 @@ export function productTemplateFormBuilder() {
                         'kg',
                         null,
                         null,
-                        true
+                        false
                     ),
                 ]
             },

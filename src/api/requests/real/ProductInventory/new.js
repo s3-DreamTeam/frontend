@@ -26,7 +26,7 @@ export const RealNewProductInInventory = async ({
         );
         onSuccess();
     } catch (err) {
-        console.log(Endpoints.ProductInventory.New + ": REQ: RealNewProductInInventory - ERROR: ", err.message);
+        console.log(Endpoints.ProductInventory.New + ": REQ: RealNewProductInInventory - ERROR: ", err);
         onError(err);
     } finally {
         onEnd();
