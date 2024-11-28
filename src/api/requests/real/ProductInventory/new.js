@@ -28,6 +28,7 @@ export const RealNewProductInInventory = async ({
     } catch (err) {
         console.log(Endpoints.ProductInventory.New + ": REQ: RealNewProductInInventory - ERROR: ", err);
 
+        /*
         if (err.response) {
             if (err.response.status == 572) {
                 onError({
@@ -39,6 +40,8 @@ export const RealNewProductInInventory = async ({
         } else {
             onError(err);
         }
+        */
+        onError(err);
 
     } finally {
         onEnd();
