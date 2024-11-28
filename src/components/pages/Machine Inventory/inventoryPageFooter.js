@@ -14,6 +14,13 @@ const InventoryPageFooter = ({
         inventory = [];
     }
 
+    // Hopefully sorts stuff out
+    inventory.sort((a, b) => {
+        if (a.Slot < b.Slot) return -1;
+        if (a.Slot > b.Slot) return 1;
+        return 0; // they are equal
+    });
+
     return (
         <>
             {inventory.map((value, index) => (

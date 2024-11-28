@@ -73,6 +73,10 @@ const MachineInventoryPage = () => {
 
     HandleUserLoggedInStatus();
 
+    if (machineID === null) {
+        navigate(AppRoutes.Home);
+    }
+
     // - Fetch Necessary Informations - //
     useEffect(() => {
         if (!isFetching) {
