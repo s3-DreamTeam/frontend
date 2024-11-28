@@ -24,10 +24,11 @@ import { machineManagerFormRemoveBuilder } from "../../../utils/formUtils/Forms/
 import { MachineManagerAdd } from "../../../api/requests/interface/MachineManager/add";
 import { MachineManagerRemove } from "../../../api/requests/interface/MachineManager/remove";
 import { GetSurfaceProductInInventory } from "../../../api/requests/interface/ProductInventory/getSurface";
-import { setProductInventoryData } from "../../../store/productInventorySlice";
+import { resetProductInventoryError, setProductInventoryData, setProductInventoryError, setProductInventoryToLoaded, setProductInventoryToLoading } from "../../../store/productInventorySlice";
 import ErrorPage from "../../errorPage";
 import { IconButton } from "@mui/material";
 import { RefreshRounded, UndoRounded } from "@mui/icons-material";
+import { GetFullProductInInventory } from "../../../api/requests/interface/ProductInventory/getFull";
 
 let isFetching = false;
 
@@ -423,6 +424,22 @@ const MachineInventoryPage = () => {
                 console.log("Success! Now gonna reload the inventory.");
                 GetFullInventory(machineID, false);
                 ReloadMachineData();
+                GetFullProductInInventory({
+                    ID: selectedSlot.ProductID,
+                    onStart: () => {
+                        dispatch(resetProductInventoryError(selectedSlot.ProductID));
+                        dispatch(setProductInventoryToLoading(selectedSlot.ProductID));
+                    },
+                    onEnd: () => {
+                        dispatch(setProductInventoryToLoaded(selectedSlot.ProductID));
+                    },
+                    onError: (e) => {
+                        dispatch(setProductInventoryError({ "id": selectedSlot.ProductID, "error": e.message }));
+                    },
+                    onSuccess: (data) => {
+                        dispatch(setProductInventoryData({ "id": selectedSlot.ProductID, "data": data }));
+                    }
+                });
             },
             onError: (e) => {
                 setInventoryError(e.message);
